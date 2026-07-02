@@ -96,8 +96,9 @@ function vihaTrackOrder(e) {
   result.style.display = 'block';
 
   setTimeout(function() {
-    // Redirect to Shopify order lookup — customer must be logged in for full details
-    window.location.href = '/account/orders/' + encodeURIComponent(orderId);
+    // Order-level deep links aren't reliable without an app/API lookup — send the
+    // customer to their account order history instead (prompts login if needed).
+    window.location.href = '{{ routes.account_url }}';
   }, 1200);
 }
 </script>

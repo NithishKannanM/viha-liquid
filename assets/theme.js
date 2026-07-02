@@ -33,121 +33,6 @@ function trapFocus(el) {
 })();
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   COUNTRY SELECTOR
-══════════════════════════════════════════════════════════════════════════════ */
-(function initCountrySelector() {
-  const wrap = $('.country-selector');
-  if (!wrap) return;
-
-  const btn = $('[data-country-toggle]', wrap);
-  const list = $$('[data-country-item]', wrap);
-
-  function openSelector() { wrap.classList.add('is-open'); btn.setAttribute('aria-expanded', 'true'); }
-  function closeSelector() { wrap.classList.remove('is-open'); btn.setAttribute('aria-expanded', 'false'); }
-  function toggleSelector() { wrap.classList.contains('is-open') ? closeSelector() : openSelector(); }
-
-  btn.addEventListener('click', (e) => { e.stopPropagation(); toggleSelector(); });
-
-  document.addEventListener('click', (e) => {
-    if (!wrap.contains(e.target)) closeSelector();
-  });
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeSelector();
-  });
-
-  const REGION_META = {
-    IN:  { name: 'India',         currency: 'INR', symbol: '₹',   threshold: '₹999'  },
-    US:  { name: 'United States', currency: 'USD', symbol: '$',   threshold: '$12'   },
-    GB:  { name: 'United Kingdom',currency: 'GBP', symbol: '£',   threshold: '£10'   },
-    CA:  { name: 'Canada',        currency: 'CAD', symbol: 'C$',  threshold: 'C$16'  },
-    AE:  { name: 'UAE',           currency: 'AED', symbol: 'AED', threshold: 'AED 45' },
-    CN:  { name: 'China',         currency: 'CNY', symbol: '¥',   threshold: '¥85'   },
-  };
-
-  function updateAnnouncementBar(flag, code) {
-    const meta = REGION_META[code];
-    if (!meta) return;
-    $$('[data-ann-flag]').forEach(el => el.textContent = flag);
-    $$('[data-ann-flag2]').forEach(el => el.textContent = flag);
-    $$('[data-ann-country]').forEach(el => el.textContent = meta.name);
-    $$('[data-ann-currency]').forEach(el => el.textContent = meta.currency);
-    $$('[data-ann-threshold]').forEach(el => el.textContent = meta.threshold);
-  }
-
-  list.forEach(item => {
-    item.addEventListener('click', () => {
-      list.forEach(i => i.classList.remove('is-active'));
-      item.classList.add('is-active');
-      const flag = item.getAttribute('data-flag') || '';
-      const code = item.getAttribute('data-code') || '';
-      const flagEl = $('[data-country-flag]', btn);
-      const codeEl = $('[data-country-code]', btn);
-      if (flagEl) flagEl.textContent = flag;
-      if (codeEl) codeEl.textContent = code;
-      updateAnnouncementBar(flag, code);
-      localStorage.setItem('viha_region', code);
-      closeSelector();
-
-      // Trigger Shopify Markets locale switch
-      const localeForm = $('form[action="/localization"]');
-      if (localeForm) {
-        const localeInput = $('input[name="locale"]', localeForm);
-        if (localeInput) { localeInput.value = code.toLowerCase(); localeForm.submit(); }
-      }
-    });
-  });
-
-  function showAutoDetectBadge(flag, name) {
-    const badge = $('[data-auto-detect-badge]', wrap);
-    if (!badge) return;
-    badge.innerHTML =
-      '<span style="display:flex;align-items:center;gap:5px;">' +
-        '<svg width="9" height="9" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>' +
-        flag + ' ' + name + ' detected' +
-      '</span>';
-    badge.classList.add('is-visible');
-    setTimeout(() => badge.classList.remove('is-visible'), 5000);
-  }
-
-  function applyRegion(code, silent) {
-    const match = list.find(i => i.getAttribute('data-code') === code);
-    if (!match) return false;
-    if (silent) {
-      // Update UI without triggering click side-effects (no localStorage write, no locale form submit)
-      list.forEach(i => i.classList.remove('is-active'));
-      match.classList.add('is-active');
-      const flag = match.getAttribute('data-flag') || '';
-      const flagEl = $('[data-country-flag]', btn);
-      const codeEl = $('[data-country-code]', btn);
-      if (flagEl) flagEl.textContent = flag;
-      if (codeEl) codeEl.textContent = code;
-      updateAnnouncementBar(flag, code);
-      localStorage.setItem('viha_region', code);
-      return { flag, code };
-    } else {
-      match.click();
-      return true;
-    }
-  }
-
-  // ── Region initialisation: saved preference → auto-detect → default ──────
-  const saved = localStorage.getItem('viha_region');
-  if (saved && REGION_META[saved]) {
-    // User has an explicit saved preference — apply silently, no badge
-    applyRegion(saved, true);
-  } else {
-    // First visit — try Shopify's server-side geolocation
-    const detected = (wrap.getAttribute('data-detected-country') || '').toUpperCase();
-    if (detected && REGION_META[detected]) {
-      const result = applyRegion(detected, true);
-      if (result) showAutoDetectBadge(result.flag, REGION_META[detected].name);
-    }
-    // If detected country is not in our 6 supported regions, default stays as IN (first item)
-  }
-})();
-
-/* ═══════════════════════════════════════════════════════════════════════════
    MEGA MENU — 160ms hover-intent debounce (same pattern as React fix)
 ══════════════════════════════════════════════════════════════════════════════ */
 (function initMegaMenu() {
@@ -162,9 +47,6 @@ function trapFocus(el) {
   let activeCat = null;
 
   function openMegaMenu(catId) {
-    // Guard: don't open while country selector is open
-    if ($('.country-selector.is-open')) return;
-
     $$('[data-mega-panel]', megaMenu).forEach(p => {
       p.hidden = p.getAttribute('data-mega-panel') !== catId;
     });
@@ -181,7 +63,6 @@ function trapFocus(el) {
 
   function schedulOpen(catId) {
     if (timer) clearTimeout(timer);
-    if ($('.country-selector.is-open')) return;
     timer = setTimeout(() => openMegaMenu(catId), 160);
   }
 
@@ -713,92 +594,3 @@ const CartDrawer = (function () {
   }
 })();
 
-/* ── Region Welcome Modal ──────────────────────────────────────────── */
-(function initRegionModal() {
-  var modal      = document.getElementById('region-modal');
-  var backdrop   = document.getElementById('region-modal-backdrop');
-  var closeBtn   = document.getElementById('region-modal-close');
-  var continueBtn = document.getElementById('region-modal-continue');
-  if (!modal) return;
-
-  /* Only show when viha_region has never been set */
-  if (localStorage.getItem('viha_region')) return;
-
-  /* Small delay so the page renders first */
-  setTimeout(function() {
-    modal.hidden = false;
-    modal.classList.add('is-visible');
-    document.body.style.overflow = 'hidden';
-    var firstBtn = modal.querySelector('.region-modal__item');
-    if (firstBtn) firstBtn.focus();
-  }, 800);
-
-  var selectedCode = null;
-
-  function dismiss() {
-    modal.classList.remove('is-visible');
-    document.body.style.overflow = '';
-    setTimeout(function() { modal.hidden = true; }, 200);
-  }
-
-  function selectRegion(btn) {
-    selectedCode = btn.getAttribute('data-region-code');
-    modal.querySelectorAll('.region-modal__item').forEach(function(b) {
-      var sel = b === btn;
-      b.classList.toggle('is-selected', sel);
-      b.setAttribute('aria-checked', sel ? 'true' : 'false');
-    });
-    if (continueBtn) continueBtn.disabled = false;
-  }
-
-  /* Region button clicks */
-  modal.querySelectorAll('.region-modal__item').forEach(function(btn) {
-    btn.addEventListener('click', function() { selectRegion(btn); });
-    btn.addEventListener('keydown', function(e) {
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); selectRegion(btn); }
-    });
-  });
-
-  /* Continue */
-  if (continueBtn) {
-    continueBtn.addEventListener('click', function() {
-      if (!selectedCode) return;
-      localStorage.setItem('viha_region', selectedCode);
-      /* Sync with country-selector if present */
-      var selectorFlag = document.querySelector('[data-country-flag]');
-      var selectorName = document.querySelector('[data-country-name]');
-      var selectorCurrency = document.querySelector('[data-currency-symbol]');
-      var chosenBtn = modal.querySelector('.region-modal__item.is-selected');
-      if (chosenBtn) {
-        var flag = chosenBtn.querySelector('.region-modal__flag');
-        var name = chosenBtn.querySelector('.region-modal__country');
-        var curr = chosenBtn.getAttribute('data-currency');
-        if (selectorFlag && flag) selectorFlag.textContent = flag.textContent;
-        if (selectorName && name) selectorName.textContent = name.textContent;
-        if (selectorCurrency && curr) selectorCurrency.textContent = curr;
-      }
-      dismiss();
-    });
-  }
-
-  /* Close X */
-  if (closeBtn) closeBtn.addEventListener('click', function() {
-    /* Save a default (India) so modal doesn't keep re-appearing after explicit close */
-    localStorage.setItem('viha_region', 'IN');
-    dismiss();
-  });
-
-  /* Backdrop click */
-  if (backdrop) backdrop.addEventListener('click', function() {
-    localStorage.setItem('viha_region', 'IN');
-    dismiss();
-  });
-
-  /* Escape key */
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && !modal.hidden) {
-      localStorage.setItem('viha_region', 'IN');
-      dismiss();
-    }
-  });
-})();

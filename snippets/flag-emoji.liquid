@@ -1,0 +1,15 @@
+{%- comment -%}
+  Renders a flag emoji from a 2-letter ISO country code by composing the two
+  Unicode "regional indicator" symbols — works for any country, no per-country
+  lookup table needed. Usage: {% render 'flag-emoji', code: localization.country.iso_code %}
+{%- endcomment -%}
+{%- assign ri = "A🇦 B🇧 C🇨 D🇩 E🇪 F🇫 G🇬 H🇭 I🇮 J🇯 K🇰 L🇱 M🇲 N🇳 O🇴 P🇵 Q🇶 R🇷 S🇸 T🇹 U🇺 V🇻 W🇼 X🇽 Y🇾 Z🇿" | split: " " -%}
+{%- assign upcode = code | upcase -%}
+{%- assign c1 = upcode | slice: 0, 1 -%}
+{%- assign c2 = upcode | slice: 1, 1 -%}
+{%- for pair in ri -%}
+  {%- assign letter = pair | slice: 0, 1 -%}
+  {%- if letter == c1 -%}{%- assign flag1 = pair | slice: 1, 1 -%}{%- endif -%}
+  {%- if letter == c2 -%}{%- assign flag2 = pair | slice: 1, 1 -%}{%- endif -%}
+{%- endfor -%}
+{{- flag1 -}}{{- flag2 -}}

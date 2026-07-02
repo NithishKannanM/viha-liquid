@@ -1,0 +1,20 @@
+{%- comment -%}
+  Real Shopify country/currency switcher (not cosmetic — actually updates cart currency
+  and shipping via Shopify's native localization form).
+  List reflects Admin → Settings → Markets: only countries enabled there will appear.
+  Usage: {% render 'localization-form', id_suffix: 'footer', compact: true %}
+{%- endcomment -%}
+{%- assign lf_id = 'localization-form-' | append: id_suffix -%}
+{%- form 'localization', id: lf_id, class: 'localization-form' -%}
+  <div class="localization-form{% if compact %} localization-form--compact{% endif %}">
+    <label for="{{ lf_id }}-select" class="{% if compact %}sr-only{% endif %}">Country / Region</label>
+    <select name="country_code" id="{{ lf_id }}-select" class="localization-form__select" onchange="this.form.submit()">
+      {%- for country in localization.available_countries -%}
+        <option value="{{ country.iso_code }}" {% if country.iso_code == localization.country.iso_code %}selected{% endif %}>
+          {{ country.name }} ({{ country.currency.iso_code }})
+        </option>
+      {%- endfor -%}
+    </select>
+    <noscript><button type="submit" class="localization-form__submit">Update</button></noscript>
+  </div>
+{%- endform -%}

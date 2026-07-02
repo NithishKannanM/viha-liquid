@@ -1,0 +1,99 @@
+{%- comment -%}
+  Product Card snippet
+  Usage: {% render 'product-card', product: product, lazy: true %}
+{%- endcomment -%}
+
+{%- assign card_product = product -%}
+{%- assign lazy = lazy | default: true -%}
+
+<article class="product-card" itemscope itemtype="https://schema.org/Product">
+
+  {%- comment -%} Image area {%- endcomment -%}
+  <a href="{{ card_product.url }}" class="product-card__img-wrap" aria-label="{{ card_product.title | escape }}" tabindex="-1">
+    {% if card_product.featured_image %}
+      <img
+        class="product-card__img"
+        src="{{ card_product.featured_image | img_url: '500x625', crop: 'center' }}"
+        alt="{{ card_product.featured_image.alt | default: card_product.title | escape }}"
+        width="500" height="625"
+        loading="{{ lazy | iif: 'lazy', 'eager' }}"
+        itemprop="image"
+      >
+    {% else %}
+      <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:rgba(45,45,45,0.25);">
+        <svg width="40" height="40" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"/>
+        </svg>
+      </div>
+    {% endif %}
+
+    {%- comment -%} Top-left badge {%- endcomment -%}
+    {% if card_product.tags contains 'bestseller' or card_product.tags contains 'top-rated' %}
+      <span class="product-card__badge product-card__badge--rated">Top Rated</span>
+    {% elsif card_product.tags contains 'new-arrival' %}
+      <span class="product-card__badge product-card__badge--new">New</span>
+    {% endif %}
+
+    {%- comment -%} Top-right wishlist button {%- endcomment -%}
+    <button class="product-card__wishlist"
+      aria-label="Save {{ card_product.title | escape }}"
+      data-wishlist-btn="{{ card_product.handle }}"
+      onclick="event.preventDefault();event.stopPropagation();vihaWishlistToggle(this,'{{ card_product.handle }}');">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"/>
+      </svg>
+    </button>
+  </a>
+
+  {%- comment -%} Card info {%- endcomment -%}
+  <div class="product-card__body">
+
+    {%- comment -%} Category + rating row {%- endcomment -%}
+    <div class="product-card__meta">
+      <span class="product-card__cat" itemprop="category">{{ card_product.type | default: card_product.vendor }}</span>
+      <span class="product-card__rating" aria-label="4.8 out of 5">
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+        4.8
+      </span>
+    </div>
+
+    {%- comment -%} Product title {%- endcomment -%}
+    <a href="{{ card_product.url }}" class="product-card__name" itemprop="name">{{ card_product.title }}</a>
+
+    {%- comment -%} Price + actions row {%- endcomment -%}
+    <div class="product-card__footer">
+      <span class="product-card__price" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+        <meta itemprop="priceCurrency" content="{{ cart.currency.iso_code }}">
+        <span itemprop="price" content="{{ card_product.price | divided_by: 100.0 }}">{{ card_product.price | money }}</span>
+        {% if card_product.compare_at_price > card_product.price %}
+          <s class="product-card__compare">{{ card_product.compare_at_price | money }}</s>
+        {% endif %}
+      </span>
+      <div class="product-card__actions">
+        <a href="{{ card_product.url }}" class="product-card__info-btn" aria-label="View {{ card_product.title | escape }} details">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z"/>
+          </svg>
+        </a>
+        <button
+          class="product-card__atc"
+          aria-label="Add {{ card_product.title | escape }} to cart"
+          data-add-to-cart="{{ card_product.variants.first.id }}"
+          data-variant-id="{{ card_product.variants.first.id }}"
+          {% unless card_product.available %}disabled aria-disabled="true"{% endunless %}
+        >
+          {% if card_product.available %}
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007z"/>
+            </svg>
+          {% else %}
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"/>
+            </svg>
+          {% endif %}
+        </button>
+      </div>
+    </div>
+
+  </div>
+</article>

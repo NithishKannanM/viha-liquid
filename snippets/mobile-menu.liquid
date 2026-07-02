@@ -1,0 +1,60 @@
+{%- comment -%} Mobile Menu Drawer — rendered once per page via layout/theme.liquid {%- endcomment -%}
+<div class="mobile-menu-overlay" aria-hidden="true"></div>
+
+<nav id="mobile-menu" class="mobile-menu" role="dialog" aria-label="Mobile navigation" aria-modal="true">
+  <div class="mobile-menu__header">
+    <a href="/" aria-label="{{ shop.name }} — Home">
+      {% if settings.logo != blank %}
+        <img src="{{ settings.logo | img_url: 'small' }}" alt="{{ shop.name }}" height="{{ settings.logo_height_mobile }}" style="height:{{ settings.logo_height_mobile }}px;">
+      {% else %}
+        <span style="font-family:var(--font-heading);font-weight:900;color:var(--color-maroon);">{{ shop.name }}</span>
+      {% endif %}
+    </a>
+    <button class="header__icon-btn" data-mobile-menu-close aria-label="Close menu">
+      <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+      </svg>
+    </button>
+  </div>
+
+  <div class="mobile-menu__body">
+
+    <p class="mobile-menu__section-label">Shop Collections</p>
+    <a href="/collections/all"               class="mobile-menu__link">All Essentials</a>
+    <a href="/collections/spiritual-pooja"   class="mobile-menu__link">Spiritual &amp; Pooja</a>
+    <a href="/collections/ayurveda-herbal"   class="mobile-menu__link">Ayurveda &amp; Herbal</a>
+    <a href="/pages/beauty"                  class="mobile-menu__link mobile-menu__link--beauty">
+      Beauty &amp; Wellness
+      <span class="mobile-menu__badge mobile-menu__badge--green">✦ Featured</span>
+    </a>
+    <a href="/collections/jewellery-fashion" class="mobile-menu__link">Jewellery &amp; Fashion</a>
+    <a href="/collections/home-living"       class="mobile-menu__link">Home &amp; Living</a>
+    <a href="/collections/food-organic"      class="mobile-menu__link">Food &amp; Organic</a>
+
+    <div class="mobile-menu__divider"></div>
+
+    <p class="mobile-menu__section-label">More Categories</p>
+    <a href="/collections/kids-baby"         class="mobile-menu__link">Kids &amp; Baby</a>
+    <a href="/collections/books-stationery"  class="mobile-menu__link">Books &amp; Stationery</a>
+    <a href="/collections/bags-pouches"      class="mobile-menu__link">Bags &amp; Pouches</a>
+    <a href="/collections/fashion-grooming"  class="mobile-menu__link">Fashion &amp; Grooming</a>
+    <a href="/collections/new-arrivals"      class="mobile-menu__link mobile-menu__link--gold">New Arrivals ✦</a>
+
+  </div>
+
+  <div class="mobile-menu__footer">
+    <a href="{% if customer %}/account{% else %}/account/login{% endif %}" class="mobile-menu__footer-link">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/>
+      </svg>
+      My Account
+    </a>
+    <button class="mobile-menu__footer-link" data-country-toggle aria-label="Select region">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253"/>
+      </svg>
+      <span data-country-flag style="font-size:16px;">🇮🇳</span>
+      <span data-country-name>India</span>
+    </button>
+  </div>
+</nav>

@@ -1,0 +1,53 @@
+<section class="section beauty-promo" aria-labelledby="beauty-promo-heading">
+  <div class="beauty-promo__inner container">
+
+    <div class="beauty-promo__img-wrap">
+      {% if section.settings.image != blank %}
+        <img
+          src="{{ section.settings.image | img_url: 'master' }}"
+          alt="{{ section.settings.image_alt | default: 'Ayurvedic Beauty' }}"
+          class="beauty-promo__img"
+          loading="lazy"
+        >
+      {% else %}
+        <img
+          src="https://images.unsplash.com/photo-1607006342411-1a90c4fb3152?q=80&w=800"
+          alt="Ayurvedic Beauty Products"
+          class="beauty-promo__img"
+          loading="lazy"
+        >
+      {% endif %}
+    </div>
+
+    <div class="beauty-promo__text">
+      <p class="section__eyebrow">{{ section.settings.eyebrow | default: 'BEAUTY & WELLNESS' }}</p>
+      <h2 class="section__heading font-serif" id="beauty-promo-heading">{{ section.settings.heading | default: 'Beauty & Wellness, Rooted in Ayurveda' }}</h2>
+      <div class="ornament-line-gold" aria-hidden="true">
+        <span class="ornament-diamond-gold">◆</span>
+      </div>
+      <p class="beauty-promo__body">{{ section.settings.body | default: "Viha's beauty collection draws on five thousand years of Ayurvedic wisdom — handmade soaps, therapeutic oils, natural attars, and botanical skincare carefully curated by Mrs Anitha Kuppusamy." }}</p>
+      {%- assign bp_url = section.settings.cta_url | default: '/pages/beauty' -%}
+      <a href="{{ bp_url }}" class="btn btn--maroon" style="display:inline-flex;align-items:center;gap:0.5rem;margin-top:1.5rem;">
+        {{ section.settings.cta_text | default: 'Explore Beauty' }}
+        <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Beauty Promo",
+  "settings": [
+    { "type": "text",         "id": "eyebrow",   "label": "Eyebrow",      "default": "BEAUTY & WELLNESS" },
+    { "type": "text",         "id": "heading",   "label": "Heading",      "default": "Beauty & Wellness, Rooted in Ayurveda" },
+    { "type": "textarea",     "id": "body",      "label": "Body text",    "default": "Viha's beauty collection draws on five thousand years of Ayurvedic wisdom — handmade soaps, therapeutic oils, natural attars, and botanical skincare carefully curated by Mrs Anitha Kuppusamy." },
+    { "type": "image_picker", "id": "image",     "label": "Promo image" },
+    { "type": "text",         "id": "image_alt", "label": "Image alt text", "default": "Ayurvedic Beauty" },
+    { "type": "text",         "id": "cta_text",  "label": "CTA button text", "default": "Explore Beauty" },
+    { "type": "url",          "id": "cta_url",   "label": "CTA link" }
+  ],
+  "presets": [{ "name": "Beauty Promo" }]
+}
+{% endschema %}

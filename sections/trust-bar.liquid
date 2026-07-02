@@ -1,0 +1,48 @@
+<div class="trust-bar">
+  <div class="trust-bar__inner">
+    <p class="trust-bar__headline">
+      <span class="trust-bar__count">{{ section.settings.customer_count | default: '10,000+' }}</span>
+      {{ section.settings.headline | default: 'Happy Customers Across 6 Countries' }}
+    </p>
+    <div class="trust-bar__items">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'trust_item' -%}
+          <span>{{ block.settings.text }}</span>
+          {%- unless forloop.last -%}<span class="trust-bar__sep">◆</span>{%- endunless -%}
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Trust Bar",
+  "settings": [
+    { "type": "text", "id": "customer_count", "label": "Customer count", "default": "10,000+" },
+    { "type": "text", "id": "headline",       "label": "Headline text",  "default": "Happy Customers Across 6 Countries" }
+  ],
+  "blocks": [
+    {
+      "type": "trust_item",
+      "name": "Trust item",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Trust item text", "default": "Free Shipping ₹1000+" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Trust Bar",
+      "category": "Promotional",
+      "blocks": [
+        { "type": "trust_item", "settings": { "text": "Free Shipping ₹1000+" } },
+        { "type": "trust_item", "settings": { "text": "100% Authentic Ingredients" } },
+        { "type": "trust_item", "settings": { "text": "COSMOS Certified" } },
+        { "type": "trust_item", "settings": { "text": "30-Day Returns" } },
+        { "type": "trust_item", "settings": { "text": "Crafted in India" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

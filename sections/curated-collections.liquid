@@ -1,0 +1,75 @@
+<section class="section curated-collections" aria-labelledby="curated-heading">
+  <div class="container">
+    <div class="section__header-row">
+      <div>
+        <p class="section__eyebrow">{{ section.settings.eyebrow | default: 'HAND-PICKED FOR YOU' }}</p>
+        <h2 class="section__heading font-serif" id="curated-heading">{{ section.settings.heading | default: 'Curated Collections' }}</h2>
+      </div>
+    </div>
+    <div class="curated__grid">
+
+      <a href="/collections/spiritual-pooja" class="curated__card" aria-label="Pooja Products collection">
+        {% if section.settings.img_pooja != blank %}
+          <img src="{{ section.settings.img_pooja | img_url: 'master' }}" alt="Pooja Products" class="curated__img" loading="lazy">
+        {% else %}
+          <img src="{{ 'hero_banner.png' | asset_url }}" alt="Pooja Products" class="curated__img" loading="lazy">
+        {% endif %}
+        <div class="curated__card-body">
+          <p class="curated__label">Pooja Products</p>
+          <p class="curated__desc">Sacred essentials for daily &amp; festival rituals, from Vellerukku to Rudraksha malas.</p>
+          <span class="curated__link">
+            Shop collection
+            <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <a href="/collections/jewellery-fashion" class="curated__card" aria-label="Sacred Jewelry collection">
+        {% if section.settings.img_jewelry != blank %}
+          <img src="{{ section.settings.img_jewelry | img_url: 'master' }}" alt="Sacred Jewelry" class="curated__img" loading="lazy">
+        {% else %}
+          <img src="{{ 'sacred_jewelry.png' | asset_url }}" alt="Sacred Jewelry" class="curated__img" loading="lazy">
+        {% endif %}
+        <div class="curated__card-body">
+          <p class="curated__label">Sacred Jewelry</p>
+          <p class="curated__desc">Temple jewellery, silver anklets, and Aimpon pieces steeped in heritage craft.</p>
+          <span class="curated__link">
+            Shop collection
+            <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <a href="/collections/jewellery-fashion" class="curated__card" aria-label="Traditional Clothing collection">
+        {% if section.settings.img_clothing != blank %}
+          <img src="{{ section.settings.img_clothing | img_url: 'master' }}" alt="Traditional Clothing" class="curated__img" loading="lazy">
+        {% else %}
+          <img src="{{ 'traditional_clothing.png' | asset_url }}" alt="Traditional Clothing" class="curated__img" loading="lazy">
+        {% endif %}
+        <div class="curated__card-body">
+          <p class="curated__label">Traditional Clothing</p>
+          <p class="curated__desc">Salem silk sarees, silk veshtis, and festive attire for every sacred occasion.</p>
+          <span class="curated__link">
+            Shop collection
+            <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+          </span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Curated Collections",
+  "settings": [
+    { "type": "text",         "id": "eyebrow",     "label": "Eyebrow text",   "default": "HAND-PICKED FOR YOU" },
+    { "type": "text",         "id": "heading",     "label": "Section heading", "default": "Curated Collections" },
+    { "type": "image_picker", "id": "img_pooja",   "label": "Pooja Products image" },
+    { "type": "image_picker", "id": "img_jewelry", "label": "Sacred Jewelry image" },
+    { "type": "image_picker", "id": "img_clothing","label": "Traditional Clothing image" }
+  ],
+  "presets": [{ "name": "Curated Collections" }]
+}
+{% endschema %}

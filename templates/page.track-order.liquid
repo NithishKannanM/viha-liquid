@@ -1,0 +1,107 @@
+{%- comment -%} Track Order page — assign template "page.track-order" in Admin {%- endcomment -%}
+
+<section style="background:var(--color-paper);padding:3.5rem 1.5rem 2rem;">
+  <div style="max-width:680px;margin:0 auto;text-align:center;">
+    <p style="font-size:10px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--color-gold);margin-bottom:0.75rem;">Order Status</p>
+    <h1 style="font-family:var(--font-heading);font-size:clamp(2rem,5vw,2.75rem);font-weight:900;color:var(--color-maroon);line-height:1.1;margin-bottom:0.875rem;">Track Your Spiritual Journey</h1>
+    <p style="font-size:14px;color:rgba(45,45,45,0.65);line-height:1.75;">Enter your Viha order ID and the email address used at checkout to get real-time updates on your sacred items.</p>
+  </div>
+</section>
+
+<div style="background:var(--color-paper);padding:0 1.5rem 5rem;">
+  <div style="max-width:680px;margin:0 auto;">
+
+    {%- comment -%} ── Track form ───────────────────────────────────────────── {%- endcomment -%}
+    <div style="background:#fff;border:1px solid var(--color-cream-dark);border-radius:2px;padding:2.5rem;margin-bottom:2rem;">
+      <h2 style="font-family:var(--font-heading);font-size:1.1rem;font-weight:900;color:var(--color-maroon);margin-bottom:1.5rem;">Enter Order Details</h2>
+
+      <form id="viha-track-form" onsubmit="vihaTrackOrder(event);" style="display:flex;flex-direction:column;gap:1rem;">
+        <div>
+          <label for="track-order-id" style="display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.14em;color:rgba(45,45,45,0.6);margin-bottom:6px;">Order ID / Order Number *</label>
+          <input type="text" id="track-order-id" placeholder="e.g. #1234 or VIHA-1234" required
+            style="width:100%;padding:0.875rem 1rem;border:1.5px solid var(--color-cream-dark);border-radius:2px;font-size:14px;font-family:inherit;color:var(--color-charcoal);background:#fff;outline:none;transition:border-color 0.2s;box-sizing:border-box;"
+            onfocus="this.style.borderColor='var(--color-maroon)'" onblur="this.style.borderColor='var(--color-cream-dark)'">
+        </div>
+        <div>
+          <label for="track-email" style="display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.14em;color:rgba(45,45,45,0.6);margin-bottom:6px;">Email Address *</label>
+          <input type="email" id="track-email" placeholder="Email used at checkout" required
+            style="width:100%;padding:0.875rem 1rem;border:1.5px solid var(--color-cream-dark);border-radius:2px;font-size:14px;font-family:inherit;color:var(--color-charcoal);background:#fff;outline:none;transition:border-color 0.2s;box-sizing:border-box;"
+            onfocus="this.style.borderColor='var(--color-maroon)'" onblur="this.style.borderColor='var(--color-cream-dark)'">
+        </div>
+        <button type="submit" class="btn btn--primary" style="justify-content:center;margin-top:0.5rem;">
+          <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" aria-hidden="true" style="margin-right:6px;"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 15.803 7.5 7.5 0 0015.803 15.803z"/></svg>
+          Track My Order
+        </button>
+      </form>
+
+      {%- comment -%} Result panel (shown via JS) {%- endcomment -%}
+      <div id="track-result" style="display:none;margin-top:2rem;padding-top:2rem;border-top:1px solid var(--color-cream-dark);">
+        <div id="track-result-inner"></div>
+      </div>
+    </div>
+
+    {%- comment -%} ── Help section ─────────────────────────────────────────── {%- endcomment -%}
+    <div style="background:var(--color-cream);border:1px solid var(--color-cream-dark);border-radius:2px;padding:1.5rem;display:flex;gap:1rem;align-items:flex-start;">
+      <div style="width:36px;height:36px;border-radius:50%;background:var(--color-maroon);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="#fff" stroke-width="1.5" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z"/>
+        </svg>
+      </div>
+      <div>
+        <p style="font-size:12px;font-weight:700;color:var(--color-maroon);margin-bottom:4px;">Can't find your order?</p>
+        <p style="font-size:12px;color:rgba(45,45,45,0.65);line-height:1.7;">Your order confirmation email contains your Order ID. If you still can't find it, <a href="/pages/contact" style="color:var(--color-maroon);font-weight:600;text-decoration:underline;">contact our support team</a> — we'll track it for you.</p>
+      </div>
+    </div>
+
+    {%- comment -%} Status legend ────────────────────────────────────────────── {%- endcomment -%}
+    <div style="margin-top:2.5rem;">
+      <p style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.16em;color:var(--color-gold);margin-bottom:1rem;">Order Status Guide</p>
+      <div style="display:flex;flex-direction:column;gap:0.75rem;">
+        {%- assign steps = "Order Placed|Your order has been confirmed and payment verified.|Packed|Your sacred items are carefully wrapped and packed for safe transit.|Shipped|Handed over to our logistics partner. Tracking number assigned.|Out for Delivery|Your parcel is with the delivery agent and arriving today.|Delivered|Your sacred items have arrived. May they bring peace and positivity." | split: "|" -%}
+        {%- for i in (0..4) -%}
+          {%- assign si = i | times: 2 -%}
+          {%- assign di = si | plus: 1 -%}
+          <div style="display:flex;align-items:flex-start;gap:0.875rem;">
+            <div style="width:24px;height:24px;border-radius:50%;background:var(--color-maroon);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;">
+              <span style="font-size:9px;font-weight:900;color:#fff;">{{ i | plus: 1 }}</span>
+            </div>
+            <div>
+              <p style="font-size:12px;font-weight:700;color:var(--color-maroon);">{{ steps[si] }}</p>
+              <p style="font-size:11px;color:rgba(45,45,45,0.6);line-height:1.6;">{{ steps[di] }}</p>
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+function vihaTrackOrder(e) {
+  e.preventDefault();
+  var orderId = document.getElementById('track-order-id').value.trim().replace(/^#/, '');
+  var email = document.getElementById('track-email').value.trim();
+  var result = document.getElementById('track-result');
+  var inner = document.getElementById('track-result-inner');
+
+  if (!orderId || !email) return;
+
+  // Redirect to Shopify native order status (works for logged-in customers)
+  // For guest orders, Shopify uses token-based URL; redirect to account orders as fallback
+  inner.innerHTML = '<div style="text-align:center;padding:1rem;">'
+    + '<div style="width:40px;height:40px;border:3px solid var(--color-cream-dark);border-top-color:var(--color-maroon);border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto 1rem;"></div>'
+    + '<p style="font-size:13px;color:rgba(45,45,45,0.6);">Looking up order <strong style="color:var(--color-maroon);">#' + orderId + '</strong>...</p>'
+    + '</div>';
+  result.style.display = 'block';
+
+  setTimeout(function() {
+    // Redirect to Shopify order lookup — customer must be logged in for full details
+    window.location.href = '/account/orders/' + encodeURIComponent(orderId);
+  }, 1200);
+}
+</script>
+
+<style>
+@keyframes spin { to { transform: rotate(360deg); } }
+</style>

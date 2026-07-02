@@ -1,0 +1,861 @@
+{%- comment -%} Mega-menu "featured" tile pulls the latest post from the "news" blog (same article in every panel) {%- endcomment -%}
+{%- assign mega_blog_article = blogs['news'].articles.first -%}
+{%- assign mega_blog_img = mega_blog_article.image | img_url: '100x100' -%}
+{%- assign mega_blog_date = mega_blog_article.published_at | date: '%b %d, %Y' -%}
+{%- assign mega_blog_excerpt = mega_blog_article.excerpt | strip_html | strip_newlines -%}
+{%- if mega_blog_excerpt == blank -%}
+  {%- assign mega_blog_excerpt = mega_blog_article.content | strip_html | strip_newlines | truncate: 100 -%}
+{%- endif -%}
+
+{%- comment -%} Beauty & Wellness panel only shows posts tagged "beauty"; falls back to the general latest post if none are tagged yet {%- endcomment -%}
+{%- assign beauty_blog_article = blogs['news'].articles | where: 'tags', 'beauty' | first -%}
+{%- if beauty_blog_article == blank -%}
+  {%- assign beauty_blog_article = mega_blog_article -%}
+{%- endif -%}
+{%- assign beauty_blog_img = beauty_blog_article.image | img_url: '100x100' -%}
+{%- assign beauty_blog_date = beauty_blog_article.published_at | date: '%b %d, %Y' -%}
+{%- assign beauty_blog_excerpt = beauty_blog_article.excerpt | strip_html | strip_newlines -%}
+{%- if beauty_blog_excerpt == blank -%}
+  {%- assign beauty_blog_excerpt = beauty_blog_article.content | strip_html | strip_newlines | truncate: 100 -%}
+{%- endif -%}
+
+<header class="site-header" role="banner">
+
+  {%- comment -%} ── Row 1: Logo + Tagline + Utility Icons ─────────────── {%- endcomment -%}
+  <div class="header__row-1">
+
+    {%- comment -%} Mobile hamburger (left) {%- endcomment -%}
+    <button class="header__icon-btn lg:hidden" data-mobile-menu-open aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+      <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5M3.75 17.25h16.5"/>
+      </svg>
+    </button>
+
+    {%- comment -%} Logo {%- endcomment -%}
+    <a href="/" class="header__logo" aria-label="{{ shop.name }} — Home">
+      {% if settings.logo != blank %}
+        <img
+          src="{{ settings.logo | img_url: 'medium' }}"
+          alt="{{ shop.name }}"
+          height="{{ settings.logo_height }}"
+          style="height:{{ settings.logo_height }}px;"
+          loading="eager"
+          fetchpriority="high"
+        >
+      {% else %}
+        <span class="header__logo-text">{{ shop.name }}</span>
+      {% endif %}
+    </a>
+
+    {%- comment -%} Centre tagline (desktop only) {%- endcomment -%}
+    <div class="header__tagline" aria-hidden="true">
+      <span class="header__tagline-brand">Viha Heritage Store</span>
+      <span class="header__tagline-sub">Spiritual Essentials Curated by Mrs Anitha Kuppusamy</span>
+    </div>
+
+    {%- comment -%} Right icon group {%- endcomment -%}
+    <div class="header__icons">
+
+      {%- comment -%} Country / Region selector (z-[2] parent keeps it above mega menu) {%- endcomment -%}
+      {%- assign shopify_country = localization.country.iso_code | upcase -%}
+      <div class="country-selector" id="country-selector" data-detected-country="{{ shopify_country }}">
+        <button class="country-selector__btn" data-country-toggle aria-label="Select region" aria-expanded="false" aria-controls="country-dropdown" aria-haspopup="listbox">
+          <span data-country-flag style="font-size:18px;">🇮🇳</span>
+          <span data-country-code style="font-size:10px;font-weight:700;letter-spacing:0.08em;" class="hidden md:inline">IN</span>
+          <svg width="10" height="10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/>
+          </svg>
+        </button>
+        <div class="country-selector__auto-badge" data-auto-detect-badge aria-live="polite"></div>
+
+        <div class="country-selector__dropdown" id="country-dropdown" role="listbox" aria-label="Select your region">
+          <div class="country-selector__label">
+            <span>Active Destination</span>
+            <button onclick="document.getElementById('country-selector').classList.remove('is-open')" style="background:none;border:none;cursor:pointer;color:rgba(45,45,45,0.4);display:flex;align-items:center;" aria-label="Close">
+              <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+          </div>
+          <div class="country-selector__list">
+            {%- assign regions = "🇮🇳,IN,₹,India,INR|🇺🇸,US,$,United States,USD|🇬🇧,GB,£,United Kingdom,GBP|🇨🇦,CA,C$,Canada,CAD|🇦🇪,AE,AED,UAE,AED|🇨🇳,CN,¥,China,CNY" | split: "|" -%}
+            {%- for region in regions -%}
+              {%- assign parts = region | split: "," -%}
+              <button class="country-selector__item{% if forloop.first %} is-active{% endif %}" role="option"
+                data-country-item data-flag="{{ parts[0] }}" data-code="{{ parts[1] }}" aria-selected="{{ forloop.first }}">
+                <span style="display:flex;align-items:center;gap:8px;">{{ parts[0] }}&nbsp;{{ parts[3] }}</span>
+                <span class="country-selector__currency">{{ parts[1] }}&nbsp;{{ parts[2] }}</span>
+              </button>
+            {%- endfor -%}
+          </div>
+          <p class="country-selector__note">
+            <svg width="10" height="10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="display:inline;vertical-align:middle;" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3"/></svg>
+            Some botanical & wooden items have customs restrictions outside India.
+          </p>
+        </div>
+      </div>
+
+      {%- comment -%} Search {%- endcomment -%}
+      <button class="header__icon-btn" data-search-open aria-label="Search products">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 15.803 7.5 7.5 0 0015.803 15.803z"/>
+        </svg>
+      </button>
+
+      {%- comment -%} Account {%- endcomment -%}
+      {%- if customer -%}
+        <a href="/account" class="header__icon-btn header__icon-btn--desktop" aria-label="My account">
+      {%- else -%}
+        <a href="/account/login" class="header__icon-btn header__icon-btn--desktop" aria-label="Sign in">
+      {%- endif -%}
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/>
+        </svg>
+      </a>
+
+      {%- comment -%} Wishlist {%- endcomment -%}
+      <a href="/wishlist" class="header__icon-btn" aria-label="Wishlist">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"/>
+        </svg>
+      </a>
+
+      {%- comment -%} Cart {%- endcomment -%}
+      {% if settings.cart_type == 'drawer' %}
+        <button class="header__icon-btn" data-cart-open aria-label="Open cart ({{ cart.item_count }} items)" aria-expanded="false">
+      {% else %}
+        <a href="/cart" class="header__icon-btn" aria-label="Cart ({{ cart.item_count }} items)">
+      {% endif %}
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007z"/>
+          </svg>
+          <span class="header__badge header__badge--maroon" data-cart-badge aria-live="polite" {% if cart.item_count == 0 %}style="display:none;"{% endif %}>{{ cart.item_count }}</span>
+      {% if settings.cart_type == 'drawer' %}
+        </button>
+      {% else %}
+        </a>
+      {% endif %}
+
+    </div>{%- comment -%} /.header__icons {%- endcomment -%}
+  </div>{%- comment -%} /.header__row-1 {%- endcomment -%}
+
+  {%- comment -%}
+    Row 2 — Nav strip: isolated at z-[1] so the mega menu (z-50 inside it)
+    can never escape above Row 1 (z-[2]) where the country dropdown lives.
+  {%- endcomment -%}
+  <nav class="header__row-2" aria-label="Main navigation" id="main-nav">
+    <div class="header__nav">
+
+      <a href="/collections/all" class="header__nav-btn header__nav-btn--all">All Essentials</a>
+
+      <button class="header__nav-btn" data-mega-trigger="spiritual-pooja" aria-haspopup="true" aria-expanded="false">Spiritual &amp; Pooja</button>
+      <button class="header__nav-btn" data-mega-trigger="ayurveda-herbal" aria-haspopup="true" aria-expanded="false">Ayurveda &amp; Herbal</button>
+      <button class="header__nav-btn" data-mega-trigger="beauty" aria-haspopup="true" aria-expanded="false">
+        Beauty &amp; Wellness
+        <span style="font-size:8px;background:var(--color-maroon);color:#fff;padding:1px 5px;border-radius:2px;margin-left:3px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;vertical-align:middle;">✦</span>
+      </button>
+      <button class="header__nav-btn" data-mega-trigger="jewellery-fashion" aria-haspopup="true" aria-expanded="false">Jewellery &amp; Fashion</button>
+      <button class="header__nav-btn" data-mega-trigger="home-living" aria-haspopup="true" aria-expanded="false">Home &amp; Living</button>
+      <button class="header__nav-btn" data-mega-trigger="food-organic" aria-haspopup="true" aria-expanded="false">Food &amp; Organic</button>
+      <button class="header__nav-btn" data-mega-trigger="kids-baby" aria-haspopup="true" aria-expanded="false">Kids &amp; Baby</button>
+      <button class="header__nav-btn" data-mega-trigger="books-gifts" aria-haspopup="true" aria-expanded="false">Books &amp; Gifts</button>
+      <button class="header__nav-btn" data-mega-trigger="bags-pouches" aria-haspopup="true" aria-expanded="false">Bags &amp; Pouches</button>
+      <button class="header__nav-btn" data-mega-trigger="fashion-grooming" aria-haspopup="true" aria-expanded="false">Fashion &amp; Grooming</button>
+      <button class="header__nav-btn" data-mega-trigger="new-arrivals" aria-haspopup="true" aria-expanded="false" style="color:var(--color-gold);font-weight:900;">New Arrivals ✦</button>
+
+    </div>
+
+    {%- comment -%} ── Mega Menu — child of Row 2, so its z-50 is capped by z-[1] parent ─ {%- endcomment -%}
+    <div class="mega-menu" role="region" aria-label="Category navigation" aria-live="polite">
+
+      {%- comment -%} SPIRITUAL & POOJA {%- endcomment -%}
+      <div data-mega-panel="spiritual-pooja" hidden>
+        <div class="mega-menu__inner">
+          <div class="mega-menu__subcats">
+            <div>
+              <p class="mega-menu__cat-heading">Pooja Essentials</p>
+              <p class="mega-menu__cat-desc">Daily worship items</p>
+              <a href="/collections/pooja-products" class="mega-menu__cat-link">Pooja Products</a>
+              <a href="/collections/pooja-samagri" class="mega-menu__cat-link">Pooja Samagri</a>
+              <a href="/collections/lamp-diya" class="mega-menu__cat-link">Lamp &amp; Diya</a>
+              <a href="/collections/conch-shells" class="mega-menu__cat-link">Conch Shells</a>
+            </div>
+            <div>
+              <p class="mega-menu__cat-heading">God Idols &amp; Statues</p>
+              <p class="mega-menu__cat-desc">Sacred deity figures</p>
+              <a href="/collections/statues-idols" class="mega-menu__cat-link">Statues &amp; Idols</a>
+              <a href="/collections/god-photos" class="mega-menu__cat-link">God Photos</a>
+              <a href="/collections/magnetic-god-photos" class="mega-menu__cat-link">Magnetic God Photos</a>
+              <a href="/collections/idol-clothes-ornaments" class="mega-menu__cat-link">Idol Clothes</a>
+            </div>
+            <div>
+              <p class="mega-menu__cat-heading">Crystal &amp; Healing</p>
+              <p class="mega-menu__cat-desc">Energy &amp; metaphysical</p>
+              <a href="/collections/gemstones-crystals" class="mega-menu__cat-link">Gemstones &amp; Crystals</a>
+              <a href="/collections/yantra" class="mega-menu__cat-link">Yantras</a>
+              <a href="/collections/vasthu-products" class="mega-menu__cat-link">Vastu Products</a>
+              <a href="/collections/mala-rosary" class="mega-menu__cat-link">Mala &amp; Rosary</a>
+            </div>
+            <div>
+              <p class="mega-menu__cat-heading">Karungali Products</p>
+              <p class="mega-menu__cat-desc">Sacred ebony wood</p>
+              <a href="/collections/karungali" class="mega-menu__cat-link">Karungali Mala</a>
+              <a href="/collections/karungali" class="mega-menu__cat-link">Karungali Bracelets</a>
+              <a href="/collections/karungali" class="mega-menu__cat-link">Karungali Wood Items</a>
+              <a href="/collections/wooden-products" class="mega-menu__cat-link">Wooden Products</a>
+            </div>
+            <div>
+              <p class="mega-menu__cat-heading">Pooja Utensils</p>
+              <p class="mega-menu__cat-desc">Brass &amp; copper items</p>
+              <a href="/collections/pooja-utensils" class="mega-menu__cat-link">Pooja Utensils</a>
+              <a href="/collections/kubera-pooja-products" class="mega-menu__cat-link">Kubera Pooja</a>
+              <a href="/collections/kolam-rangoli-stickers-stencils" class="mega-menu__cat-link">Kolam &amp; Rangoli</a>
+              <a href="/collections/plain-rudraksh" class="mega-menu__cat-link">Rudraksh Malas</a>
+            </div>
+            <div>
+              <p class="mega-menu__cat-heading">Astrological</p>
+              <p class="mega-menu__cat-desc">Vastu &amp; cosmic items</p>
+              <a href="/collections/gomathi-chakra" class="mega-menu__cat-link">Gomathi Chakra</a>
+              <a href="/collections/pyramid-orgones" class="mega-menu__cat-link">Pyramid &amp; Orgones</a>
+              <a href="/collections/vasthu-products" class="mega-menu__cat-link">Vastu Products</a>
+              <a href="/collections/gemstones-crystals" class="mega-menu__cat-link">Lucky Stones</a>
+            </div>
+          </div>
+          <div class="mega-menu__divider" aria-hidden="true"></div>
+          <div class="mega-menu__featured">
+            {%- if mega_blog_article -%}
+            <div>
+              <p class="mega-menu__featured-label">FROM THE JOURNAL</p>
+              <div style="display:flex;gap:10px;align-items:flex-start;margin-top:0.75rem;">
+                {%- if mega_blog_img -%}
+                <img class="mega-menu__featured-img" src="{{ mega_blog_img }}" alt="{{ mega_blog_article.image.alt | default: mega_blog_article.title | escape }}">
+                {%- endif -%}
+                <div>
+                  <p class="mega-menu__featured-name">{{ mega_blog_article.title }}</p>
+                  <p class="mega-menu__featured-date">{{ mega_blog_date }}</p>
+                </div>
+              </div>
+              <p style="font-size:10px;color:rgba(45,45,45,0.6);line-height:1.6;margin-top:8px;">{{ mega_blog_excerpt }}</p>
+            </div>
+            <a href="{{ mega_blog_article.url }}" class="mega-menu__featured-btn">
+              Read Article
+              <svg width="10" height="10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+            </a>
+            {%- endif -%}
+          </div>
+        </div>
+        <p class="mega-menu__quote">"Invoking peace and protective clarity in your clean prayer spaces."</p>
+      </div>
+
+      {%- comment -%} AYURVEDA & HERBAL {%- endcomment -%}
+      <div data-mega-panel="ayurveda-herbal" hidden>
+        <div class="mega-menu__inner">
+          <div class="mega-menu__subcats">
+            <div>
+              <p class="mega-menu__cat-heading">Ayurveda &amp; Herbal</p>
+              <p class="mega-menu__cat-desc">Skin &amp; hair powders</p>
+              <a href="/collections/ayurveda-herbal" class="mega-menu__cat-link">Herbal Powders</a>
+              <a href="/collections/skin-care" class="mega-menu__cat-link">Skin Care</a>
+              <a href="/collections/health-care-1" class="mega-menu__cat-link">Health Care</a>
+            </div>
+            <div>
+              <p class="mega-menu__cat-heading">Vettiver &amp; Darba</p>
+              <p class="mega-menu__cat-desc">Therapeutic roots</p>
+              <a href="/collections/vettiver-vellerukku-darba" class="mega-menu__cat-link">Vettiver Products</a>
+              <a href="/collections/vettiver-vellerukku-darba" class="mega-menu__cat-link">Darba Pooja Grass</a>
+              <a href="/collections/vettiver-vellerukku-darba" class="mega-menu__cat-link">Vellerukku Items</a>
+            </div>
+            <div>
+              <p class="mega-menu__cat-heading">Oils</p>
+              <p class="mega-menu__cat-desc">Therapeutic extractions</p>
+              <a href="/collections/oils" class="mega-menu__cat-link">Herbal Oils</a>
+              <a href="/collections/oils" class="mega-menu__cat-link">Cold Pressed Oils</a>
+              <a href="/collections/oils" class="mega-menu__cat-link">Cooking Oils</a>
+            </div>
+            <div>
+              <p class="mega-menu__cat-heading">Handmade Soaps</p>
+              <p class="mega-menu__cat-desc">Skin-nourishing botanicals</p>
+              <a href="/collections/handmade-soaps" class="mega-menu__cat-link">Red Sandalwood Soap</a>
+              <a href="/collections/handmade-soaps" class="mega-menu__cat-link">Neem &amp; Haldi Soap</a>
+              <a href="/collections/handmade-soaps" class="mega-menu__cat-link">Herbal Bath Bars</a>
+            </div>
+            <div>
+              <p class="mega-menu__cat-heading">Karungali Products</p>
+              <p class="mega-menu__cat-desc">Sacred Ebony Wood</p>
+              <a href="/collections/karungali" class="mega-menu__cat-link">Karungali Ebony Mala</a>
+              <a href="/collections/karungali" class="mega-menu__cat-link">Karungali Bracelets</a>
+              <a href="/collections/karungali" class="mega-menu__cat-link">Karungali Keyrings</a>
+            </div>
+            <div>
+              <p class="mega-menu__cat-heading">Perfumes</p>
+              <p class="mega-menu__cat-desc">Earthy divine attar</p>
+              <a href="/collections/perfumes" class="mega-menu__cat-link">Jasmine Attar Roll-on</a>
+              <a href="/collections/perfumes" class="mega-menu__cat-link">Sandalwood Extract</a>
+              <a href="/collections/perfumes" class="mega-menu__cat-link">Mogra Vapour</a>
+            </div>
+          </div>
+          <div class="mega-menu__divider" aria-hidden="true"></div>
+          <div class="mega-menu__featured">
+            {%- if mega_blog_article -%}
+            <div>
+              <p class="mega-menu__featured-label">FROM THE JOURNAL</p>
+              <div style="display:flex;gap:10px;align-items:flex-start;margin-top:0.75rem;">
+                {%- if mega_blog_img -%}
+                <img class="mega-menu__featured-img" src="{{ mega_blog_img }}" alt="{{ mega_blog_article.image.alt | default: mega_blog_article.title | escape }}">
+                {%- endif -%}
+                <div>
+                  <p class="mega-menu__featured-name">{{ mega_blog_article.title }}</p>
+                  <p class="mega-menu__featured-date">{{ mega_blog_date }}</p>
+                </div>
+              </div>
+              <p style="font-size:10px;color:rgba(45,45,45,0.6);line-height:1.6;margin-top:8px;">{{ mega_blog_excerpt }}</p>
+            </div>
+            <a href="{{ mega_blog_article.url }}" class="mega-menu__featured-btn">
+              Read Article
+              <svg width="10" height="10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+            </a>
+            {%- endif -%}
+          </div>
+        </div>
+        <p class="mega-menu__quote">"Reclaim organic wellness crafted with ancestral biological wisdom."</p>
+      </div>
+
+      {%- comment -%} BEAUTY & WELLNESS {%- endcomment -%}
+      <div data-mega-panel="beauty" hidden>
+        <div class="mega-menu__inner">
+          <div class="mega-menu__subcats">
+            <div>
+              <p class="mega-menu__cat-heading">Handmade Soaps</p>
+              <p class="mega-menu__cat-desc">Cold-process botanical bars</p>
+              <a href="/pages/beauty" class="mega-menu__cat-link">Red Sandalwood Soap</a>
+              <a href="/pages/beauty" class="mega-menu__cat-link">Neem &amp; Haldi Soap</a>
+              <a href="/pages/beauty" class="mega-menu__cat-link">Tulsi Bath Bar</a>
+            </div>
+            <div>
+              <p class="mega-menu__cat-heading">Ayurvedic Skincare</p>
+              <p class="mega-menu__cat-desc">Face packs &amp; scrubs</p>
+              <a href="/pages/beauty" class="mega-menu__cat-link">Chandan Facial Pack</a>
+              <a href="/pages/beauty" class="mega-menu__cat-link">Ubtan Pack</a>
+              <a href="/pages/beauty" class="mega-menu__cat-link">Botanical Scrub</a>
+            </div>
+            <div>
+              <p class="mega-menu__cat-heading">Hair &amp; Body Oils</p>
+              <p class="mega-menu__cat-desc">Therapeutic extractions</p>
+              <a href="/pages/beauty" class="mega-menu__cat-link">Kumkumadi Fluid</a>
+              <a href="/pages/beauty" class="mega-menu__cat-link">Cold Sesame Oil</a>
+              <a href="/pages/beauty" class="mega-menu__cat-link">Pancha Deepam Mix</a>
+            </div>
+            <div>
+              <p class="mega-menu__cat-heading">Natural Perfumes</p>
+              <p class="mega-menu__cat-desc">Alcohol-free attars</p>
+              <a href="/pages/beauty" class="mega-menu__cat-link">Jasmine Attar Roll-on</a>
+              <a href="/pages/beauty" class="mega-menu__cat-link">Sandalwood Extract</a>
+              <a href="/pages/beauty" class="mega-menu__cat-link">Mogra Vapour</a>
+            </div>
+            <div>
+              <p class="mega-menu__cat-heading">Bath &amp; Scrubs</p>
+              <p class="mega-menu__cat-desc">Cleansing rituals</p>
+              <a href="/pages/beauty" class="mega-menu__cat-link">Vetiver Root Scrub</a>
+              <a href="/pages/beauty" class="mega-menu__cat-link">Darba Grass Exfoliator</a>
+              <a href="/pages/beauty" class="mega-menu__cat-link">Matted Root Scrub</a>
+            </div>
+            <div>
+              <p class="mega-menu__cat-heading">Traditional Self-Care</p>
+              <p class="mega-menu__cat-desc">Ancestral wellness</p>
+              <a href="/pages/beauty" class="mega-menu__cat-link">Karungali Products</a>
+              <a href="/pages/beauty" class="mega-menu__cat-link">Heritage Kumkum</a>
+              <a href="/pages/beauty" class="mega-menu__cat-link">Herbal Powder Blends</a>
+            </div>
+          </div>
+          <div class="mega-menu__divider" aria-hidden="true"></div>
+          <div class="mega-menu__featured">
+            {%- if beauty_blog_article -%}
+            <div>
+              <p class="mega-menu__featured-label">FROM THE JOURNAL</p>
+              <div style="display:flex;gap:10px;align-items:flex-start;margin-top:0.75rem;">
+                {%- if beauty_blog_img -%}
+                <img class="mega-menu__featured-img" src="{{ beauty_blog_img }}" alt="{{ beauty_blog_article.image.alt | default: beauty_blog_article.title | escape }}">
+                {%- endif -%}
+                <div>
+                  <p class="mega-menu__featured-name">{{ beauty_blog_article.title }}</p>
+                  <p class="mega-menu__featured-date">{{ beauty_blog_date }}</p>
+                </div>
+              </div>
+              <p style="font-size:10px;color:rgba(45,45,45,0.6);line-height:1.6;margin-top:8px;">{{ beauty_blog_excerpt }}</p>
+            </div>
+            <a href="{{ beauty_blog_article.url }}" class="mega-menu__featured-btn">
+              Read Article
+              <svg width="10" height="10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+            </a>
+            {%- endif -%}
+          </div>
+        </div>
+        <p class="mega-menu__quote">"Skin rituals rooted in five thousand years of Ayurvedic wisdom."</p>
+      </div>
+
+      {%- comment -%} JEWELLERY & FASHION {%- endcomment -%}
+      <div data-mega-panel="jewellery-fashion" hidden>
+        <div class="mega-menu__inner">
+          <div class="mega-menu__subcats">
+            <div>
+              <p class="mega-menu__cat-heading">Impon / Panchaloha</p>
+              <p class="mega-menu__cat-desc">Gold-plated heritage pieces</p>
+              <a href="/collections/aimpon-panchaloha" class="mega-menu__cat-link">Impon Haram &amp; Necklace</a>
+              <a href="/collections/aimpon-panchaloha" class="mega-menu__cat-link">Impon Bangles &amp; Kolusu</a>
+              <a href="/collections/aimpon-panchaloha" class="mega-menu__cat-link">Impon Jhumka &amp; Stud</a>
+              <a href="/collections/aimpon-panchaloha" class="mega-menu__cat-link">Impon Mattal &amp; Metti</a>
+            </div>
+            <div>
+              <p class="mega-menu__cat-heading">Karungali Jewellery</p>
+              <p class="mega-menu__cat-desc">Sacred ebony wood jewels</p>
+              <a href="/collections/karungali" class="mega-menu__cat-link">Karungali Mala</a>
+              <a href="/collections/karungali" class="mega-menu__cat-link">Karungali Bracelets</a>
+              <a href="/collections/karungali" class="mega-menu__cat-link">Karungali Pendants</a>
+              <a href="/collections/karungali" class="mega-menu__cat-link">Karungali Bangles</a>
+            </div>
+            <div>
+              <p class="mega-menu__cat-heading">Crystal &amp; Gemstone</p>
+              <p class="mega-menu__cat-desc">Natural healing stones</p>
+              <a href="/collections/gemstones-crystals" class="mega-menu__cat-link">Crystal Bracelets</a>
+              <a href="/collections/gemstones-crystals" class="mega-menu__cat-link">Gemstone Malas</a>
+              <a href="/collections/gemstones-crystals" class="mega-menu__cat-link">Navaratna Jewellery</a>
+              <a href="/collections/gemstones-crystals" class="mega-menu__cat-link">Pearl Jewellery</a>
+            </div>
+            <div>
+              <p class="mega-menu__cat-heading">Temple Jewellery</p>
+              <p class="mega-menu__cat-desc">Heritage &amp; silver pieces</p>
+              <a href="/collections/jewelleries" class="mega-menu__cat-link">Heritage Necklaces</a>
+              <a href="/collections/silver-jewellery" class="mega-menu__cat-link">Silver Jewellery</a>
+              <a href="/collections/jewelleries" class="mega-menu__cat-link">Anklets &amp; Toe Rings</a>
+              <a href="/collections/jewelleries" class="mega-menu__cat-link">Jhumka &amp; Kadaa</a>
+            </div>
+            <div>
+              <p class="mega-menu__cat-heading">Hair &amp; Accessories</p>
+              <p class="mega-menu__cat-desc">Dignified styling</p>
+              <a href="/collections/hair-accessories" class="mega-menu__cat-link">Hair Accessories</a>
+              <a href="/collections/hair-accessories" class="mega-menu__cat-link">Nethi Chutti</a>
+              <a href="/collections/studs" class="mega-menu__cat-link">Studs</a>
+              <a href="/collections/accessories" class="mega-menu__cat-link">All Accessories</a>
+            </div>
+          </div>
+          <div class="mega-menu__divider" aria-hidden="true"></div>
+          <div class="mega-menu__featured">
+            {%- if mega_blog_article -%}
+            <div>
+              <p class="mega-menu__featured-label">FROM THE JOURNAL</p>
+              <div style="display:flex;gap:10px;align-items:flex-start;margin-top:0.75rem;">
+                {%- if mega_blog_img -%}
+                <img class="mega-menu__featured-img" src="{{ mega_blog_img }}" alt="{{ mega_blog_article.image.alt | default: mega_blog_article.title | escape }}">
+                {%- endif -%}
+                <div>
+                  <p class="mega-menu__featured-name">{{ mega_blog_article.title }}</p>
+                  <p class="mega-menu__featured-date">{{ mega_blog_date }}</p>
+                </div>
+              </div>
+              <p style="font-size:10px;color:rgba(45,45,45,0.6);line-height:1.6;margin-top:8px;">{{ mega_blog_excerpt }}</p>
+            </div>
+            <a href="{{ mega_blog_article.url }}" class="mega-menu__featured-btn">
+              Read Article
+              <svg width="10" height="10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+            </a>
+            {%- endif -%}
+          </div>
+        </div>
+        <p class="mega-menu__quote">"Embody the rich spiritual aesthetics worn by generations of classic devotees."</p>
+      </div>
+
+      {%- comment -%} HOME & LIVING {%- endcomment -%}
+      <div data-mega-panel="home-living" hidden>
+        <div class="mega-menu__inner">
+          <div class="mega-menu__subcats">
+            <div>
+              <p class="mega-menu__cat-heading">Home Needs</p>
+              <p class="mega-menu__cat-desc">Earthy lifestyle</p>
+              <a href="/collections/home-needs" class="mega-menu__cat-link">Kitchen &amp; Home Essentials</a>
+              <a href="/collections/home-needs" class="mega-menu__cat-link">Room &amp; Floor Care</a>
+              <a href="/collections/home-needs" class="mega-menu__cat-link">Home Appliances</a>
+            </div>
+            <div>
+              <p class="mega-menu__cat-heading">Brass Products</p>
+              <p class="mega-menu__cat-desc">Exquisite metalware</p>
+              <a href="/collections/brass" class="mega-menu__cat-link">Brass Utensils</a>
+              <a href="/collections/brass" class="mega-menu__cat-link">Brass Idols &amp; Decor</a>
+              <a href="/collections/brass" class="mega-menu__cat-link">Brass Pooja Items</a>
+            </div>
+            <div>
+              <p class="mega-menu__cat-heading">Palm Woven Products</p>
+              <p class="mega-menu__cat-desc">Natural weaver crafts</p>
+              <a href="/collections/palm-woven-products" class="mega-menu__cat-link">Woven Palm Totes</a>
+              <a href="/collections/palm-woven-products" class="mega-menu__cat-link">Storage Boxes</a>
+              <a href="/collections/palm-woven-products" class="mega-menu__cat-link">Palm Products</a>
+            </div>
+            <div>
+              <p class="mega-menu__cat-heading">Wooden Products</p>
+              <p class="mega-menu__cat-desc">Artisan crafted wood</p>
+              <a href="/collections/wooden-products" class="mega-menu__cat-link">Wooden Decor</a>
+              <a href="/collections/wooden-products" class="mega-menu__cat-link">Wooden Utensils</a>
+              <a href="/collections/garden" class="mega-menu__cat-link">Garden Items</a>
+            </div>
+            <div>
+              <p class="mega-menu__cat-heading">Gift Articles</p>
+              <p class="mega-menu__cat-desc">Housewarming collections</p>
+              <a href="/collections/gift-articles" class="mega-menu__cat-link">Gift Sets &amp; Combos</a>
+              <a href="/collections/gift-articles" class="mega-menu__cat-link">Housewarming Gifts</a>
+              <a href="/collections/pooja-products" class="mega-menu__cat-link">Puja Starter Packs</a>
+            </div>
+          </div>
+          <div class="mega-menu__divider" aria-hidden="true"></div>
+          <div class="mega-menu__featured">
+            {%- if mega_blog_article -%}
+            <div>
+              <p class="mega-menu__featured-label">FROM THE JOURNAL</p>
+              <div style="display:flex;gap:10px;align-items:flex-start;margin-top:0.75rem;">
+                {%- if mega_blog_img -%}
+                <img class="mega-menu__featured-img" src="{{ mega_blog_img }}" alt="{{ mega_blog_article.image.alt | default: mega_blog_article.title | escape }}">
+                {%- endif -%}
+                <div>
+                  <p class="mega-menu__featured-name">{{ mega_blog_article.title }}</p>
+                  <p class="mega-menu__featured-date">{{ mega_blog_date }}</p>
+                </div>
+              </div>
+              <p style="font-size:10px;color:rgba(45,45,45,0.6);line-height:1.6;margin-top:8px;">{{ mega_blog_excerpt }}</p>
+            </div>
+            <a href="{{ mega_blog_article.url }}" class="mega-menu__featured-btn">
+              Read Article
+              <svg width="10" height="10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+            </a>
+            {%- endif -%}
+          </div>
+        </div>
+        <p class="mega-menu__quote">"Infuse your household with custom metalcrafts tuned for high positivity."</p>
+      </div>
+
+      {%- comment -%} FOOD & ORGANIC {%- endcomment -%}
+      <div data-mega-panel="food-organic" hidden>
+        <div class="mega-menu__inner">
+          <div class="mega-menu__subcats">
+            <div>
+              <p class="mega-menu__cat-heading">Organic Rice Varieties</p>
+              <p class="mega-menu__cat-desc">Traditional raw crops</p>
+              <a href="/collections/traditional-organic-rice-varieties" class="mega-menu__cat-link">Mappillai Samba Rice</a>
+              <a href="/collections/traditional-organic-rice-varieties" class="mega-menu__cat-link">Seeraga Samba Rice</a>
+              <a href="/collections/traditional-organic-rice-varieties" class="mega-menu__cat-link">Karuppu Kavuni Rice</a>
+            </div>
+            <div>
+              <p class="mega-menu__cat-heading">Groceries</p>
+              <p class="mega-menu__cat-desc">Organic dry goods</p>
+              <a href="/collections/spices" class="mega-menu__cat-link">Masala &amp; Spices</a>
+              <a href="/collections/groceries" class="mega-menu__cat-link">Dal &amp; Grains</a>
+              <a href="/collections/groceries" class="mega-menu__cat-link">Millet Products</a>
+            </div>
+            <div>
+              <p class="mega-menu__cat-heading">Sweets &amp; Savouries</p>
+              <p class="mega-menu__cat-desc">Traditional Tamil treats</p>
+              <a href="/collections/snacks-savouries" class="mega-menu__cat-link">Peanut Candy</a>
+              <a href="/collections/snacks-savouries" class="mega-menu__cat-link">Omam Candy</a>
+              <a href="/collections/snacks-savouries" class="mega-menu__cat-link">Dosa &amp; Idli Mixes</a>
+            </div>
+            <div>
+              <p class="mega-menu__cat-heading">Honey &amp; Dry Fruits</p>
+              <p class="mega-menu__cat-desc">Natural &amp; unprocessed</p>
+              <a href="/collections/groceries" class="mega-menu__cat-link">Pure Honey</a>
+              <a href="/collections/groceries" class="mega-menu__cat-link">Dry Fruits</a>
+              <a href="/collections/groceries" class="mega-menu__cat-link">Pickles &amp; Preserves</a>
+            </div>
+          </div>
+          <div class="mega-menu__divider" aria-hidden="true"></div>
+          <div class="mega-menu__featured">
+            {%- if mega_blog_article -%}
+            <div>
+              <p class="mega-menu__featured-label">FROM THE JOURNAL</p>
+              <div style="display:flex;gap:10px;align-items:flex-start;margin-top:0.75rem;">
+                {%- if mega_blog_img -%}
+                <img class="mega-menu__featured-img" src="{{ mega_blog_img }}" alt="{{ mega_blog_article.image.alt | default: mega_blog_article.title | escape }}">
+                {%- endif -%}
+                <div>
+                  <p class="mega-menu__featured-name">{{ mega_blog_article.title }}</p>
+                  <p class="mega-menu__featured-date">{{ mega_blog_date }}</p>
+                </div>
+              </div>
+              <p style="font-size:10px;color:rgba(45,45,45,0.6);line-height:1.6;margin-top:8px;">{{ mega_blog_excerpt }}</p>
+            </div>
+            <a href="{{ mega_blog_article.url }}" class="mega-menu__featured-btn">
+              Read Article
+              <svg width="10" height="10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+            </a>
+            {%- endif -%}
+          </div>
+        </div>
+        <p class="mega-menu__quote">"Taste clean food prepared without chemical synthesis or white sugar."</p>
+      </div>
+
+      {%- comment -%} KIDS & BABY {%- endcomment -%}
+      <div data-mega-panel="kids-baby" hidden>
+        <div class="mega-menu__inner">
+          <div class="mega-menu__subcats">
+            <div>
+              <p class="mega-menu__cat-heading">Baby Products</p>
+              <p class="mega-menu__cat-desc">Soft botanical care</p>
+              <a href="/collections/baby-products" class="mega-menu__cat-link">Baby Products</a>
+              <a href="/collections/baby-products" class="mega-menu__cat-link">Baby Accessories</a>
+              <a href="/collections/aimpon-panchaloha" class="mega-menu__cat-link">Baby Impon Jewellery</a>
+            </div>
+            <div>
+              <p class="mega-menu__cat-heading">Kids &amp; Children</p>
+              <p class="mega-menu__cat-desc">Traditional festive wear</p>
+              <a href="/collections/kids-children" class="mega-menu__cat-link">Kids &amp; Children</a>
+              <a href="/collections/pattu-pavaadai-set" class="mega-menu__cat-link">Kids Silk Pattu Pavaadai</a>
+              <a href="/collections/educational-products" class="mega-menu__cat-link">Educational Products</a>
+              <a href="/collections/games" class="mega-menu__cat-link">Games &amp; Toys</a>
+            </div>
+          </div>
+          <div class="mega-menu__divider" aria-hidden="true"></div>
+          <div class="mega-menu__featured">
+            {%- if mega_blog_article -%}
+            <div>
+              <p class="mega-menu__featured-label">FROM THE JOURNAL</p>
+              <div style="display:flex;gap:10px;align-items:flex-start;margin-top:0.75rem;">
+                {%- if mega_blog_img -%}
+                <img class="mega-menu__featured-img" src="{{ mega_blog_img }}" alt="{{ mega_blog_article.image.alt | default: mega_blog_article.title | escape }}">
+                {%- endif -%}
+                <div>
+                  <p class="mega-menu__featured-name">{{ mega_blog_article.title }}</p>
+                  <p class="mega-menu__featured-date">{{ mega_blog_date }}</p>
+                </div>
+              </div>
+              <p style="font-size:10px;color:rgba(45,45,45,0.6);line-height:1.6;margin-top:8px;">{{ mega_blog_excerpt }}</p>
+            </div>
+            <a href="{{ mega_blog_article.url }}" class="mega-menu__featured-btn">
+              Read Article
+              <svg width="10" height="10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+            </a>
+            {%- endif -%}
+          </div>
+        </div>
+        <p class="mega-menu__quote">"Nourish and drape young souls in the warmth of timeless customs."</p>
+      </div>
+
+      {%- comment -%} BOOKS & GIFTS {%- endcomment -%}
+      <div data-mega-panel="books-gifts" hidden>
+        <div class="mega-menu__inner">
+          <div class="mega-menu__subcats">
+            <div>
+              <p class="mega-menu__cat-heading">Books</p>
+              <p class="mega-menu__cat-desc">Tamil &amp; devotional</p>
+              <a href="/collections/educational-products" class="mega-menu__cat-link">Makkalisai Padalgal</a>
+              <a href="/collections/educational-products" class="mega-menu__cat-link">Pazhamozhi Kadhaigal</a>
+              <a href="/collections/educational-products" class="mega-menu__cat-link">Devotional Scriptures</a>
+            </div>
+            <div>
+              <p class="mega-menu__cat-heading">Games &amp; Toys</p>
+              <p class="mega-menu__cat-desc">Traditional play</p>
+              <a href="/collections/games" class="mega-menu__cat-link">Board Games</a>
+              <a href="/collections/games" class="mega-menu__cat-link">Kids Toys</a>
+              <a href="/collections/baby-products" class="mega-menu__cat-link">Baby Toys</a>
+            </div>
+            <div>
+              <p class="mega-menu__cat-heading">Gifts &amp; Combos</p>
+              <p class="mega-menu__cat-desc">Curated gift sets</p>
+              <a href="/collections/gift-articles" class="mega-menu__cat-link">Gift Articles</a>
+              <a href="/collections/snacks-savouries" class="mega-menu__cat-link">Chocolates &amp; Sweets</a>
+              <a href="/collections/gift-articles" class="mega-menu__cat-link">Combo Packs</a>
+            </div>
+          </div>
+          <div class="mega-menu__divider" aria-hidden="true"></div>
+          <div class="mega-menu__featured">
+            {%- if mega_blog_article -%}
+            <div>
+              <p class="mega-menu__featured-label">FROM THE JOURNAL</p>
+              <div style="display:flex;gap:10px;align-items:flex-start;margin-top:0.75rem;">
+                {%- if mega_blog_img -%}
+                <img class="mega-menu__featured-img" src="{{ mega_blog_img }}" alt="{{ mega_blog_article.image.alt | default: mega_blog_article.title | escape }}">
+                {%- endif -%}
+                <div>
+                  <p class="mega-menu__featured-name">{{ mega_blog_article.title }}</p>
+                  <p class="mega-menu__featured-date">{{ mega_blog_date }}</p>
+                </div>
+              </div>
+              <p style="font-size:10px;color:rgba(45,45,45,0.6);line-height:1.6;margin-top:8px;">{{ mega_blog_excerpt }}</p>
+            </div>
+            <a href="{{ mega_blog_article.url }}" class="mega-menu__featured-btn">
+              Read Article
+              <svg width="10" height="10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+            </a>
+            {%- endif -%}
+          </div>
+        </div>
+        <p class="mega-menu__quote">"Words and play that carry the spirit of Tamil culture across generations."</p>
+      </div>
+
+      {%- comment -%} BAGS & POUCHES {%- endcomment -%}
+      <div data-mega-panel="bags-pouches" hidden>
+        <div class="mega-menu__inner">
+          <div class="mega-menu__subcats">
+            <div>
+              <p class="mega-menu__cat-heading">Handbags</p>
+              <p class="mega-menu__cat-desc">Artisan fiber totes</p>
+              <a href="/collections/bags-purses-pouches" class="mega-menu__cat-link">Palm-leaf Shoulder Carrier</a>
+              <a href="/collections/bags-purses-pouches" class="mega-menu__cat-link">Peacock Silk Handbag</a>
+              <a href="/collections/bags-purses-pouches" class="mega-menu__cat-link">Linen Market Bags</a>
+            </div>
+            <div>
+              <p class="mega-menu__cat-heading">Purses</p>
+              <p class="mega-menu__cat-desc">Zari card holders</p>
+              <a href="/collections/bags-purses-pouches" class="mega-menu__cat-link">Silk Coin Purses</a>
+              <a href="/collections/bags-purses-pouches" class="mega-menu__cat-link">Velvet Clutches</a>
+              <a href="/collections/bags-purses-pouches" class="mega-menu__cat-link">Ganesha Coin Purse</a>
+            </div>
+            <div>
+              <p class="mega-menu__cat-heading">Pouches</p>
+              <p class="mega-menu__cat-desc">Sustainable storage</p>
+              <a href="/collections/bags-purses-pouches" class="mega-menu__cat-link">Drawstring Jute Sack</a>
+              <a href="/collections/bags-purses-pouches" class="mega-menu__cat-link">Cotton Herbal Pouches</a>
+              <a href="/collections/bags-purses-pouches" class="mega-menu__cat-link">Travel Accessory Kit</a>
+            </div>
+            <div>
+              <p class="mega-menu__cat-heading">Keychains</p>
+              <p class="mega-menu__cat-desc">Positive accents</p>
+              <a href="/collections/karungali" class="mega-menu__cat-link">Karungali Ganesha Keychain</a>
+              <a href="/collections/karungali" class="mega-menu__cat-link">Om Copper Keyrings</a>
+              <a href="/collections/bags-purses-pouches" class="mega-menu__cat-link">All Keychains</a>
+            </div>
+          </div>
+          <div class="mega-menu__divider" aria-hidden="true"></div>
+          <div class="mega-menu__featured">
+            {%- if mega_blog_article -%}
+            <div>
+              <p class="mega-menu__featured-label">FROM THE JOURNAL</p>
+              <div style="display:flex;gap:10px;align-items:flex-start;margin-top:0.75rem;">
+                {%- if mega_blog_img -%}
+                <img class="mega-menu__featured-img" src="{{ mega_blog_img }}" alt="{{ mega_blog_article.image.alt | default: mega_blog_article.title | escape }}">
+                {%- endif -%}
+                <div>
+                  <p class="mega-menu__featured-name">{{ mega_blog_article.title }}</p>
+                  <p class="mega-menu__featured-date">{{ mega_blog_date }}</p>
+                </div>
+              </div>
+              <p style="font-size:10px;color:rgba(45,45,45,0.6);line-height:1.6;margin-top:8px;">{{ mega_blog_excerpt }}</p>
+            </div>
+            <a href="{{ mega_blog_article.url }}" class="mega-menu__featured-btn">
+              Read Article
+              <svg width="10" height="10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+            </a>
+            {%- endif -%}
+          </div>
+        </div>
+        <p class="mega-menu__quote">"Carry lightweight sustainable fibers woven with love and custom grace."</p>
+      </div>
+
+      {%- comment -%} FASHION & GROOMING {%- endcomment -%}
+      <div data-mega-panel="fashion-grooming" hidden>
+        <div class="mega-menu__inner">
+          <div class="mega-menu__subcats">
+            <div>
+              <p class="mega-menu__cat-heading">Silk Sarees</p>
+              <p class="mega-menu__cat-desc">Kanchipuram &amp; Banaras</p>
+              <a href="/collections/sarees" class="mega-menu__cat-link">Kanchipuram Silk Sarees</a>
+              <a href="/collections/sarees" class="mega-menu__cat-link">Banaras Designer Sarees</a>
+              <a href="/collections/sarees" class="mega-menu__cat-link">Cotton Silk Sarees</a>
+            </div>
+            <div>
+              <p class="mega-menu__cat-heading">Cotton Sarees</p>
+              <p class="mega-menu__cat-desc">Everyday &amp; Kalyani</p>
+              <a href="/collections/sarees" class="mega-menu__cat-link">Kalyani Cotton Sarees</a>
+              <a href="/collections/sarees" class="mega-menu__cat-link">Georgette Sarees</a>
+              <a href="/collections/half-saree-sets" class="mega-menu__cat-link">Half Saree Sets</a>
+            </div>
+            <div>
+              <p class="mega-menu__cat-heading">Nighty &amp; Sleepwear</p>
+              <p class="mega-menu__cat-desc">Cotton comfort wear</p>
+              <a href="/collections/readymade-garments" class="mega-menu__cat-link">Cotton Nighty</a>
+              <a href="/collections/readymade-garments" class="mega-menu__cat-link">Fancy Nighty</a>
+              <a href="/collections/readymade-garments" class="mega-menu__cat-link">Feeding Nighty</a>
+            </div>
+            <div>
+              <p class="mega-menu__cat-heading">Kurti &amp; Casual</p>
+              <p class="mega-menu__cat-desc">Everyday ethnic wear</p>
+              <a href="/collections/kurti" class="mega-menu__cat-link">Kurti &amp; Tops</a>
+              <a href="/collections/readymade-garments" class="mega-menu__cat-link">Leggings &amp; Palazzo</a>
+              <a href="/collections/blouse-patch-works" class="mega-menu__cat-link">Blouse &amp; Patch Works</a>
+            </div>
+            <div>
+              <p class="mega-menu__cat-heading">Traditional Wear</p>
+              <p class="mega-menu__cat-desc">Festive &amp; ceremonial</p>
+              <a href="/collections/pattu-pavaadai-set" class="mega-menu__cat-link">Pattu Pavaadai Sets</a>
+              <a href="/collections/tailoring" class="mega-menu__cat-link">Tailoring</a>
+              <a href="/collections/boys-men" class="mega-menu__cat-link">Boys &amp; Men</a>
+            </div>
+          </div>
+          <div class="mega-menu__divider" aria-hidden="true"></div>
+          <div class="mega-menu__featured">
+            {%- if mega_blog_article -%}
+            <div>
+              <p class="mega-menu__featured-label">FROM THE JOURNAL</p>
+              <div style="display:flex;gap:10px;align-items:flex-start;margin-top:0.75rem;">
+                {%- if mega_blog_img -%}
+                <img class="mega-menu__featured-img" src="{{ mega_blog_img }}" alt="{{ mega_blog_article.image.alt | default: mega_blog_article.title | escape }}">
+                {%- endif -%}
+                <div>
+                  <p class="mega-menu__featured-name">{{ mega_blog_article.title }}</p>
+                  <p class="mega-menu__featured-date">{{ mega_blog_date }}</p>
+                </div>
+              </div>
+              <p style="font-size:10px;color:rgba(45,45,45,0.6);line-height:1.6;margin-top:8px;">{{ mega_blog_excerpt }}</p>
+            </div>
+            <a href="{{ mega_blog_article.url }}" class="mega-menu__featured-btn">
+              Read Article
+              <svg width="10" height="10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+            </a>
+            {%- endif -%}
+          </div>
+        </div>
+        <p class="mega-menu__quote">"Grace and comfort woven for pious festive mornings."</p>
+      </div>
+
+      {%- comment -%} NEW ARRIVALS {%- endcomment -%}
+      <div data-mega-panel="new-arrivals" hidden>
+        <div class="mega-menu__inner">
+          <div class="mega-menu__subcats">
+            <div>
+              <p class="mega-menu__cat-heading">New Arrivals</p>
+              <p class="mega-menu__cat-desc">Newly uncovered spiritual collections</p>
+              <a href="/collections/new-arrivals" class="mega-menu__cat-link">Silver Capped Pendants</a>
+              <a href="/collections/new-arrivals" class="mega-menu__cat-link">Organic Honey Jars</a>
+              <a href="/collections/new-arrivals" class="mega-menu__cat-link">Authentic Kemp Waistbands</a>
+            </div>
+          </div>
+          <div class="mega-menu__divider" aria-hidden="true"></div>
+          <div class="mega-menu__featured">
+            {%- if mega_blog_article -%}
+            <div>
+              <p class="mega-menu__featured-label">FROM THE JOURNAL</p>
+              <div style="display:flex;gap:10px;align-items:flex-start;margin-top:0.75rem;">
+                {%- if mega_blog_img -%}
+                <img class="mega-menu__featured-img" src="{{ mega_blog_img }}" alt="{{ mega_blog_article.image.alt | default: mega_blog_article.title | escape }}">
+                {%- endif -%}
+                <div>
+                  <p class="mega-menu__featured-name">{{ mega_blog_article.title }}</p>
+                  <p class="mega-menu__featured-date">{{ mega_blog_date }}</p>
+                </div>
+              </div>
+              <p style="font-size:10px;color:rgba(45,45,45,0.6);line-height:1.6;margin-top:8px;">{{ mega_blog_excerpt }}</p>
+            </div>
+            <a href="{{ mega_blog_article.url }}" class="mega-menu__featured-btn">
+              Read Article
+              <svg width="10" height="10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+            </a>
+            {%- endif -%}
+          </div>
+        </div>
+        <p class="mega-menu__quote">"Explore fresh, authentic artifacts newly selected from traditional hubs."</p>
+      </div>
+
+    </div>{%- comment -%} /.mega-menu {%- endcomment -%}
+  </nav>{%- comment -%} /.header__row-2 {%- endcomment -%}
+
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": []
+}
+{% endschema %}

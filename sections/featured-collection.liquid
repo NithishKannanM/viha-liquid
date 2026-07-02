@@ -1,0 +1,65 @@
+{%- assign feat_collection = collections[section.settings.collection] -%}
+
+<section class="section section--paper">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:2.5rem;">
+      <span class="section__eyebrow">{{ section.settings.eyebrow | default: 'Our Bestsellers' }}</span>
+      <h2 class="section__heading">{{ section.settings.heading | default: 'Most-Loved Products' }}</h2>
+      <div class="section__ornament" aria-hidden="true">
+        <div class="section__ornament-line section__ornament-line--left"></div>
+        <div class="section__ornament-diamond"></div>
+        <div class="section__ornament-line section__ornament-line--right"></div>
+      </div>
+      {% if section.settings.subtext != blank %}
+        <p style="max-width:42rem;margin:1rem auto 0;font-size:14px;color:rgba(45,45,45,0.7);line-height:1.75;">{{ section.settings.subtext }}</p>
+      {% endif %}
+    </div>
+
+    {%- if feat_collection != blank and feat_collection.products.size > 0 -%}
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;" class="lg-grid-4">
+        {%- for product in feat_collection.products limit: section.settings.products_to_show -%}
+          {% render 'product-card', product: product, lazy: true %}
+        {%- endfor -%}
+      </div>
+    {%- else -%}
+      <p style="text-align:center;color:rgba(45,45,45,0.5);padding:3rem 0;">No products found in this collection.</p>
+    {%- endif -%}
+
+    {% if section.settings.show_view_all and feat_collection != blank %}
+      <div style="text-align:center;margin-top:2rem;">
+        <a href="{{ feat_collection.url }}" class="btn btn--ghost" style="margin:0 auto;">
+          View All {{ feat_collection.title }}
+          <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/>
+          </svg>
+        </a>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<style>
+  @media (min-width: 1024px) {
+    .lg-grid-4 { grid-template-columns: repeat(4, 1fr) !important; }
+  }
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .lg-grid-4 { grid-template-columns: repeat(3, 1fr) !important; }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Featured Collection",
+  "settings": [
+    { "type": "text",       "id": "eyebrow",          "label": "Eyebrow",           "default": "Our Bestsellers" },
+    { "type": "text",       "id": "heading",          "label": "Heading",           "default": "Most-Loved Products" },
+    { "type": "textarea",   "id": "subtext",          "label": "Subtext" },
+    { "type": "collection", "id": "collection",       "label": "Collection" },
+    { "type": "range",      "id": "products_to_show", "label": "Products to show",  "min": 4, "max": 12, "step": 4, "default": 8 },
+    { "type": "checkbox",   "id": "show_view_all",    "label": "Show 'View All' button", "default": true }
+  ],
+  "presets": [
+    { "name": "Featured Collection", "category": "Collection" }
+  ]
+}
+{% endschema %}

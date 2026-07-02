@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="{{ request.locale.iso_code }}" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0F5A43">
+
+  <title>
+    {{ page_title }}{% if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif %}
+    {% if current_page != 1 %} &ndash; Page {{ current_page }}{% endif %}
+    {% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}
+  </title>
+
+  {% if page_description %}
+    <meta name="description" content="{{ page_description | escape }}">
+  {% endif %}
+
+  {%- comment -%} Canonical & hreflang {%- endcomment -%}
+  <link rel="canonical" href="{{ canonical_url }}">
+
+  {%- comment -%} Favicon {%- endcomment -%}
+  {% if settings.favicon != blank %}
+    <link rel="icon" type="image/png" href="{{ settings.favicon | img_url: '32x32' }}">
+  {% endif %}
+
+  {%- comment -%} Preconnect for fonts {%- endcomment -%}
+  <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
+
+  {%- comment -%} Shopify required head content {%- endcomment -%}
+  {{ content_for_header }}
+
+  {%- comment -%} Theme fonts via Shopify font picker {%- endcomment -%}
+  {%- assign font_heading = settings.font_heading | font_modify: 'weight', '700' -%}
+  {%- assign font_body    = settings.font_body -%}
+  <style>
+    {{ font_heading | font_face: font_display: 'swap' }}
+    {{ font_body    | font_face: font_display: 'swap' }}
+    :root {
+      --color-maroon:      {{ settings.color_maroon }};
+      --color-maroon-dark: {{ settings.color_maroon_dark }};
+      --color-gold:        {{ settings.color_gold }};
+      --color-cream:       {{ settings.color_cream }};
+      --color-cream-dark:  {{ settings.color_cream_dark }};
+      --color-charcoal:    {{ settings.color_charcoal }};
+      --font-heading:      {{ font_heading.family | json }}, Georgia, serif;
+      --font-body:         {{ font_body.family    | json }}, system-ui, sans-serif;
+    }
+  </style>
+
+  {%- comment -%} Theme stylesheet {%- endcomment -%}
+  {{ 'theme.css' | asset_url | stylesheet_tag }}
+
+  {%- comment -%} Open Graph / Social {%- endcomment -%}
+  {% if settings.social_instagram_link != blank %}
+    <meta property="og:site_name" content="{{ shop.name }}">
+  {% endif %}
+</head>
+
+<body class="template-{{ template.name }}{% if template.suffix != blank %} template-{{ template.name }}-{{ template.suffix }}{% endif %}">
+
+  {%- comment -%} Accessibility skip link {%- endcomment -%}
+  <a href="#main-content" class="sr-only" style="position:absolute;top:1rem;left:1rem;padding:0.75rem 1.25rem;background:var(--color-maroon);color:#fff;font-weight:700;z-index:9999;text-decoration:none;border-radius:2px;transform:translateY(-200%);transition:transform 0.2s;" onfocus="this.style.transform='translateY(0)'" onblur="this.style.transform='translateY(-200%)'">
+    Skip to content
+  </a>
+
+  {%- comment -%} ── Announcement Bar ──────────────────────────────────── {%- endcomment -%}
+  {% section 'announcement-bar' %}
+
+  {%- comment -%} ── Header ────────────────────────────────────────────── {%- endcomment -%}
+  {% section 'header' %}
+
+  {%- comment -%} ── Mobile Menu Overlay ───────────────────────────────── {%- endcomment -%}
+  {% render 'mobile-menu' %}
+
+  {%- comment -%} ── Main Content ──────────────────────────────────────── {%- endcomment -%}
+  <main id="main-content" tabindex="-1" style="min-height:60vh;">
+    {{ content_for_layout }}
+  </main>
+
+  {%- comment -%} ── Footer ────────────────────────────────────────────── {%- endcomment -%}
+  {% section 'footer' %}
+
+  {%- comment -%} ── Mobile Bottom Nav ─────────────────────────────────── {%- endcomment -%}
+  {% render 'mobile-bottom-nav' %}
+
+  {%- comment -%} ── Cart Drawer ───────────────────────────────────────── {%- endcomment -%}
+  {% if settings.cart_type == 'drawer' %}
+    {% render 'cart-drawer' %}
+  {% endif %}
+
+  {%- comment -%} ── Search Overlay ────────────────────────────────────── {%- endcomment -%}
+  {% render 'search-overlay' %}
+
+  {%- comment -%} ── Region Welcome Modal ──────────────────────────────── {%- endcomment -%}
+  {% render 'region-modal' %}
+
+  {%- comment -%} ── Theme JS ──────────────────────────────────────────── {%- endcomment -%}
+  <script src="{{ 'theme.js' | asset_url }}" defer></script>
+
+  {%- comment -%} ── Shopify analytics / required scripts ──────────────── {%- endcomment -%}
+  {{ content_for_additional_checkout_buttons }}
+</body>
+</html>

@@ -1,0 +1,21 @@
+{% if section.settings.enabled %}
+<div class="announcement-bar" role="banner" aria-label="Shipping announcement" id="announcement-bar">
+  <span class="announcement-bar__text">
+    📦 Free shipping worldwide to <span data-ann-flag>🇮🇳</span> on orders over <span data-ann-threshold>₹999</span> equivalent. | Ships to: <span data-ann-flag2>🇮🇳</span> <span data-ann-country>India</span> (<span data-ann-currency>INR</span>)
+  </span>
+  <button class="announcement-bar__region-btn" data-country-toggle aria-label="Change region" style="margin-left:0.5rem;">
+    <svg width="10" height="10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true" style="display:inline;vertical-align:middle;"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3"/></svg>
+    Change
+  </button>
+  <button data-announcement-close aria-label="Close announcement" style="background:none;border:none;color:rgba(255,255,255,0.5);padding:0 0.25rem;cursor:pointer;font-size:16px;line-height:1;margin-left:0.5rem;">&times;</button>
+</div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Announcement bar",
+  "settings": [
+    { "type": "checkbox", "id": "enabled", "label": "Show announcement bar", "default": true }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir -p /run/media/nithish/CooKeD/freelancing/viha-theme/.claude/skills/ui-ux-pro-max)",
+      "Bash(curl -L -o /tmp/skill.zip \"https://mcp.directory/api/skills/download/191\")",
+      "Bash(unzip -o /tmp/skill.zip -d /run/media/nithish/CooKeD/freelancing/viha-theme/.claude/skills/ui-ux-pro-max)",
+      "Bash(rm /tmp/skill.zip)"
+    ]
+  }
+}

@@ -1,0 +1,79 @@
+{%- comment -%} Cart Drawer — conditionally rendered from layout/theme.liquid when cart_type == 'drawer' {%- endcomment -%}
+<div class="cart-overlay" aria-hidden="true"></div>
+
+<div id="cart-drawer" class="cart-drawer" role="dialog" aria-label="Shopping cart" aria-modal="true">
+
+  <div class="cart-drawer__header">
+    <span class="cart-drawer__title">
+      <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007z"/>
+      </svg>
+      Your Cart
+      <span style="font-size:13px;font-weight:400;color:rgba(45,45,45,0.5);" data-cart-badge-label>({{ cart.item_count }} item{{ cart.item_count | pluralize: '', 's' }})</span>
+    </span>
+    <button class="header__icon-btn" data-cart-close aria-label="Close cart">
+      <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+      </svg>
+    </button>
+  </div>
+
+  {%- comment -%} Body — rendered/replaced by theme.js via /cart.js AJAX {%- endcomment -%}
+  <div class="cart-drawer__body" data-cart-body>
+    {% if cart.item_count == 0 %}
+      <div class="cart-drawer__empty">
+        <svg width="48" height="48" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.2" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 9H4L5 9z"/>
+        </svg>
+        <p>Your cart is empty</p>
+        <a href="/collections/all" class="btn btn--primary" style="width:auto;min-height:44px;padding:10px 1.5rem;font-size:11px;">
+          Start Shopping
+        </a>
+      </div>
+    {% else %}
+      {% for item in cart.items %}
+        <div class="cart-item" data-key="{{ item.key }}">
+          <img class="cart-item__img" src="{{ item.image | img_url: '100x100', crop: 'center' }}" alt="{{ item.product.title }}" loading="lazy" width="64" height="64">
+          <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:6px;">
+            <div>
+              <a href="{{ item.product.url }}" class="cart-item__name">{{ item.product.title }}</a>
+              {% unless item.variant.title == 'Default Title' %}
+                <p class="cart-item__cat">{{ item.variant.title }}</p>
+              {% endunless %}
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;">
+              <div class="cart-item__qty">
+                <button class="cart-item__qty-btn" aria-label="Decrease quantity" data-qty-minus data-line="{{ item.key }}">−</button>
+                <span class="cart-item__qty-num">{{ item.quantity }}</span>
+                <button class="cart-item__qty-btn" aria-label="Increase quantity" data-qty-plus data-line="{{ item.key }}">+</button>
+              </div>
+              <span class="cart-item__price">{{ item.final_line_price | money }}</span>
+            </div>
+          </div>
+          <button class="cart-item__remove" aria-label="Remove {{ item.product.title }}" data-remove="{{ item.key }}">
+            <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+          </button>
+        </div>
+      {% endfor %}
+    {% endif %}
+  </div>
+
+  {%- comment -%} Footer — hidden when cart is empty {%- endcomment -%}
+  <div class="cart-drawer__footer" data-cart-footer {% if cart.item_count == 0 %}hidden{% endif %}>
+    <div class="cart-drawer__subtotal">
+      <span class="cart-drawer__subtotal-label">Subtotal</span>
+      <span class="cart-drawer__subtotal-value" data-cart-subtotal>{{ cart.total_price | money }}</span>
+    </div>
+    <p style="font-size:11px;color:rgba(45,45,45,0.5);text-align:center;">Shipping &amp; taxes calculated at checkout</p>
+    <a href="/checkout" class="cart-drawer__checkout">
+      <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"/>
+      </svg>
+      Proceed to Checkout
+    </a>
+    <a href="/cart" style="font-size:11px;text-align:center;color:rgba(45,45,45,0.5);text-decoration:underline;">View full cart</a>
+  </div>
+
+</div>

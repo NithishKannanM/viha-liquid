@@ -1,0 +1,197 @@
+{%- comment -%}
+  Search results — viha-theme
+  URL: /search?q=…&type=product (or article, page)
+{%- endcomment -%}
+
+<div style="background:var(--color-cream);min-height:60vh;">
+
+  {%- comment -%} ── Hero / search form ─── {%- endcomment -%}
+  <section style="background:var(--color-maroon-dark);padding:4rem 3rem 3rem;">
+    <div style="max-width:var(--max-w);margin:0 auto;">
+      <nav aria-label="Breadcrumb" style="display:flex;align-items:center;gap:6px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.18em;color:rgba(255,255,255,0.40);margin-bottom:1.25rem;">
+        <a href="/" style="color:inherit;transition:color 0.15s;" onmouseover="this.style.color='var(--color-gold)'" onmouseout="this.style.color='rgba(255,255,255,0.40)'">Home</a>
+        <span>/</span>
+        <span style="color:var(--color-gold);">Search</span>
+      </nav>
+
+      <span style="display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.22em;color:var(--color-gold);margin-bottom:0.75rem;">Sacred Catalogue Search</span>
+      <h1 style="font-family:var(--font-heading);font-size:clamp(1.5rem,4vw,2.5rem);font-weight:900;color:#fff;margin-bottom:1.75rem;line-height:1.1;">
+        {%- if search.performed -%}
+          {%- if search.results_count == 0 -%}
+            No results for &ldquo;{{ search.terms | escape }}&rdquo;
+          {%- else -%}
+            {{ search.results_count }} result{%- if search.results_count != 1 -%}s{%- endif -%} for &ldquo;{{ search.terms | escape }}&rdquo;
+          {%- endif -%}
+        {%- else -%}
+          What are you looking for?
+        {%- endif -%}
+      </h1>
+
+      <form action="/search" method="get" role="search" style="display:flex;gap:8px;max-width:520px;">
+        <label for="search-input" class="sr-only">Search</label>
+        <input
+          id="search-input"
+          type="search"
+          name="q"
+          value="{{ search.terms | escape }}"
+          placeholder="Search sacred essentials…"
+          aria-label="Search products"
+          autocomplete="off"
+          style="flex:1;padding:14px 16px;border:1px solid rgba(255,255,255,0.20);background:rgba(255,255,255,0.07);color:#fff;font-size:13px;font-family:inherit;outline:none;border-radius:2px;transition:border-color 0.2s;"
+          onfocus="this.style.borderColor='var(--color-gold)'"
+          onblur="this.style.borderColor='rgba(255,255,255,0.20)'">
+        <input type="hidden" name="type" value="product,article,page">
+        <button type="submit" class="btn btn--gold" style="padding:14px 22px;white-space:nowrap;font-size:11px;">Search</button>
+      </form>
+
+      {%- comment -%} Quick suggestion tags {%- endcomment -%}
+      <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:1.25rem;">
+        {%- assign suggestions = "Pooja Idols,Brass Diyas,Kumkumadi Oil,Rudraksha Mala,Turmeric Soap,Karungali,Vetiver Scrub,Silver Jewellery" | split: "," -%}
+        {%- for tag in suggestions -%}
+          <a href="/search?q={{ tag | url_encode }}&type=product"
+            style="display:inline-block;padding:5px 12px;border:1px solid rgba(255,255,255,0.18);font-size:10px;font-weight:600;color:rgba(255,255,255,0.60);border-radius:100px;transition:all 0.15s;text-transform:uppercase;letter-spacing:0.08em;"
+            onmouseover="this.style.borderColor='var(--color-gold)';this.style.color='var(--color-gold)'"
+            onmouseout="this.style.borderColor='rgba(255,255,255,0.18)';this.style.color='rgba(255,255,255,0.60)'">
+            {{ tag }}
+          </a>
+        {%- endfor -%}
+      </div>
+    </div>
+  </section>
+
+  {%- comment -%} ── Results ─── {%- endcomment -%}
+  {%- if search.performed -%}
+    {% paginate search.results by 12 %}
+    <section style="padding:3rem;">
+      <div style="max-width:var(--max-w);margin:0 auto;">
+
+        {%- if search.results_count > 0 -%}
+
+          {%- comment -%} Separate products from other result types {%- endcomment -%}
+          {%- assign has_products = false -%}
+          {%- assign has_other = false -%}
+          {%- for result in search.results -%}
+            {%- if result.object_type == 'product' -%}{%- assign has_products = true -%}{%- endif -%}
+            {%- if result.object_type == 'article' or result.object_type == 'page' -%}{%- assign has_other = true -%}{%- endif -%}
+          {%- endfor -%}
+
+          {%- comment -%} Products grid {%- endcomment -%}
+          {%- if has_products -%}
+            <div style="margin-bottom:2rem;">
+              <h2 style="font-family:var(--font-heading);font-size:1.1rem;font-weight:700;color:var(--color-maroon);margin-bottom:1.25rem;padding-bottom:0.5rem;border-bottom:1px solid var(--color-cream-dark);">
+                Products
+              </h2>
+              <div class="collection-grid">
+                {%- for result in search.results -%}
+                  {%- if result.object_type == 'product' -%}
+                    {%- render 'product-card', product: result -%}
+                  {%- endif -%}
+                {%- endfor -%}
+              </div>
+            </div>
+          {%- endif -%}
+
+          {%- comment -%} Articles & pages {%- endcomment -%}
+          {%- if has_other -%}
+            <div style="margin-top:3rem;">
+              <h2 style="font-family:var(--font-heading);font-size:1.1rem;font-weight:700;color:var(--color-maroon);margin-bottom:1.25rem;padding-bottom:0.5rem;border-bottom:1px solid var(--color-cream-dark);">
+                Articles &amp; Pages
+              </h2>
+              <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.25rem;">
+                {%- for result in search.results -%}
+                  {%- if result.object_type == 'article' -%}
+                    <article style="border:1px solid var(--color-cream-dark);border-top:2px solid transparent;border-radius:2px;overflow:hidden;background:var(--color-paper);transition:box-shadow 0.2s,border-top-color 0.2s;"
+                      onmouseover="this.style.boxShadow='0 4px 18px rgba(0,0,0,0.09)';this.style.borderTopColor='var(--color-gold)'"
+                      onmouseout="this.style.boxShadow='';this.style.borderTopColor='transparent'">
+                      {%- if result.image -%}
+                        <a href="{{ result.url }}" style="display:block;aspect-ratio:16/9;overflow:hidden;">
+                          <img src="{{ result.image | img_url: '400x' }}" alt="{{ result.title | escape }}" loading="lazy" style="width:100%;height:100%;object-fit:cover;transition:transform 0.35s;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform=''">
+                        </a>
+                      {%- endif -%}
+                      <div style="padding:1.25rem;">
+                        <span style="display:inline-block;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.15em;color:var(--color-gold);background:rgba(184,137,61,0.10);border:1px solid rgba(184,137,61,0.20);padding:2px 7px;border-radius:2px;margin-bottom:0.6rem;">Article</span>
+                        <h3 style="font-family:var(--font-heading);font-size:1rem;font-weight:700;color:var(--color-maroon);margin-bottom:0.5rem;line-height:1.3;">
+                          <a href="{{ result.url }}" style="color:inherit;">{{ result.title | escape }}</a>
+                        </h3>
+                        {%- if result.excerpt -%}
+                          <p style="font-size:12px;color:rgba(45,45,45,0.65);line-height:1.65;margin-bottom:0.75rem;">{{ result.excerpt | strip_html | truncate: 100 }}</p>
+                        {%- endif -%}
+                        <a href="{{ result.url }}" style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--color-maroon);display:inline-flex;align-items:center;gap:5px;transition:gap 0.15s;" onmouseover="this.style.gap='9px'" onmouseout="this.style.gap='5px'">
+                          Read Article
+                          <svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+                        </a>
+                      </div>
+                    </article>
+                  {%- elsif result.object_type == 'page' -%}
+                    <div style="border:1px solid var(--color-cream-dark);border-radius:2px;background:var(--color-paper);padding:1.5rem;display:flex;flex-direction:column;gap:0.5rem;">
+                      <span style="display:inline-block;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.15em;color:var(--color-muted);margin-bottom:0.4rem;">Page</span>
+                      <h3 style="font-family:var(--font-heading);font-size:1rem;font-weight:700;color:var(--color-maroon);">
+                        <a href="{{ result.url }}" style="color:inherit;">{{ result.title | escape }}</a>
+                      </h3>
+                      {%- if result.content -%}
+                        <p style="font-size:12px;color:rgba(45,45,45,0.60);line-height:1.6;">{{ result.content | strip_html | truncate: 80 }}</p>
+                      {%- endif -%}
+                      <a href="{{ result.url }}" style="margin-top:0.5rem;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--color-maroon);display:inline-flex;align-items:center;gap:5px;">
+                        View Page
+                        <svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+                      </a>
+                    </div>
+                  {%- endif -%}
+                {%- endfor -%}
+              </div>
+            </div>
+          {%- endif -%}
+
+          {%- comment -%} Pagination {%- endcomment -%}
+          {%- if paginate.pages > 1 -%}
+            <div style="display:flex;justify-content:center;align-items:center;gap:8px;margin-top:3rem;flex-wrap:wrap;">
+              {%- if paginate.previous -%}
+                <a href="{{ paginate.previous.url }}" class="btn btn--ghost" style="padding:10px 20px;font-size:11px;">
+                  <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true" style="display:inline;margin-right:4px;"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"/></svg>
+                  Previous
+                </a>
+              {%- endif -%}
+              {%- for part in paginate.parts -%}
+                {%- if part.is_link -%}
+                  <a href="{{ part.url }}" class="btn btn--ghost" style="padding:10px 16px;font-size:11px;">{{ part.title }}</a>
+                {%- else -%}
+                  <span class="btn btn--primary" style="padding:10px 16px;font-size:11px;">{{ part.title }}</span>
+                {%- endif -%}
+              {%- endfor -%}
+              {%- if paginate.next -%}
+                <a href="{{ paginate.next.url }}" class="btn btn--ghost" style="padding:10px 20px;font-size:11px;">
+                  Next
+                  <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true" style="display:inline;margin-left:4px;"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+                </a>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+
+        {%- else -%}
+
+          {%- comment -%} No results state {%- endcomment -%}
+          <div style="text-align:center;padding:5rem 2rem;">
+            <div style="width:72px;height:72px;margin:0 auto 1.5rem;border-radius:50%;background:var(--color-cream-dark);display:flex;align-items:center;justify-content:center;">
+              <svg width="30" height="30" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" style="color:var(--color-muted);" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 15.803 7.5 7.5 0 0015.803 15.803z"/>
+              </svg>
+            </div>
+            <h2 style="font-family:var(--font-heading);font-size:1.5rem;font-weight:700;color:var(--color-maroon);margin-bottom:0.75rem;">Nothing found</h2>
+            <p style="font-size:14px;color:var(--color-muted);max-width:380px;margin:0 auto 2.5rem;line-height:1.75;">
+              We couldn&rsquo;t find anything matching &ldquo;{{ search.terms | escape }}&rdquo;. Try simpler keywords or browse our collections.
+            </p>
+            <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;">
+              <a href="/collections/all" class="btn btn--primary" style="padding:12px 24px;font-size:11px;">All Products</a>
+              <a href="/collections/spiritual-pooja" class="btn btn--ghost" style="padding:12px 24px;font-size:11px;">Spiritual &amp; Pooja</a>
+              <a href="/collections/ayurveda-herbal" class="btn btn--ghost" style="padding:12px 24px;font-size:11px;">Ayurveda</a>
+              <a href="/collections/jewellery-fashion" class="btn btn--ghost" style="padding:12px 24px;font-size:11px;">Jewellery</a>
+            </div>
+          </div>
+
+        {%- endif -%}
+      </div>
+    </section>
+    {% endpaginate %}
+  {%- endif -%}
+
+</div>

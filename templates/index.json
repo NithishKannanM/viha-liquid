@@ -1,0 +1,105 @@
+{
+  "sections": {
+    "hero-banner": {
+      "type": "hero-banner",
+      "settings": {
+        "eyebrow": "Spiritual Essentials Curated by Mrs Anitha Kuppusamy",
+        "heading": "Ancient Traditions, Delivered Worldwide",
+        "subtext": "Viha Heritage brings you sacred pooja essentials, Ayurvedic wellness products, handcrafted jewellery, and organic foods rooted in 5000 years of Indian tradition.",
+        "cta_primary_label": "Shop All Essentials",
+        "cta_primary_url": "/collections/all",
+        "cta_secondary_label": "Explore Beauty & Wellness",
+        "cta_secondary_url": "/pages/beauty"
+      }
+    },
+    "trust-bar": {
+      "type": "trust-bar",
+      "settings": {
+        "customer_count": "1,00,000+",
+        "headline": "Happy Customers Across 6 Countries"
+      },
+      "blocks": {
+        "trust-1": { "type": "trust_item", "settings": { "text": "Free Worldwide Shipping" } },
+        "trust-2": { "type": "trust_item", "settings": { "text": "100% Authentic Products" } },
+        "trust-3": { "type": "trust_item", "settings": { "text": "Ancient Craftsmanship" } },
+        "trust-4": { "type": "trust_item", "settings": { "text": "Ships to 6 Countries" } }
+      },
+      "block_order": ["trust-1", "trust-2", "trust-3", "trust-4"]
+    },
+    "shop-by-purpose": {
+      "type": "shop-by-purpose",
+      "settings": {
+        "eyebrow": "EXPLORE BY INTENTION",
+        "heading": "Shop by Purpose"
+      }
+    },
+    "beauty-promo": {
+      "type": "beauty-promo",
+      "settings": {
+        "eyebrow": "BEAUTY & WELLNESS",
+        "heading": "Beauty & Wellness, Rooted in Ayurveda",
+        "body": "Viha's beauty collection draws on five thousand years of Ayurvedic wisdom — handmade soaps, therapeutic oils, natural attars, and botanical skincare carefully curated by Mrs Anitha Kuppusamy.",
+        "cta_text": "Explore Beauty",
+        "cta_url": "/pages/beauty"
+      }
+    },
+    "bestsellers": {
+      "type": "featured-collection",
+      "settings": {
+        "eyebrow": "MOST LOVED",
+        "heading": "Bestsellers",
+        "subtext": "Timeless products trusted by devoted customers worldwide — discover what keeps getting reordered across six countries.",
+        "collection": "bestsellers",
+        "products_to_show": 8,
+        "show_view_all": true
+      }
+    },
+    "curated-collections": {
+      "type": "curated-collections",
+      "settings": {
+        "eyebrow": "HAND-PICKED FOR YOU",
+        "heading": "Curated Collections"
+      }
+    },
+    "latest-journal": {
+      "type": "latest-journal",
+      "settings": {
+        "eyebrow": "FROM OUR JOURNAL",
+        "heading": "Stories, Rituals & Wisdom",
+        "posts_to_show": 3
+      }
+    },
+    "founder": {
+      "type": "founder",
+      "settings": {
+        "eyebrow": "OUR HERITAGE",
+        "heading": "Preserving Tradition, Promoting Wellness.",
+        "body": "Viha Heritage Store was born from a deep reverence for Indian spiritual traditions and holistic wellness. Every product we offer — from sacred brass idols to handcrafted Ayurvedic soaps — is personally selected and curated to bring authentic, time-honored essentials into your home.",
+        "body2": "Rooted in Tamil Nadu's rich cultural heritage, Viha is more than a store. It is a living bridge between the wisdom of our ancestors and the needs of contemporary devotees worldwide.",
+        "founder_name": "Anitha Kuppusamy",
+        "founder_title": "FOUNDER · VIHA HERITAGE STORE",
+        "cta_text": "Read Our Story",
+        "cta_url": "/pages/our-story"
+      }
+    },
+    "order-tracker": {
+      "type": "order-tracker",
+      "settings": {
+        "eyebrow": "ORDER STATUS",
+        "heading": "Track Your Spiritual Journey",
+        "subtext": "Enter your Viha order ID to get real-time updates on your sacred items."
+      }
+    }
+  },
+  "order": [
+    "hero-banner",
+    "trust-bar",
+    "shop-by-purpose",
+    "beauty-promo",
+    "bestsellers",
+    "curated-collections",
+    "latest-journal",
+    "founder",
+    "order-tracker"
+  ]
+}

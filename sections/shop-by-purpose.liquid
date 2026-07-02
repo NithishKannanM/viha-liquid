@@ -1,0 +1,84 @@
+<section class="section shop-by-purpose" aria-labelledby="sbp-heading">
+  <div class="container">
+    <div class="section__header-row">
+      <div>
+        <p class="section__eyebrow">{{ section.settings.eyebrow }}</p>
+        <h2 class="section__heading font-serif" id="sbp-heading">{{ section.settings.heading }}</h2>
+      </div>
+      <a href="/collections/all" class="section__view-all" aria-label="View all collections">
+        View all
+        <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+      </a>
+    </div>
+
+    {%- comment -%} Responsive bento grid — stacks to single column on mobile {%- endcomment -%}
+    <div class="sbp-grid">
+
+      {%- comment -%} Large tile — Daily Pooja {%- endcomment -%}
+      <a href="/collections/spiritual-pooja" class="sbp-tile sbp-tile--large" aria-label="Daily Pooja collection">
+        <img
+          src="{{ section.settings.img_daily_pooja | default: '' | img_url: 'master' }}"
+          alt="Daily Pooja"
+          class="sbp-tile__img"
+          loading="lazy"
+          onerror="this.src='{{ 'daily_pooja.png' | asset_url }}'"
+        >
+        <div class="sbp-tile__overlay">
+          <span class="sbp-tile__badge">Daily Rituals</span>
+          <p class="sbp-tile__label">Daily Pooja</p>
+          <p class="sbp-tile__sub">Elevate your daily rituals with pure ingredients, authentic oil lamps, and hand-milled powders.</p>
+        </div>
+      </a>
+
+      {%- comment -%} Right column: 2 top squares + 1 wide bottom {%- endcomment -%}
+      <div class="sbp-right-col">
+
+        <div class="sbp-top-row">
+          <a href="/collections/spiritual-pooja" class="sbp-tile sbp-tile--sm" aria-label="Festival Essentials collection">
+            <img src="{{ section.settings.img_festival | default: '' | img_url: 'master' }}" alt="Festival Essentials" class="sbp-tile__img" loading="lazy" onerror="this.src='{{ 'festival_essentials.png' | asset_url }}'">
+            <div class="sbp-tile__overlay">
+              <p class="sbp-tile__label">Festival Essentials</p>
+            </div>
+          </a>
+          <a href="/collections/ayurveda-herbal" class="sbp-tile sbp-tile--sm" aria-label="Ayurvedic Beauty collection">
+            <img src="{{ section.settings.img_ayurveda | default: '' | img_url: 'master' }}" alt="Ayurvedic Beauty" class="sbp-tile__img" loading="lazy" onerror="this.src='{{ 'ayurveda_wellness.png' | asset_url }}'">
+            <div class="sbp-tile__overlay">
+              <p class="sbp-tile__eyebrow" style="font-size:9px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.7);margin-bottom:4px;">Beauty</p>
+              <p class="sbp-tile__label">Ayurvedic Beauty</p>
+            </div>
+          </a>
+        </div>
+
+        {%- comment -%} Split tile — Housewarming Gifts {%- endcomment -%}
+        <a href="/collections/home-living" class="sbp-tile sbp-tile--split" aria-label="Housewarming Gifts collection">
+          <div class="sbp-tile__split-text">
+            <p class="sbp-tile__eyebrow" style="font-size:9px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--color-gold);margin-bottom:0.5rem;">New Beginnings</p>
+            <p class="sbp-tile__label sbp-tile__label--dark">Housewarming<br>Gifts</p>
+            <p class="sbp-tile__sub sbp-tile__sub--dark" style="margin-top:0.5rem;font-size:12px;">Thoughtful traditional gifts, hand-cast brass Ganeshas for new chapters.</p>
+            <span class="sbp-tile__cta">Explore <svg width="10" height="10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true" style="display:inline;vertical-align:middle;"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg></span>
+          </div>
+          <div class="sbp-tile__split-img">
+            <img src="{{ section.settings.img_housewarming | default: '' | img_url: 'master' }}" alt="Housewarming Gifts" class="sbp-tile__img" loading="lazy" onerror="this.src='{{ 'housewarming_gifts.png' | asset_url }}'">
+          </div>
+        </a>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Shop by Purpose",
+  "settings": [
+    { "type": "text",         "id": "eyebrow",          "label": "Eyebrow text",            "default": "EXPLORE BY INTENTION" },
+    { "type": "text",         "id": "heading",          "label": "Section heading",          "default": "Shop by Purpose" },
+    { "type": "image_picker", "id": "img_daily_pooja",  "label": "Daily Pooja image" },
+    { "type": "image_picker", "id": "img_festival",     "label": "Festival Essentials image" },
+    { "type": "image_picker", "id": "img_ayurveda",     "label": "Ayurvedic Beauty image" },
+    { "type": "image_picker", "id": "img_housewarming", "label": "Housewarming Gifts image" }
+  ],
+  "presets": [{ "name": "Shop by Purpose" }]
+}
+{% endschema %}

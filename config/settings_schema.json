@@ -1,0 +1,165 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Viha Heritage",
+    "theme_version": "1.0.0",
+    "theme_author": "Viha",
+    "theme_documentation_url": "https://vihaheritage.com",
+    "theme_support_url": "https://vihaheritage.com"
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "color",
+        "id": "color_maroon",
+        "label": "Brand Green (Primary)",
+        "default": "#0F5A43"
+      },
+      {
+        "type": "color",
+        "id": "color_maroon_dark",
+        "label": "Brand Green Dark",
+        "default": "#0B4533"
+      },
+      {
+        "type": "color",
+        "id": "color_gold",
+        "label": "Brand Gold",
+        "default": "#B8893D"
+      },
+      {
+        "type": "color",
+        "id": "color_cream",
+        "label": "Brand Cream",
+        "default": "#fdf9f1"
+      },
+      {
+        "type": "color",
+        "id": "color_cream_dark",
+        "label": "Brand Cream Dark",
+        "default": "#f1ede6"
+      },
+      {
+        "type": "color",
+        "id": "color_charcoal",
+        "label": "Brand Charcoal",
+        "default": "#2D2D2D"
+      }
+    ]
+  },
+  {
+    "name": "Typography",
+    "settings": [
+      {
+        "type": "font_picker",
+        "id": "font_heading",
+        "label": "Heading font",
+        "default": "libre_caslon_text_n7"
+      },
+      {
+        "type": "font_picker",
+        "id": "font_body",
+        "label": "Body font",
+        "default": "inter_n4"
+      }
+    ]
+  },
+  {
+    "name": "Logo",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo image"
+      },
+      {
+        "type": "range",
+        "id": "logo_height",
+        "min": 40,
+        "max": 100,
+        "step": 5,
+        "unit": "px",
+        "label": "Logo height (desktop)",
+        "default": 70
+      },
+      {
+        "type": "range",
+        "id": "logo_height_mobile",
+        "min": 30,
+        "max": 70,
+        "step": 5,
+        "unit": "px",
+        "label": "Logo height (mobile)",
+        "default": 55
+      }
+    ]
+  },
+  {
+    "name": "Favicon",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon image"
+      }
+    ]
+  },
+  {
+    "name": "Social media",
+    "settings": [
+      {
+        "type": "url",
+        "id": "social_instagram_link",
+        "label": "Instagram"
+      },
+      {
+        "type": "url",
+        "id": "social_facebook_link",
+        "label": "Facebook"
+      },
+      {
+        "type": "url",
+        "id": "social_youtube_link",
+        "label": "YouTube"
+      }
+    ]
+  },
+  {
+    "name": "Announcement bar",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "announcement_bar_enabled",
+        "label": "Show announcement bar",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "announcement_bar_text",
+        "label": "Announcement text",
+        "default": "Free shipping worldwide on orders over ₹1000 equivalent."
+      },
+      {
+        "type": "url",
+        "id": "announcement_bar_link",
+        "label": "Announcement link"
+      }
+    ]
+  },
+  {
+    "name": "Cart",
+    "settings": [
+      {
+        "type": "select",
+        "id": "cart_type",
+        "label": "Cart type",
+        "options": [
+          { "value": "drawer", "label": "Drawer" },
+          { "value": "page", "label": "Page" }
+        ],
+        "default": "drawer"
+      }
+    ]
+  }
+]

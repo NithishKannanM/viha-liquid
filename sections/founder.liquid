@@ -1,0 +1,67 @@
+<section class="section founder-section" aria-labelledby="founder-heading">
+  <div class="founder__inner container">
+
+    <div class="founder__text">
+      <p class="section__eyebrow">{{ section.settings.eyebrow | default: 'OUR HERITAGE' }}</p>
+      <h2 class="section__heading font-serif" id="founder-heading">{{ section.settings.heading | default: 'Preserving Tradition, Promoting Wellness.' }}</h2>
+      <div class="ornament-line-gold" aria-hidden="true">
+        <span class="ornament-diamond-gold">◆</span>
+      </div>
+      <p class="founder__body">{{ section.settings.body | default: "Viha Heritage Store was born from a deep reverence for Indian spiritual traditions and holistic wellness. Every product we offer — from sacred brass idols to handcrafted Ayurvedic soaps — is personally selected and curated to bring authentic, time-honored essentials into your home." }}</p>
+      <p class="founder__body" style="margin-top:1rem;">{{ section.settings.body2 | default: "Rooted in Tamil Nadu's rich cultural heritage, Viha is more than a store. It is a living bridge between the wisdom of our ancestors and the needs of contemporary devotees worldwide." }}</p>
+
+      <div class="founder__signature">
+        <div class="ornament-line-gold" style="width:32px;" aria-hidden="true"></div>
+        <div>
+          <p class="founder__name">{{ section.settings.founder_name | default: 'Anitha Kuppusamy' }}</p>
+          <p class="founder__title">{{ section.settings.founder_title | default: 'FOUNDER · VIHA HERITAGE STORE' }}</p>
+        </div>
+      </div>
+
+      {%- assign fn_url = section.settings.cta_url | default: '/pages/our-story' -%}
+      <a href="{{ fn_url }}" class="btn btn--outline-maroon" style="display:inline-flex;align-items:center;gap:0.5rem;margin-top:1.5rem;">
+        {{ section.settings.cta_text | default: 'Read Our Story' }}
+        <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+      </a>
+    </div>
+
+    <div class="founder__img-wrap">
+      {% if section.settings.image != blank %}
+        <img
+          src="{{ section.settings.image | img_url: 'master' }}"
+          alt="{{ section.settings.founder_name | default: 'Anitha Kuppusamy' }}"
+          class="founder__img"
+          loading="lazy"
+        >
+      {% else %}
+        <div class="founder__img-placeholder" aria-hidden="true">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" style="width:48px;height:48px;color:var(--color-gold);"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg>
+        </div>
+      {% endif %}
+      <div class="founder__img-tag" aria-hidden="true">
+        <span style="font-size:9px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--color-gold);">EST.</span>
+        <span style="font-family:var(--font-heading);font-size:22px;font-weight:900;color:var(--color-maroon);">2010</span>
+        <span style="font-size:9px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(45,45,45,0.5);">VIHA</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Founder Section",
+  "settings": [
+    { "type": "text",         "id": "eyebrow",       "label": "Eyebrow",         "default": "OUR HERITAGE" },
+    { "type": "text",         "id": "heading",       "label": "Heading",          "default": "Preserving Tradition, Promoting Wellness." },
+    { "type": "textarea",     "id": "body",          "label": "Body paragraph 1", "default": "Viha Heritage Store was born from a deep reverence for Indian spiritual traditions and holistic wellness. Every product we offer is personally selected and curated to bring authentic, time-honored essentials into your home." },
+    { "type": "textarea",     "id": "body2",         "label": "Body paragraph 2", "default": "Rooted in Tamil Nadu's rich cultural heritage, Viha is more than a store. It is a living bridge between the wisdom of our ancestors and the needs of contemporary devotees worldwide." },
+    { "type": "image_picker", "id": "image",         "label": "Founder photo" },
+    { "type": "text",         "id": "founder_name",  "label": "Founder name",     "default": "Anitha Kuppusamy" },
+    { "type": "text",         "id": "founder_title", "label": "Founder title",    "default": "FOUNDER · VIHA HERITAGE STORE" },
+    { "type": "text",         "id": "cta_text",      "label": "CTA text",         "default": "Read Our Story" },
+    { "type": "url",          "id": "cta_url",       "label": "CTA link" }
+  ],
+  "presets": [{ "name": "Founder Section" }]
+}
+{% endschema %}

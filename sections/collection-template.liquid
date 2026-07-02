@@ -1,0 +1,299 @@
+{%- assign col = collection -%}
+{%- assign current_sort = request.params['sort_by'] | default: 'manual' -%}
+{%- assign active_handle = col.handle -%}
+
+{%- comment -%} ── Collection hero ─── {%- endcomment -%}
+<section style="position:relative;background:var(--color-maroon-dark);padding:4rem 3rem 3.5rem;overflow:hidden;">
+  <div style="position:absolute;inset:0;opacity:0.05;background-image:radial-gradient(circle,#B8893D 1px,transparent 1px);background-size:18px 18px;pointer-events:none;"></div>
+  {%- if col.image -%}
+    <div style="position:absolute;inset:0;background-image:url('{{ col.image | img_url: '1920x' }}');background-size:cover;background-position:center;filter:brightness(0.25);mix-blend-mode:luminosity;"></div>
+  {%- endif -%}
+  <div style="max-width:var(--max-w);margin:0 auto;position:relative;z-index:1;">
+    <nav aria-label="Breadcrumb" style="display:flex;align-items:center;gap:6px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.18em;color:rgba(255,255,255,0.40);margin-bottom:1.25rem;">
+      <a href="/" style="color:inherit;transition:color 0.15s;" onmouseover="this.style.color='var(--color-gold)'" onmouseout="this.style.color='rgba(255,255,255,0.40)'">Home</a>
+      <span>/</span>
+      <span style="color:var(--color-gold);">{{ section.settings.custom_heading | default: col.title }}</span>
+    </nav>
+    <h1 style="font-family:var(--font-heading);font-size:clamp(1.75rem,4.5vw,3rem);font-weight:900;color:#fff;line-height:1.08;margin-bottom:0.75rem;">
+      {{ section.settings.custom_heading | default: col.title }}
+    </h1>
+    {%- assign hero_sub = section.settings.custom_subtext | default: col.description -%}
+    {%- if hero_sub != blank -%}
+      <p style="font-size:13px;color:rgba(255,255,255,0.60);max-width:480px;line-height:1.75;">{{ hero_sub | strip_html | truncate: 160 }}</p>
+    {%- endif -%}
+  </div>
+</section>
+
+{%- comment -%} ── Mobile pills (scrollable, hidden on desktop) ─── {%- endcomment -%}
+<div style="background:var(--color-paper);border-bottom:1px solid var(--color-cream-dark);padding:12px 1.5rem;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;" class="catalog-pills-mobile">
+  <div style="display:flex;gap:8px;width:max-content;">
+    <a href="/collections/all"               style="display:inline-flex;align-items:center;padding:6px 14px;border-radius:100px;border:1px solid var(--color-cream-dark);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;white-space:nowrap;transition:all 0.15s;{% if active_handle == 'all' %}background:var(--color-maroon);color:#fff;border-color:var(--color-maroon);{% else %}background:var(--color-paper);color:rgba(45,45,45,0.65);{% endif %}">All</a>
+    <a href="/collections/spiritual-pooja"   style="display:inline-flex;align-items:center;padding:6px 14px;border-radius:100px;border:1px solid var(--color-cream-dark);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;white-space:nowrap;transition:all 0.15s;{% if active_handle == 'spiritual-pooja' %}background:var(--color-maroon);color:#fff;border-color:var(--color-maroon);{% else %}background:var(--color-paper);color:rgba(45,45,45,0.65);{% endif %}">Spiritual &amp; Pooja</a>
+    <a href="/collections/ayurveda-herbal"   style="display:inline-flex;align-items:center;padding:6px 14px;border-radius:100px;border:1px solid var(--color-cream-dark);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;white-space:nowrap;transition:all 0.15s;{% if active_handle == 'ayurveda-herbal' %}background:var(--color-maroon);color:#fff;border-color:var(--color-maroon);{% else %}background:var(--color-paper);color:rgba(45,45,45,0.65);{% endif %}">Ayurveda</a>
+    <a href="/collections/jewellery-fashion" style="display:inline-flex;align-items:center;padding:6px 14px;border-radius:100px;border:1px solid var(--color-cream-dark);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;white-space:nowrap;transition:all 0.15s;{% if active_handle == 'jewellery-fashion' %}background:var(--color-maroon);color:#fff;border-color:var(--color-maroon);{% else %}background:var(--color-paper);color:rgba(45,45,45,0.65);{% endif %}">Jewellery</a>
+    <a href="/collections/home-living"       style="display:inline-flex;align-items:center;padding:6px 14px;border-radius:100px;border:1px solid var(--color-cream-dark);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;white-space:nowrap;transition:all 0.15s;{% if active_handle == 'home-living' %}background:var(--color-maroon);color:#fff;border-color:var(--color-maroon);{% else %}background:var(--color-paper);color:rgba(45,45,45,0.65);{% endif %}">Home &amp; Living</a>
+    <a href="/collections/food-organic"      style="display:inline-flex;align-items:center;padding:6px 14px;border-radius:100px;border:1px solid var(--color-cream-dark);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;white-space:nowrap;transition:all 0.15s;{% if active_handle == 'food-organic' %}background:var(--color-maroon);color:#fff;border-color:var(--color-maroon);{% else %}background:var(--color-paper);color:rgba(45,45,45,0.65);{% endif %}">Food &amp; Organic</a>
+    <a href="/collections/kids-baby"         style="display:inline-flex;align-items:center;padding:6px 14px;border-radius:100px;border:1px solid var(--color-cream-dark);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;white-space:nowrap;transition:all 0.15s;{% if active_handle == 'kids-baby' %}background:var(--color-maroon);color:#fff;border-color:var(--color-maroon);{% else %}background:var(--color-paper);color:rgba(45,45,45,0.65);{% endif %}">Kids &amp; Baby</a>
+    <a href="/collections/bags-pouches"      style="display:inline-flex;align-items:center;padding:6px 14px;border-radius:100px;border:1px solid var(--color-cream-dark);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;white-space:nowrap;transition:all 0.15s;{% if active_handle == 'bags-pouches' %}background:var(--color-maroon);color:#fff;border-color:var(--color-maroon);{% else %}background:var(--color-paper);color:rgba(45,45,45,0.65);{% endif %}">Bags</a>
+    <a href="/collections/fashion-grooming"  style="display:inline-flex;align-items:center;padding:6px 14px;border-radius:100px;border:1px solid var(--color-cream-dark);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;white-space:nowrap;transition:all 0.15s;{% if active_handle == 'fashion-grooming' %}background:var(--color-maroon);color:#fff;border-color:var(--color-maroon);{% else %}background:var(--color-paper);color:rgba(45,45,45,0.65);{% endif %}">Fashion</a>
+    <a href="/collections/books-gifts"       style="display:inline-flex;align-items:center;padding:6px 14px;border-radius:100px;border:1px solid var(--color-cream-dark);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;white-space:nowrap;transition:all 0.15s;{% if active_handle == 'books-gifts' %}background:var(--color-maroon);color:#fff;border-color:var(--color-maroon);{% else %}background:var(--color-paper);color:rgba(45,45,45,0.65);{% endif %}">Books</a>
+    <a href="/collections/new-arrivals"      style="display:inline-flex;align-items:center;padding:6px 14px;border-radius:100px;border:1px solid var(--color-cream-dark);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;white-space:nowrap;color:var(--color-gold);border-color:rgba(184,137,61,0.35);transition:all 0.15s;{% if active_handle == 'new-arrivals' %}background:var(--color-gold);color:#fff;border-color:var(--color-gold);{% endif %}">New Arrivals ✦</a>
+  </div>
+</div>
+
+{%- comment -%} ── Body: sidebar + product grid ─── {%- endcomment -%}
+<div style="background:var(--color-cream);padding:2.5rem 3rem;min-height:60vh;">
+  <div style="max-width:var(--max-w);margin:0 auto;">
+
+    {%- comment -%} Toolbar: search + sort + count + mobile filter toggle {%- endcomment -%}
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:1.5rem;flex-wrap:wrap;">
+      <div style="position:relative;flex:1;min-width:180px;max-width:300px;">
+        <svg style="position:absolute;left:12px;top:50%;transform:translateY(-50%);color:rgba(45,45,45,0.35);pointer-events:none;" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 15.803 7.5 7.5 0 0015.803 15.803z"/>
+        </svg>
+        <input type="text" id="catalog-search" placeholder="Filter catalog…" aria-label="Filter products by name"
+          style="width:100%;padding:9px 12px 9px 36px;border:1px solid var(--color-cream-dark);background:var(--color-paper);font-size:12px;font-family:inherit;color:var(--color-charcoal);outline:none;border-radius:2px;transition:border-color 0.2s;"
+          onfocus="this.style.borderColor='var(--color-gold)'" onblur="this.style.borderColor='var(--color-cream-dark)'">
+      </div>
+
+      <select data-sort-select aria-label="Sort products"
+        style="padding:9px 32px 9px 12px;border:1px solid var(--color-cream-dark);background:var(--color-paper);font-size:11px;font-weight:600;font-family:inherit;color:var(--color-charcoal);cursor:pointer;outline:none;border-radius:2px;appearance:none;background-image:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%232D2D2D' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E\");background-repeat:no-repeat;background-position:right 10px center;">
+        <option value="manual"             {% if current_sort == 'manual' %}selected{% endif %}>Featured</option>
+        <option value="best-selling"       {% if current_sort == 'best-selling' %}selected{% endif %}>Best Selling</option>
+        <option value="price-ascending"    {% if current_sort == 'price-ascending' %}selected{% endif %}>Price: Low–High</option>
+        <option value="price-descending"   {% if current_sort == 'price-descending' %}selected{% endif %}>Price: High–Low</option>
+        <option value="title-ascending"    {% if current_sort == 'title-ascending' %}selected{% endif %}>A–Z</option>
+        <option value="created-descending" {% if current_sort == 'created-descending' %}selected{% endif %}>Newest</option>
+      </select>
+
+      <span id="catalog-count" style="font-size:11px;color:var(--color-muted);flex:1;text-align:right;white-space:nowrap;">
+        {{ col.products_count }} product{{ col.products_count | plural: '', 's' }}
+      </span>
+
+      {%- comment -%} Mobile-only filter toggle {%- endcomment -%}
+      <button id="catalog-filter-toggle" aria-expanded="false" aria-controls="catalog-sidebar"
+        style="display:flex;align-items:center;gap:6px;padding:9px 14px;border:1px solid var(--color-cream-dark);background:var(--color-paper);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;cursor:pointer;border-radius:2px;color:var(--color-charcoal);transition:all 0.15s;"
+        onmouseover="this.style.borderColor='var(--color-maroon)'" onmouseout="this.style.borderColor='var(--color-cream-dark)'" class="catalog-filter-btn">
+        <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9.75 0h9.75"/>
+        </svg>
+        Filters
+      </button>
+    </div>
+
+    {%- comment -%} Sidebar + grid layout {%- endcomment -%}
+    <div class="catalog-layout">
+
+      {%- comment -%} ── Sidebar ─── {%- endcomment -%}
+      <aside id="catalog-sidebar" class="catalog-sidebar" aria-label="Category filters">
+
+        <div style="margin-bottom:1.75rem;">
+          <h2 style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.2em;color:var(--color-maroon);padding-bottom:0.75rem;border-bottom:1px solid var(--color-cream-dark);margin-bottom:1rem;">Categories</h2>
+          <nav style="display:flex;flex-direction:column;gap:2px;">
+            {%- assign sidebar_cats = "all|All Essentials|/collections/all~spiritual-pooja|Spiritual & Pooja|/collections/spiritual-pooja~pooja-essentials|‣ Pooja Essentials|/collections/pooja-essentials~god-idols-statues|‣ God Idols & Statues|/collections/god-idols-statues~healing-spiritual|‣ Crystal & Healing|/collections/healing-spiritual~karungali-products|‣ Karungali Products|/collections/karungali-products~jewellery-fashion|Jewellery|/collections/jewellery-fashion~impon-jewellery|‣ Impon Jewellery|/collections/impon-jewellery~crystal-gemstone|‣ Crystal & Gemstone|/collections/crystal-gemstone~ayurveda-herbal|Ayurveda & Herbal|/collections/ayurveda-herbal~fashion-grooming|Fashion & Sarees|/collections/fashion-grooming~home-living|Home & Living|/collections/home-living~food-organic|Food & Organic|/collections/food-organic~kids-baby|Kids & Baby|/collections/kids-baby~bags-pouches|Bags & Pouches|/collections/bags-pouches~books-gifts|Books & Gifts|/collections/books-gifts~new-arrivals|New Arrivals ✦|/collections/new-arrivals" | split: "~" -%}
+            {%- for cat in sidebar_cats -%}
+              {%- assign cparts = cat | split: "|" -%}
+              {%- assign is_active = false -%}
+              {%- if cparts[0] == active_handle -%}{%- assign is_active = true -%}{%- endif -%}
+              {%- if cparts[0] == 'all' and active_handle == blank -%}{%- assign is_active = true -%}{%- endif -%}
+              <a href="{{ cparts[2] }}" style="display:flex;align-items:center;justify-content:space-between;padding:7px 10px;border-radius:2px;font-size:12px;font-weight:{% if is_active %}700{% else %}500{% endif %};color:{% if is_active %}#fff{% else %}rgba(45,45,45,0.75){% endif %};background:{% if is_active %}var(--color-maroon){% else %}transparent{% endif %};transition:all 0.15s;text-decoration:none;" {% unless is_active %}onmouseover="this.style.background='rgba(15,90,67,0.07)'" onmouseout="this.style.background='transparent'"{% endunless %}>
+                {{ cparts[1] }}
+                {%- if is_active -%}
+                  <span style="width:6px;height:6px;border-radius:50%;background:var(--color-gold);flex-shrink:0;" aria-hidden="true"></span>
+                {%- endif -%}
+              </a>
+            {%- endfor -%}
+          </nav>
+        </div>
+
+        {%- comment -%} Gold Standard trust box {%- endcomment -%}
+        <div style="padding:1.25rem;background:rgba(184,137,61,0.06);border:1px solid rgba(184,137,61,0.20);border-radius:2px;">
+          <h3 style="display:flex;align-items:center;gap:6px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.18em;color:var(--color-gold);margin-bottom:0.75rem;">
+            <svg width="12" height="12" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            Gold Standard
+          </h3>
+          <p style="font-size:11px;color:rgba(45,45,45,0.65);line-height:1.7;">
+            Every ingredient and material is sourced from verified traditional artisans. Authentic certified zari thread, pure botanical extracts, and sacred metals — no compromises.
+          </p>
+        </div>
+
+        {%- comment -%} Price filter (cosmetic; actual filter via URL) {%- endcomment -%}
+        <div style="margin-top:1.75rem;">
+          <h3 style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.2em;color:var(--color-maroon);padding-bottom:0.75rem;border-bottom:1px solid var(--color-cream-dark);margin-bottom:1rem;">Availability</h3>
+          <label style="display:flex;align-items:center;gap:8px;font-size:12px;color:rgba(45,45,45,0.75);cursor:pointer;padding:4px 0;">
+            <input type="checkbox" id="in-stock-filter" style="width:14px;height:14px;accent-color:var(--color-maroon);cursor:pointer;">
+            In Stock Only
+          </label>
+        </div>
+
+      </aside>
+
+      {%- comment -%} ── Product grid ─── {%- endcomment -%}
+      <main>
+        {% paginate col.products by section.settings.products_per_page %}
+
+          {% if col.products.size > 0 %}
+            <div class="collection-grid" id="catalog-grid">
+              {% for product in col.products %}
+                {% render 'product-card', product: product, lazy: true %}
+              {% endfor %}
+            </div>
+
+            <p id="catalog-empty" style="display:none;text-align:center;padding:3rem 0;font-size:14px;color:var(--color-muted);">
+              No products match your search.
+              <a href="{{ col.url }}" style="color:var(--color-gold);text-decoration:underline;margin-left:4px;">Clear filter</a>
+            </p>
+
+            {% if paginate.pages > 1 %}
+              <nav class="pagination" aria-label="Pagination" style="margin-top:2.5rem;">
+                {% if paginate.previous %}
+                  <a href="{{ paginate.previous.url }}" class="pagination__btn" aria-label="Previous page">
+                    <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5"/></svg>
+                  </a>
+                {% endif %}
+                {% for part in paginate.parts %}
+                  {% if part.is_link %}
+                    <a href="{{ part.url }}" class="pagination__btn{% if part.title == paginate.current_page %} is-current{% endif %}" {% if part.title == paginate.current_page %}aria-current="page"{% endif %}>{{ part.title }}</a>
+                  {% else %}
+                    <span class="pagination__btn" style="pointer-events:none;opacity:0.5;">{{ part.title }}</span>
+                  {% endif %}
+                {% endfor %}
+                {% if paginate.next %}
+                  <a href="{{ paginate.next.url }}" class="pagination__btn" aria-label="Next page">
+                    <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg>
+                  </a>
+                {% endif %}
+              </nav>
+            {% endif %}
+
+          {% else %}
+            <div style="text-align:center;padding:5rem 2rem;background:var(--color-paper);border:1px solid var(--color-cream-dark);border-radius:2px;">
+              <p style="font-family:var(--font-heading);font-size:1.25rem;color:var(--color-maroon);margin-bottom:0.75rem;font-weight:700;">No products found</p>
+              <p style="font-size:13px;color:var(--color-muted);margin-bottom:1.5rem;">Try a different category or browse all essentials.</p>
+              <a href="/collections/all" class="btn btn--primary" style="display:inline-flex;align-items:center;gap:8px;padding:12px 24px;font-size:11px;">Browse All</a>
+            </div>
+          {% endif %}
+
+        {% endpaginate %}
+      </main>
+
+    </div>{%- comment -%} / catalog-layout {%- endcomment -%}
+  </div>
+</div>
+
+<style>
+/* Mobile pills scrollbar */
+.catalog-pills-mobile::-webkit-scrollbar { display: none; }
+
+/* Layout */
+.catalog-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+.catalog-sidebar {
+  display: none;
+  background: var(--color-paper);
+  border: 1px solid var(--color-cream-dark);
+  border-radius: 2px;
+  padding: 1.5rem;
+  height: fit-content;
+}
+.catalog-sidebar.is-open { display: block; }
+/* Hide mobile pills and filter btn on desktop, show sidebar instead */
+@media (min-width: 1024px) {
+  .catalog-pills-mobile { display: none; }
+  .catalog-filter-btn { display: none; }
+  .catalog-layout {
+    grid-template-columns: 260px 1fr;
+    align-items: start;
+  }
+  .catalog-sidebar {
+    display: block !important;
+    position: sticky;
+    top: 6rem;
+    max-height: calc(100vh - 8rem);
+    overflow-y: auto;
+  }
+}
+@media (max-width: 1023px) {
+  /* Mobile: pills visible, sidebar shown when filter toggled */
+}
+</style>
+
+<script>
+(function() {
+  /* ── Client-side name filter ── */
+  var searchInput = document.getElementById('catalog-search');
+  var grid = document.getElementById('catalog-grid');
+  var emptyMsg = document.getElementById('catalog-empty');
+  var countEl = document.getElementById('catalog-count');
+  var totalCount = {{ col.products_count }};
+
+  if (searchInput && grid) {
+    searchInput.addEventListener('input', function() {
+      var q = this.value.toLowerCase().trim();
+      var cards = grid.querySelectorAll('.product-card');
+      var visible = 0;
+      cards.forEach(function(card) {
+        var name = card.querySelector('.product-card__name');
+        var cat  = card.querySelector('.product-card__cat');
+        var text = ((name ? name.textContent : '') + ' ' + (cat ? cat.textContent : '')).toLowerCase();
+        var show = !q || text.includes(q);
+        card.style.display = show ? '' : 'none';
+        if (show) visible++;
+      });
+      if (emptyMsg) emptyMsg.style.display = (visible === 0 && q) ? 'block' : 'none';
+      if (countEl) countEl.textContent = (q ? visible : totalCount) + ' product' + ((q ? visible : totalCount) === 1 ? '' : 's');
+    });
+  }
+
+  /* ── In-stock filter ── */
+  var stockFilter = document.getElementById('in-stock-filter');
+  if (stockFilter && grid) {
+    stockFilter.addEventListener('change', function() {
+      var onlyStock = this.checked;
+      if (!grid) return;
+      grid.querySelectorAll('.product-card').forEach(function(card) {
+        var atcBtn = card.querySelector('[data-add-to-cart]');
+        var soldOut = atcBtn && atcBtn.disabled;
+        if (onlyStock && soldOut) { card.style.display = 'none'; }
+        else { card.style.display = ''; }
+      });
+    });
+  }
+
+  /* ── Sort select → URL redirect ── */
+  var sortSel = document.querySelector('[data-sort-select]');
+  if (sortSel) {
+    sortSel.addEventListener('change', function() {
+      var url = new URL(window.location.href);
+      url.searchParams.set('sort_by', this.value);
+      window.location.href = url.toString();
+    });
+  }
+
+  /* ── Mobile filter sidebar toggle ── */
+  var toggleBtn = document.getElementById('catalog-filter-toggle');
+  var sidebar   = document.getElementById('catalog-sidebar');
+  if (toggleBtn && sidebar) {
+    toggleBtn.addEventListener('click', function() {
+      var open = sidebar.classList.toggle('is-open');
+      toggleBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      toggleBtn.style.borderColor = open ? 'var(--color-maroon)' : '';
+      toggleBtn.style.color = open ? 'var(--color-maroon)' : '';
+    });
+  }
+})();
+</script>
+
+{% schema %}
+{
+  "name": "Collection",
+  "settings": [
+    { "type": "text",    "id": "custom_heading",      "label": "Custom heading",   "info": "Overrides the collection title" },
+    { "type": "textarea","id": "custom_subtext",       "label": "Custom subtitle",  "info": "Overrides the collection description" },
+    { "type": "range",   "id": "products_per_page",   "label": "Products per page","min": 12, "max": 48, "step": 4, "default": 24 }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,64 @@
+{% layout 'theme' %}
+
+<div class="container" style="padding-top:3rem;padding-bottom:4rem;min-height:60vh;">
+  <h1 style="font-family:var(--font-heading);font-size:2rem;font-weight:900;color:var(--color-maroon);margin-bottom:2rem;">Your Cart</h1>
+
+  {% if cart.item_count == 0 %}
+    <div style="text-align:center;padding:4rem 0;">
+      <svg width="64" height="64" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1" style="margin:0 auto 1rem;color:rgba(45,45,45,0.3);" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 9H4L5 9z"/>
+      </svg>
+      <p style="font-family:var(--font-heading);font-size:1.25rem;color:var(--color-maroon);margin-bottom:0.5rem;">Your cart is empty</p>
+      <p style="color:rgba(45,45,45,0.6);margin-bottom:1.5rem;">Start exploring our heritage collection.</p>
+      <a href="/collections/all" class="btn btn--primary" style="display:inline-flex;width:auto;">Shop All Products</a>
+    </div>
+  {% else %}
+    <div style="display:grid;grid-template-columns:1fr;gap:2rem;">
+      <style>@media(min-width:1024px){.cart-full-grid{grid-template-columns:1fr 360px!important;}}</style>
+      <div style="display:grid;gap:2rem;" class="cart-full-grid">
+        <div>
+          {% for item in cart.items %}
+            <div class="cart-item" style="margin-bottom:1rem;">
+              <img class="cart-item__img" src="{{ item.image | img_url: '150x150', crop: 'center' }}" alt="{{ item.product.title }}" loading="lazy" width="80" height="80" style="width:80px;height:80px;">
+              <div style="flex:1;min-width:0;">
+                <a href="{{ item.product.url }}" class="cart-item__name" style="font-size:14px;">{{ item.product.title }}</a>
+                {% unless item.variant.title == 'Default Title' %}
+                  <p class="cart-item__cat">{{ item.variant.title }}</p>
+                {% endunless %}
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-top:8px;">
+                  <div class="cart-item__qty">
+                    <a href="/cart/change?line={{ forloop.index }}&quantity={{ item.quantity | minus: 1 }}" class="cart-item__qty-btn" aria-label="Decrease quantity">−</a>
+                    <span class="cart-item__qty-num">{{ item.quantity }}</span>
+                    <a href="/cart/change?line={{ forloop.index }}&quantity={{ item.quantity | plus: 1 }}" class="cart-item__qty-btn" aria-label="Increase quantity">+</a>
+                  </div>
+                  <span class="cart-item__price">{{ item.final_line_price | money }}</span>
+                </div>
+              </div>
+              <a href="/cart/change?line={{ forloop.index }}&quantity=0" class="cart-item__remove" aria-label="Remove {{ item.product.title }}" style="text-decoration:none;">
+                <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+              </a>
+            </div>
+          {% endfor %}
+        </div>
+
+        <div style="padding:1.5rem;background:var(--color-paper);border:1px solid var(--color-cream-dark);align-self:flex-start;position:sticky;top:130px;">
+          <h2 style="font-family:var(--font-heading);font-size:1.1rem;font-weight:700;color:var(--color-maroon);margin-bottom:1rem;">Order Summary</h2>
+          <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:0.75rem;">
+            <span>Subtotal ({{ cart.item_count }} items)</span>
+            <span style="font-weight:600;">{{ cart.total_price | money }}</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:12px;color:rgba(45,45,45,0.6);margin-bottom:1.5rem;">
+            <span>Shipping</span>
+            <span>Calculated at checkout</span>
+          </div>
+          <a href="/checkout" class="cart-drawer__checkout" style="display:flex;text-decoration:none;">
+            Proceed to Checkout
+          </a>
+          <a href="/collections/all" style="display:block;text-align:center;font-size:12px;color:rgba(45,45,45,0.5);margin-top:0.75rem;text-decoration:underline;">Continue Shopping</a>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+</div>

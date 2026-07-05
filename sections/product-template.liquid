@@ -67,6 +67,7 @@
       <span style="font-size:11px;background:var(--color-gold);color:#fff;padding:2px 7px;border-radius:2px;margin-left:6px;font-weight:700;">Save {{ current_product.compare_at_price | minus: current_product.price | money }}</span>
     {%- endif -%}
   </div>
+  <p style="font-size:10px;color:rgba(45,45,45,0.55);margin-top:2px;">GST and shipping calculated at checkout — not included in the price above.</p>
 </div>
 
 <div class="product-layout">
@@ -155,6 +156,7 @@
           </span>
         {% endif %}
       </div>
+      <p style="font-size:11px;color:rgba(45,45,45,0.55);margin-top:4px;">GST and shipping calculated at checkout — not included in the price above.</p>
     </div>
 
     {%- comment -%} Mobile-only: star rating (price is already in product-mob-bar) {%- endcomment -%}

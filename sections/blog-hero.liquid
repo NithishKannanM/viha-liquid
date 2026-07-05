@@ -1,0 +1,44 @@
+{%- comment -%}
+  Blog listing hero — viha-theme
+  blog.title is the blog's own name (not editable here, comes from Admin → Blog posts)
+{%- endcomment -%}
+
+<section style="position:relative;width:100%;background:var(--color-maroon-dark);padding:5rem 3rem 4rem;overflow:hidden;">
+  <div style="position:absolute;inset:0;opacity:0.04;background-image:radial-gradient(circle,#B8893D 1px,transparent 1px);background-size:20px 20px;pointer-events:none;"></div>
+  <div style="max-width:var(--max-w);margin:0 auto;position:relative;z-index:1;">
+    <nav aria-label="Breadcrumb" style="display:flex;align-items:center;gap:6px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.18em;color:rgba(255,255,255,0.40);margin-bottom:1.5rem;">
+      <a href="/" style="color:inherit;transition:color 0.15s;" onmouseover="this.style.color='var(--color-gold)'" onmouseout="this.style.color='rgba(255,255,255,0.40)'">Home</a>
+      <span>/</span>
+      <span style="color:var(--color-gold);">{{ blog.title }}</span>
+    </nav>
+    <span style="display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.22em;color:var(--color-gold);margin-bottom:0.75rem;">{{ section.settings.eyebrow }}</span>
+    <h1 style="font-family:var(--font-heading);font-size:clamp(2rem,5vw,3.5rem);font-weight:900;color:#fff;line-height:1.05;margin-bottom:1rem;">
+      {{ blog.title }}
+    </h1>
+    <p style="font-size:14px;color:rgba(255,255,255,0.60);max-width:480px;line-height:1.75;">
+      {{ section.settings.subtext }}
+    </p>
+  </div>
+</section>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": {{ shop.url | json }} },
+    { "@type": "ListItem", "position": 2, "name": {{ blog.title | json }}, "item": {{ shop.url | append: blog.url | json }} }
+  ]
+}
+</script>
+
+{% schema %}
+{
+  "name": "Blog Hero",
+  "settings": [
+    { "type": "text",     "id": "eyebrow", "label": "Eyebrow text", "default": "Knowledge & Ritual" },
+    { "type": "textarea", "id": "subtext", "label": "Subtext", "default": "Ayurvedic wisdom, ingredient stories, and ancestral beauty rituals — curated by Mrs Anitha Kuppusamy." }
+  ],
+  "presets": [{ "name": "Blog Hero" }]
+}
+{% endschema %}

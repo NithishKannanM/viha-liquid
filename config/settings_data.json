@@ -10,8 +10,6 @@
     "color_charcoal": "#2D2D2D",
     "logo_height": 70,
     "logo_height_mobile": 55,
-    "announcement_bar_enabled": true,
-    "announcement_bar_text": "Free shipping worldwide on orders over ₹1000 equivalent.",
     "cart_type": "drawer"
   }
 }

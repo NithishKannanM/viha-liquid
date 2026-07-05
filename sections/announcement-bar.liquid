@@ -1,7 +1,9 @@
 {% if section.settings.enabled %}
 <div class="announcement-bar" role="banner" aria-label="Shipping announcement" id="announcement-bar">
   <span class="announcement-bar__text">
-    📦 Free shipping worldwide on prepaid orders. | Ships to: {{ localization.country.name }} ({{ localization.country.currency.iso_code }})
+    {%- if section.settings.link != blank -%}<a href="{{ section.settings.link }}" style="color:inherit;text-decoration:none;">{%- endif -%}
+    📦 {{ section.settings.text }} | Ships to: {{ localization.country.name }} ({{ localization.country.currency.iso_code }})
+    {%- if section.settings.link != blank -%}</a>{%- endif -%}
   </span>
   <button data-announcement-close aria-label="Close announcement" style="background:none;border:none;color:rgba(255,255,255,0.5);padding:0 0.25rem;cursor:pointer;font-size:16px;line-height:1;margin-left:0.5rem;">&times;</button>
 </div>
@@ -11,7 +13,9 @@
 {
   "name": "Announcement bar",
   "settings": [
-    { "type": "checkbox", "id": "enabled", "label": "Show announcement bar", "default": true }
+    { "type": "checkbox", "id": "enabled", "label": "Show announcement bar", "default": true },
+    { "type": "text", "id": "text", "label": "Announcement text", "default": "Ships pan-India & worldwide — rates calculated at checkout." },
+    { "type": "url", "id": "link", "label": "Announcement link (optional)" }
   ]
 }
 {% endschema %}

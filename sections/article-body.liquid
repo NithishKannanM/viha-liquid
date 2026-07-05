@@ -1,0 +1,113 @@
+{%- comment -%}
+  Article body — viha-theme
+  Back link, excerpt, content, tags, author, social share.
+{%- endcomment -%}
+
+<div style="background:var(--color-cream);">
+  <div style="padding:1.25rem 3rem;border-bottom:1px solid var(--color-cream-dark);background:var(--color-paper);">
+    <a href="{{ blog.url }}" style="display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.14em;color:rgba(45,45,45,0.55);transition:color 0.15s;" onmouseover="this.style.color='var(--color-maroon)'" onmouseout="this.style.color='rgba(45,45,45,0.55)'">
+      <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"/></svg>
+      Back to {{ blog.title }}
+    </a>
+  </div>
+
+  <div style="max-width:760px;margin:0 auto;padding:4rem 3rem 5rem;">
+
+    {%- if article.excerpt -%}
+      <p style="font-size:1.05rem;color:rgba(45,45,45,0.72);line-height:1.85;font-style:italic;font-family:var(--font-heading);border-left:4px solid var(--color-gold);padding-left:1.25rem;margin-bottom:3.5rem;">
+        {{ article.excerpt | strip_html }}
+      </p>
+    {%- endif -%}
+
+    <div class="article-content" style="font-size:15px;color:rgba(45,45,45,0.82);line-height:1.85;">
+      {{ article.content }}
+    </div>
+
+    {%- if article.tags.size > 0 -%}
+      <div style="margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--color-cream-dark);display:flex;align-items:center;flex-wrap:wrap;gap:8px;">
+        <span style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.14em;color:rgba(45,45,45,0.40);margin-right:4px;">Topics:</span>
+        {%- for tag in article.tags -%}
+          <a href="{{ blog.url }}/tagged/{{ tag | handle }}" style="display:inline-block;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--color-maroon);background:rgba(15,90,67,0.07);border:1px solid rgba(15,90,67,0.15);padding:4px 10px;border-radius:2px;transition:all 0.15s;" onmouseover="this.style.background='var(--color-maroon)';this.style.color='#fff'" onmouseout="this.style.background='rgba(15,90,67,0.07)';this.style.color='var(--color-maroon)'">
+            {{ tag }}
+          </a>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+
+    <div style="margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--color-cream-dark);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
+      <div>
+        <p style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.14em;color:var(--color-gold);">Written by</p>
+        <p style="font-family:var(--font-heading);font-size:0.95rem;font-weight:700;color:var(--color-maroon);margin-top:2px;">
+          {%- if article.author != blank -%}{{ article.author }}{%- else -%}Viha Beauty Journal{%- endif -%}
+        </p>
+        <p style="font-size:11px;color:rgba(45,45,45,0.45);margin-top:2px;">{{ article.published_at | time_tag: '%B %Y' }}</p>
+      </div>
+      <a href="{{ blog.url }}" style="display:inline-flex;align-items:center;gap:8px;padding:10px 20px;border:1px solid rgba(15,90,67,0.30);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--color-maroon);border-radius:2px;transition:all 0.2s;" onmouseover="this.style.background='var(--color-maroon)';this.style.color='#fff'" onmouseout="this.style.background='';this.style.color='var(--color-maroon)'">
+        <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"/></svg>
+        More Articles
+      </a>
+    </div>
+
+    <div style="margin-top:2rem;display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+      <span style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.14em;color:rgba(45,45,45,0.40);">Share:</span>
+      <a href="https://www.facebook.com/sharer/sharer.php?u={{ shop.url }}{{ article.url }}" target="_blank" rel="noopener" aria-label="Share on Facebook" style="display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;color:var(--color-maroon);padding:5px 12px;border:1px solid var(--color-cream-dark);border-radius:2px;transition:all 0.15s;" onmouseover="this.style.background='var(--color-maroon)';this.style.color='#fff';this.style.borderColor='var(--color-maroon)'" onmouseout="this.style.background='';this.style.color='var(--color-maroon)';this.style.borderColor='var(--color-cream-dark)'">Facebook</a>
+      <a href="https://twitter.com/intent/tweet?url={{ shop.url }}{{ article.url }}&text={{ article.title | url_encode }}" target="_blank" rel="noopener" aria-label="Share on Twitter" style="display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;color:var(--color-maroon);padding:5px 12px;border:1px solid var(--color-cream-dark);border-radius:2px;transition:all 0.15s;" onmouseover="this.style.background='var(--color-maroon)';this.style.color='#fff';this.style.borderColor='var(--color-maroon)'" onmouseout="this.style.background='';this.style.color='var(--color-maroon)';this.style.borderColor='var(--color-cream-dark)'">Twitter</a>
+      <a href="https://wa.me/?text={{ article.title | url_encode }}%20{{ shop.url }}{{ article.url }}" target="_blank" rel="noopener" aria-label="Share on WhatsApp" style="display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;color:var(--color-maroon);padding:5px 12px;border:1px solid var(--color-cream-dark);border-radius:2px;transition:all 0.15s;" onmouseover="this.style.background='var(--color-maroon)';this.style.color='#fff';this.style.borderColor='var(--color-maroon)'" onmouseout="this.style.background='';this.style.color='var(--color-maroon)';this.style.borderColor='var(--color-cream-dark)'">WhatsApp</a>
+    </div>
+  </div>
+</div>
+
+{%- comment -%} Article body prose styles {%- endcomment -%}
+<style>
+.article-content h2,
+.article-content h3,
+.article-content h4 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--color-maroon);
+  margin: 2.5rem 0 1rem;
+  line-height: 1.25;
+}
+.article-content h2 { font-size: clamp(1.25rem, 2.5vw, 1.625rem); }
+.article-content h3 { font-size: 1.125rem; }
+.article-content p  { margin: 0 0 1.25rem; }
+.article-content p:last-child { margin-bottom: 0; }
+.article-content blockquote {
+  border-left: 4px solid var(--color-gold);
+  background: var(--color-paper);
+  padding: 1.25rem 1.5rem;
+  margin: 2rem 0;
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--color-maroon);
+  line-height: 1.65;
+}
+.article-content img {
+  width: 100%;
+  height: auto;
+  border-radius: 2px;
+  margin: 2rem 0;
+  object-fit: cover;
+}
+.article-content a { color: var(--color-maroon); text-decoration: underline; }
+.article-content a:hover { color: var(--color-gold); }
+.article-content ul,
+.article-content ol {
+  padding-left: 1.5rem;
+  margin: 1rem 0 1.25rem;
+}
+.article-content li { margin-bottom: 0.5rem; }
+.article-content hr {
+  border: none;
+  border-top: 1px solid var(--color-cream-dark);
+  margin: 2.5rem 0;
+}
+</style>
+
+{% schema %}
+{
+  "name": "Article Body",
+  "presets": [{ "name": "Article Body" }]
+}
+{% endschema %}

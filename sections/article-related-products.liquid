@@ -1,0 +1,40 @@
+{%- comment -%}
+  Article related products — viha-theme
+  Collection is a merchant-editable setting (was hardcoded to 'ayurveda-herbal' before conversion).
+{%- endcomment -%}
+
+{%- assign related_col = collections[section.settings.collection] -%}
+
+{%- if related_col != blank and related_col.products_count > 0 -%}
+  <section style="padding:4rem 3rem;background:var(--color-paper);border-top:1px solid var(--color-cream-dark);">
+    <div style="max-width:var(--max-w);margin:0 auto;">
+      <div style="margin-bottom:2rem;">
+        <span style="display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.2em;color:var(--color-gold);margin-bottom:0.5rem;">From the Article</span>
+        <h2 style="font-family:var(--font-heading);font-size:clamp(1.25rem,3vw,1.875rem);font-weight:900;color:var(--color-maroon);">Products Mentioned</h2>
+      </div>
+      <div class="collection-grid">
+        {%- for product in related_col.products limit: 4 -%}
+          {%- render 'product-card', product: product -%}
+        {%- endfor -%}
+      </div>
+      <div style="text-align:center;margin-top:2rem;">
+        <a href="{{ related_col.url }}" class="btn btn--outline-maroon" style="display:inline-flex;align-items:center;gap:8px;padding:12px 24px;font-size:11px;">
+          View All {{ related_col.title }}
+          <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Article Related Products",
+  "settings": [
+    { "type": "collection", "id": "collection", "label": "Related products collection" }
+  ],
+  "presets": [
+    { "name": "Article Related Products", "settings": { "collection": "ayurveda-herbal" } }
+  ]
+}
+{% endschema %}

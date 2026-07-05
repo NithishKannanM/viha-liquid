@@ -117,6 +117,67 @@
     ]
   },
   {
+    "name": "Business Info",
+    "settings": [
+      {
+        "type": "text",
+        "id": "business_street_address",
+        "label": "Street address",
+        "default": "Bishop Garden, Raja Annamalaipuram"
+      },
+      {
+        "type": "text",
+        "id": "business_city",
+        "label": "City",
+        "default": "Chennai"
+      },
+      {
+        "type": "text",
+        "id": "business_region",
+        "label": "State/Region",
+        "default": "Tamil Nadu"
+      },
+      {
+        "type": "text",
+        "id": "business_postal_code",
+        "label": "Postal code",
+        "default": "600028"
+      },
+      {
+        "type": "text",
+        "id": "business_country",
+        "label": "Country",
+        "default": "IN"
+      },
+      {
+        "type": "text",
+        "id": "business_phone",
+        "label": "Showroom phone (with country code)",
+        "default": "+91 88258 61822",
+        "info": "Used for the LocalBusiness schema (Google Maps/local search) and can also be shown in the footer/contact page."
+      },
+      {
+        "type": "text",
+        "id": "business_hours_days",
+        "label": "Open days",
+        "default": "Mo-Sa",
+        "info": "Schema.org day abbreviation range, e.g. Mo-Sa"
+      },
+      {
+        "type": "text",
+        "id": "business_hours_open",
+        "label": "Opening time (24h)",
+        "default": "10:00"
+      },
+      {
+        "type": "text",
+        "id": "business_hours_close",
+        "label": "Closing time (24h)",
+        "default": "18:00"
+      }
+    ]
+  },
+  {
     "name": "Social media",
     "settings": [
       {
@@ -133,28 +194,6 @@
         "type": "url",
         "id": "social_youtube_link",
         "label": "YouTube"
-      }
-    ]
-  },
-  {
-    "name": "Announcement bar",
-    "settings": [
-      {
-        "type": "checkbox",
-        "id": "announcement_bar_enabled",
-        "label": "Show announcement bar",
-        "default": true
-      },
-      {
-        "type": "text",
-        "id": "announcement_bar_text",
-        "label": "Announcement text",
-        "default": "Free shipping worldwide on orders over ₹1000 equivalent."
-      },
-      {
-        "type": "url",
-        "id": "announcement_bar_link",
-        "label": "Announcement link"
       }
     ]
   },

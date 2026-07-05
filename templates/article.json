@@ -1,0 +1,23 @@
+{
+  "sections": {
+    "hero": {
+      "type": "article-hero"
+    },
+    "body": {
+      "type": "article-body"
+    },
+    "related-products": {
+      "type": "article-related-products",
+      "settings": {
+        "collection": "ayurveda-herbal"
+      }
+    },
+    "more-posts": {
+      "type": "article-more-posts",
+      "settings": {
+        "count": 2
+      }
+    }
+  },
+  "order": ["hero", "body", "related-products", "more-posts"]
+}

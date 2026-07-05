@@ -1,0 +1,25 @@
+{
+  "sections": {
+    "hero": {
+      "type": "blog-hero",
+      "settings": {
+        "eyebrow": "Knowledge & Ritual",
+        "subtext": "Ayurvedic wisdom, ingredient stories, and ancestral beauty rituals — curated by Mrs Anitha Kuppusamy."
+      }
+    },
+    "article-grid": {
+      "type": "blog-article-grid",
+      "settings": {
+        "articles_per_page": 9
+      }
+    },
+    "newsletter": {
+      "type": "newsletter-signup",
+      "settings": {
+        "heading": "The Beauty Digest",
+        "subtext": "Seasonal rituals, Ayurvedic wisdom, and early access to new formulations — delivered twice a month."
+      }
+    }
+  },
+  "order": ["hero", "article-grid", "newsletter"]
+}

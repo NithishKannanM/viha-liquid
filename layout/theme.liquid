@@ -73,6 +73,30 @@
     }
   </script>
 
+  {%- comment -%} Global structured data — LocalBusiness (Chennai showroom) {%- endcomment -%}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Store",
+      "name": {{ shop.name | json }},
+      "url": {{ shop.url | json }}
+      {%- if settings.favicon != blank -%},"image": {{ settings.favicon | img_url: '512x512' | prepend: 'https:' | json }}{%- endif -%}
+      {%- if settings.business_phone != blank -%},"telephone": {{ settings.business_phone | json }}{%- endif -%}
+      ,"address": {
+        "@type": "PostalAddress"
+        {%- if settings.business_street_address != blank -%},"streetAddress": {{ settings.business_street_address | json }}{%- endif -%}
+        {%- if settings.business_city != blank -%},"addressLocality": {{ settings.business_city | json }}{%- endif -%}
+        {%- if settings.business_region != blank -%},"addressRegion": {{ settings.business_region | json }}{%- endif -%}
+        {%- if settings.business_postal_code != blank -%},"postalCode": {{ settings.business_postal_code | json }}{%- endif -%}
+        {%- if settings.business_country != blank -%},"addressCountry": {{ settings.business_country | json }}{%- endif -%}
+      }
+      {%- if settings.business_hours_days != blank and settings.business_hours_open != blank and settings.business_hours_close != blank -%}
+        {%- capture opening_hours -%}{{ settings.business_hours_days }} {{ settings.business_hours_open }}-{{ settings.business_hours_close }}{%- endcapture -%}
+        ,"openingHours": {{ opening_hours | json }}
+      {%- endif -%}
+    }
+  </script>
+
   {%- comment -%} Preconnect for fonts {%- endcomment -%}
   <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
 

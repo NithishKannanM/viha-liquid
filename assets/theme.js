@@ -437,22 +437,6 @@ const CartDrawer = (function () {
 })();
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   ORDER TRACKER
-══════════════════════════════════════════════════════════════════════════════ */
-(function initOrderTracker() {
-  const form = $('[data-tracker-form]');
-  if (!form) return;
-  const input = $('[data-tracker-input]', form);
-
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const orderId = input ? input.value.trim().toUpperCase() : '';
-    if (!orderId) return;
-    window.location.href = `/apps/track?order=${encodeURIComponent(orderId)}`;
-  });
-})();
-
-/* ═══════════════════════════════════════════════════════════════════════════
    STICKY HEADER shadow on scroll
 ══════════════════════════════════════════════════════════════════════════════ */
 (function initHeaderScroll() {

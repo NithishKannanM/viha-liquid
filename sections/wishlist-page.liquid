@@ -101,7 +101,11 @@
   }
 
   function formatMoney(cents) {
-    return '₹' + (cents / 100).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    // Delegate to the global formatter (theme.js) so prices match the shop's
+    // real money format ("Rs.1,234.00") — no hardcoded ₹ mismatch. theme.js is
+    // deferred, but init() runs on DOMContentLoaded so it's always loaded first.
+    if (window.formatMoney) return window.formatMoney(cents);
+    return 'Rs.' + (cents / 100).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   }
 
   function renderCard(product) {
@@ -248,7 +252,13 @@
   // Sync wishlist toggle from product cards
   document.addEventListener('wishlist:updated', function() { init(); });
 
-  init();
+  // Wait for DOMContentLoaded: deferred scripts (theme.js, which owns the
+  // global formatMoney) are guaranteed to have run by then.
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
 })();
 </script>
 

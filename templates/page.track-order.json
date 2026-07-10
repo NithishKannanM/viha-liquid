@@ -7,9 +7,14 @@
         "step-2": { "type": "status_step", "settings": { "title": "Packed", "description": "Your sacred items are carefully wrapped and packed for safe transit." } },
         "step-3": { "type": "status_step", "settings": { "title": "Shipped", "description": "Handed over to our logistics partner. Tracking number assigned." } },
         "step-4": { "type": "status_step", "settings": { "title": "Out for Delivery", "description": "Your parcel is with the delivery agent and arriving today." } },
-        "step-5": { "type": "status_step", "settings": { "title": "Delivered", "description": "Your sacred items have arrived. May they bring peace and positivity." } }
+        "step-5": { "type": "status_step", "settings": { "title": "Delivered", "description": "Your sacred items have arrived. May they bring peace and positivity." } },
+        "courier-dtdc": { "type": "courier", "settings": { "name": "DTDC", "tracking_url": "https://www.dtdc.in/trace.asp", "id_prefix": "C", "coverage": "Most domestic orders & international (non-silver)" } },
+        "courier-professional": { "type": "courier", "settings": { "name": "The Professional Courier", "tracking_url": "https://www.tpcindia.com/", "id_prefix": "MAA", "coverage": "Chennai orders" } },
+        "courier-st": { "type": "courier", "settings": { "name": "ST Courier", "tracking_url": "https://stcourier.com/track/shipment", "id_prefix": "581", "coverage": "Domestic orders" } },
+        "courier-anjani": { "type": "courier", "settings": { "name": "Anjani Courier", "tracking_url": "https://www.anjanicourier.in/", "id_prefix": "11", "coverage": "Domestic orders" } },
+        "courier-indiapost": { "type": "courier", "settings": { "name": "India Post", "tracking_url": "https://www.indiapost.gov.in/_layouts/15/dop.portal.tracking/trackconsignment.aspx", "id_prefix": "CT", "coverage": "International silver items" } }
       },
-      "block_order": ["step-1", "step-2", "step-3", "step-4", "step-5"],
+      "block_order": ["step-1", "step-2", "step-3", "step-4", "step-5", "courier-dtdc", "courier-professional", "courier-st", "courier-anjani", "courier-indiapost"],
       "settings": {
         "eyebrow": "Order Status",
         "heading": "Track Your Spiritual Journey",
@@ -17,6 +22,9 @@
         "form_heading": "Enter Order Details",
         "help_heading": "Can't find your order?",
         "help_text": "Your order confirmation email contains your Order ID. If you still can't find it,",
+        "courier_heading": "Track Directly With Your Courier",
+        "courier_subtext": "Once your order ships you will receive a tracking number by SMS/WhatsApp. Find your courier below and enter your number on their site.",
+        "courier_note": "International orders: tracking IDs are usually available within about 5 days of dispatch. A single international order may ship in more than one parcel — for example silver items via India Post and other items via DTDC — each with its own tracking number.",
         "legend_heading": "Order Status Guide"
       }
     }

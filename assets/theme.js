@@ -340,7 +340,13 @@ const CartDrawer = (function () {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ id: variantId, quantity: quantity })
     })
-    .then(r => r.json())
+    .then(r => {
+      // /cart/add.js returns 422 (not a network error) when the item can't be
+      // added — e.g. stock limit reached. Route that to the error path instead
+      // of showing a false "Added ✓".
+      if (!r.ok) return r.json().then(err => { throw new Error(err && err.description || 'Could not add to cart'); });
+      return r.json();
+    })
     .then(() => {
       btn.classList.remove('is-loading');
       btn.classList.add('is-added');

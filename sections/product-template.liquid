@@ -67,7 +67,8 @@
 {%- comment -%} Mobile-only: show title + price ABOVE the image so they're immediately visible {%- endcomment -%}
 <div class="product-mob-bar">
   <p style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.2em;color:var(--color-gold);margin-bottom:4px;">{{ current_product.type | default: current_product.vendor }}</p>
-  <h1 class="product-mob-bar__name">{{ current_product.title }}</h1>
+  {%- comment -%} Not an <h1>: the desktop title below is the page's single H1 (SEO). Class keeps the styling. {%- endcomment -%}
+  <p class="product-mob-bar__name">{{ current_product.title }}</p>
   <div class="product-mob-bar__price">
     <span data-pdp-price>{{ current_product.selected_or_first_available_variant.price | money }}</span>
     <span data-pdp-compare>

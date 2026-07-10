@@ -7,7 +7,9 @@
 
   <title>{{- page_title -}}{% if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif %}{% if current_page != 1 %} &ndash; Page {{ current_page }}{% endif %}{% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}</title>
 
-  {% if page_description %}
+  {%- comment -%} `!= blank`, not truthiness — an empty string is truthy in Liquid,
+      which emitted <meta name="description" content=""> on description-less pages. {%- endcomment -%}
+  {% if page_description != blank %}
     <meta name="description" content="{{ page_description | escape }}">
   {% endif %}
 

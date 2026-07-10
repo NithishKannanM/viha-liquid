@@ -39,6 +39,54 @@
       </div>
     </div>
 
+    {%- comment -%} ── Track directly with your courier ─────────────────────────
+      For couriers Shopify recognises (DTDC, India Post) the order-status page above
+      already carries a live tracking link. This section covers ALL of Viha's carriers —
+      including ones Shopify can't auto-link — by pointing the customer to the right
+      courier site. Fully client-editable via "Courier partner" blocks. {%- endcomment -%}
+    {%- assign courier_blocks = section.blocks | where: 'type', 'courier' -%}
+    {%- if courier_blocks.size > 0 -%}
+    <div style="background:#fff;border:1px solid var(--color-cream-dark);border-radius:2px;padding:2.5rem;margin-bottom:2rem;">
+      <h2 style="font-family:var(--font-heading);font-size:1.1rem;font-weight:900;color:var(--color-maroon);margin-bottom:0.5rem;">{{ section.settings.courier_heading | default: 'Track Directly With Your Courier' }}</h2>
+      <p style="font-size:13px;color:rgba(45,45,45,0.65);line-height:1.7;margin-bottom:1.25rem;">{{ section.settings.courier_subtext | default: 'Once your order ships you will receive a tracking number by SMS/WhatsApp. Find your courier below and enter your number on their site.' }}</p>
+
+      {%- comment -%} Optional smart finder — paste a number, we point to the likely courier {%- endcomment -%}
+      <div style="margin-bottom:1.5rem;">
+        <label for="courier-finder" style="display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.14em;color:rgba(45,45,45,0.6);margin-bottom:6px;">Have your tracking number?</label>
+        <input type="text" id="courier-finder" placeholder="Paste your tracking number" autocomplete="off"
+          style="width:100%;padding:0.75rem 1rem;border:1.5px solid var(--color-cream-dark);border-radius:2px;font-size:16px;font-family:inherit;color:var(--color-charcoal);background:#fff;outline:none;transition:border-color 0.2s;box-sizing:border-box;"
+          onfocus="this.style.borderColor='var(--color-maroon)'" onblur="this.style.borderColor='var(--color-cream-dark)'">
+        <p id="courier-finder-hint" role="status" aria-live="polite" style="display:none;font-size:12px;color:var(--color-maroon);font-weight:600;margin-top:8px;"></p>
+      </div>
+
+      <div style="display:grid;gap:0.75rem;" id="courier-list">
+        {%- for block in courier_blocks -%}
+          <div class="courier-card" data-courier-prefix="{{ block.settings.id_prefix | escape }}" data-courier-name="{{ block.settings.name | escape }}" {{ block.shopify_attributes }}>
+            <div style="min-width:0;">
+              <p style="font-size:13px;font-weight:700;color:var(--color-maroon);">{{ block.settings.name }}</p>
+              {%- if block.settings.id_prefix != blank -%}
+                <p style="font-size:11px;color:rgba(45,45,45,0.6);margin-top:2px;">Tracking IDs starting with <strong style="color:var(--color-charcoal);">{{ block.settings.id_prefix }}</strong></p>
+              {%- endif -%}
+              {%- if block.settings.coverage != blank -%}
+                <p style="font-size:11px;color:rgba(45,45,45,0.55);margin-top:2px;">{{ block.settings.coverage }}</p>
+              {%- endif -%}
+            </div>
+            {%- if block.settings.tracking_url != blank -%}
+              <a href="{{ block.settings.tracking_url }}" target="_blank" rel="noopener" class="courier-card__btn" aria-label="Track on {{ block.settings.name | escape }} (opens in a new tab)">
+                Track
+                <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/></svg>
+              </a>
+            {%- endif -%}
+          </div>
+        {%- endfor -%}
+      </div>
+
+      {%- if section.settings.courier_note != blank -%}
+        <p style="font-size:11px;color:rgba(45,45,45,0.6);line-height:1.7;margin-top:1.25rem;padding-top:1rem;border-top:1px solid var(--color-cream-dark);">{{ section.settings.courier_note }}</p>
+      {%- endif -%}
+    </div>
+    {%- endif -%}
+
     {%- comment -%} ── Help section ─────────────────────────────────────────── {%- endcomment -%}
     <div style="background:var(--color-cream);border:1px solid var(--color-cream-dark);border-radius:2px;padding:1.5rem;display:flex;gap:1rem;align-items:flex-start;">
       <div style="width:36px;height:36px;border-radius:50%;background:var(--color-maroon);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
@@ -77,6 +125,44 @@
   </div>
 </div>
 
+<style>
+.courier-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.875rem 1rem;
+  border: 1px solid var(--color-cream-dark);
+  border-radius: 2px;
+  background: var(--color-paper);
+  transition: border-color 0.2s, background 0.2s;
+}
+.courier-card.is-match {
+  border-color: var(--color-maroon);
+  background: rgba(15,90,67,0.05);
+  box-shadow: 0 0 0 1px var(--color-maroon);
+}
+.courier-card__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  flex-shrink: 0;
+  padding: 8px 16px;
+  border: 1.5px solid var(--color-maroon);
+  border-radius: 2px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-maroon);
+  background: transparent;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+  min-height: 40px;
+}
+.courier-card__btn:hover { background: var(--color-maroon); color: #fff; }
+</style>
+
 <script>
 function vihaTrackOrder(e) {
   e.preventDefault();
@@ -110,6 +196,34 @@ function vihaTrackOrder(e) {
   document.getElementById('track-order-id').value = order.trim();
   document.getElementById('track-email').focus();
 })();
+
+// Courier finder — best-guess the courier from the tracking-number prefix.
+// Purely a hint (couriers/prefixes are client-editable); all couriers stay listed.
+(function () {
+  var finder = document.getElementById('courier-finder');
+  var hint = document.getElementById('courier-finder-hint');
+  if (!finder) return;
+  var cards = Array.prototype.slice.call(document.querySelectorAll('.courier-card'));
+  var couriers = cards
+    .map(function (c) { return { el: c, prefix: (c.getAttribute('data-courier-prefix') || '').toUpperCase(), name: c.getAttribute('data-courier-name') || 'this courier' }; })
+    .filter(function (c) { return c.prefix; })
+    .sort(function (a, b) { return b.prefix.length - a.prefix.length; }); // most specific first (CT before C)
+  finder.addEventListener('input', function () {
+    var val = finder.value.trim().toUpperCase().replace(/\s+/g, '');
+    cards.forEach(function (c) { c.classList.remove('is-match'); });
+    if (!val) { hint.style.display = 'none'; return; }
+    var match = null;
+    for (var i = 0; i < couriers.length; i++) { if (val.indexOf(couriers[i].prefix) === 0) { match = couriers[i]; break; } }
+    if (match) {
+      match.el.classList.add('is-match');
+      hint.textContent = 'Best match: ' + match.name + ' — track your number below.';
+      match.el.scrollIntoView({ block: 'nearest' });
+    } else {
+      hint.textContent = "We couldn't match that number to a courier — try the options below, or contact support.";
+    }
+    hint.style.display = 'block';
+  });
+})();
 </script>
 
 {% schema %}
@@ -122,6 +236,11 @@ function vihaTrackOrder(e) {
     { "type": "text",     "id": "form_heading",   "label": "Form heading",      "default": "Enter Order Details" },
     { "type": "text",     "id": "help_heading",   "label": "Help box heading",  "default": "Can't find your order?" },
     { "type": "textarea", "id": "help_text",      "label": "Help box text (before the Contact link)" },
+    { "type": "header",   "content": "Courier partners section" },
+    { "type": "text",     "id": "courier_heading", "label": "Courier section heading", "default": "Track Directly With Your Courier" },
+    { "type": "textarea", "id": "courier_subtext", "label": "Courier section subtext" },
+    { "type": "textarea", "id": "courier_note",    "label": "Courier section footnote", "default": "International orders: tracking IDs are usually available within about 5 days of dispatch. A single international order may ship in more than one parcel — for example silver items via India Post and other items via DTDC — each with its own tracking number." },
+    { "type": "header",   "content": "Order status guide" },
     { "type": "text",     "id": "legend_heading", "label": "Status guide heading", "default": "Order Status Guide" }
   ],
   "blocks": [
@@ -131,6 +250,16 @@ function vihaTrackOrder(e) {
       "settings": [
         { "type": "text",     "id": "title",       "label": "Title", "default": "Order Placed" },
         { "type": "textarea", "id": "description", "label": "Description" }
+      ]
+    },
+    {
+      "type": "courier",
+      "name": "Courier partner",
+      "settings": [
+        { "type": "text", "id": "name",         "label": "Courier name", "default": "DTDC" },
+        { "type": "url",  "id": "tracking_url", "label": "Tracking page URL" },
+        { "type": "text", "id": "id_prefix",    "label": "Tracking ID prefix", "info": "Optional. Used to auto-suggest this courier when a customer pastes a number (e.g. C, CT, MAA, 581, 11)." },
+        { "type": "text", "id": "coverage",     "label": "Coverage note", "info": "Optional, e.g. 'International silver items' or 'Chennai orders'." }
       ]
     }
   ],
@@ -142,7 +271,12 @@ function vihaTrackOrder(e) {
         { "type": "status_step", "settings": { "title": "Packed", "description": "Your sacred items are carefully wrapped and packed for safe transit." } },
         { "type": "status_step", "settings": { "title": "Shipped", "description": "Handed over to our logistics partner. Tracking number assigned." } },
         { "type": "status_step", "settings": { "title": "Out for Delivery", "description": "Your parcel is with the delivery agent and arriving today." } },
-        { "type": "status_step", "settings": { "title": "Delivered", "description": "Your sacred items have arrived. May they bring peace and positivity." } }
+        { "type": "status_step", "settings": { "title": "Delivered", "description": "Your sacred items have arrived. May they bring peace and positivity." } },
+        { "type": "courier", "settings": { "name": "DTDC", "tracking_url": "https://www.dtdc.in/trace.asp", "id_prefix": "C", "coverage": "Most domestic orders & international (non-silver)" } },
+        { "type": "courier", "settings": { "name": "The Professional Courier", "tracking_url": "https://www.tpcindia.com/", "id_prefix": "MAA", "coverage": "Chennai orders" } },
+        { "type": "courier", "settings": { "name": "ST Courier", "tracking_url": "https://stcourier.com/track/shipment", "id_prefix": "581", "coverage": "Domestic orders" } },
+        { "type": "courier", "settings": { "name": "Anjani Courier", "tracking_url": "https://www.anjanicourier.in/", "id_prefix": "11", "coverage": "Domestic orders" } },
+        { "type": "courier", "settings": { "name": "India Post", "tracking_url": "https://www.indiapost.gov.in/_layouts/15/dop.portal.tracking/trackconsignment.aspx", "id_prefix": "CT", "coverage": "International silver items" } }
       ]
     }
   ]

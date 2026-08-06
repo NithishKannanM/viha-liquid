@@ -210,6 +210,35 @@ ul { list-style: none; }
 .header__icon-btn:hover { background: var(--color-cream-dark); }
 .header__icon-btn svg { width: 18px; height: 18px; stroke-width: 1.5; }
 
+/* Track My Order — "where is my order" is a top reason returning customers come back,
+   so it should not be a footer hunt.
+     >=1180px  labelled
+     768-1179  icon only
+     <768px    hidden — .header__icons has no room (adding it regresses 390px from 0 to
+               33px of horizontal overflow), and the mobile menu already carries
+               "Track My Order" as its first item, one tap from the same header. */
+.header__track { display: none; }
+@media (min-width: 768px) { .header__track { display: inline-flex; } }
+.header__track {
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  padding: 0 8px;
+  border-radius: 2px;
+  color: var(--color-maroon);
+  transition: background 0.2s;
+}
+.header__track:hover { background: var(--color-cream-dark); }
+.header__track svg { width: 18px; height: 18px; stroke-width: 1.5; flex-shrink: 0; }
+.header__track-label {
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  color: var(--color-charcoal);
+}
+@media (max-width: 1179px) { .header__track-label { display: none; } }
+@media (max-width: 1179px) { .header__track { padding: 0; min-width: 44px; justify-content: center; border-radius: 50%; } }
+
 .header__badge {
   position: absolute;
   top: 2px; right: 2px;
@@ -433,6 +462,14 @@ ul { list-style: none; }
 }
 .mobile-menu__link:hover,
 .mobile-menu__link.is-featured { color: var(--color-maroon); }
+/* Icon + label sit together — the base rule's space-between would push them apart */
+.mobile-menu__link--track {
+  justify-content: flex-start;
+  gap: 10px;
+  font-weight: 600;
+  color: var(--color-maroon);
+}
+.mobile-menu__link--track svg { width: 18px; height: 18px; flex-shrink: 0; }
 .mobile-menu__badge {
   font-size: 8px;
   font-weight: 700;
@@ -1676,6 +1713,73 @@ ul { list-style: none; }
   color: var(--color-charcoal);
   background: var(--color-paper);
   border-top: 1px solid var(--color-cream-dark);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   QUICK ACCESS TILES
+
+   Sizing here is an accessibility requirement, not a style choice: 42% of the
+   audience is 45+ and one in five is 55+ (02-research/competitive/viha-customer-profile.md).
+   Labels stay >=14px and always visible — never hover-revealed, never truncated.
+   No horizontal scroller: off-screen tiles are invisible tiles, and swipe
+   precision is what degrades with age. All tiles render, 3-across on mobile.
+══════════════════════════════════════════════════════════════════════════════ */
+.quick-access { background: var(--color-paper); }
+.quick-access__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem 0.75rem;
+  margin-top: 2rem;
+}
+@media (min-width: 768px) {
+  .quick-access__grid { grid-template-columns: repeat(6, 1fr); gap: 2rem 1rem; }
+}
+
+.quick-access__tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.5rem 0.25rem;
+  border-radius: 4px;
+  min-height: 48px;
+  text-align: center;
+  color: var(--color-charcoal);
+}
+
+.quick-access__media {
+  display: grid;
+  place-items: center;
+  width: clamp(72px, 22vw, 104px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  overflow: hidden;
+  background: var(--color-cream-dark);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.quick-access__img { width: 100%; height: 100%; object-fit: cover; }
+
+.quick-access__label {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--color-charcoal);
+}
+@media (min-width: 768px) { .quick-access__label { font-size: 15px; } }
+
+.quick-access__tile:hover .quick-access__media,
+.quick-access__tile:focus-visible .quick-access__media {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+.quick-access__tile:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 3px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .quick-access__media { transition: none; }
+  .quick-access__tile:hover .quick-access__media,
+  .quick-access__tile:focus-visible .quick-access__media { transform: none; }
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════

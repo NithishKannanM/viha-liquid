@@ -1,0 +1,92 @@
+{%- comment -%}
+  Quick Access — flat, one-tap category tiles.
+
+  Deliberately has NO preset blocks: tile picks are chosen from sales data, not invented here.
+  Until tiles are added in the Theme Editor the section renders nothing at all.
+
+  Tiles whose collection is missing render nothing rather than falling back to a link that goes
+  somewhere the label doesn't promise. Several handles referenced elsewhere in this theme are
+  currently dead (`bestsellers`, `soaps`), so this guard is load-bearing, not defensive.
+{%- endcomment -%}
+
+{%- assign tile_blocks = section.blocks | where: 'type', 'tile' -%}
+{%- if tile_blocks.size > 0 -%}
+
+<section class="section quick-access" aria-labelledby="quick-access-heading">
+  <div class="container">
+
+    <div class="section__header-row">
+      <div>
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="section__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+        {%- endif -%}
+        <h2 class="section__heading font-serif" id="quick-access-heading">
+          {{ section.settings.heading | default: 'Find What You Need' | escape }}
+        </h2>
+      </div>
+    </div>
+
+    <ul class="quick-access__grid">
+      {%- for block in tile_blocks -%}
+        {%- assign tile_collection = collections[block.settings.collection] -%}
+        {%- assign tile_url = block.settings.custom_link | default: tile_collection.url -%}
+        {%- assign tile_img = block.settings.image | default: tile_collection.featured_image -%}
+
+        {%- if tile_url != blank and block.settings.label != blank -%}
+          <li class="quick-access__item" {{ block.shopify_attributes }}>
+            <a href="{{ tile_url | escape }}" class="quick-access__tile">
+              <span class="quick-access__media">
+                {%- if tile_img != blank -%}
+                  <img
+                    src="{{ tile_img | image_url: width: 320 }}"
+                    srcset="{{ tile_img | image_url: width: 160 }} 160w,
+                            {{ tile_img | image_url: width: 320 }} 320w"
+                    sizes="(min-width: 768px) 104px, 22vw"
+                    alt="{{ tile_img.alt | default: block.settings.label | escape }}"
+                    width="160" height="160"
+                    {%- comment -%} First row is above the fold on mobile; lazy there would delay it.
+                      No fetchpriority — the hero already holds the high-priority slot. {%- endcomment -%}
+                    {% if forloop.index <= 3 %}loading="eager"{% else %}loading="lazy"{% endif %}
+                    decoding="async"
+                    class="quick-access__img">
+                {%- else -%}
+                  {{ 'product-1' | placeholder_svg_tag: 'quick-access__img placeholder-svg' }}
+                {%- endif -%}
+              </span>
+              <span class="quick-access__label">{{ block.settings.label | escape }}</span>
+            </a>
+          </li>
+        {%- endif -%}
+      {%- endfor -%}
+    </ul>
+
+  </div>
+</section>
+
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Quick Access",
+  "max_blocks": 12,
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow text",    "default": "SHOP BY CATEGORY" },
+    { "type": "text", "id": "heading", "label": "Section heading", "default": "Find What You Need" }
+  ],
+  "blocks": [
+    {
+      "type": "tile",
+      "name": "Category tile",
+      "settings": [
+        { "type": "text",         "id": "label",       "label": "Label", "info": "Keep it short — two words fits best. Gloss Tamil terms in English parens, e.g. \"Sambrani (dhoop)\"." },
+        { "type": "collection",   "id": "collection",  "label": "Collection", "info": "The tile links here and borrows its featured image. A tile with no collection and no custom link is skipped." },
+        { "type": "url",          "id": "custom_link", "label": "Custom link (overrides the collection link)" },
+        { "type": "image_picker", "id": "image",       "label": "Tile image", "info": "Square, subject centred — it is cropped to a circle. Falls back to the collection's featured image." }
+      ]
+    }
+  ],
+  "presets": [
+    { "name": "Quick Access", "blocks": [] }
+  ]
+}
+{% endschema %}

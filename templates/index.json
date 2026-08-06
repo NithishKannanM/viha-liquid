@@ -302,10 +302,118 @@
         "ship-days"
       ],
       "settings": {}
+    },
+    "quick-access": {
+      "type": "quick-access",
+      "settings": {
+        "eyebrow": "SHOP BY CATEGORY",
+        "heading": "Find What You Need"
+      },
+      "blocks": {
+        "tile-1": {
+          "type": "tile",
+          "settings": {
+            "label": "Pooja Essentials",
+            "collection": "spiritual-pooja"
+          }
+        },
+        "tile-2": {
+          "type": "tile",
+          "settings": {
+            "label": "Herbal Powders",
+            "collection": "herbal-powders-1"
+          }
+        },
+        "tile-3": {
+          "type": "tile",
+          "settings": {
+            "label": "Hair Care",
+            "collection": "hair-care"
+          }
+        },
+        "tile-4": {
+          "type": "tile",
+          "settings": {
+            "label": "Skin & Face Care",
+            "collection": "skin-care"
+          }
+        },
+        "tile-5": {
+          "type": "tile",
+          "settings": {
+            "label": "Ayurveda & Herbal",
+            "collection": "ayurveda-herbal-1"
+          }
+        },
+        "tile-6": {
+          "type": "tile",
+          "settings": {
+            "label": "Sambrani (dhoop)",
+            "collection": "incense-dhoop-1"
+          }
+        },
+        "tile-7": {
+          "type": "tile",
+          "settings": {
+            "label": "Kumkum & Sindoor",
+            "collection": "bindhi-sindhoor"
+          }
+        },
+        "tile-8": {
+          "type": "tile",
+          "settings": {
+            "label": "Impon Jewellery",
+            "collection": "aimpon-panchaloha"
+          }
+        },
+        "tile-9": {
+          "type": "tile",
+          "settings": {
+            "label": "Statues & Idols",
+            "collection": "statues-idols"
+          }
+        },
+        "tile-10": {
+          "type": "tile",
+          "settings": {
+            "label": "Karungali (ebony)",
+            "collection": "karungali"
+          }
+        },
+        "tile-11": {
+          "type": "tile",
+          "settings": {
+            "label": "Sarees",
+            "collection": "sarees"
+          }
+        },
+        "tile-12": {
+          "type": "tile",
+          "settings": {
+            "label": "Groceries & Organic",
+            "collection": "food-organic"
+          }
+        }
+      },
+      "block_order": [
+        "tile-1",
+        "tile-2",
+        "tile-3",
+        "tile-4",
+        "tile-5",
+        "tile-6",
+        "tile-7",
+        "tile-8",
+        "tile-9",
+        "tile-10",
+        "tile-11",
+        "tile-12"
+      ]
     }
   },
   "order": [
     "hero-banner",
+    "quick-access",
     "trust-bar",
     "shop-by-purpose",
     "beauty-promo",

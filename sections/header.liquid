@@ -58,6 +58,16 @@
     {%- comment -%} Right icon group {%- endcomment -%}
     <div class="header__icons">
 
+      {%- comment -%} Track my order — the page itself already does the real work (courier blocks +
+          prefix matcher in sections/track-order-page.liquid); it was just unreachable from the
+          header. Label shows from 1180px up, icon-only below. {%- endcomment -%}
+      <a href="/pages/track-order" class="header__track" aria-label="Track my order">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h.375c.621 0 1.125-.504 1.125-1.125V14.25m-17.25 0h16.5m-16.5 0V6.375c0-.621.504-1.125 1.125-1.125h9.75c.621 0 1.125.504 1.125 1.125v3M17.25 14.25V9.375c0-.621.504-1.125 1.125-1.125h1.06c.38 0 .735.192.943.512l1.416 2.183c.123.19.188.41.188.635v2.67"/>
+        </svg>
+        <span class="header__track-label" aria-hidden="true">Track My Order</span>
+      </a>
+
       {%- comment -%} Country / currency — read-only display; change it from Account → Region & Currency {%- endcomment -%}
       {%- comment -%} aria-label is prohibited on a plain span (Lighthouse aria-prohibited-attr);
           use visually-hidden text instead. {%- endcomment -%}

@@ -93,12 +93,6 @@
     },
     "reviews": {
       "type": "beauty-reviews",
-      "blocks": {
-        "review-1": { "type": "review", "settings": { "rating": 5, "name": "Priya Venkataraman", "location": "Chennai", "product": "Handmade Red Sandalwood Soap", "quote": "The sandalwood soap is pure luxury. The fragrance lingers gently and my skin feels smooth without feeling stripped. I've ordered four bars now." } },
-        "review-2": { "type": "review", "settings": { "rating": 5, "name": "Meera Krishnamurthy", "location": "Bengaluru", "product": "Heritage Vetiver Bath Scrub", "quote": "This scrub is the real thing — I've tried so many branded versions and nothing compares. The earthy vetiver scent is completely grounding." } },
-        "review-3": { "type": "review", "settings": { "rating": 5, "name": "Ananya Subramaniam", "location": "Mumbai", "product": "Divine Jasmine Attar", "quote": "Alcohol-free and long-lasting — it smells exactly like fresh jasmine garlands. Not sweet and not artificial. This is what attar should be." } }
-      },
-      "block_order": ["review-1", "review-2", "review-3"],
       "settings": {
         "eyebrow": "Real Results",
         "heading": "What Our Customers Say"

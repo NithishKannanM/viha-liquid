@@ -26,7 +26,7 @@
 {%- endfor -%}
 
 {%- comment -%} ── YouTube video ID extraction ──────────────────────────── {%- endcomment -%}
-{%- assign yt_raw = current_product.metafields.custom.youtube_video_url | default: '' -%}
+{%- assign yt_raw = current_product.metafields.custom.youtube_video_url.value | default: '' -%}
 {%- assign yt_id = '' -%}
 {%- if yt_raw != blank -%}
   {%- if yt_raw contains 'youtu.be/' -%}
@@ -36,6 +36,27 @@
   {%- elsif yt_raw contains 'youtube.com/embed/' -%}
     {%- assign yt_id = yt_raw | split: 'youtube.com/embed/' | last | split: '?' | first -%}
   {%- endif -%}
+{%- endif -%}
+
+{%- comment -%} VideoObject for Google video results. custom.youtube_video_meta is filled by
+  03-build/automation/publish_product_videos.py; it is only used when it describes the SAME video as the
+  link, so editing the link alone never leaves stale schema behind. {%- endcomment -%}
+{%- assign yt_meta = current_product.metafields.custom.youtube_video_meta.value -%}
+{%- if yt_id != blank and yt_meta != blank and yt_meta.id == yt_id and yt_meta.description != blank and yt_meta.upload_date != blank and yt_meta.thumbnail != blank -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "VideoObject",
+  "name": {{ yt_meta.name | json }},
+  "description": {{ yt_meta.description | json }},
+  "thumbnailUrl": {{ yt_meta.thumbnail | json }},
+  "uploadDate": {{ yt_meta.upload_date | json }},
+  {%- if yt_meta.duration != blank %}
+  "duration": {{ yt_meta.duration | json }},
+  {%- endif %}
+  "embedUrl": {{ 'https://www.youtube.com/embed/' | append: yt_id | json }}
+}
+</script>
 {%- endif -%}
 
 {%- comment -%} Open Graph product tags — augment the og:type=product already set in
@@ -100,6 +121,7 @@
         itemprop="image"
         style="width:100%;height:100%;object-fit:contain;mix-blend-mode:multiply;padding:1.5rem;"
       >
+      {% if current_product.featured_image %}{% render 'watermark-overlay' %}{% endif %}
     </div>
 
     <div style="display:flex;gap:8px;margin-top:12px;overflow-x:auto;" class="scrollbar-hide">
@@ -116,11 +138,14 @@
 
     {%- if yt_id != blank -%}
     <div style="margin-top:12px;border:1px solid var(--color-cream-dark);border-radius:2px;overflow:hidden;">
-      <div id="yt-gallery-player" style="position:relative;padding-bottom:56.25%;height:0;cursor:pointer;background:#000;"
+      <div id="yt-gallery-player" role="button" tabindex="0"
+        aria-label="Play video: {{ yt_meta.name | default: current_product.title | escape }}"
+        onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}"
+        style="position:relative;padding-bottom:56.25%;height:0;cursor:pointer;background:#000;"
         onclick="(function(el){var iframe=document.createElement('iframe');iframe.src='https://www.youtube.com/embed/{{ yt_id }}?autoplay=1&rel=0';iframe.allow='accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture';iframe.allowFullscreen=true;iframe.style.cssText='position:absolute;top:0;left:0;width:100%;height:100%;border:0;';el.innerHTML='';el.style.cursor='default';el.appendChild(iframe);})(this)">
         <img
           src="https://img.youtube.com/vi/{{ yt_id }}/mqdefault.jpg"
-          alt="{{ current_product.title | escape }} — Video"
+          alt="{{ current_product.title | escape }} video"
           onerror="this.src='https://img.youtube.com/vi/{{ yt_id }}/hqdefault.jpg'"
           style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;">
         <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.18);">

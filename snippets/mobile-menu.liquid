@@ -5,7 +5,7 @@
   <div class="mobile-menu__header">
     <a href="/" aria-label="{{ shop.name }} — Home">
       {% if settings.logo != blank %}
-        <img src="{{ settings.logo | img_url: 'small' }}" alt="{{ shop.name }}" height="{{ settings.logo_height_mobile }}" style="height:{{ settings.logo_height_mobile }}px;">
+        <img src="{{ settings.logo | image_url: width: 400 }}" alt="{{ shop.name }}" height="{{ settings.logo_height_mobile }}" style="height:{{ settings.logo_height_mobile }}px;">
       {% else %}
         <span style="font-family:var(--font-heading);font-weight:900;color:var(--color-maroon);">{{ shop.name }}</span>
       {% endif %}

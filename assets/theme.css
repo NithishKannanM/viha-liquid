@@ -1,4 +1,4 @@
-/* ─── Viha Heritage Theme — Base Styles ─────────────────────────────────── */
+/* ─── Viha Online Theme — Base Styles ─────────────────────────────────── */
 
 :root {
   --color-maroon:      #0F5A43;
@@ -141,10 +141,11 @@ ul { list-style: none; }
 
 .header__logo img {
   height: var(--logo-h, 70px);
+  width: auto;
   object-fit: contain;
   display: block;
 }
-@media (max-width: 767px) { .header__logo img { height: 40px; } }
+@media (max-width: 767px) { .header__logo img { height: var(--logo-h-mobile, 48px); } }
 
 /* Logo fallback text (when no image uploaded in Shopify admin) */
 .header__logo-text {
@@ -2069,6 +2070,39 @@ ul { list-style: none; }
   align-items: center;
   gap: 1px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+
+/* Founder layout: photo first and capped on phones, two columns from tablet up. */
+.founder__img-wrap { order: -1; max-width: 260px; width: 100%; }
+.founder__img-tag { left: 0.75rem; }
+.founder__avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: top;
+  border: 1px solid rgba(184,137,61,0.5);
+  flex-shrink: 0;
+}
+.founder__ig {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-maroon);
+  text-decoration: none;
+}
+.founder__ig:hover { text-decoration: underline; }
+@media (min-width: 768px) {
+  .founder__inner { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 2.5rem; }
+  .founder__img-wrap { order: 0; max-width: 100%; margin: 0; }
+  .founder__img-tag { left: -1rem; }
+}
+@media (min-width: 1024px) {
+  .founder__inner { grid-template-columns: 1fr 1fr; gap: 4rem; }
+  .founder__img-wrap { max-width: 480px; margin: 0 auto; }
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════

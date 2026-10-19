@@ -4,7 +4,7 @@
     {%- comment -%} Brand column {%- endcomment -%}
     <div>
       {% if settings.logo != blank %}
-        <img src="{{ settings.logo | img_url: 'small' }}" alt="{{ shop.name }}" height="50" style="height:50px;margin-bottom:1rem;">
+        <img src="{{ settings.logo | image_url: width: 400 }}" alt="{{ shop.name }}" height="50" style="height:50px;margin-bottom:1rem;">
       {% else %}
         <p style="font-family:var(--font-heading);font-size:1.25rem;font-weight:900;color:var(--color-maroon);margin-bottom:1rem;">{{ shop.name }}</p>
       {% endif %}

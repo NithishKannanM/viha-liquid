@@ -37,10 +37,13 @@
         {%- comment -%} Height via custom property (not inline height) so the
           mobile media query in theme.css can still shrink the logo. {%- endcomment -%}
         <img
-          src="{{ settings.logo | img_url: 'medium' }}"
+          src="{{ settings.logo | image_url: width: 600 }}"
+          srcset="{{ settings.logo | image_url: width: 300 }} 300w, {{ settings.logo | image_url: width: 600 }} 600w"
+          sizes="{{ settings.logo_height | default: 70 | times: 2 }}px"
           alt="{{ shop.name }}"
+          width="{{ settings.logo_height | default: 70 | times: settings.logo.aspect_ratio | round }}"
           height="{{ settings.logo_height }}"
-          style="--logo-h:{{ settings.logo_height | default: 70 }}px;"
+          style="--logo-h:{{ settings.logo_height | default: 70 }}px; --logo-h-mobile:{{ settings.logo_height_mobile | default: 48 }}px;"
           loading="eager"
           fetchpriority="high"
         >
@@ -945,7 +948,7 @@
   "settings": [
     { "type": "header", "content": "Row 1 — tagline" },
     { "type": "checkbox", "id": "show_tagline", "label": "Show centre tagline (desktop only)", "default": true },
-    { "type": "text", "id": "tagline_brand", "label": "Tagline — brand line", "default": "Viha Heritage Store" },
+    { "type": "text", "id": "tagline_brand", "label": "Tagline — brand line", "default": "Viha Online" },
     { "type": "text", "id": "tagline_sub", "label": "Tagline — sub line", "default": "Spiritual Essentials Curated by Mrs Anitha Kuppusamy" },
 
     { "type": "header", "content": "Row 1 — track my order" },

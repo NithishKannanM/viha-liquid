@@ -1,7 +1,7 @@
 {%- comment -%} Search Overlay — rendered via layout/theme.liquid {%- endcomment -%}
 <div class="search-overlay" id="search-overlay" role="dialog" aria-label="Search" aria-modal="true">
   <div class="search-overlay__header">
-    <span style="font-family:var(--font-heading);font-size:1.125rem;font-weight:700;color:var(--color-maroon);">Search Viha Heritage</span>
+    <span style="font-family:var(--font-heading);font-size:1.125rem;font-weight:700;color:var(--color-maroon);">Search {{ shop.name | escape }}</span>
     <button class="header__icon-btn" data-search-close aria-label="Close search">
       <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
         <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>

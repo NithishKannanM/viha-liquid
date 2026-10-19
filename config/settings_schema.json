@@ -1,11 +1,11 @@
 [
   {
     "name": "theme_info",
-    "theme_name": "Viha Heritage",
+    "theme_name": "Viha Online",
     "theme_version": "1.0.0",
     "theme_author": "Viha",
-    "theme_documentation_url": "https://vihaheritage.com",
-    "theme_support_url": "https://vihaheritage.com"
+    "theme_documentation_url": "https://viha.online",
+    "theme_support_url": "https://viha.online"
   },
   {
     "name": "Colors",

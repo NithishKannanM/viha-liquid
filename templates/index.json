@@ -81,7 +81,8 @@
           "settings": {
             "label": "Pooja Essentials",
             "collection": "spiritual-pooja",
-            "custom_link": ""
+            "custom_link": "",
+            "image": "shopify://shop_images/viha-qa-pooja-essentials.jpg"
           }
         },
         "tile-2": {
@@ -89,7 +90,8 @@
           "settings": {
             "label": "Herbal Powders",
             "collection": "herbal-powders-1",
-            "custom_link": ""
+            "custom_link": "",
+            "image": "shopify://shop_images/viha-qa-herbal-powders.jpg"
           }
         },
         "tile-3": {
@@ -97,7 +99,8 @@
           "settings": {
             "label": "Hair Care",
             "collection": "hair-care",
-            "custom_link": ""
+            "custom_link": "",
+            "image": "shopify://shop_images/viha-qa-hair-care.jpg"
           }
         },
         "tile-4": {
@@ -105,7 +108,8 @@
           "settings": {
             "label": "Skin & Face Care",
             "collection": "skin-care",
-            "custom_link": ""
+            "custom_link": "",
+            "image": "shopify://shop_images/viha-qa-skin-face-care.jpg"
           }
         },
         "tile-5": {
@@ -113,7 +117,8 @@
           "settings": {
             "label": "Ayurveda & Herbal",
             "collection": "ayurveda-herbal-1",
-            "custom_link": ""
+            "custom_link": "",
+            "image": "shopify://shop_images/viha-qa-ayurveda-herbal.jpg"
           }
         },
         "tile-6": {
@@ -121,7 +126,8 @@
           "settings": {
             "label": "Sambrani (dhoop)",
             "collection": "incense-dhoop-1",
-            "custom_link": ""
+            "custom_link": "",
+            "image": "shopify://shop_images/viha-qa-sambrani-dhoop.jpg"
           }
         },
         "tile-7": {
@@ -129,7 +135,8 @@
           "settings": {
             "label": "Kumkum & Sindoor",
             "collection": "bindhi-sindhoor",
-            "custom_link": ""
+            "custom_link": "",
+            "image": "shopify://shop_images/viha-qa-kumkum-sindoor.jpg"
           }
         },
         "tile-8": {
@@ -137,7 +144,8 @@
           "settings": {
             "label": "Impon Jewellery",
             "collection": "aimpon-panchaloha",
-            "custom_link": ""
+            "custom_link": "",
+            "image": "shopify://shop_images/viha-qa-impon-jewellery.jpg"
           }
         },
         "tile-9": {
@@ -145,7 +153,8 @@
           "settings": {
             "label": "Statues & Idols",
             "collection": "statues-idols",
-            "custom_link": ""
+            "custom_link": "",
+            "image": "shopify://shop_images/viha-qa-brass-figurines.jpg"
           }
         },
         "tile-10": {
@@ -153,7 +162,8 @@
           "settings": {
             "label": "Karungali (ebony)",
             "collection": "karungali",
-            "custom_link": ""
+            "custom_link": "",
+            "image": "shopify://shop_images/viha-qa-karungali-mala.jpg"
           }
         },
         "tile-11": {
@@ -161,7 +171,8 @@
           "settings": {
             "label": "Sarees",
             "collection": "sarees",
-            "custom_link": ""
+            "custom_link": "",
+            "image": "shopify://shop_images/viha-qa-silk-sarees.jpg"
           }
         },
         "tile-12": {
@@ -169,7 +180,8 @@
           "settings": {
             "label": "Groceries & Organic",
             "collection": "food-organic",
-            "custom_link": ""
+            "custom_link": "",
+            "image": "shopify://shop_images/viha-qa-rice-millets.jpg"
           }
         }
       },
@@ -252,7 +264,8 @@
             "title": "Daily Pooja",
             "subtext": "Elevate your daily rituals with pure ingredients, authentic oil lamps, and hand-milled powders.",
             "collection": "spiritual-pooja",
-            "custom_link": ""
+            "custom_link": "",
+            "image": "shopify://shop_images/viha-sbp-daily-pooja.jpg"
           }
         },
         "sbp-small-1": {
@@ -261,7 +274,8 @@
             "eyebrow": "Deepavali",
             "title": "Festival Essentials",
             "collection": "deepavali",
-            "custom_link": ""
+            "custom_link": "",
+            "image": "shopify://shop_images/viha-sbp-deepavali-lamps.jpg"
           }
         },
         "sbp-small-2": {
@@ -270,7 +284,8 @@
             "eyebrow": "Beauty",
             "title": "Ayurvedic Beauty",
             "collection": "ayurveda-herbal",
-            "custom_link": "/pages/beauty"
+            "custom_link": "/pages/beauty",
+            "image": "shopify://shop_images/viha-sbp-ayurvedic-beauty.jpg"
           }
         },
         "sbp-split": {
@@ -281,7 +296,8 @@
             "subtext": "Thoughtful traditional gifts, hand-cast brass Ganeshas for new chapters.",
             "cta_label": "Explore",
             "collection": "home-living",
-            "custom_link": ""
+            "custom_link": "",
+            "image": "shopify://shop_images/viha-sbp-housewarming-gifts.jpg"
           }
         }
       },

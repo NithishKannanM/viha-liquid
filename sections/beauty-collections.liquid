@@ -13,8 +13,9 @@
           onmouseover="this.style.boxShadow='0 6px 20px rgba(0,0,0,0.10)';this.style.borderTopColor='var(--color-gold)'"
           onmouseout="this.style.boxShadow='';this.style.borderTopColor='transparent'" {{ block.shopify_attributes }}>
           <div style="aspect-ratio:3/2;overflow:hidden;position:relative;background:var(--color-cream);">
-            {%- if feat_col.image -%}
-              <img src="{{ feat_col.image | img_url: '800x' }}" alt="{{ feat_col.title }}" loading="lazy" style="width:100%;height:100%;object-fit:cover;transition:transform 0.5s;filter:brightness(0.9);" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform=''">
+            {%- assign card_img = block.settings.image | default: feat_col.image -%}
+            {%- if card_img -%}
+              <img src="{{ card_img | image_url: width: 800 }}" alt="{{ card_img.alt | default: feat_col.title | escape }}" loading="lazy" style="width:100%;height:100%;object-fit:cover;transition:transform 0.5s;filter:brightness(0.9);" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform=''">
             {%- else -%}
               <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:rgba(15,90,67,0.20);">
                 <svg width="36" height="36" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5z"/></svg>
@@ -49,6 +50,7 @@
       "name": "Collection card",
       "settings": [
         { "type": "collection", "id": "collection", "label": "Collection" },
+        { "type": "image_picker", "id": "image", "label": "Card image", "info": "Optional. Uses the collection image when empty." },
         { "type": "text", "id": "title", "label": "Fallback title (used if collection isn't set yet)", "default": "Collection" },
         { "type": "textarea", "id": "description", "label": "Description" }
       ]

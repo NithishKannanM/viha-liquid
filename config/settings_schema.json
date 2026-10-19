@@ -211,5 +211,63 @@
         "default": "drawer"
       }
     ]
+  },
+  {
+    "name": "Image watermark",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "watermark_enabled",
+        "label": "Enable image watermark",
+        "default": false,
+        "info": "Overlays a small brand mark on product card and product page images. Does not change the underlying image files."
+      },
+      {
+        "type": "image_picker",
+        "id": "watermark_image",
+        "label": "Watermark image",
+        "info": "Optional. Leave empty to use the default Viha mark."
+      },
+      {
+        "type": "select",
+        "id": "watermark_position",
+        "label": "Watermark position",
+        "options": [
+          { "value": "bottom-right", "label": "Bottom right" },
+          { "value": "bottom-left", "label": "Bottom left" },
+          { "value": "top-right", "label": "Top right" },
+          { "value": "top-left", "label": "Top left" }
+        ],
+        "default": "bottom-right"
+      },
+      {
+        "type": "range",
+        "id": "watermark_size",
+        "label": "Watermark size",
+        "min": 8,
+        "max": 40,
+        "step": 1,
+        "unit": "%",
+        "default": 22,
+        "info": "As a percentage of the image box width."
+      },
+      {
+        "type": "range",
+        "id": "watermark_opacity",
+        "label": "Watermark opacity",
+        "min": 20,
+        "max": 100,
+        "step": 5,
+        "unit": "%",
+        "default": 55
+      },
+      {
+        "type": "checkbox",
+        "id": "watermark_on_cards",
+        "label": "Show on product cards",
+        "default": true,
+        "info": "Turn off to show the watermark on the product page only."
+      }
+    ]
   }
 ]

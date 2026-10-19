@@ -1,52 +1,276 @@
-<div class="hero">
-  {% if section.settings.bg_image != blank %}
-    {%- assign hero_bg = section.settings.bg_image | image_url: width: 1800 -%}
-    <link rel="preload" as="image" href="{{ hero_bg }}" fetchpriority="high">
-    <div class="hero__bg" aria-hidden="true" style="background-image:url({{ hero_bg }});"></div>
-  {% endif %}
-  <div class="hero__overlay" aria-hidden="true"></div>
+{%- comment -%}
+  Hero Banner. Renders as a plain, single-slide hero (identical markup to before)
+  when the section has no "slide" blocks — the pre-existing 8 section settings
+  are the fallback content in that case. When one or more "slide" blocks are
+  present, renders an accessible slider instead. Adding blocks never changes
+  the fallback's own markup or settings.
+{%- endcomment -%}
+{%- assign slides = section.blocks | where: "type", "slide" -%}
 
-  <div class="hero__content container">
-    {% if section.settings.eyebrow != blank %}
-      <span class="hero__eyebrow">{{ section.settings.eyebrow }}</span>
+{%- if slides.size == 0 -%}
+  <div class="hero">
+    {% if section.settings.bg_image != blank %}
+      {%- assign hero_bg = section.settings.bg_image | image_url: width: 1800 -%}
+      <link rel="preload" as="image" href="{{ hero_bg }}" fetchpriority="high">
+      <div class="hero__bg" aria-hidden="true" style="background-image:url({{ hero_bg }});"></div>
     {% endif %}
+    <div class="hero__overlay" aria-hidden="true"></div>
 
-    <h1 class="hero__heading">{{ section.settings.heading | default: 'Heritage Meets Beauty' }}</h1>
-
-    {% if section.settings.subtext != blank %}
-      <p class="hero__subtext">{{ section.settings.subtext }}</p>
-    {% endif %}
-
-    <div class="hero__actions">
-      {% if section.settings.cta_primary_label != blank %}
-        <a href="{{ section.settings.cta_primary_url | default: '/collections/all' }}" class="btn btn--primary">
-          {{ section.settings.cta_primary_label }}
-          <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/>
-          </svg>
-        </a>
+    <div class="hero__content container">
+      {% if section.settings.eyebrow != blank %}
+        <span class="hero__eyebrow">{{ section.settings.eyebrow | escape }}</span>
       {% endif %}
-      {% if section.settings.cta_secondary_label != blank %}
-        <a href="{{ section.settings.cta_secondary_url | default: '/pages/our-story' }}" class="btn btn--outline">
-          {{ section.settings.cta_secondary_label }}
-        </a>
+
+      <h1 class="hero__heading">{{ section.settings.heading | default: 'Heritage Meets Beauty' | escape }}</h1>
+
+      {% if section.settings.subtext != blank %}
+        <p class="hero__subtext">{{ section.settings.subtext | escape }}</p>
       {% endif %}
+
+      <div class="hero__actions">
+        {% if section.settings.cta_primary_label != blank %}
+          <a href="{{ section.settings.cta_primary_url | default: '/collections/all' | escape }}" class="btn btn--primary">
+            {{ section.settings.cta_primary_label | escape }}
+            <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/>
+            </svg>
+          </a>
+        {% endif %}
+        {% if section.settings.cta_secondary_label != blank %}
+          <a href="{{ section.settings.cta_secondary_url | default: '/pages/our-story' | escape }}" class="btn btn--outline">
+            {{ section.settings.cta_secondary_label | escape }}
+          </a>
+        {% endif %}
+      </div>
     </div>
   </div>
-</div>
+{%- else -%}
+  {%- assign show_arrows = section.settings.show_arrows -%}
+  {%- assign show_dots = section.settings.show_dots -%}
+  {%- assign multi = false -%}
+  {%- if slides.size > 1 -%}{%- assign multi = true -%}{%- endif -%}
+  <div class="hero-slider"
+       id="hero-slider-{{ section.id }}"
+       data-transition="{{ section.settings.transition | default: 'fade' }}"
+       data-autoplay="{% if section.settings.autoplay %}true{% else %}false{% endif %}"
+       data-autoplay-seconds="{{ section.settings.autoplay_seconds | default: 6 }}">
+    <div class="hero-slider__viewport hero" role="region" aria-roledescription="carousel" aria-label="{{ section.settings.eyebrow | default: 'Hero banner' | escape }}">
+      {%- for block in slides -%}
+        {%- assign slide_id = 'hero-slide-' | append: section.id | append: '-' | append: forloop.index -%}
+        <div class="hero-slider__slide{% if forloop.first %} is-active{% endif %}"
+             id="{{ slide_id }}"
+             role="group"
+             aria-roledescription="slide"
+             aria-label="{{ forloop.index }} of {{ slides.size }}"
+             {% unless forloop.first %}aria-hidden="true"{% endunless %}
+             {{ block.shopify_attributes }}>
+          {% if block.settings.bg_image != blank %}
+            {%- assign slide_bg = block.settings.bg_image | image_url: width: 1800 -%}
+            <div class="hero__bg" aria-hidden="true" style="background-image:url({{ slide_bg }});"></div>
+          {% endif %}
+          <div class="hero__overlay" aria-hidden="true"></div>
+
+          <div class="hero__content container">
+            {% if block.settings.eyebrow != blank %}
+              <span class="hero__eyebrow">{{ block.settings.eyebrow | escape }}</span>
+            {% endif %}
+
+            <h1 class="hero__heading">{{ block.settings.heading | escape }}</h1>
+
+            {% if block.settings.subtext != blank %}
+              <p class="hero__subtext">{{ block.settings.subtext | escape }}</p>
+            {% endif %}
+
+            <div class="hero__actions">
+              {% if block.settings.cta_primary_label != blank %}
+                <a href="{{ block.settings.cta_primary_url | default: '/collections/all' | escape }}" class="btn btn--primary" {% unless forloop.first %}tabindex="-1"{% endunless %}>
+                  {{ block.settings.cta_primary_label | escape }}
+                  <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/>
+                  </svg>
+                </a>
+              {% endif %}
+              {% if block.settings.cta_secondary_label != blank %}
+                <a href="{{ block.settings.cta_secondary_url | default: '/pages/our-story' | escape }}" class="btn btn--outline" {% unless forloop.first %}tabindex="-1"{% endunless %}>
+                  {{ block.settings.cta_secondary_label | escape }}
+                </a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+
+    {%- if multi and show_arrows -%}
+      <button type="button" class="hero-slider__arrow hero-slider__arrow--prev" aria-label="Previous slide">
+        <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+      </button>
+      <button type="button" class="hero-slider__arrow hero-slider__arrow--next" aria-label="Next slide">
+        <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+      </button>
+    {%- endif -%}
+
+    {%- if multi and show_dots -%}
+      <div class="hero-slider__dots" role="tablist" aria-label="Slide navigation">
+        {%- for block in slides -%}
+          {%- assign dot_slide_id = 'hero-slide-' | append: section.id | append: '-' | append: forloop.index -%}
+          <button type="button" class="hero-slider__dot" role="tab" aria-controls="{{ dot_slide_id }}" aria-selected="{% if forloop.first %}true{% else %}false{% endif %}" aria-label="Go to slide {{ forloop.index }}"></button>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+
+    <div class="sr-only" aria-live="polite" data-hero-slider-status></div>
+  </div>
+
+  {%- if multi -%}
+  <script>
+  (function () {
+    function initHeroSlider(root) {
+      if (!root || root.dataset.sliderInitialized === 'true') return;
+      root.dataset.sliderInitialized = 'true';
+
+      var slides = Array.prototype.slice.call(root.querySelectorAll('.hero-slider__slide'));
+      var dots = Array.prototype.slice.call(root.querySelectorAll('.hero-slider__dot'));
+      var prevBtn = root.querySelector('.hero-slider__arrow--prev');
+      var nextBtn = root.querySelector('.hero-slider__arrow--next');
+      var status = root.querySelector('[data-hero-slider-status]');
+      var transition = root.dataset.transition || 'fade';
+      var autoplay = root.dataset.autoplay === 'true';
+      var autoplaySeconds = parseFloat(root.dataset.autoplaySeconds || '6');
+      var reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var current = 0;
+      var timer = null;
+      var pausedByUser = false;
+
+      if (slides.length <= 1) return;
+
+      function render() {
+        slides.forEach(function (slide, i) {
+          var active = i === current;
+          slide.classList.toggle('is-active', active);
+          slide.setAttribute('aria-hidden', active ? 'false' : 'true');
+          var focusables = slide.querySelectorAll('a, button');
+          focusables.forEach(function (el) {
+            if (active) { el.removeAttribute('tabindex'); }
+            else { el.setAttribute('tabindex', '-1'); }
+          });
+          if (transition === 'slide') {
+            slide.style.transform = 'translateX(' + ((i - current) * 100) + '%)';
+          }
+        });
+        dots.forEach(function (dot, i) {
+          dot.setAttribute('aria-selected', i === current ? 'true' : 'false');
+        });
+        if (status) {
+          status.textContent = 'Slide ' + (current + 1) + ' of ' + slides.length;
+        }
+      }
+
+      function go(index, fromTimer) {
+        current = (index + slides.length) % slides.length;
+        render();
+        // Any navigation gives the visitor a full interval before the next
+        // auto-advance, so a manual click doesn't get immediately undone.
+        if (!fromTimer && !pausedByUser) start();
+      }
+
+      function start() {
+        if (!autoplay || reducedMotion || slides.length <= 1) return;
+        stop();
+        timer = setInterval(function () { go(current + 1, true); }, autoplaySeconds * 1000);
+      }
+
+      function stop() {
+        if (timer) { clearInterval(timer); timer = null; }
+      }
+
+      if (prevBtn) prevBtn.addEventListener('click', function () { go(current - 1); });
+      if (nextBtn) nextBtn.addEventListener('click', function () { go(current + 1); });
+      dots.forEach(function (dot, i) { dot.addEventListener('click', function () { go(i); }); });
+
+      {%- comment -%}
+        Pause on hover is scoped to the CONTROLS, never to the whole hero. The hero is full-bleed
+        and sits at the top of the page, so a listener on `root` meant autoplay stopped whenever
+        the pointer happened to rest anywhere over it - which on desktop is most of the time, and
+        it read as "autoplay is broken". WCAG 2.2.2 is still satisfied: the arrows and dots are a
+        visible pause/advance mechanism, and keyboard focus still pauses.
+      {%- endcomment -%}
+      var controls = [prevBtn, nextBtn].concat(dots).filter(Boolean);
+      var dotsWrap = root.querySelector('.hero-slider__dots');
+      if (dotsWrap) controls.push(dotsWrap);
+      controls.forEach(function (el) {
+        el.addEventListener('mouseenter', function () { pausedByUser = true; stop(); });
+        el.addEventListener('mouseleave', function () { pausedByUser = false; start(); });
+      });
+
+      root.addEventListener('focusin', function () { pausedByUser = true; stop(); });
+      root.addEventListener('focusout', function (e) {
+        if (!root.contains(e.relatedTarget)) { pausedByUser = false; start(); }
+      });
+
+      {%- comment -%} A backgrounded tab should not queue up transitions. {%- endcomment -%}
+      document.addEventListener('visibilitychange', function () {
+        if (document.hidden) { stop(); } else if (!pausedByUser) { start(); }
+      });
+
+      render();
+      start();
+    }
+
+    function initAll(scope) {
+      var nodes = (scope || document).querySelectorAll ? (scope || document).querySelectorAll('.hero-slider') : [];
+      Array.prototype.forEach.call(nodes, initHeroSlider);
+    }
+
+    if (document.readyState !== 'loading') {
+      initAll(document);
+    } else {
+      document.addEventListener('DOMContentLoaded', function () { initAll(document); });
+    }
+    document.addEventListener('shopify:section:load', function (e) { initAll(e.target); });
+  })();
+  </script>
+  {%- endif -%}
+{%- endif -%}
 
 {% schema %}
 {
   "name": "Hero Banner",
   "settings": [
+    { "type": "header",  "content": "Fallback content (no slides added)" },
     { "type": "image_picker", "id": "bg_image",           "label": "Background image" },
     { "type": "text",         "id": "eyebrow",            "label": "Eyebrow text",       "default": "Rooted in Ayurveda · Crafted with Love" },
     { "type": "text",         "id": "heading",            "label": "Heading",            "default": "Ancient Wisdom\nfor Modern Beauty" },
-    { "type": "textarea",     "id": "subtext",            "label": "Subtext",            "default": "Viha Heritage brings you pure, time-tested Ayurvedic formulations from the heart of India — trusted by thousands for glowing skin, lustrous hair, and holistic wellness." },
+    { "type": "textarea",     "id": "subtext",            "label": "Subtext",            "default": "Pooja essentials, Ayurvedic and herbal products, handcrafted jewellery and organic foods, rooted in Indian tradition." },
     { "type": "text",         "id": "cta_primary_label",  "label": "Primary CTA text",   "default": "Shop All Products" },
     { "type": "url",          "id": "cta_primary_url",    "label": "Primary CTA link" },
     { "type": "text",         "id": "cta_secondary_label","label": "Secondary CTA text", "default": "Our Heritage Story" },
-    { "type": "url",          "id": "cta_secondary_url",  "label": "Secondary CTA link" }
+    { "type": "url",          "id": "cta_secondary_url",  "label": "Secondary CTA link" },
+    { "type": "header",  "content": "Slider behaviour (used when slides are added)" },
+    { "type": "checkbox", "id": "autoplay", "label": "Autoplay", "default": true, "info": "Autoplay never runs when the visitor's system has reduced motion turned on." },
+    { "type": "range", "id": "autoplay_seconds", "label": "Seconds per slide", "min": 3, "max": 12, "step": 1, "default": 6 },
+    { "type": "checkbox", "id": "show_arrows", "label": "Show arrows", "default": true },
+    { "type": "checkbox", "id": "show_dots", "label": "Show dots", "default": true },
+    { "type": "select", "id": "transition", "label": "Transition", "default": "fade", "options": [
+      { "value": "fade", "label": "Fade" },
+      { "value": "slide", "label": "Slide" }
+    ] }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        { "type": "image_picker", "id": "bg_image",           "label": "Background image" },
+        { "type": "text",         "id": "eyebrow",            "label": "Eyebrow text" },
+        { "type": "text",         "id": "heading",            "label": "Heading", "default": "Heading" },
+        { "type": "textarea",     "id": "subtext",            "label": "Subtext" },
+        { "type": "text",         "id": "cta_primary_label",  "label": "Primary CTA text" },
+        { "type": "url",          "id": "cta_primary_url",    "label": "Primary CTA link" },
+        { "type": "text",         "id": "cta_secondary_label","label": "Secondary CTA text" },
+        { "type": "url",          "id": "cta_secondary_url",  "label": "Secondary CTA link" }
+      ]
+    }
   ],
   "presets": [
     { "name": "Hero Banner", "category": "Promotional" }

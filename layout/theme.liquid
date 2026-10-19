@@ -164,11 +164,9 @@
   {%- comment -%} ── Announcement Bar ──────────────────────────────────── {%- endcomment -%}
   {% section 'announcement-bar' %}
 
-  {%- comment -%} ── Header ────────────────────────────────────────────── {%- endcomment -%}
+  {%- comment -%} ── Header (renders its own Mobile Menu Overlay from the same
+      section.blocks so desktop nav and mobile nav can never drift apart) ── {%- endcomment -%}
   {% section 'header' %}
-
-  {%- comment -%} ── Mobile Menu Overlay ───────────────────────────────── {%- endcomment -%}
-  {% render 'mobile-menu' %}
 
   {%- comment -%} ── Main Content ──────────────────────────────────────── {%- endcomment -%}
   <main id="main-content" tabindex="-1" style="min-height:60vh;">

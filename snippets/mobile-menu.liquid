@@ -30,26 +30,28 @@
 
     <div class="mobile-menu__divider"></div>
 
-    <p class="mobile-menu__section-label">Shop Collections</p>
-    <a href="/collections/all"               class="mobile-menu__link">All Essentials</a>
-    <a href="/collections/spiritual-pooja"   class="mobile-menu__link">Spiritual &amp; Pooja</a>
-    <a href="/collections/ayurveda-herbal"   class="mobile-menu__link">Ayurveda &amp; Herbal</a>
-    <a href="/pages/beauty"                  class="mobile-menu__link mobile-menu__link--beauty">
-      Beauty &amp; Wellness
-      <span class="mobile-menu__badge mobile-menu__badge--green">✦ Featured</span>
-    </a>
-    <a href="/collections/jewelleries" class="mobile-menu__link">Jewellery &amp; Fashion</a>
-    <a href="/collections/home-living"       class="mobile-menu__link">Home &amp; Living</a>
-    <a href="/collections/food-organic"      class="mobile-menu__link">Food &amp; Organic</a>
-
+    {%- comment -%} Departments come from the header section's nav_item blocks (same 12
+        blocks that drive the desktop nav strip + mega menu). First 7 = "Shop Collections",
+        remaining 5 = "More Categories" — matches the grouping the header has always used. {%- endcomment -%}
+    {%- assign mobile_nav_blocks = nav_blocks | default: section.blocks -%}
+    <p class="mobile-menu__section-label">{{ mobile_group1_label | default: "Shop Collections" | escape }}</p>
+    {%- for block in mobile_nav_blocks -%}
+      {%- if block.type == 'nav_item' -%}
+        {%- if forloop.index == 8 -%}
     <div class="mobile-menu__divider"></div>
 
-    <p class="mobile-menu__section-label">More Categories</p>
-    <a href="/collections/kids-baby"         class="mobile-menu__link">Kids &amp; Baby</a>
-    <a href="/collections/books-gifts"       class="mobile-menu__link">Books &amp; Gifts</a>
-    <a href="/collections/bags-pouches"      class="mobile-menu__link">Bags &amp; Pouches</a>
-    <a href="/collections/fashion-grooming"  class="mobile-menu__link">Fashion &amp; Grooming</a>
-    <a href="/collections/new-arrivals"      class="mobile-menu__link mobile-menu__link--gold">New Arrivals ✦</a>
+    <p class="mobile-menu__section-label">{{ mobile_group2_label | default: "More Categories" | escape }}</p>
+        {%- endif -%}
+    <a href="{{ block.settings.link | escape }}" class="mobile-menu__link{% if block.settings.highlight %} mobile-menu__link--gold{% elsif block.settings.badge != blank %} mobile-menu__link--beauty{% endif %}">
+      {{- block.settings.label | escape -}}
+      {%- if block.settings.highlight -%}
+        {%- if block.settings.badge != blank %} {{ block.settings.badge | escape }}{% endif -%}
+      {%- elsif block.settings.badge != blank -%}
+      <span class="mobile-menu__badge mobile-menu__badge--green">{{ block.settings.badge | escape }} Featured</span>
+      {%- endif -%}
+    </a>
+      {%- endif -%}
+    {%- endfor -%}
 
   </div>
 

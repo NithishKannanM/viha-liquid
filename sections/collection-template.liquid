@@ -133,16 +133,92 @@
           </nav>
         </div>
 
-        {%- comment -%} Gold Standard trust box {%- endcomment -%}
-        <div style="padding:1.25rem;background:rgba(184,137,61,0.06);border:1px solid rgba(184,137,61,0.20);border-radius:2px;">
-          <h3 style="display:flex;align-items:center;gap:6px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.18em;color:var(--color-gold);margin-bottom:0.75rem;">
-            <svg width="12" height="12" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-            Gold Standard
-          </h3>
-          <p style="font-size:11px;color:rgba(45,45,45,0.65);line-height:1.7;">
-            Every ingredient and material is sourced from verified traditional artisans. Authentic certified zari thread, pure botanical extracts, and sacred metals — no compromises.
-          </p>
-        </div>
+        {%- comment -%} ── Refine by tag ───────────────────────────────────────────────────────
+          Replaces the old "Gold Standard" box, which asserted verified sourcing and certified
+          zari that nobody can substantiate. This project bans invented trust claims: the
+          catalogue is religious and health-adjacent.
+
+          Why tag URLs and not `?filter.p.tag=`: `/collections/<handle>/<tag>` self-canonicalises
+          and RANKS. Measured 2026-08-26, GSC 2026-05-01 to 2026-07-30:
+            /collections/lamp-diya/diya    4,739 impressions   40 clicks   position 7.2
+            /collections/lamp-diya         2,047 impressions   19 clicks   position 8.3
+          The tag URL out-earns its own parent, and the SE Ranking crawl flagged these URLs for
+          having ZERO inbound internal links. This block is those links. `?filter.p.tag=`
+          canonicalises to the parent and can never rank, so it would give none of that back.
+
+          ⛔ Tags render to the shopper, so what is shown is filtered, not dumped:
+            - ops tags are hidden (`low_stock_alerted` sits on 1,275 products and drives a
+              workflow, so it is never deleted, only hidden)
+            - a namespaced tag is shown by its VALUE under a heading for its namespace, so
+              `type:vilakku` reads "Vilakku" under Type, never `type:vilakku`
+          That is what makes the namespaced tag scheme safe to publish.
+        {%- endcomment -%}
+        {%- assign tag_hidden = section.settings.hidden_tags | default: 'low_stock_alerted,bestseller,top-rated,new-arrival,sale' | split: ',' -%}
+        {%- assign tag_groups = 'type|Type,deity|Deity,material|Material,ritual|Occasion,space|Room,audience|For' | split: ',' -%}
+
+        {%- if col.all_tags.size > 0 -%}
+          <div style="margin-top:1.75rem;">
+            <h2 style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.2em;color:var(--color-maroon);padding-bottom:0.75rem;border-bottom:1px solid var(--color-cream-dark);margin-bottom:0.5rem;">Refine</h2>
+
+            {%- if current_tags.size > 0 -%}
+              <a href="{{ col.url }}" style="display:inline-block;margin:0 0 0.75rem;font-size:11px;color:var(--color-gold);text-decoration:underline;">Clear refinement</a>
+            {%- endif -%}
+
+            {%- comment -%} Namespaced axes first, one heading each. {%- endcomment -%}
+            {%- for grp in tag_groups -%}
+              {%- assign gparts = grp | split: '|' -%}
+              {%- assign prefix = gparts[0] | append: ':' -%}
+              {%- assign has_any = false -%}
+              {%- for t in col.all_tags -%}
+                {%- if t contains prefix %}{% assign has_any = true %}{% endif -%}
+              {%- endfor -%}
+              {%- if has_any -%}
+                <h3 style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.16em;color:rgba(45,45,45,0.55);margin:0.9rem 0 0.4rem;">{{ gparts[1] | escape }}</h3>
+                <nav style="display:flex;flex-direction:column;gap:1px;">
+                  {%- for t in col.all_tags -%}
+                    {%- if t contains prefix -%}
+                      {%- assign label = t | split: ':' | last | replace: '-', ' ' | capitalize -%}
+                      {%- assign on = false -%}
+                      {%- if current_tags contains t %}{% assign on = true %}{% endif -%}
+                      <a href="{% if on %}{{ col.url }}{% else %}{{ col.url }}/{{ t | handleize }}{% endif %}" {% if on %}aria-current="true"{% endif %} style="padding:5px 8px;border-radius:2px;font-size:12px;text-decoration:none;color:{% if on %}#fff{% else %}rgba(45,45,45,0.75){% endif %};background:{% if on %}var(--color-maroon){% else %}transparent{% endif %};">{% if on %}&times; {% endif %}{{ label | escape }}</a>
+                    {%- endif -%}
+                  {%- endfor -%}
+                </nav>
+              {%- endif -%}
+            {%- endfor -%}
+
+            {%- comment -%} Then the plain, un-namespaced tags the catalogue still runs on.
+              Counted first, so the <nav> opens and closes inside one branch. Opening a tag in one
+              iteration and closing it in another trips UnclosedHTMLElement, and the bar on this
+              theme is zero NEW theme-check offenses. {%- endcomment -%}
+            {%- assign plain_count = 0 -%}
+            {%- for t in col.all_tags -%}
+              {%- unless t contains ':' or tag_hidden contains t -%}
+                {%- assign plain_count = plain_count | plus: 1 -%}
+              {%- endunless -%}
+            {%- endfor -%}
+            {%- comment -%} Collapsed, because until the namespaced tags are written this list is
+              whatever the legacy tags happen to be: on the lamp page that is 29 entries including
+              Perfume and Kitchen Utility, from the handful of non-lamp products still on it. The
+              links stay in the HTML either way, which is the point — Google crawls inside
+              <details>, and the SE Ranking crawl flagged these tag URLs as having no inbound
+              internal links at all. {%- endcomment -%}
+            {%- if plain_count > 0 -%}
+              <details style="margin:0.9rem 0 0.4rem;">
+                <summary style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.16em;color:rgba(45,45,45,0.55);cursor:pointer;list-style:revert;">Also in this range ({{ plain_count }})</summary>
+              <nav style="display:flex;flex-direction:column;gap:1px;margin-top:0.4rem;">
+                {%- for t in col.all_tags -%}
+                  {%- unless t contains ':' or tag_hidden contains t -%}
+                    {%- assign on = false -%}
+                    {%- if current_tags contains t %}{% assign on = true %}{% endif -%}
+                    <a href="{% if on %}{{ col.url }}{% else %}{{ col.url }}/{{ t | handleize }}{% endif %}" {% if on %}aria-current="true"{% endif %} style="padding:5px 8px;border-radius:2px;font-size:12px;text-decoration:none;color:{% if on %}#fff{% else %}rgba(45,45,45,0.75){% endif %};background:{% if on %}var(--color-maroon){% else %}transparent{% endif %};">{% if on %}&times; {% endif %}{{ t | escape }}</a>
+                  {%- endunless -%}
+                {%- endfor -%}
+              </nav>
+              </details>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
 
         {%- comment -%} Price filter (cosmetic; actual filter via URL) {%- endcomment -%}
         <div style="margin-top:1.75rem;">
@@ -363,7 +439,8 @@
   "settings": [
     { "type": "text",    "id": "custom_heading",      "label": "Custom heading",   "info": "Overrides the collection title" },
     { "type": "textarea","id": "custom_subtext",       "label": "Custom subtitle",  "info": "Overrides the collection description" },
-    { "type": "range",   "id": "products_per_page",   "label": "Products per page","min": 12, "max": 48, "step": 4, "default": 24 }
+    { "type": "range",   "id": "products_per_page",   "label": "Products per page","min": 12, "max": 48, "step": 4, "default": 24 },
+    { "type": "text",    "id": "hidden_tags",         "label": "Tags to hide from Refine", "info": "Comma separated. Internal tags that should never be shown to a shopper. Leave blank to use the default list.", "default": "low_stock_alerted,bestseller,top-rated,new-arrival,sale" }
   ]
 }
 {% endschema %}

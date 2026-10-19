@@ -31,7 +31,182 @@
       },
       "header": {
         "type": "header",
-        "settings": {}
+        "settings": {
+          "track_link": "/pages/track-order"
+        },
+        "blocks": {
+          "nav_all_essentials": {
+            "type": "nav_item",
+            "settings": {
+              "label": "All Essentials",
+              "link": "/collections/all",
+              "badge": "",
+              "badge_color": "#0F5A43",
+              "highlight": false,
+              "mega_panel": "",
+              "mega_menu": ""
+            }
+          },
+          "nav_spiritual_pooja": {
+            "type": "nav_item",
+            "settings": {
+              "label": "Spiritual & Pooja",
+              "link": "/collections/spiritual-pooja",
+              "badge": "",
+              "badge_color": "#0F5A43",
+              "highlight": false,
+              "mega_panel": "spiritual-pooja",
+              "mega_menu": ""
+            }
+          },
+          "nav_ayurveda_herbal": {
+            "type": "nav_item",
+            "settings": {
+              "label": "Ayurveda & Herbal",
+              "link": "/collections/ayurveda-herbal",
+              "badge": "",
+              "badge_color": "#0F5A43",
+              "highlight": false,
+              "mega_panel": "ayurveda-herbal",
+              "mega_menu": ""
+            }
+          },
+          "nav_beauty": {
+            "type": "nav_item",
+            "settings": {
+              "label": "Beauty & Wellness",
+              "link": "/pages/beauty",
+              "badge": "✦",
+              "badge_color": "#0F5A43",
+              "highlight": false,
+              "mega_panel": "beauty",
+              "mega_menu": ""
+            }
+          },
+          "nav_jewellery_fashion": {
+            "type": "nav_item",
+            "settings": {
+              "label": "Jewellery & Fashion",
+              "link": "/collections/jewelleries",
+              "badge": "",
+              "badge_color": "#0F5A43",
+              "highlight": false,
+              "mega_panel": "jewellery-fashion",
+              "mega_menu": ""
+            }
+          },
+          "nav_viha_boutique": {
+            "type": "nav_item",
+            "settings": {
+              "label": "Viha Boutique",
+              "link": "/pages/viha-boutique",
+              "badge": "",
+              "badge_color": "#0F5A43",
+              "highlight": false,
+              "mega_panel": "",
+              "mega_menu": ""
+            }
+          },
+          "nav_home_living": {
+            "type": "nav_item",
+            "settings": {
+              "label": "Home & Living",
+              "link": "/collections/home-living",
+              "badge": "",
+              "badge_color": "#0F5A43",
+              "highlight": false,
+              "mega_panel": "home-living",
+              "mega_menu": ""
+            }
+          },
+          "nav_food_organic": {
+            "type": "nav_item",
+            "settings": {
+              "label": "Food & Organic",
+              "link": "/collections/food-organic",
+              "badge": "",
+              "badge_color": "#0F5A43",
+              "highlight": false,
+              "mega_panel": "food-organic",
+              "mega_menu": ""
+            }
+          },
+          "nav_kids_baby": {
+            "type": "nav_item",
+            "settings": {
+              "label": "Kids & Baby",
+              "link": "/collections/kids-baby",
+              "badge": "",
+              "badge_color": "#0F5A43",
+              "highlight": false,
+              "mega_panel": "kids-baby",
+              "mega_menu": ""
+            }
+          },
+          "nav_books_gifts": {
+            "type": "nav_item",
+            "settings": {
+              "label": "Books & Gifts",
+              "link": "/collections/books-gifts",
+              "badge": "",
+              "badge_color": "#0F5A43",
+              "highlight": false,
+              "mega_panel": "books-gifts",
+              "mega_menu": ""
+            }
+          },
+          "nav_bags_pouches": {
+            "type": "nav_item",
+            "settings": {
+              "label": "Bags & Pouches",
+              "link": "/collections/bags-pouches",
+              "badge": "",
+              "badge_color": "#0F5A43",
+              "highlight": false,
+              "mega_panel": "bags-pouches",
+              "mega_menu": ""
+            }
+          },
+          "nav_fashion_grooming": {
+            "type": "nav_item",
+            "settings": {
+              "label": "Fashion & Grooming",
+              "link": "/collections/fashion-grooming",
+              "badge": "",
+              "badge_color": "#0F5A43",
+              "highlight": false,
+              "mega_panel": "fashion-grooming",
+              "mega_menu": ""
+            }
+          },
+          "nav_new_arrivals": {
+            "type": "nav_item",
+            "settings": {
+              "label": "New Arrivals",
+              "link": "/collections/new-arrivals",
+              "badge": "✦",
+              "badge_color": "#0F5A43",
+              "highlight": true,
+              "mega_panel": "new-arrivals",
+              "mega_menu": ""
+            }
+          }
+        },
+        "block_order": [
+          "nav_all_essentials",
+          "nav_spiritual_pooja",
+          "nav_ayurveda_herbal",
+          "nav_beauty",
+          "nav_jewellery_fashion",
+          "nav_viha_boutique",
+          "nav_home_living",
+          "nav_food_organic",
+          "nav_kids_baby",
+          "nav_books_gifts",
+          "nav_bags_pouches",
+          "nav_fashion_grooming",
+          "nav_new_arrivals"
+        ]
       },
       "footer": {
         "type": "footer",

@@ -1,0 +1,52 @@
+{%- comment -%}
+  Watermark overlay snippet — decorative brand mark over product imagery.
+  Usage:
+    {% render 'watermark-overlay' %}                  product page main image
+    {% render 'watermark-overlay', context: 'card' %}  product card image
+
+  Caller is responsible for only rendering this when an actual image is present
+  (no watermark on the "no image" placeholder), and for the containing element
+  being position: relative.
+
+  Controlled entirely by the "Image watermark" settings group:
+    watermark_enabled, watermark_image, watermark_position, watermark_size,
+    watermark_opacity, watermark_on_cards.
+  watermark_enabled defaults to false — this renders nothing until turned on.
+{%- endcomment -%}
+
+{%- liquid
+  assign wm_show = settings.watermark_enabled
+  if context == 'card' and settings.watermark_on_cards == false
+    assign wm_show = false
+  endif
+-%}
+
+{%- if wm_show -%}
+  {%- assign wm_image = settings.watermark_image -%}
+  <div
+    class="watermark-overlay"
+    data-watermark-position="{{ settings.watermark_position | default: 'bottom-right' | escape }}"
+    style="--watermark-size: {{ settings.watermark_size | default: 22 }}%; --watermark-opacity: {{ settings.watermark_opacity | default: 55 | divided_by: 100.0 }};"
+    aria-hidden="true"
+  >
+    {%- if wm_image != blank -%}
+      <img
+        src="{{ wm_image | image_url: width: 400 }}"
+        alt=""
+        width="{{ wm_image.width }}"
+        height="{{ wm_image.height }}"
+        loading="lazy"
+        aria-hidden="true"
+      >
+    {%- else -%}
+      <img
+        src="{{ 'viha-watermark-mark.png' | asset_url }}"
+        alt=""
+        width="896"
+        height="329"
+        loading="lazy"
+        aria-hidden="true"
+      >
+    {%- endif -%}
+  </div>
+{%- endif -%}

@@ -1,0 +1,167 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "intro": {
+      "type": "beauty-promo",
+      "settings": {
+        "eyebrow": "VIHA BOUTIQUE",
+        "heading": "Sarees, By Type",
+        "body": "Viha Boutique brings together our saree collections by fabric and weave, from lightweight cotton to silk. Browse by type below, or see the full Sarees collection.",
+        "image_alt": "Viha Boutique saree collections",
+        "cta_text": "Browse All Sarees",
+        "cta_url": "/collections/sarees",
+        "image": "shopify://shop_images/viha-boutique-silk-saree-drape.jpg"
+      }
+    },
+    "saree-grid": {
+      "type": "boutique-saree-grid",
+      "blocks": {
+        "card-cotton-silk": {
+          "type": "saree_type",
+          "settings": {
+            "collection": "cotton-silk-sarees",
+            "title": "",
+            "description": "A cotton and silk blend weave, lighter than an all-silk saree and suited to everyday wear."
+          }
+        },
+        "card-designer": {
+          "type": "saree_type",
+          "settings": {
+            "collection": "designer-sarees",
+            "title": "",
+            "description": "Contemporary drapes and embellished styles for festive and special occasions."
+          }
+        },
+        "card-kalyani-cotton": {
+          "type": "saree_type",
+          "settings": {
+            "collection": "kalyani-cotton-sarees",
+            "title": "",
+            "description": "Kalyani cotton sarees, a lightweight cotton weave for daily wear."
+          }
+        },
+        "card-soft-silk": {
+          "type": "saree_type",
+          "settings": {
+            "collection": "soft-silk-sarees",
+            "title": "",
+            "description": "A gentler, more affordable silk weave than traditional heavy-silk sarees."
+          }
+        },
+        "card-silk": {
+          "type": "saree_type",
+          "settings": {
+            "collection": "silk-sarees",
+            "title": "",
+            "description": "Browse the Silk Sarees collection."
+          }
+        },
+        "card-cotton": {
+          "type": "saree_type",
+          "settings": {
+            "collection": "cotton-sarees",
+            "title": "",
+            "description": "Cotton sarees, breathable and easy to maintain."
+          }
+        },
+        "card-banaras": {
+          "type": "saree_type",
+          "settings": {
+            "collection": "banaras-sarees",
+            "title": "",
+            "description": "Banaras (Varanasi) sarees, woven in the Banarasi brocade tradition."
+          }
+        },
+        "card-tussar-silk": {
+          "type": "saree_type",
+          "settings": {
+            "collection": "tussar-silk-sarees",
+            "title": "",
+            "description": "Tussar silk (a wild, textured silk) sarees with a natural sheen."
+          }
+        },
+        "card-georgette": {
+          "type": "saree_type",
+          "settings": {
+            "collection": "georgette-sarees",
+            "title": "",
+            "description": "Lightweight, flowing georgette sarees."
+          }
+        },
+        "card-kanchipuram-silk": {
+          "type": "saree_type",
+          "settings": {
+            "collection": "kanchipuram-silk-sarees",
+            "title": "",
+            "description": "Kanchipuram silk (Kanjivaram) sarees, a traditional South Indian silk weave."
+          }
+        },
+        "card-tissue": {
+          "type": "saree_type",
+          "settings": {
+            "collection": "tissue-saree",
+            "title": "",
+            "description": "Tissue sarees, woven with fine zari (metallic thread) for a shimmering finish."
+          }
+        },
+        "card-jute-silk": {
+          "type": "saree_type",
+          "settings": {
+            "collection": "jute-silk-sarees",
+            "title": "",
+            "description": "Jute silk sarees, jute fibre woven with cotton silk yarn for a textured weave."
+          }
+        },
+        "card-kalamkari": {
+          "type": "saree_type",
+          "settings": {
+            "collection": "kalamkari-sarees",
+            "title": "",
+            "description": "Kalamkari (hand-painted and block-printed cotton) sarees, with traditional peacock and floral motifs."
+          }
+        },
+        "card-organza": {
+          "type": "saree_type",
+          "settings": {
+            "collection": "organza-sarees",
+            "title": "",
+            "description": "Organza sarees, a lightweight, sheer weave also called Kora or Cora organza."
+          }
+        }
+      },
+      "block_order": [
+        "card-cotton-silk",
+        "card-designer",
+        "card-kalyani-cotton",
+        "card-soft-silk",
+        "card-silk",
+        "card-cotton",
+        "card-banaras",
+        "card-tussar-silk",
+        "card-georgette",
+        "card-kanchipuram-silk",
+        "card-tissue",
+        "card-jute-silk",
+        "card-kalamkari",
+        "card-organza"
+      ],
+      "settings": {
+        "eyebrow": "SHOP BY TYPE",
+        "heading": "Saree Collections",
+        "subtext": "Every card links straight to that collection; counts update automatically with live stock."
+      }
+    }
+  },
+  "order": [
+    "intro",
+    "saree-grid"
+  ]
+}

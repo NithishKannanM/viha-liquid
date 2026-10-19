@@ -32,7 +32,8 @@
       "header": {
         "type": "header",
         "settings": {
-          "track_link": "/pages/track-order"
+          "track_link": "/pages/track-order",
+          "tagline_brand": "Viha Online"
         },
         "blocks": {
           "nav_all_essentials": {
@@ -238,6 +239,9 @@
     "business_phone": "+91 89398 99409",
     "social_instagram_link": "https://www.instagram.com/viha.online",
     "social_facebook_link": "https://www.facebook.com/vihachennai",
-    "social_youtube_link": "https://www.youtube.com/@anithapushpavanamkuppusamyviha"
+    "social_youtube_link": "https://www.youtube.com/channel/UCVBYKN8gtRwPxGczoHdKPDA",
+    "logo": "shopify://shop_images/viha-online-logo.png",
+    "favicon": "shopify://shop_images/viha-online-favicon.png",
+    "social_share_image": "shopify://shop_images/viha-online-share.png"
   }
 }

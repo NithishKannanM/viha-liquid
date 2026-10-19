@@ -43,7 +43,7 @@
           "settings": {
             "eyebrow": "Viha Boutique",
             "heading": "Sarees, By Fabric and Weave",
-            "subtext": "Cotton, cotton silk, soft silk, Kalyani cotton, designer, Kanchipuram silk and more, organised by saree type on our new Viha Boutique page.",
+            "subtext": "Cotton, cotton silk, soft silk, Kalyani cotton, Banarasi, Katan silk, designer and more, organised by saree type on our new Viha Boutique page.",
             "cta_primary_label": "Explore Viha Boutique",
             "cta_primary_url": "/pages/viha-boutique",
             "cta_secondary_label": "Shop All Essentials",
@@ -234,11 +234,11 @@
     "navaratri-collection": {
       "type": "featured-collection",
       "settings": {
-        "eyebrow": "NAVRATRI SPECIAL",
-        "heading": "Golu & Navratri Essentials",
-        "subtext": "Everything for your Golu display and Navratri celebrations — curated for the festival season.",
-        "collection": "navratri-collection",
-        "products_to_show": 4,
+        "eyebrow": "DEEPAVALI SPECIAL",
+        "heading": "Deepavali Essentials",
+        "subtext": "Brass lamps, deepam oil (lamp oil), thiri (cotton wicks), Lakshmi Kubera pooja items and kolam supplies for Sunday, 8 November.",
+        "collection": "deepavali",
+        "products_to_show": 8,
         "show_view_all": true
       }
     },
@@ -258,9 +258,9 @@
         "sbp-small-1": {
           "type": "small",
           "settings": {
-            "eyebrow": "",
+            "eyebrow": "Deepavali",
             "title": "Festival Essentials",
-            "collection": "spiritual-pooja",
+            "collection": "deepavali",
             "custom_link": ""
           }
         },
@@ -270,7 +270,7 @@
             "eyebrow": "Beauty",
             "title": "Ayurvedic Beauty",
             "collection": "ayurveda-herbal",
-            "custom_link": ""
+            "custom_link": "/pages/beauty"
           }
         },
         "sbp-split": {
@@ -457,7 +457,12 @@
         "founder_title": "FOUNDER · VIHA ONLINE",
         "cta_text": "Read Our Story",
         "cta_url": "/pages/our-story",
-        "image": "shopify://shop_images/viha-founder-anitha-kuppusamy.jpg"
+        "image": "shopify://shop_images/viha-founder-anitha-kuppusamy.jpg",
+        "founder_instagram_url": "https://www.instagram.com/anitha_kuppusamy",
+        "founder_instagram_label": "@anitha_kuppusamy",
+        "est_label": "EST.",
+        "est_year": "2010",
+        "est_sub": "VIHA"
       }
     },
     "store-banner": {

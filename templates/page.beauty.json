@@ -6,25 +6,25 @@
         "trust-1": {
           "type": "trust_item",
           "settings": {
-            "text": "100% Natural Ingredients"
+            "text": "Ayurvedic & Herbal Range"
           }
         },
         "trust-2": {
           "type": "trust_item",
           "settings": {
-            "text": "No Parabens or SLS"
+            "text": "Handmade Soaps & Herbal Oils"
           }
         },
         "trust-3": {
           "type": "trust_item",
           "settings": {
-            "text": "Cruelty Free"
+            "text": "Curated by Mrs Anitha Kuppusamy"
           }
         },
         "trust-4": {
           "type": "trust_item",
           "settings": {
-            "text": "Ayurvedic Formulations"
+            "text": "Ships Worldwide"
           }
         }
       },
@@ -37,8 +37,8 @@
       "settings": {
         "eyebrow": "Viha Beauty & Wellness",
         "heading": "Ancestral Beauty, Timeless Ritual.",
-        "subtext": "Plant-based formulations rooted in five thousand years of Ayurvedic wisdom.",
-        "cta_primary_label": "Explore Collection",
+        "subtext": "Handmade soaps, herbal powders, oils, and skin and hair care from the Viha Ayurvedic and herbal range.",
+        "cta_primary_label": "Shop Ayurveda & Herbal",
         "cta_primary_url": "/collections/ayurveda-herbal",
         "cta_secondary_label": "Beauty Journal",
         "bg_image": "shopify://shop_images/viha-beauty-ayurvedic-ingredients-brass-copper.jpg"
@@ -50,65 +50,65 @@
         "concern-1": {
           "type": "concern",
           "settings": {
-            "title": "Dry Skin",
-            "icon": "droplet",
-            "collection": "dry-skin"
+            "title": "Skin Care",
+            "icon": "sparkle",
+            "collection": "skin-care"
           }
         },
         "concern-2": {
           "type": "concern",
           "settings": {
-            "title": "Radiant Glow",
-            "icon": "sparkle",
-            "collection": "radiant-glow"
+            "title": "Hair Care",
+            "icon": "arrow-up",
+            "collection": "hair-care"
           }
         },
         "concern-3": {
           "type": "concern",
           "settings": {
-            "title": "Acne & Blemishes",
-            "icon": "filter",
-            "collection": "acne-blemishes"
+            "title": "Face Packs",
+            "icon": "sun",
+            "collection": "face-packs"
           }
         },
         "concern-4": {
           "type": "concern",
           "settings": {
-            "title": "Anti-Aging",
-            "icon": "clock",
-            "collection": "anti-aging"
+            "title": "Handmade Soaps",
+            "icon": "droplet",
+            "collection": "handmade-soaps"
           }
         },
         "concern-5": {
           "type": "concern",
           "settings": {
-            "title": "Oily Skin",
-            "icon": "sun",
-            "collection": "oily-skin"
+            "title": "Herbal Oils",
+            "icon": "moon",
+            "collection": "herbal-oils"
           }
         },
         "concern-6": {
           "type": "concern",
           "settings": {
-            "title": "Sensitive Skin",
-            "icon": "heart",
-            "collection": "sensitive-skin"
+            "title": "Skin Care Gels",
+            "icon": "filter",
+            "collection": "skin-care-gels"
           }
         },
         "concern-7": {
           "type": "concern",
           "settings": {
-            "title": "Night Repair",
-            "icon": "moon",
-            "collection": "night-repair"
+            "title": "Shampoos",
+            "icon": "heart",
+            "collection": "shampoos"
           }
         },
         "concern-8": {
           "type": "concern",
           "settings": {
-            "title": "Scalp Health",
-            "icon": "arrow-up",
-            "collection": "scalp-health"
+            "title": "Beauty Tools",
+            "icon": "clock",
+            "collection": "beauty-tools"
           }
         }
       },
@@ -123,8 +123,8 @@
         "concern-8"
       ],
       "settings": {
-        "eyebrow": "Personalised Care",
-        "heading": "Shop by Concern"
+        "eyebrow": "Find Your Ritual",
+        "heading": "Shop by Category"
       }
     },
     "collections": {
@@ -135,23 +135,23 @@
           "settings": {
             "collection": "handmade-soaps",
             "title": "Handmade Soaps",
-            "description": "Cold-process herbal soaps with sacred botanicals for a gentle ritual cleanse."
+            "description": "Handmade herbal soaps from the Viha range, including Neem Tulsi (neem and holy basil), Sandal, Vettiver (vetiver) and Turmeric soaps, plus shampoo bars."
           }
         },
         "col-2": {
           "type": "collection_card",
           "settings": {
-            "collection": "ayurvedic-oils",
-            "title": "Ayurvedic Oils",
-            "description": "Time-extracted blends from seeds, flowers and roots for face, scalp and body."
+            "collection": "herbal-oils",
+            "title": "Herbal Oils",
+            "description": "Traditional herbal oils (thailam) such as neem, punnai and vallarai (brahmi) oils. Each listing gives the size and how the oil is traditionally used."
           }
         },
         "col-3": {
           "type": "collection_card",
           "settings": {
-            "collection": "natural-perfumes",
-            "title": "Natural Perfumes",
-            "description": "Alcohol-free attars and roll-ons distilled from pure floral and resinous sources."
+            "collection": "perfumes",
+            "title": "Perfumes & Attars",
+            "description": "Perfumes and athar (traditional perfume oil) sets, including a sandal, kewra, rose and jasmine set, and natural jasmine oil."
           }
         }
       },
@@ -170,7 +170,7 @@
       "settings": {
         "eyebrow": "Most Loved",
         "heading": "Beauty Best Sellers",
-        "collection": "ayurveda-herbal",
+        "collection": "beauty-products",
         "products_to_show": 8
       }
     },
@@ -181,28 +181,28 @@
           "type": "step",
           "settings": {
             "title": "Cleanse",
-            "description": "Begin with a handmade herbal soap — neem, red sandalwood or tulsi. Let it draw impurities gently while preserving the skin's natural pH."
+            "description": "Begin with a Viha handmade herbal soap, such as the Neem Tulsi, Sandal or Vettiver (vetiver) soap."
           }
         },
         "step-2": {
           "type": "step",
           "settings": {
-            "title": "Exfoliate",
-            "description": "Use the vetiver root scrub or ubtan paste twice a week to slough dead cells and stimulate circulation, revealing fresh, bright skin."
+            "title": "Scrub",
+            "description": "Choose a Viha herbal bath powder or the Vetiver (vettiver) bath scrub, used as described on the listing."
           }
         },
         "step-3": {
           "type": "step",
           "settings": {
-            "title": "Nourish",
-            "description": "Apply two to three drops of Kumkumadi oil or your chosen Ayurvedic facial blend. Press into warm skin — never rub."
+            "title": "Oil",
+            "description": "Pick a herbal oil (thailam) from the Viha range, such as Kungumadhi Thailam. Each listing explains how the oil is traditionally used."
           }
         },
         "step-4": {
           "type": "step",
           "settings": {
-            "title": "Seal",
-            "description": "Finish with sandalwood or rose-based moisture cream to lock in actives. Fragrance becomes a closing breath of the ritual."
+            "title": "Finish",
+            "description": "Close with a gel or cream from the Skin Care range, such as Organic Aloe Vera Gel. Follow the directions on each listing."
           }
         }
       },
@@ -214,10 +214,10 @@
       ],
       "settings": {
         "eyebrow": "4-Step Practice",
-        "heading": "The Traditional Beauty Ritual",
-        "subtext": "Ayurvedic beauty is not a routine — it is a dialogue with your body. Each step responds to your skin's intelligence.",
-        "cta_label": "Start Your Ritual",
-        "cta_url": "/collections/ayurveda-herbal"
+        "heading": "A Simple Beauty Ritual",
+        "subtext": "A four-step routine built from products in the Viha range: soap, bath powder or scrub, oil and gel. Directions for each product are on its listing.",
+        "cta_label": "Shop Skin Care",
+        "cta_url": "/collections/skin-care"
       }
     },
     "ingredients": {
@@ -230,14 +230,15 @@
             "tagline": "Liquid Gold",
             "description": "Brightens complexion and reduces pigmentation with saffron and sesame base.",
             "collection": "ingredient-kumkumadi"
-          }
+          },
+          "disabled": true
         },
         "ing-2": {
           "type": "ingredient",
           "settings": {
             "title": "Neem",
-            "tagline": "Nature's Antibiotic",
-            "description": "Purifies skin and combats acne-causing bacteria while soothing redness and surface irritation.",
+            "tagline": "A Tree of Tradition",
+            "description": "Neem (veppilai) is a tree long used in Indian households and Ayurvedic tradition. Shop soap, gel, oil, powder and dried neem bark and flower.",
             "collection": "ingredient-neem"
           }
         },
@@ -245,26 +246,26 @@
           "type": "ingredient",
           "settings": {
             "title": "Turmeric",
-            "tagline": "Golden Healer",
-            "description": "Anti-inflammatory powerhouse — reduces dark spots and evens tone while accelerating healing.",
+            "tagline": "Golden Root",
+            "description": "Manjal (turmeric), including wild turmeric (kasturi manjal), is traditionally used in South Indian skincare rituals. Shop powders and a handmade soap.",
             "collection": "ingredient-turmeric"
           }
         },
         "ing-4": {
           "type": "ingredient",
           "settings": {
-            "title": "Red Sandalwood",
-            "tagline": "Sacred Coolant",
-            "description": "Cooling astringent and antibacterial — calms pitta and brings evenness to oily complexions.",
-            "collection": "ingredient-red-sandalwood"
+            "title": "Sandalwood",
+            "tagline": "Fragrant Heartwood",
+            "description": "Sandalwood (chandan) and red sandalwood are traditional fragrant woods used in face packs and rituals. Shop powders, soap and talcum.",
+            "collection": "ingredient-sandalwood"
           }
         },
         "ing-5": {
           "type": "ingredient",
           "settings": {
             "title": "Vetiver",
-            "tagline": "Root of Calm",
-            "description": "Detoxifying and cooling — exfoliates skin while delivering earthy aromatherapy and grounding energy.",
+            "tagline": "Cooling Root",
+            "description": "Vettiver (vetiver, also called khus) is a root traditionally valued for its cooling, earthy aroma. Shop powder, soap, scrub and talcum.",
             "collection": "ingredient-vetiver"
           }
         }
@@ -279,13 +280,13 @@
       "settings": {
         "eyebrow": "Know Your Botanicals",
         "heading": "Ingredient Spotlight",
-        "subtext": "We trace every ingredient to its classical Ayurvedic text then to its source. This is not marketing — it is accountability."
+        "subtext": "Each ingredient below links to the Viha products made with it. Every product listing carries its own details."
       }
     },
     "reviews": {
       "type": "beauty-reviews",
       "settings": {
-        "eyebrow": "Real Results",
+        "eyebrow": "Customer Reviews",
         "heading": "What Our Customers Say"
       }
     },
@@ -295,7 +296,7 @@
         "eyebrow": "Education & Ritual",
         "heading": "Beauty Journal",
         "posts_to_show": 3,
-        "empty_message": "Our Beauty Journal is launching soon — check back for Ayurvedic rituals and skincare wisdom from Mrs Anitha Kuppusamy."
+        "empty_message": "Articles from the Beauty Journal will appear here as they are published."
       }
     },
     "newsletter": {
@@ -303,7 +304,7 @@
       "settings": {
         "eyebrow": "Beauty Newsletter",
         "heading": "The Beauty Digest",
-        "subtext": "Seasonal rituals and Ayurvedic wisdom from Mrs Anitha Kuppusamy — plus early access to new formulations.",
+        "subtext": "Updates on new beauty and herbal products from Viha, curated by Mrs Anitha Kuppusamy.",
         "button_label": "Subscribe"
       }
     }

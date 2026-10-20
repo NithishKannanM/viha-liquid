@@ -2208,8 +2208,11 @@ ul { list-style: none; }
 .ornament-line-gold, .ornament-diamond-gold, .beauty-promo__ornament,
 .beauty-promo__ornament-line, .beauty-promo__ornament-diamond, .tracker-section::before { display: none !important; }
 
-/* Clothing mega menu: no featured column, so the six menu columns use the full width */
+/* Clothing mega menu: no featured column, so the eight menu columns use the full width */
 [data-mega-panel="clothing"] .mega-menu__inner { grid-template-columns: 1fr; }
 @media (min-width: 1200px) {
-  [data-mega-panel="clothing"] .mega-menu__subcats { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  [data-mega-panel="clothing"] .mega-menu__subcats { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+@media (min-width: 1400px) {
+  [data-mega-panel="clothing"] .mega-menu__subcats { grid-template-columns: repeat(8, minmax(0, 1fr)); }
 }

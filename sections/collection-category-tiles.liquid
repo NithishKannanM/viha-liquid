@@ -4,7 +4,8 @@
   not here: each top-level menu item is a group (Sarees, Readymade Garments, ...) and its
   child links are the tiles. Tile image = collection image, else its first product's image.
   Empty collections are skipped, and a child that points at its own group's URL
-  ("All Sarees") is skipped because the group's "View all" link already covers it.
+  ("All Sarees") is skipped because the group's "View all" link already covers it. A group
+  whose menu item links to "#" (Kurtis & Tops, Pants, ...) is a plain heading with no "View all".
 {%- endcomment -%}
 {%- assign menu = linklists[section.settings.menu] -%}
 {%- if menu.links.size > 0 -%}
@@ -38,7 +39,9 @@
     <div class="cat-tiles__group">
       <div class="cat-tiles__group-head">
         <h3 class="cat-tiles__group-title">{{ group.title | escape }}</h3>
+        {%- if group.url != '#' and group.url != blank -%}
         <a class="cat-tiles__all" href="{{ group.url }}">View all<span class="visually-hidden"> {{ group.title | escape }}</span></a>
+        {%- endif -%}
       </div>
       <div class="cat-tiles__row">{{ group_tiles }}</div>
     </div>

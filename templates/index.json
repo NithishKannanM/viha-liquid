@@ -491,7 +491,8 @@
         "heading": "Our Store",
         "address": "<p>VIHA, No 10, Bhagirathy Street, Raja Annamalaipuram, Chennai 600028</p><p>(Near Kamakshi Amman Temple)</p>",
         "map_url": "",
-        "button_label": "Get Directions"
+        "button_label": "Get Directions",
+        "image": "shopify://shop_images/viha-store-front-chennai.jpg"
       }
     },
     "shipping-worldwide": {

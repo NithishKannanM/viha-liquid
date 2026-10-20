@@ -1,0 +1,18 @@
+{
+  "sections": {
+    "category-tiles": {
+      "type": "collection-category-tiles",
+      "settings": {
+        "menu": "clothing-mega-menu",
+        "heading": "Shop clothing by category"
+      }
+    },
+    "main": {
+      "type": "collection-template",
+      "settings": {
+        "products_per_page": 24
+      }
+    }
+  },
+  "order": ["category-tiles", "main"]
+}

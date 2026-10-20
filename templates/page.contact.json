@@ -24,7 +24,7 @@
           "settings": {
             "icon": "clock",
             "label": "Hours",
-            "value": "Mon – Sat: 10:00 AM – 6:00 PM IST"
+            "value": "Mon to Sat, 10:00 AM to 6:00 PM IST"
           }
         }
       },

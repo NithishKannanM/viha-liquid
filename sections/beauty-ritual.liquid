@@ -3,7 +3,9 @@
   <div style="position:absolute;inset:0;opacity:0.06;background-image:radial-gradient(circle,#B8893D 1px,transparent 1px);background-size:20px 20px;pointer-events:none;"></div>
   <div style="max-width:var(--max-w);margin:0 auto;position:relative;z-index:1;">
     <div style="text-align:center;margin-bottom:3.5rem;">
-      <span style="display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.2em;color:var(--color-gold);margin-bottom:0.75rem;">{{ section.settings.eyebrow | default: '4-Step Practice' }}</span>
+      {%- if section.settings.eyebrow != blank -%}
+      <span style="display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.2em;color:var(--color-gold);margin-bottom:0.75rem;">{{ section.settings.eyebrow }}</span>
+      {%- endif -%}
       <h2 style="font-family:var(--font-heading);font-size:clamp(1.5rem,3.5vw,2.25rem);font-weight:900;color:#fff;">{{ section.settings.heading | default: 'The Traditional Beauty Ritual' }}</h2>
       <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-top:1rem;">
         <div style="height:1px;width:40px;background:linear-gradient(to right,transparent,rgba(184,137,61,0.5));"></div>

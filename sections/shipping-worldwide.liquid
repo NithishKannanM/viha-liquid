@@ -5,7 +5,9 @@
 
 <section class="ship-info">
   <div class="ship-info__inner">
+    {%- if section.settings.eyebrow != blank -%}
     <span class="ship-info__eyebrow">{{ section.settings.eyebrow }}</span>
+    {%- endif -%}
     <h2 class="ship-info__title">{{ section.settings.heading }}</h2>
     <span class="ship-info__rule" aria-hidden="true"></span>
     {%- if section.settings.intro != blank -%}

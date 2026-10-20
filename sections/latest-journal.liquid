@@ -4,7 +4,9 @@
   <div class="container">
     <div class="section__header-row">
       <div>
-        <p class="section__eyebrow">{{ section.settings.eyebrow | default: 'FROM OUR JOURNAL' }}</p>
+        {%- if section.settings.eyebrow != blank -%}
+        <p class="section__eyebrow">{{ section.settings.eyebrow }}</p>
+        {%- endif -%}
         <h2 class="section__heading font-serif" id="journal-heading">{{ section.settings.heading | default: 'Stories, Rituals & Wisdom' }}</h2>
       </div>
       <a href="{{ journal_blog.url }}" class="section__view-all">

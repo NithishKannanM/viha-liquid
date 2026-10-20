@@ -23,7 +23,9 @@
 
       {%- comment -%} Founder story text {%- endcomment -%}
       <div>
-        <p style="font-size:10px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--color-gold);margin-bottom:1rem;">{{ section.settings.eyebrow | default: 'The Founder' }}</p>
+        {%- if section.settings.eyebrow != blank -%}
+        <p style="font-size:10px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--color-gold);margin-bottom:1rem;">{{ section.settings.eyebrow }}</p>
+        {%- endif -%}
         <h2 style="font-family:var(--font-heading);font-size:clamp(1.75rem,4vw,2.5rem);font-weight:900;color:var(--color-maroon);line-height:1.15;margin-bottom:1.5rem;">{{ section.settings.heading | default: 'A Devotion Turned into a Mission' }}</h2>
         <div style="font-size:14px;color:rgba(45,45,45,0.75);line-height:1.85;">
           {{ section.settings.body | default: "<p>Viha Online was born from a deep reverence for Indian spiritual traditions and holistic wellness. Mrs Anitha Kuppusamy grew up immersed in the rituals, fragrances, and sacred craftsmanship of Tamil Nadu — and she recognised that these treasures deserved to reach devotees worldwide.</p><p>Every product we offer — from sacred brass idols to handcrafted Ayurvedic soaps — is personally selected and curated to bring authentic, time-honoured essentials into your home. We source directly from master craftsmen and traditional healers who have practised their trade for generations.</p><p>Rooted in Tamil Nadu's rich cultural heritage, Viha is more than a store. It is a living bridge between the wisdom of our ancestors and the needs of contemporary devotees worldwide.</p>" }}
@@ -31,7 +33,7 @@
         {%- if section.settings.quote != blank -%}
           <div style="margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--color-cream-dark);">
             <p style="font-family:var(--font-heading);font-size:1.1rem;font-weight:900;color:var(--color-maroon);font-style:italic;">&ldquo;{{ section.settings.quote }}&rdquo;</p>
-            <p style="font-size:11px;color:rgba(45,45,45,0.5);margin-top:6px;text-transform:uppercase;letter-spacing:0.12em;">— {{ section.settings.quote_attribution | default: 'Anitha Kuppusamy' }}</p>
+            <p style="font-size:11px;color:rgba(45,45,45,0.5);margin-top:6px;text-transform:uppercase;letter-spacing:0.12em;">{{ section.settings.quote_attribution | default: 'Anitha Kuppusamy' }}</p>
           </div>
         {%- endif -%}
         {%- if section.settings.founder_instagram_url != blank -%}

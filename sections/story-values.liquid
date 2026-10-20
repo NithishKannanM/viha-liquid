@@ -1,7 +1,9 @@
 {%- comment -%} Our Story page — core values, each a block {%- endcomment -%}
 <section style="background:var(--color-cream);padding:5rem 1.5rem;">
   <div style="max-width:1100px;margin:0 auto;text-align:center;">
-    <p style="font-size:10px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--color-gold);margin-bottom:0.75rem;">{{ section.settings.eyebrow | default: 'What We Stand For' }}</p>
+    {%- if section.settings.eyebrow != blank -%}
+    <p style="font-size:10px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--color-gold);margin-bottom:0.75rem;">{{ section.settings.eyebrow }}</p>
+    {%- endif -%}
     <h2 style="font-family:var(--font-heading);font-size:clamp(1.75rem,4vw,2.5rem);font-weight:900;color:var(--color-maroon);margin-bottom:3rem;">{{ section.settings.heading | default: 'Our Core Values' }}</h2>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:2rem;">
       {%- for block in section.blocks -%}

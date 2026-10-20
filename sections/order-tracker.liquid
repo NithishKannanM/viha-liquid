@@ -2,7 +2,9 @@
   <div class="tracker__inner container">
 
     <div class="tracker__content">
-      <p class="section__eyebrow" style="color:rgba(255,255,255,0.55);">{{ section.settings.eyebrow | default: 'ORDER STATUS' }}</p>
+      {%- if section.settings.eyebrow != blank -%}
+      <p class="section__eyebrow" style="color:rgba(255,255,255,0.55);">{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
       <h2 class="font-serif tracker__heading" id="tracker-heading">{{ section.settings.heading | default: 'Track Your Spiritual Journey' }}</h2>
       <div class="ornament-line-gold" aria-hidden="true" style="margin:1rem 0;">
         <span class="ornament-diamond-gold">◆</span>

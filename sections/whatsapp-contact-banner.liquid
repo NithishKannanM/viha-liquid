@@ -10,7 +10,9 @@
 {%- if wcb_has_wholesale or wcb_has_concert -%}
 <section class="section section--paper whatsapp-contact-banner" aria-labelledby="whatsapp-contact-heading">
   <div class="container" style="text-align:center;">
-    <span class="section__eyebrow">{{ section.settings.eyebrow | default: 'Get in Touch' }}</span>
+    {%- if section.settings.eyebrow != blank -%}
+    <span class="section__eyebrow">{{ section.settings.eyebrow }}</span>
+    {%- endif -%}
     <h2 class="section__heading" id="whatsapp-contact-heading">{{ section.settings.heading | default: 'Wholesale Orders & Concert Tickets' }}</h2>
     <div class="section__ornament" aria-hidden="true">
       <div class="section__ornament-line section__ornament-line--left"></div>

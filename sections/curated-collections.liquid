@@ -2,7 +2,9 @@
   <div class="container">
     <div class="section__header-row">
       <div>
-        <p class="section__eyebrow">{{ section.settings.eyebrow | default: 'HAND-PICKED FOR YOU' }}</p>
+        {%- if section.settings.eyebrow != blank -%}
+        <p class="section__eyebrow">{{ section.settings.eyebrow }}</p>
+        {%- endif -%}
         <h2 class="section__heading font-serif" id="curated-heading">{{ section.settings.heading | default: 'Curated Collections' }}</h2>
       </div>
     </div>

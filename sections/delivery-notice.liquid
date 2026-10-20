@@ -13,7 +13,9 @@
         <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
       </svg>
     </button>
+    {%- if section.settings.eyebrow != blank -%}
     <span class="delivery-notice__eyebrow">{{ section.settings.eyebrow }}</span>
+    {%- endif -%}
     <h2 class="delivery-notice__title" id="delivery-notice-title">{{ section.settings.heading }}</h2>
     <span class="delivery-notice__rule" aria-hidden="true"></span>
     <div class="delivery-notice__body rte">{{ section.settings.body }}</div>
@@ -130,12 +132,12 @@
   "settings": [
     { "type": "checkbox", "id": "enabled", "label": "Show notice popup", "default": true },
     { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "A note from Viha" },
-    { "type": "text", "id": "heading", "label": "Heading", "default": "Delivery Time: 8–10 Working Days" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Delivery Time: 8-10 Working Days" },
     {
       "type": "richtext",
       "id": "body",
       "label": "Notice text",
-      "default": "<p>You can track your parcels on the India Post website with your tracking number.</p><p>Kindly allow us to deliver our products to you in their best form — we require at least 7–8 working days for delivery.</p><p><strong>NOTE:</strong> Day of booking, Sundays, public holidays and Tamil Nadu festival days are NOT considered working days. Minimum 14 working days required for delivery.</p>"
+      "default": "<p>You can track your parcels on the India Post website with your tracking number.</p><p>Kindly allow us to deliver our products to you in their best form. We require at least 7-8 working days for delivery.</p><p><strong>NOTE:</strong> Day of booking, Sundays, public holidays and Tamil Nadu festival days are NOT considered working days. Minimum 14 working days required for delivery.</p>"
     },
     { "type": "text", "id": "button_label", "label": "Button label", "default": "Got it, continue shopping" }
   ]

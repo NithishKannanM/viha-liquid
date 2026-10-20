@@ -2,7 +2,9 @@
   <div class="founder__inner container">
 
     <div class="founder__text">
-      <p class="section__eyebrow">{{ section.settings.eyebrow | default: 'OUR HERITAGE' }}</p>
+      {%- if section.settings.eyebrow != blank -%}
+      <p class="section__eyebrow">{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
       <h2 class="section__heading font-serif" id="founder-heading">{{ section.settings.heading | default: 'Preserving Tradition, Promoting Wellness.' }}</h2>
       <div class="ornament-line-gold" aria-hidden="true">
         <span class="ornament-diamond-gold">◆</span>

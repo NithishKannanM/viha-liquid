@@ -18,7 +18,7 @@
         "trust-3": {
           "type": "trust_item",
           "settings": {
-            "text": "Curated by Mrs Anitha Kuppusamy"
+            "text": "Chosen by Mrs Anitha Kuppusamy"
           }
         },
         "trust-4": {
@@ -36,7 +36,7 @@
       ],
       "settings": {
         "eyebrow": "Viha Beauty & Wellness",
-        "heading": "Ancestral Beauty, Timeless Ritual.",
+        "heading": "Ayurvedic Beauty and Wellness",
         "subtext": "Handmade soaps, herbal powders, oils, and skin and hair care from the Viha Ayurvedic and herbal range.",
         "cta_primary_label": "Shop Ayurveda & Herbal",
         "cta_primary_url": "/collections/ayurveda-herbal",
@@ -123,7 +123,7 @@
         "concern-8"
       ],
       "settings": {
-        "eyebrow": "Find Your Ritual",
+        "eyebrow": "",
         "heading": "Shop by Category"
       }
     },
@@ -162,14 +162,14 @@
         "col-3"
       ],
       "settings": {
-        "eyebrow": "Curated For You",
+        "eyebrow": "",
         "heading": "Our Collections"
       }
     },
     "bestsellers": {
       "type": "beauty-bestsellers",
       "settings": {
-        "eyebrow": "Most Loved",
+        "eyebrow": "",
         "heading": "Beauty Best Sellers",
         "collection": "beauty-products",
         "products_to_show": 8
@@ -214,7 +214,7 @@
         "step-4"
       ],
       "settings": {
-        "eyebrow": "4-Step Practice",
+        "eyebrow": "",
         "heading": "A Simple Beauty Ritual",
         "subtext": "A four-step routine built from products in the Viha range: soap, bath powder or scrub, oil and gel. Directions for each product are on its listing.",
         "cta_label": "Shop Skin Care",
@@ -287,14 +287,14 @@
     "reviews": {
       "type": "beauty-reviews",
       "settings": {
-        "eyebrow": "Customer Reviews",
+        "eyebrow": "",
         "heading": "What Our Customers Say"
       }
     },
     "journal": {
       "type": "beauty-journal",
       "settings": {
-        "eyebrow": "Education & Ritual",
+        "eyebrow": "",
         "heading": "Beauty Journal",
         "posts_to_show": 3,
         "empty_message": "Articles from the Beauty Journal will appear here as they are published."
@@ -303,9 +303,9 @@
     "newsletter": {
       "type": "beauty-newsletter",
       "settings": {
-        "eyebrow": "Beauty Newsletter",
+        "eyebrow": "",
         "heading": "The Beauty Digest",
-        "subtext": "Updates on new beauty and herbal products from Viha, curated by Mrs Anitha Kuppusamy.",
+        "subtext": "Updates on new beauty and herbal products from Viha, chosen by Mrs Anitha Kuppusamy.",
         "button_label": "Subscribe"
       }
     }

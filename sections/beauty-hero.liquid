@@ -14,7 +14,9 @@
   </nav>
 
   <div style="position:relative;z-index:1;max-width:var(--max-w);margin:0 auto;width:100%;padding:0 3rem 4.5rem;">
-    <span style="display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.22em;color:var(--color-gold);margin-bottom:1rem;">{{ section.settings.eyebrow | default: 'Viha Beauty & Wellness' }}</span>
+    {%- if section.settings.eyebrow != blank -%}
+    <span style="display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.22em;color:var(--color-gold);margin-bottom:1rem;">{{ section.settings.eyebrow }}</span>
+    {%- endif -%}
     <h1 style="font-family:var(--font-heading);font-size:clamp(2rem,6vw,4.5rem);font-weight:900;color:#fff;line-height:1.05;margin-bottom:1.25rem;max-width:640px;">
       {{ section.settings.heading | default: 'Ancestral Beauty, Timeless Ritual.' }}
     </h1>

@@ -5,7 +5,7 @@
       "settings": {
         "eyebrow": "Our Heritage Story",
         "heading": "Preserving Tradition, Promoting Wellness.",
-        "subtext": "Rooted in five thousand years of Indian tradition. Every product we offer is personally selected to bring authentic, time-honoured essentials into your home."
+        "subtext": "Every product we offer is personally selected by Mrs Anitha Kuppusamy and sent from our store in Chennai."
       }
     },
     "founder": {
@@ -13,10 +13,10 @@
       "settings": {
         "founder_name": "Mrs. Anitha Kuppusamy",
         "founder_title": "Founder · Viha Online",
-        "eyebrow": "The Founder",
-        "heading": "A Devotion Turned into a Mission",
-        "body": "<p>Viha Online was born from a deep reverence for Indian spiritual traditions and holistic wellness. Mrs Anitha Kuppusamy grew up immersed in the rituals, fragrances, and sacred craftsmanship of Tamil Nadu — and she recognised that these treasures deserved to reach devotees worldwide.</p><p>Every product we offer — from sacred brass idols to handcrafted Ayurvedic soaps — is personally selected and curated to bring authentic, time-honoured essentials into your home. We source directly from master craftsmen and traditional healers who have practised their trade for generations.</p><p>Rooted in Tamil Nadu's rich cultural heritage, Viha is more than a store. It is a living bridge between the wisdom of our ancestors and the needs of contemporary devotees worldwide.</p>",
-        "quote": "Authenticity is not a feature. It is the foundation.",
+        "eyebrow": "",
+        "heading": "How Viha Began",
+        "body": "<p>Viha Online grew from Mrs Anitha Kuppusamy's love for Indian pooja traditions and Ayurvedic care. She grew up with the rituals, fragrances and crafts of Tamil Nadu, and wanted families everywhere to be able to buy them.</p><p>She personally selects every product we sell, from brass idols to handmade Ayurvedic soaps.</p><p>We are based in Chennai and ship pooja, wellness and festive essentials across India and abroad.</p>",
+        "quote": "",
         "quote_attribution": "Anitha Kuppusamy",
         "founder_image": "shopify://shop_images/viha-founder-anitha-kuppusamy-v2.jpg",
         "founder_instagram_url": "https://www.instagram.com/anitha_kuppusamy",
@@ -30,32 +30,32 @@
           "type": "value",
           "settings": {
             "icon": "check",
-            "title": "Authentic Sourcing",
-            "description": "Direct from master craftsmen and traditional healers across India — never mass-produced, never compromised."
+            "title": "Chosen by Hand",
+            "description": "Every product is checked and selected by Mrs Anitha Kuppusamy before it reaches our store."
           }
         },
         "val-2": {
           "type": "value",
           "settings": {
             "icon": "sparkle",
-            "title": "Sacred Craftsmanship",
-            "description": "Every item is hand-selected for energy, intention, and quality by Mrs Anitha Kuppusamy personally."
+            "title": "Traditional Crafts",
+            "description": "Brass lamps, Impon jewellery, silk sarees and handmade soaps from Indian makers."
           }
         },
         "val-3": {
           "type": "value",
           "settings": {
             "icon": "sun",
-            "title": "Heritage Preservation",
-            "description": "We document and preserve endangered craft traditions by ensuring artisans receive fair trade prices."
+            "title": "Pooja Know-how",
+            "description": "Our journal explains what each pooja item is and how it is used."
           }
         },
         "val-4": {
           "type": "value",
           "settings": {
             "icon": "heart",
-            "title": "Holistic Wellness",
-            "description": "Rooted in Ayurveda and Siddha medicine — products that nourish body, mind, and spirit together."
+            "title": "Ayurvedic Care",
+            "description": "Herbal powders, oils and soaps made with Ayurvedic and Siddha ingredients."
           }
         }
       },
@@ -66,8 +66,8 @@
         "val-4"
       ],
       "settings": {
-        "eyebrow": "What We Stand For",
-        "heading": "Our Core Values"
+        "eyebrow": "",
+        "heading": "What We Care About"
       }
     },
     "timeline": {
@@ -77,28 +77,28 @@
           "type": "milestone",
           "settings": {
             "year": "2010",
-            "description": "Founded in Chennai, Tamil Nadu — Mrs. Anitha Kuppusamy begins curating sacred essentials from traditional artisans."
+            "description": "Founded in Chennai, Tamil Nadu. Mrs Anitha Kuppusamy begins selecting pooja essentials from traditional makers."
           }
         },
         "ms-2": {
           "type": "milestone",
           "settings": {
             "year": "2015",
-            "description": "Expanded to international shipping — serving the Indian diaspora across USA, UK, Canada and UAE."
+            "description": "Started international shipping to the USA, UK, Canada and UAE."
           }
         },
         "ms-3": {
           "type": "milestone",
           "settings": {
             "year": "2020",
-            "description": "Crossed 50,000+ happy customers — trust built through authentic products and devotion to quality."
+            "description": "Crossed 50,000+ happy customers."
           }
         },
         "ms-4": {
           "type": "milestone",
           "settings": {
             "year": "2023",
-            "description": "Ships to 6 countries — delivering sacred traditions to devotees worldwide, every single day."
+            "description": "Now ships to 6 countries."
           }
         }
       },
@@ -109,15 +109,15 @@
         "ms-4"
       ],
       "settings": {
-        "eyebrow": "Our Journey",
-        "heading": "Milestones of Devotion"
+        "eyebrow": "",
+        "heading": "Our Story So Far"
       }
     },
     "cta": {
       "type": "story-cta",
       "settings": {
-        "heading": "Begin Your Sacred Journey",
-        "subtext": "Explore our carefully curated collection of authentic spiritual essentials, Ayurvedic wellness products and handcrafted jewellery.",
+        "heading": "Shop Viha Online",
+        "subtext": "Pooja essentials, Ayurvedic wellness products and handcrafted jewellery.",
         "button_label": "Shop All Essentials",
         "button_url": "/collections/all"
       }

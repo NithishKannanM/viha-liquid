@@ -2,7 +2,9 @@
 <section style="padding:4rem 3rem;background:var(--color-paper);border-top:1px solid var(--color-cream-dark);">
   <div style="max-width:var(--max-w);margin:0 auto;">
     <div style="text-align:center;margin-bottom:2.5rem;">
-      <span style="display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.2em;color:var(--color-gold);margin-bottom:0.75rem;">{{ section.settings.eyebrow | default: 'Know Your Botanicals' }}</span>
+      {%- if section.settings.eyebrow != blank -%}
+      <span style="display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.2em;color:var(--color-gold);margin-bottom:0.75rem;">{{ section.settings.eyebrow }}</span>
+      {%- endif -%}
       <h2 style="font-family:var(--font-heading);font-size:clamp(1.25rem,3vw,2rem);font-weight:900;color:var(--color-maroon);">{{ section.settings.heading | default: 'Ingredient Spotlight' }}</h2>
       <div class="section__ornament" style="display:flex;align-items:center;justify-content:center;gap:8px;margin-top:1rem;">
         <div class="section__ornament-line section__ornament-line--left"></div>

@@ -4,7 +4,9 @@
   <div style="max-width:var(--max-w);margin:0 auto;">
     <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:2.5rem;flex-wrap:wrap;gap:1rem;">
       <div>
-        <span style="display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.2em;color:var(--color-gold);margin-bottom:0.75rem;">{{ section.settings.eyebrow | default: 'Most Loved' }}</span>
+        {%- if section.settings.eyebrow != blank -%}
+        <span style="display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.2em;color:var(--color-gold);margin-bottom:0.75rem;">{{ section.settings.eyebrow }}</span>
+        {%- endif -%}
         <h2 style="font-family:var(--font-heading);font-size:clamp(1.25rem,3vw,2rem);font-weight:900;color:var(--color-maroon);">{{ section.settings.heading | default: 'Beauty Best Sellers' }}</h2>
       </div>
       {%- if beauty_col != blank -%}

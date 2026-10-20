@@ -18,7 +18,9 @@
     </div>
 
     <div class="beauty-promo__text">
-      <p class="section__eyebrow">{{ section.settings.eyebrow | default: 'BEAUTY & WELLNESS' }}</p>
+      {%- if section.settings.eyebrow != blank -%}
+      <p class="section__eyebrow">{{ section.settings.eyebrow }}</p>
+      {%- endif -%}
       <h2 class="section__heading font-serif" id="beauty-promo-heading">{{ section.settings.heading | default: 'Beauty & Wellness, Rooted in Ayurveda' }}</h2>
       <div class="ornament-line-gold" aria-hidden="true">
         <span class="ornament-diamond-gold">◆</span>

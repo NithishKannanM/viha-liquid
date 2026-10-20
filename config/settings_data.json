@@ -25,7 +25,7 @@
         "type": "announcement-bar",
         "settings": {
           "enabled": true,
-          "text": "Ships pan-India & worldwide — rates calculated at checkout.",
+          "text": "Ships across India and worldwide. Rates calculated at checkout.",
           "link": ""
         }
       },
@@ -212,7 +212,7 @@
       "footer": {
         "type": "footer",
         "settings": {
-          "brand_description": "Bringing the wisdom of ancient Ayurvedic traditions to modern rituals — pure, authentic, and crafted with love.",
+          "brand_description": "Pooja essentials, Ayurvedic care and handcrafted jewellery from Chennai, chosen by Mrs Anitha Kuppusamy.",
           "contact_email": "",
           "contact_phone": "+91 89398 99409",
           "contact_address": "",

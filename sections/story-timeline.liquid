@@ -1,7 +1,9 @@
 {%- comment -%} Our Story page — heritage timeline, each milestone a block {%- endcomment -%}
 <section style="background:var(--color-paper);padding:5rem 1.5rem;">
   <div style="max-width:700px;margin:0 auto;text-align:center;">
-    <p style="font-size:10px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--color-gold);margin-bottom:0.75rem;">{{ section.settings.eyebrow | default: 'Our Journey' }}</p>
+    {%- if section.settings.eyebrow != blank -%}
+    <p style="font-size:10px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--color-gold);margin-bottom:0.75rem;">{{ section.settings.eyebrow }}</p>
+    {%- endif -%}
     <h2 style="font-family:var(--font-heading);font-size:clamp(1.75rem,4vw,2.5rem);font-weight:900;color:var(--color-maroon);margin-bottom:3rem;">{{ section.settings.heading | default: 'Milestones of Devotion' }}</h2>
     <div style="position:relative;padding-left:2rem;border-left:2px solid var(--color-cream-dark);text-align:left;">
       {%- for block in section.blocks -%}

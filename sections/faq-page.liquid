@@ -4,7 +4,9 @@
 {%- endcomment -%}
 <section style="background:var(--color-paper);padding:3.5rem 1.5rem 2rem;">
   <div style="max-width:800px;margin:0 auto;text-align:center;">
-    <p style="font-size:10px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--color-gold);margin-bottom:0.75rem;">{{ section.settings.eyebrow | default: 'Need Help?' }}</p>
+    {%- if section.settings.eyebrow != blank -%}
+    <p style="font-size:10px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--color-gold);margin-bottom:0.75rem;">{{ section.settings.eyebrow }}</p>
+    {%- endif -%}
     <h1 style="font-family:var(--font-heading);font-size:clamp(2rem,5vw,3rem);font-weight:900;color:var(--color-maroon);line-height:1.1;margin-bottom:0.75rem;">{{ section.settings.heading | default: 'Frequently Asked Questions' }}</h1>
     <p style="font-size:14px;color:rgba(45,45,45,0.65);line-height:1.75;">{{ section.settings.subtext | default: "Answers to common questions about orders, shipping, returns, and our products. Can't find what you're looking for?" }} <a href="/pages/contact" style="color:var(--color-maroon);text-decoration:underline;">Contact us</a>.</p>
   </div>

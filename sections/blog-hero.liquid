@@ -11,7 +11,9 @@
       <span>/</span>
       <span style="color:var(--color-gold);">{{ blog.title }}</span>
     </nav>
+    {%- if section.settings.eyebrow != blank -%}
     <span style="display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.22em;color:var(--color-gold);margin-bottom:0.75rem;">{{ section.settings.eyebrow }}</span>
+    {%- endif -%}
     <h1 style="font-family:var(--font-heading);font-size:clamp(2rem,5vw,3.5rem);font-weight:900;color:#fff;line-height:1.05;margin-bottom:1rem;">
       {{ blog.title }}
     </h1>

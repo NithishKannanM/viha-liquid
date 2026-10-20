@@ -1,7 +1,9 @@
 {%- comment -%} Track Order page — status steps are blocks {%- endcomment -%}
 <section style="background:var(--color-paper);padding:3.5rem 1.5rem 2rem;">
   <div style="max-width:680px;margin:0 auto;text-align:center;">
-    <p style="font-size:10px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--color-gold);margin-bottom:0.75rem;">{{ section.settings.eyebrow | default: 'Order Status' }}</p>
+    {%- if section.settings.eyebrow != blank -%}
+    <p style="font-size:10px;font-weight:700;letter-spacing:0.22em;text-transform:uppercase;color:var(--color-gold);margin-bottom:0.75rem;">{{ section.settings.eyebrow }}</p>
+    {%- endif -%}
     <h1 style="font-family:var(--font-heading);font-size:clamp(2rem,5vw,2.75rem);font-weight:900;color:var(--color-maroon);line-height:1.1;margin-bottom:0.875rem;">{{ section.settings.heading | default: 'Track Your Spiritual Journey' }}</h1>
     <p style="font-size:14px;color:rgba(45,45,45,0.65);line-height:1.75;">{{ section.settings.subtext | default: 'Enter your Viha order ID and the email address used at checkout to get real-time updates on your sacred items.' }}</p>
   </div>
@@ -96,7 +98,7 @@
       </div>
       <div>
         <p style="font-size:12px;font-weight:700;color:var(--color-maroon);margin-bottom:4px;">{{ section.settings.help_heading | default: "Can't find your order?" }}</p>
-        <p style="font-size:12px;color:rgba(45,45,45,0.65);line-height:1.7;">{{ section.settings.help_text | default: "Your order confirmation email contains your Order ID. If you still can't find it," }} <a href="/pages/contact" style="color:var(--color-maroon);font-weight:600;text-decoration:underline;">contact our support team</a> — we'll track it for you.</p>
+        <p style="font-size:12px;color:rgba(45,45,45,0.65);line-height:1.7;">{{ section.settings.help_text | default: "Your order confirmation email contains your Order ID. If you still can't find it," }} <a href="/pages/contact" style="color:var(--color-maroon);font-weight:600;text-decoration:underline;">contact our support team</a> and we'll track it for you.</p>
       </div>
     </div>
 
@@ -180,7 +182,7 @@ function vihaTrackOrder(e) {
   // into innerHTML) so crafted input can't inject markup (DOM-XSS).
   inner.innerHTML = '<div style="text-align:center;">'
     + '<p style="font-size:14px;font-weight:700;color:var(--color-maroon);margin-bottom:0.5rem;" data-track-order-line></p>'
-    + '<p style="font-size:13px;color:rgba(45,45,45,0.65);line-height:1.75;margin-bottom:1.25rem;">Live tracking updates for your order are in your secure Viha order history. Sign in with <strong style="color:var(--color-charcoal);" data-track-email></strong> — we\'ll email you a one-time code, no password needed — then open your order to see its current status.</p>'
+    + '<p style="font-size:13px;color:rgba(45,45,45,0.65);line-height:1.75;margin-bottom:1.25rem;">Live tracking updates for your order are in your secure Viha order history. Sign in with <strong style="color:var(--color-charcoal);" data-track-email></strong>. We\'ll email you a one-time code (no password needed), then open your order to see its current status.</p>'
     + '<a class="btn btn--primary" style="justify-content:center;" href="{{ routes.account_url }}">View My Order Status</a>'
     + '</div>';
   inner.querySelector('[data-track-order-line]').textContent = 'Order #' + orderId;
@@ -216,10 +218,10 @@ function vihaTrackOrder(e) {
     for (var i = 0; i < couriers.length; i++) { if (val.indexOf(couriers[i].prefix) === 0) { match = couriers[i]; break; } }
     if (match) {
       match.el.classList.add('is-match');
-      hint.textContent = 'Best match: ' + match.name + ' — track your number below.';
+      hint.textContent = 'Best match: ' + match.name + '. Track your number below.';
       match.el.scrollIntoView({ block: 'nearest' });
     } else {
-      hint.textContent = "We couldn't match that number to a courier — try the options below, or contact support.";
+      hint.textContent = "We couldn't match that number to a courier. Try the options below, or contact support.";
     }
     hint.style.display = 'block';
   });

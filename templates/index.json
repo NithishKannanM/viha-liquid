@@ -15,9 +15,9 @@
         "slide-1": {
           "type": "slide",
           "settings": {
-            "eyebrow": "Spiritual Essentials Curated by Mrs Anitha Kuppusamy",
+            "eyebrow": "Chosen by Mrs Anitha Kuppusamy",
             "heading": "Ancient Traditions, Delivered Worldwide",
-            "subtext": "Viha Online brings you sacred pooja essentials, Ayurvedic wellness products, handcrafted jewellery, and organic foods rooted in 5000 years of Indian tradition.",
+            "subtext": "Pooja essentials, Ayurvedic wellness, handcrafted jewellery and organic foods, from our Chennai store to your home.",
             "cta_primary_label": "Shop All Essentials",
             "cta_primary_url": "/collections/all",
             "cta_secondary_label": "Explore Beauty & Wellness",
@@ -30,7 +30,7 @@
           "settings": {
             "eyebrow": "Beauty & Wellness",
             "heading": "Ayurvedic Beauty, Made Simple",
-            "subtext": "Handmade soaps, therapeutic oils, natural attars and botanical skincare curated by Mrs Anitha Kuppusamy, rooted in Ayurvedic tradition.",
+            "subtext": "Handmade soaps, herbal oils, natural attars and herbal skincare, chosen by Mrs Anitha Kuppusamy.",
             "cta_primary_label": "Explore Beauty & Wellness",
             "cta_primary_url": "/pages/beauty",
             "cta_secondary_label": "Shop All Essentials",
@@ -58,9 +58,9 @@
         "slide-3"
       ],
       "settings": {
-        "eyebrow": "Spiritual Essentials Curated by Mrs Anitha Kuppusamy",
+        "eyebrow": "Chosen by Mrs Anitha Kuppusamy",
         "heading": "Ancient Traditions, Delivered Worldwide",
-        "subtext": "Viha Online brings you sacred pooja essentials, Ayurvedic wellness products, handcrafted jewellery, and organic foods rooted in 5000 years of Indian tradition.",
+        "subtext": "Pooja essentials, Ayurvedic wellness, handcrafted jewellery and organic foods, from our Chennai store to your home.",
         "cta_primary_label": "Shop All Essentials",
         "cta_primary_url": "/collections/all",
         "cta_secondary_label": "Explore Beauty & Wellness",
@@ -200,7 +200,7 @@
         "tile-12"
       ],
       "settings": {
-        "eyebrow": "SHOP BY CATEGORY",
+        "eyebrow": "",
         "heading": "Find What You Need"
       }
     },
@@ -262,7 +262,7 @@
           "settings": {
             "badge": "Daily Rituals",
             "title": "Daily Pooja",
-            "subtext": "Elevate your daily rituals with pure ingredients, authentic oil lamps, and hand-milled powders.",
+            "subtext": "Oil lamps, wicks, kumkum and hand-milled powders for everyday pooja.",
             "collection": "spiritual-pooja",
             "custom_link": "",
             "image": "shopify://shop_images/viha-sbp-daily-pooja.jpg"
@@ -293,7 +293,7 @@
           "settings": {
             "eyebrow": "New Beginnings",
             "title": "Housewarming Gifts",
-            "subtext": "Thoughtful traditional gifts, hand-cast brass Ganeshas for new chapters.",
+            "subtext": "Traditional gifts for a new home, including brass Ganesha idols.",
             "cta_label": "Explore",
             "collection": "home-living",
             "custom_link": "",
@@ -308,7 +308,7 @@
         "sbp-split"
       ],
       "settings": {
-        "eyebrow": "EXPLORE BY INTENTION",
+        "eyebrow": "",
         "heading": "Shop by Purpose",
         "view_all_label": "View all",
         "view_all_url": ""
@@ -317,9 +317,9 @@
     "beauty-promo": {
       "type": "beauty-promo",
       "settings": {
-        "eyebrow": "BEAUTY & WELLNESS",
+        "eyebrow": "",
         "heading": "Beauty & Wellness, Rooted in Ayurveda",
-        "body": "Viha's beauty collection draws on five thousand years of Ayurvedic wisdom — handmade soaps, therapeutic oils, natural attars, and botanical skincare carefully curated by Mrs Anitha Kuppusamy.",
+        "body": "Handmade soaps, herbal oils, natural attars and skincare made with Ayurvedic ingredients, chosen by Mrs Anitha Kuppusamy.",
         "image_alt": "Ayurvedic Beauty",
         "cta_text": "Explore Beauty",
         "cta_url": "/pages/beauty",
@@ -397,9 +397,9 @@
         "pill-8"
       ],
       "settings": {
-        "eyebrow": "MOST LOVED",
+        "eyebrow": "",
         "heading": "Bestsellers",
-        "subtext": "Timeless products trusted by devoted customers worldwide — discover what keeps getting reordered across six countries.",
+        "subtext": "The products our customers reorder most.",
         "collection": "bestsellers",
         "products_to_show": 8,
         "show_view_all": true
@@ -412,27 +412,30 @@
           "type": "card",
           "settings": {
             "label": "Pooja Products",
-            "description": "Sacred essentials for daily & festival rituals, from Vellerukku to Rudraksha malas.",
+            "description": "Lamps, kumkum, malas and everything for daily and festival pooja.",
             "collection": "spiritual-pooja",
-            "custom_link": ""
+            "custom_link": "",
+            "image": "shopify://shop_images/viha-curated-pooja.jpg"
           }
         },
         "card-jewelry": {
           "type": "card",
           "settings": {
-            "label": "Sacred Jewelry",
-            "description": "Temple jewellery, silver anklets, and Aimpon pieces steeped in heritage craft.",
+            "label": "Jewellery",
+            "description": "Temple jewellery, silver anklets and Impon (five-metal) pieces.",
             "collection": "jewelleries",
-            "custom_link": ""
+            "custom_link": "",
+            "image": "shopify://shop_images/viha-curated-jewellery.jpg"
           }
         },
         "card-clothing": {
           "type": "card",
           "settings": {
             "label": "Traditional Clothing",
-            "description": "Salem silk sarees, silk veshtis, and festive attire for every sacred occasion.",
+            "description": "Salem silk sarees, silk veshtis and festive wear.",
             "collection": "sarees",
-            "custom_link": ""
+            "custom_link": "",
+            "image": "shopify://shop_images/viha-curated-clothing.jpg"
           }
         }
       },
@@ -442,15 +445,15 @@
         "card-clothing"
       ],
       "settings": {
-        "eyebrow": "HAND-PICKED FOR YOU",
-        "heading": "Curated Collections"
+        "eyebrow": "",
+        "heading": "Shop the Main Collections"
       }
     },
     "latest-journal": {
       "type": "latest-journal",
       "settings": {
-        "eyebrow": "FROM OUR JOURNAL",
-        "heading": "Stories, Rituals & Wisdom",
+        "eyebrow": "",
+        "heading": "From the Viha Journal",
         "blog": "",
         "posts_to_show": 3
       }
@@ -459,16 +462,16 @@
       "type": "newsletter-signup",
       "settings": {
         "heading": "Join the Viha Family",
-        "subtext": "Festival reminders, Ayurvedic wisdom, and new arrivals from Mrs Anitha Kuppusamy — delivered to your inbox."
+        "subtext": "Festival reminders, Ayurvedic tips and new arrivals from Mrs Anitha Kuppusamy, by email."
       }
     },
     "founder": {
       "type": "founder",
       "settings": {
-        "eyebrow": "OUR HERITAGE",
+        "eyebrow": "",
         "heading": "Preserving Tradition, Promoting Wellness.",
-        "body": "Viha Online was born from a deep reverence for Indian spiritual traditions and holistic wellness. Every product we offer — from sacred brass idols to handcrafted Ayurvedic soaps — is personally selected and curated to bring authentic, time-honored essentials into your home.",
-        "body2": "Rooted in Tamil Nadu's rich cultural heritage, Viha is more than a store. It is a living bridge between the wisdom of our ancestors and the needs of contemporary devotees worldwide.",
+        "body": "Viha Online grew from Mrs Anitha Kuppusamy's love for Indian pooja traditions and Ayurvedic care. She personally selects every product we sell, from brass idols to handmade Ayurvedic soaps.",
+        "body2": "We are based in Chennai and ship pooja, wellness and festive essentials across India and abroad.",
         "founder_name": "Anitha Kuppusamy",
         "founder_title": "FOUNDER · VIHA ONLINE",
         "cta_text": "Read Our Story",
@@ -498,7 +501,7 @@
           "type": "line",
           "settings": {
             "icon": "globe",
-            "text": "<p>International shipping at low costs — duties and rates calculated at checkout. International payments are processed securely through Razorpay.</p>",
+            "text": "<p>International shipping at low cost. Duties and rates are calculated at checkout. International payments are processed securely through Razorpay.</p>",
             "highlight": false
           }
         },
@@ -506,7 +509,7 @@
           "type": "line",
           "settings": {
             "icon": "alert",
-            "text": "<p><strong>NOTE:</strong> Kindly avoid ordering Pachai Karpooram (edible camphor) &amp; Sangu (conch shell) for international shipments, and Shea Butter for UAE shipments — these are restricted by customs.</p>",
+            "text": "<p><strong>NOTE:</strong> Kindly avoid ordering Pachai Karpooram (edible camphor) &amp; Sangu (conch shell) for international shipments, and Shea Butter for UAE shipments. These are restricted by customs.</p>",
             "highlight": true
           }
         },
@@ -525,7 +528,7 @@
         "ship-days"
       ],
       "settings": {
-        "eyebrow": "From Chennai to Your Doorstep",
+        "eyebrow": "",
         "heading": "Shipping Worldwide",
         "intro": "We deliver Viha products across India and around the world."
       }
@@ -533,15 +536,15 @@
     "order-tracker": {
       "type": "order-tracker",
       "settings": {
-        "eyebrow": "ORDER STATUS",
-        "heading": "Track Your Spiritual Journey",
-        "subtext": "Enter your Viha order ID to get real-time updates on your sacred items."
+        "eyebrow": "",
+        "heading": "Track Your Order",
+        "subtext": "Enter your Viha order ID to see where your parcel is."
       }
     },
     "whatsapp-contact-banner": {
       "type": "whatsapp-contact-banner",
       "settings": {
-        "eyebrow": "GET IN TOUCH",
+        "eyebrow": "",
         "heading": "Wholesale Orders & Concert Tickets",
         "subtext": "Message us directly on WhatsApp for bulk wholesale orders or to book concert tickets.",
         "wholesale_whatsapp_number": "",

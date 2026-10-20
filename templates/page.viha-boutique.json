@@ -18,7 +18,8 @@
         "image_alt": "Viha Boutique saree collections",
         "cta_text": "Browse All Sarees",
         "cta_url": "/collections/sarees",
-        "image": "shopify://shop_images/viha-boutique-silk-saree-drape.jpg"
+        "image": "shopify://shop_images/viha-boutique-silk-saree-drape.jpg",
+        "heading_tag": "h1"
       }
     },
     "saree-grid": {

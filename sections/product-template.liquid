@@ -170,6 +170,17 @@
         <meta itemprop="name" content="{{ current_product.vendor | escape }}">
       </span>
     {%- endif -%}
+    {%- comment -%} Real Judge.me rating (synced to the reviews.* metafields); omitted when a product has no reviews. {%- endcomment -%}
+    {%- assign pdp_rating = current_product.metafields.reviews.rating.value -%}
+    {%- assign pdp_rating_count = current_product.metafields.reviews.rating_count.value | default: 0 -%}
+    {%- if pdp_rating != blank and pdp_rating_count > 0 -%}
+      <span itemprop="aggregateRating" itemscope itemtype="https://schema.org/AggregateRating" style="display:none;">
+        <meta itemprop="ratingValue" content="{{ pdp_rating.rating }}">
+        <meta itemprop="bestRating" content="{{ pdp_rating.scale_max }}">
+        <meta itemprop="worstRating" content="{{ pdp_rating.scale_min }}">
+        <meta itemprop="reviewCount" content="{{ pdp_rating_count }}">
+      </span>
+    {%- endif -%}
 
     {%- comment -%} Desktop-only: vendor, name, stars, price (hidden on mobile — shown in product-mob-bar above) {%- endcomment -%}
     <div class="product-info__top">

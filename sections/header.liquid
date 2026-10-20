@@ -520,6 +520,26 @@
       </div>
 
       {%- comment -%} HOME & LIVING {%- endcomment -%}
+      {%- comment -%} CLOTHING: columns come from the nav item's Mega menu (menu "clothing-mega-menu"). {%- endcomment -%}
+      <div data-mega-panel="clothing" hidden>
+        <div class="mega-menu__inner">
+          {%- assign mm_block_clothing = nil -%}
+          {%- for nav_b in section.blocks -%}{%- if nav_b.settings.mega_panel == 'clothing' -%}{%- assign mm_block_clothing = nav_b -%}{%- endif -%}{%- endfor -%}
+          {%- if mm_block_clothing.settings.mega_menu != blank -%}
+          {%- render "mega-menu-dynamic-columns", block: mm_block_clothing -%}
+          {%- else -%}
+          <div class="mega-menu__subcats">
+            <div>
+              <p class="mega-menu__cat-heading">Clothing</p>
+              <a href="{{ routes.collections_url }}/clothing" class="mega-menu__cat-link">All Clothing</a>
+              <a href="{{ routes.collections_url }}/sarees" class="mega-menu__cat-link">Sarees</a>
+              <a href="{{ routes.collections_url }}/readymade-garments" class="mega-menu__cat-link">Readymade Garments</a>
+            </div>
+          </div>
+          {%- endif -%}
+        </div>
+      </div>
+
       <div data-mega-panel="home-living" hidden>
         <div class="mega-menu__inner">
           {%- assign mm_block_home_living = section.blocks | where: "settings.mega_panel", "home-living" | first -%}

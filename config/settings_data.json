@@ -276,6 +276,24 @@
               "col5_desc": "",
               "col6_desc": ""
             }
+          },
+          "nav_clothing": {
+            "type": "nav_item",
+            "settings": {
+              "label": "Clothing",
+              "link": "/collections/clothing",
+              "badge": "",
+              "badge_color": "#0f5a43",
+              "highlight": false,
+              "mega_panel": "clothing",
+              "mega_menu": "clothing-mega-menu",
+              "col1_desc": "By fabric and weave",
+              "col2_desc": "Kurtis, tops and blouses",
+              "col3_desc": "Blouse bits and materials",
+              "col4_desc": "Half saree and pavadai sets",
+              "col5_desc": "Cotton, fancy and feeding",
+              "col6_desc": "Boys and couple sets"
+            }
           }
         },
         "block_order": [
@@ -284,6 +302,7 @@
           "nav_ayurveda_herbal",
           "nav_beauty",
           "nav_jewellery_fashion",
+          "nav_clothing",
           "nav_viha_boutique",
           "nav_home_living",
           "nav_food_organic",

@@ -296,7 +296,7 @@ ul { list-style: none; }
   color: rgba(45,45,45,0.9);
   padding: 6px 10px;
   border-radius: 2px;
-  transition: all 0.15s;
+  transition:color 0.15s, background-color 0.15s, border-color 0.15s, transform 0.15s, opacity 0.15s;
   white-space: nowrap;
 }
 .header__nav-btn:hover,
@@ -802,7 +802,7 @@ ul { list-style: none; }
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.2em;
-  transition: all 0.2s;
+  transition:color 0.2s, background-color 0.2s, border-color 0.2s, transform 0.2s, opacity 0.2s;
   min-height: 50px;
   width: 100%;
 }
@@ -1177,7 +1177,7 @@ ul { list-style: none; }
   color: rgba(45,45,45,0.7);
   background: #fff;
   white-space: nowrap;
-  transition: all 0.18s;
+  transition:color 0.18s, background-color 0.18s, border-color 0.18s, transform 0.18s, opacity 0.18s;
   cursor: pointer;
   min-height: 36px;
   display: inline-flex;
@@ -1423,7 +1423,7 @@ ul { list-style: none; }
   font-size: 13px;
   font-weight: 600;
   color: var(--color-charcoal);
-  transition: all 0.15s;
+  transition:color 0.15s, background-color 0.15s, border-color 0.15s, transform 0.15s, opacity 0.15s;
   border-radius: 2px;
 }
 .pagination__btn:hover,

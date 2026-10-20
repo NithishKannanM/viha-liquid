@@ -16,7 +16,7 @@
           "settings": {
             "group": "Orders & Shipping",
             "question": "Do you ship internationally?",
-            "answer": "Yes. We currently ship to 6 countries including the US, UK, Canada, Australia, Singapore, and the UAE. Shipping is free on orders over ₹999 (or the equivalent in your local currency)."
+            "answer": "Yes. We ship internationally. Shipping is free on orders over ₹999 (or the equivalent in your local currency)."
           }
         },
         "q3": {

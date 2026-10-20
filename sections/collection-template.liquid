@@ -114,25 +114,6 @@
       {%- comment -%} ── Sidebar ─── {%- endcomment -%}
       <aside id="catalog-sidebar" class="catalog-sidebar" aria-label="Category filters">
 
-        <div style="margin-bottom:1.75rem;">
-          <h2 style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.2em;color:var(--color-maroon);padding-bottom:0.75rem;margin-bottom:1rem;">Categories</h2>
-          <nav style="display:flex;flex-direction:column;gap:2px;">
-            {%- assign sidebar_cats = "all|All Essentials|/collections/all~spiritual-pooja|Spiritual & Pooja|/collections/spiritual-pooja~pooja-products|‣ Pooja Essentials|/collections/pooja-products~statues-idols|‣ God Idols & Statues|/collections/statues-idols~gemstones-crystals|‣ Crystal & Healing|/collections/gemstones-crystals~karungali|‣ Karungali Products|/collections/karungali~jewelleries|Jewellery|/collections/jewelleries~aimpon-panchaloha|‣ Impon Jewellery|/collections/aimpon-panchaloha~gemstones-crystals|‣ Crystal & Gemstone|/collections/gemstones-crystals~ayurveda-herbal|Ayurveda & Herbal|/collections/ayurveda-herbal~fashion-grooming|Fashion & Sarees|/collections/fashion-grooming~home-living|Home & Living|/collections/home-living~food-organic|Food & Organic|/collections/food-organic~kids-baby|Kids & Baby|/collections/kids-baby~bags-pouches|Bags & Pouches|/collections/bags-pouches~books-gifts|Books & Gifts|/collections/books-gifts~new-arrivals|New Arrivals|/collections/new-arrivals" | split: "~" -%}
-            {%- for cat in sidebar_cats -%}
-              {%- assign cparts = cat | split: "|" -%}
-              {%- assign is_active = false -%}
-              {%- if cparts[0] == active_handle -%}{%- assign is_active = true -%}{%- endif -%}
-              {%- if cparts[0] == 'all' and active_handle == blank -%}{%- assign is_active = true -%}{%- endif -%}
-              <a href="{{ cparts[2] }}" style="display:flex;align-items:center;justify-content:space-between;padding:7px 10px;border-radius:2px;font-size:12px;font-weight:{% if is_active %}700{% else %}500{% endif %};color:{% if is_active %}#fff{% else %}rgba(45,45,45,0.75){% endif %};background:{% if is_active %}var(--color-maroon){% else %}transparent{% endif %};transition:color 0.15s, background-color 0.15s, border-color 0.15s, transform 0.15s, opacity 0.15s;text-decoration:none;" {% unless is_active %}onmouseover="this.style.background='rgba(15,90,67,0.07)'" onmouseout="this.style.background='transparent'"{% endunless %}>
-                {{ cparts[1] }}
-                {%- if is_active -%}
-                  <span style="width:6px;height:6px;border-radius:50%;background:var(--color-gold);flex-shrink:0;" aria-hidden="true"></span>
-                {%- endif -%}
-              </a>
-            {%- endfor -%}
-          </nav>
-        </div>
-
         {%- comment -%} ── Refine by tag ───────────────────────────────────────────────────────
           Replaces the old "Gold Standard" box, which asserted verified sourcing and certified
           zari that nobody can substantiate. This project bans invented trust claims: the
@@ -156,8 +137,8 @@
         {%- assign tag_hidden = section.settings.hidden_tags | default: 'low_stock_alerted,bestseller,top-rated,new-arrival,sale' | split: ',' -%}
         {%- assign tag_groups = 'type|Type,deity|Deity,material|Material,ritual|Occasion,space|Room,audience|For' | split: ',' -%}
 
-        {%- if col.all_tags.size > 0 -%}
-          <div style="margin-top:1.75rem;">
+        {%- if col.tags.size > 0 -%}
+          <div>
             <h2 style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.2em;color:var(--color-maroon);padding-bottom:0.75rem;margin-bottom:0.5rem;">Refine</h2>
 
             {%- if current_tags.size > 0 -%}
@@ -169,13 +150,13 @@
               {%- assign gparts = grp | split: '|' -%}
               {%- assign prefix = gparts[0] | append: ':' -%}
               {%- assign has_any = false -%}
-              {%- for t in col.all_tags -%}
+              {%- for t in col.tags -%}
                 {%- if t contains prefix %}{% assign has_any = true %}{% endif -%}
               {%- endfor -%}
               {%- if has_any -%}
                 <h3 style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.16em;color:rgba(45,45,45,0.55);margin:0.9rem 0 0.4rem;">{{ gparts[1] | escape }}</h3>
                 <nav style="display:flex;flex-direction:column;gap:1px;">
-                  {%- for t in col.all_tags -%}
+                  {%- for t in col.tags -%}
                     {%- if t contains prefix -%}
                       {%- assign label = t | split: ':' | last | replace: '-', ' ' | capitalize -%}
                       {%- assign on = false -%}
@@ -192,7 +173,7 @@
               iteration and closing it in another trips UnclosedHTMLElement, and the bar on this
               theme is zero NEW theme-check offenses. {%- endcomment -%}
             {%- assign plain_count = 0 -%}
-            {%- for t in col.all_tags -%}
+            {%- for t in col.tags -%}
               {%- unless t contains ':' or tag_hidden contains t -%}
                 {%- assign plain_count = plain_count | plus: 1 -%}
               {%- endunless -%}
@@ -207,7 +188,7 @@
               <details style="margin:0.9rem 0 0.4rem;">
                 <summary style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.16em;color:rgba(45,45,45,0.55);cursor:pointer;list-style:revert;">Also in this range ({{ plain_count }})</summary>
               <nav style="display:flex;flex-direction:column;gap:1px;margin-top:0.4rem;">
-                {%- for t in col.all_tags -%}
+                {%- for t in col.tags -%}
                   {%- unless t contains ':' or tag_hidden contains t -%}
                     {%- assign on = false -%}
                     {%- if current_tags contains t %}{% assign on = true %}{% endif -%}

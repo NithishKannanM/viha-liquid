@@ -7,7 +7,8 @@
       {%- endif -%}
       <h2 style="font-family:var(--font-heading);font-size:clamp(1.25rem,3vw,2rem);font-weight:900;color:var(--color-maroon);">{{ section.settings.heading | default: 'Our Collections' }}</h2>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.5rem;">
+    {%- assign grid_cols = section.blocks.size | at_most: 4 | at_least: 1 -%}
+    <div class="count-grid" style="--cols:{{ grid_cols }};gap:1.5rem;">
       {%- for block in section.blocks -%}
         {%- assign feat_col = collections[block.settings.collection] -%}
         <a href="{{ feat_col.url | default: '#' }}"

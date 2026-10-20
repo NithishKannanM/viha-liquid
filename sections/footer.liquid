@@ -9,7 +9,7 @@
         <p style="font-family:var(--font-heading);font-size:1.25rem;font-weight:900;color:var(--color-maroon);margin-bottom:1rem;">{{ shop.name }}</p>
       {% endif %}
       <p style="font-size:12px;color:rgba(45,45,45,0.7);line-height:1.8;max-width:240px;">
-        {{ section.settings.brand_description | default: "Bringing the wisdom of ancient Ayurvedic traditions to modern rituals — pure, authentic, and crafted with love." }}
+        {{ section.settings.brand_description | default: "Bringing the wisdom of ancient Ayurvedic traditions to modern rituals, pure, authentic, and crafted with love." }}
       </p>
       <div style="display:flex;gap:0.75rem;margin-top:1.25rem;">
         {% if settings.social_instagram_link != blank %}
@@ -60,7 +60,7 @@
         <a href="/collections/jewelleries"class="footer__link">Jewellery &amp; Fashion</a>
         <a href="/collections/home-living"      class="footer__link">Home &amp; Living</a>
         <a href="/collections/food-organic"     class="footer__link">Food &amp; Organic</a>
-        <a href="/collections/new-arrivals"     class="footer__link">New Arrivals ✦</a>
+        <a href="/collections/new-arrivals"     class="footer__link">New Arrivals</a>
         <a href="/pages/our-story"              class="footer__link">Our Heritage</a>
       </div>
     </div>
@@ -142,7 +142,7 @@
 {
   "name": "Footer",
   "settings": [
-    { "type": "textarea", "id": "brand_description", "label": "Brand description", "default": "Bringing the wisdom of ancient Ayurvedic traditions to modern rituals — pure, authentic, and crafted with love." },
+    { "type": "textarea", "id": "brand_description", "label": "Brand description", "default": "Bringing the wisdom of ancient Ayurvedic traditions to modern rituals, pure, authentic, and crafted with love." },
     { "type": "text",     "id": "contact_email",     "label": "Contact email" },
     { "type": "text",     "id": "contact_phone",     "label": "Contact phone" },
     { "type": "textarea", "id": "contact_address",   "label": "Address" },

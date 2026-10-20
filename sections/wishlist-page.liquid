@@ -104,7 +104,7 @@
 
   function formatMoney(cents) {
     // Delegate to the global formatter (theme.js) so prices match the shop's
-    // real money format ("Rs.1,234.00") — no hardcoded ₹ mismatch. theme.js is
+    // real money format ("Rs.1,234.00"), no hardcoded ₹ mismatch. theme.js is
     // deferred, but init() runs on DOMContentLoaded so it's always loaded first.
     if (window.formatMoney) return window.formatMoney(cents);
     return 'Rs.' + (cents / 100).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');

@@ -154,12 +154,21 @@
             "title": "Perfumes & Attars",
             "description": "Perfumes and athar (traditional perfume oil) sets, including a sandal, kewra, rose and jasmine set, and natural jasmine oil."
           }
+        },
+        "col-4": {
+          "type": "collection_card",
+          "settings": {
+            "collection": "face-packs",
+            "title": "Face Packs",
+            "description": "Herbal face pack powders from the Viha range. Each listing gives its ingredients and how it is traditionally used."
+          }
         }
       },
       "block_order": [
         "col-1",
         "col-2",
-        "col-3"
+        "col-3",
+        "col-4"
       ],
       "settings": {
         "eyebrow": "",

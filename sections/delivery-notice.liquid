@@ -59,7 +59,7 @@
     var ready = false;
 
     // Block scroll input from reaching the page behind the popup, without ever
-    // reading/writing scrollY ourselves — that read-then-restore approach is
+    // reading/writing scrollY ourselves, that read-then-restore approach is
     // what caused the jump-on-open/jump-on-close bug (the page's real height
     // is still settling from images/fonts at the moment the popup opens, so a
     // captured scroll value can already be stale). Letting scroll events

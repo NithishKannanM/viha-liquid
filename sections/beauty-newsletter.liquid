@@ -9,7 +9,7 @@
     <span style="display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.2em;color:var(--color-gold);margin-bottom:0.75rem;">{{ section.settings.eyebrow }}</span>
     {%- endif -%}
     <h2 style="font-family:var(--font-heading);font-size:clamp(1.25rem,3vw,1.875rem);font-weight:900;color:#fff;margin-bottom:1rem;">{{ section.settings.heading | default: 'The Beauty Digest' }}</h2>
-    <p style="font-size:13px;color:rgba(255,255,255,0.55);margin-bottom:2rem;line-height:1.75;">{{ section.settings.subtext | default: 'Seasonal rituals and Ayurvedic wisdom from Mrs Anitha Kuppusamy — plus early access to new formulations.' }}</p>
+    <p style="font-size:13px;color:rgba(255,255,255,0.55);margin-bottom:2rem;line-height:1.75;">{{ section.settings.subtext | default: 'Seasonal rituals and Ayurvedic wisdom from Mrs Anitha Kuppusamy, plus early access to new formulations.' }}</p>
     {% form 'customer', id: 'beauty-newsletter' %}
       <div style="display:flex;gap:8px;max-width:400px;margin:0 auto;">
         <input type="hidden" name="contact[tags]" value="newsletter,beauty">

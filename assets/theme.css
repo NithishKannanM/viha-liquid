@@ -2221,3 +2221,14 @@ ul { list-style: none; }
 }
 
 /* resync 1782980043 */
+
+/* Grids sized to their real item count (no empty tracks) */
+.count-grid { display:grid; grid-template-columns:1fr; }
+@media (min-width:640px) { .count-grid { grid-template-columns:repeat(2,1fr); } }
+@media (min-width:1024px) { .count-grid { grid-template-columns:repeat(var(--cols),1fr); } }
+/* Decorative heading ornament (thin lines + diamond) retired sitewide */
+.section__ornament { display:none !important; }
+
+/* Booking phone stays reachable on phones (icon only) */
+@media (max-width: 767px) { .header__booking { display: inline-flex; padding: 0; min-width: 40px; justify-content: center; } }
+.header__booking strong { font-weight: 700; margin-left: 4px; }

@@ -175,7 +175,7 @@ function vihaTrackOrder(e) {
 
   if (!orderId || !email) return;
 
-  // Live per-order tracking needs an app/API lookup we don't have — the real
+  // Live per-order tracking needs an app/API lookup we don't have, the real
   // status lives in the customer's Shopify order history. Be honest about that
   // and hand them a clear next step instead of faking a lookup.
   // User-supplied values are inserted via textContent (never string-concatenated
@@ -199,7 +199,7 @@ function vihaTrackOrder(e) {
   document.getElementById('track-email').focus();
 })();
 
-// Courier finder — best-guess the courier from the tracking-number prefix.
+// Courier finder, best-guess the courier from the tracking-number prefix.
 // Purely a hint (couriers/prefixes are client-editable); all couriers stay listed.
 (function () {
   var finder = document.getElementById('courier-finder');
@@ -241,7 +241,7 @@ function vihaTrackOrder(e) {
     { "type": "header",   "content": "Courier partners section" },
     { "type": "text",     "id": "courier_heading", "label": "Courier section heading", "default": "Track Directly With Your Courier" },
     { "type": "textarea", "id": "courier_subtext", "label": "Courier section subtext" },
-    { "type": "textarea", "id": "courier_note",    "label": "Courier section footnote", "default": "International orders: tracking IDs are usually available within about 5 days of dispatch. A single international order may ship in more than one parcel — for example silver items via India Post and other items via DTDC — each with its own tracking number." },
+    { "type": "textarea", "id": "courier_note",    "label": "Courier section footnote", "default": "International orders: tracking IDs are usually available within about 5 days of dispatch. A single international order may ship in more than one parcel, for example silver items via India Post and other items via DTDC, each with its own tracking number." },
     { "type": "header",   "content": "Order status guide" },
     { "type": "text",     "id": "legend_heading", "label": "Status guide heading", "default": "Order Status Guide" }
   ],

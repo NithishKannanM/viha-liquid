@@ -1,28 +1,55 @@
 {%- comment -%}
-  Article related products — viha-theme
-  Collection is a merchant-editable setting (was hardcoded to 'ayurveda-herbal' before conversion).
+  Article related products: the article's own product links first, collection setting as fallback.
 {%- endcomment -%}
 
+{%- comment -%}
+  Products the article itself links to (/products/<handle> in its body), in the order they appear.
+  Falls back to the merchant-chosen collection only when the article links no products.
+{%- endcomment -%}
+{%- assign mentioned = ',' -%}
+{%- if article -%}
+  {%- assign parts = article.content | split: '/products/' -%}
+  {%- for part in parts offset: 1 -%}
+    {%- assign h = part | split: '"' | first | split: "'" | first | split: '?' | first | split: '#' | first | split: '<' | first | strip | url_decode -%}
+    {%- assign needle = ',' | append: h | append: ',' -%}
+    {%- if h != blank -%}{%- unless mentioned contains needle -%}{%- assign mentioned = mentioned | append: h | append: ',' -%}{%- endunless -%}{%- endif -%}
+  {%- endfor -%}
+{%- endif -%}
+{%- assign handles = mentioned | split: ',' | compact -%}
 {%- assign related_col = collections[section.settings.collection] -%}
+{%- capture cards -%}
+  {%- assign shown = 0 -%}
+  {%- for h in handles -%}
+    {%- if h == blank or shown >= 4 -%}{%- continue -%}{%- endif -%}
+    {%- assign p = all_products[h] -%}
+    {%- if p != blank and p.available -%}
+      {%- render 'product-card', product: p -%}
+      {%- assign shown = shown | plus: 1 -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endcapture -%}
 
-{%- if related_col != blank and related_col.products_count > 0 -%}
-  <section style="padding:4rem 3rem;background:var(--color-paper);border-top:1px solid var(--color-cream-dark);">
+{%- if shown > 0 or related_col.products_count > 0 -%}
+  <section style="padding:4rem 3rem;background:var(--color-cream);">
     <div style="max-width:var(--max-w);margin:0 auto;">
-      <div style="margin-bottom:2rem;">
-        <span style="display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.2em;color:var(--color-gold);margin-bottom:0.5rem;">From the Article</span>
-        <h2 style="font-family:var(--font-heading);font-size:clamp(1.25rem,3vw,1.875rem);font-weight:900;color:var(--color-maroon);">Products Mentioned</h2>
-      </div>
+      <h2 style="font-family:var(--font-heading);font-size:clamp(1.25rem,3vw,1.875rem);font-weight:900;color:var(--color-maroon);margin-bottom:2rem;">{%- if shown > 0 -%}Products in This Article{%- else -%}You May Also Like{%- endif -%}</h2>
       <div class="collection-grid">
-        {%- for product in related_col.products limit: 4 -%}
-          {%- render 'product-card', product: product -%}
-        {%- endfor -%}
+        {%- if shown > 0 -%}
+          {{ cards }}
+        {%- else -%}
+          {%- for product in related_col.products limit: 4 -%}
+            {%- render 'product-card', product: product -%}
+          {%- endfor -%}
+        {%- endif -%}
       </div>
+      {%- if shown == 0 -%}
       <div style="text-align:center;margin-top:2rem;">
         <a href="{{ related_col.url }}" class="btn btn--outline-maroon" style="display:inline-flex;align-items:center;gap:8px;padding:12px 24px;font-size:11px;">
           View All {{ related_col.title }}
           <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
         </a>
       </div>
+      {%- endif -%}
     </div>
   </section>
 {%- endif -%}

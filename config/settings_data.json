@@ -33,7 +33,10 @@
         "type": "header",
         "settings": {
           "track_link": "/pages/track-order",
-          "tagline_brand": "Viha Online"
+          "tagline_brand": "Viha Online",
+          "booking_phone": "87544 44915",
+          "booking_label": "Wholesale & Concerts",
+          "tagline_sub": "Chosen by Mrs Anitha Kuppusamy"
         },
         "blocks": {
           "nav_all_essentials": {
@@ -77,7 +80,7 @@
             "settings": {
               "label": "Beauty & Wellness",
               "link": "/pages/beauty",
-              "badge": "✦",
+              "badge": "",
               "badge_color": "#0F5A43",
               "highlight": false,
               "mega_panel": "beauty",
@@ -185,7 +188,7 @@
             "settings": {
               "label": "New Arrivals",
               "link": "/collections/new-arrivals",
-              "badge": "✦",
+              "badge": "",
               "badge_color": "#0F5A43",
               "highlight": true,
               "mega_panel": "new-arrivals",
@@ -241,7 +244,7 @@
     "social_facebook_link": "https://www.facebook.com/vihachennai",
     "social_youtube_link": "https://www.youtube.com/channel/UCVBYKN8gtRwPxGczoHdKPDA",
     "logo": "shopify://shop_images/viha-online-logo.png",
-    "favicon": "shopify://shop_images/viha-online-favicon.png",
+    "favicon": "shopify://shop_images/viha-online-favicon-leaf.png",
     "social_share_image": "shopify://shop_images/viha-online-share.png"
   }
 }

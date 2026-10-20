@@ -3,7 +3,7 @@
 
 <nav id="mobile-menu" class="mobile-menu" role="dialog" aria-label="Mobile navigation" aria-modal="true">
   <div class="mobile-menu__header">
-    <a href="/" aria-label="{{ shop.name }} — Home">
+    <a href="/" aria-label="{{ shop.name }} home">
       {% if settings.logo != blank %}
         <img src="{{ settings.logo | image_url: width: 400 }}" alt="{{ shop.name }}" height="{{ settings.logo_height_mobile }}" style="height:{{ settings.logo_height_mobile }}px;">
       {% else %}

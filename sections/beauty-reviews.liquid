@@ -1,5 +1,6 @@
 {%- comment -%}
-  Beauty page testimonials — renders the REAL Judge.me store-wide Reviews Carousel.
+  Beauty page testimonials: real Judge.me reviews from the judgeme.reviews_grid shop metafield,
+  falling back to Judge.me's store-wide carousel if the metafield is missing.
   Which reviews appear (e.g. positive + detailed only) is controlled in the Judge.me
   dashboard: Settings > Widgets > Reviews Carousel > Review curation.
   The carousel hydrates only on the published storefront (not in the Theme Editor
@@ -7,36 +8,48 @@
   shown in design mode so the section isn't mistaken for empty.
   If a Judge.me "Reviews Carousel" app block is added via the editor it takes over.
 {%- endcomment -%}
-<section style="padding:4rem 3rem;background:var(--color-section-alt);border-top:1px solid var(--color-cream-dark);">
+{%- assign jm_grid = shop.metafields.judgeme.reviews_grid.value -%}
+{%- assign jm_reviews = jm_grid.featured_reviews.reviews -%}
+{%- if jm_reviews == blank or jm_reviews.size == 0 -%}{%- assign jm_reviews = jm_grid.all_reviews.reviews -%}{%- endif -%}
+{%- assign jm_shown = 0 -%}
+<section style="padding:5rem 3rem;background:var(--color-section-alt);">
   <div style="max-width:var(--max-w);margin:0 auto;">
     <div style="text-align:center;margin-bottom:2.5rem;">
       {%- if section.settings.eyebrow != blank -%}
       <span style="display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.2em;color:var(--color-gold);margin-bottom:0.75rem;">{{ section.settings.eyebrow }}</span>
       {%- endif -%}
-      <h2 style="font-family:var(--font-heading);font-size:clamp(1.25rem,3vw,2rem);font-weight:900;color:var(--color-maroon);">{{ section.settings.heading | default: 'What Our Customers Say' }}</h2>
-      <div class="section__ornament" style="display:flex;align-items:center;justify-content:center;gap:8px;margin-top:1rem;">
-        <div class="section__ornament-line section__ornament-line--left"></div>
-        <div class="section__ornament-diamond"></div>
-        <div class="section__ornament-line section__ornament-line--right"></div>
-      </div>
+      <h2 style="font-family:var(--font-heading);font-size:clamp(1.5rem,3vw,2.25rem);font-weight:900;color:var(--color-maroon);">{{ section.settings.heading | default: 'What Our Customers Say' }}</h2>
+      {%- if jm_grid.number_of_reviews > 0 -%}
+        <p style="font-size:16px;color:var(--color-charcoal);margin-top:0.75rem;">Rated {{ jm_grid.average_rating }} out of 5 from {{ jm_grid.number_of_reviews }} customer reviews</p>
+      {%- endif -%}
     </div>
 
     {%- assign app_blocks = 0 -%}
     {%- for block in section.blocks -%}{%- if block.type == '@app' -%}{%- assign app_blocks = app_blocks | plus: 1 -%}{%- endif -%}{%- endfor -%}
 
     {%- if app_blocks > 0 -%}
-      {%- comment -%} A Judge.me app block was added via the editor — render it. {%- endcomment -%}
       {%- for block in section.blocks -%}
         {%- if block.type == '@app' -%}{% render block %}{%- endif -%}
       {%- endfor -%}
-    {%- elsif request.design_mode -%}
-      {%- comment -%} Editor design-mode: Judge.me does not populate widgets here. {%- endcomment -%}
-      <div style="border:1px dashed var(--color-cream-dark);border-radius:2px;background:var(--color-paper);padding:2.5rem 1.5rem;text-align:center;color:rgba(45,45,45,0.65);">
-        <div style="font-family:var(--font-heading);font-weight:700;font-size:1rem;color:var(--color-maroon);margin-bottom:0.5rem;">Judge.me Reviews Carousel</div>
-        <p style="font-size:13px;line-height:1.7;max-width:520px;margin:0 auto;">Live customer reviews appear here on the published store. Judge.me does not render in this editor preview — use the storefront <strong>Preview</strong> link to see the real reviews.<br><br>Choose which reviews show in <strong>Judge.me → Settings → Widgets → Reviews Carousel → Review curation</strong>.</p>
+    {%- elsif jm_reviews.size > 0 -%}
+      {%- comment -%} Real Judge.me reviews, read from the shop metafield Judge.me keeps in sync (judgeme.reviews_grid). {%- endcomment -%}
+      <div class="jm-review-grid">
+        {%- for r in jm_reviews -%}
+          {%- if jm_shown >= 6 -%}{%- break -%}{%- endif -%}
+          {%- assign r_len = r.body | strip | size -%}
+          {%- if r.rating < 4 or r_len < 40 -%}{%- continue -%}{%- endif -%}
+          {%- assign jm_shown = jm_shown | plus: 1 -%}
+          <figure class="jm-review">
+            <p class="jm-review__stars" aria-label="{{ r.rating }} out of 5 stars">{%- for i in (1..5) -%}<span{% if i > r.rating %} class="is-off"{% endif %}>&#9733;</span>{%- endfor -%}</p>
+            <blockquote class="jm-review__body">{{ r.body | strip_html | truncatewords: 40 }}</blockquote>
+            <figcaption class="jm-review__by">
+              <span class="jm-review__name">{{ r.reviewer_name | escape }}</span>{% if r.verified_buyer %}<span class="jm-review__verified">Verified buyer</span>{% endif %}
+              {%- if r.product_title != blank -%}<a class="jm-review__product" href="{{ r.product_url }}">{{ r.product_title }}</a>{%- endif -%}
+            </figcaption>
+          </figure>
+        {%- endfor -%}
       </div>
     {%- else -%}
-      {%- comment -%} Storefront: Judge.me's store-wide carousel. Populated by the app JS. {%- endcomment -%}
       <!-- Start of Judge.me code -->
       <div style='width:100%;'>
         <div class='jdgm-carousel-wrapper'>
@@ -47,6 +60,20 @@
     {%- endif -%}
   </div>
 </section>
+
+<style>
+.jm-review-grid { display:grid; grid-template-columns:1fr; gap:20px; }
+@media (min-width:768px) { .jm-review-grid { grid-template-columns:repeat(2,1fr); } }
+@media (min-width:1100px) { .jm-review-grid { grid-template-columns:repeat(3,1fr); } }
+.jm-review { margin:0; padding:1.75rem; background:var(--color-paper); display:flex; flex-direction:column; gap:12px; }
+.jm-review__stars { color:#B8860B; font-size:18px; letter-spacing:2px; line-height:1; }
+.jm-review__stars .is-off { color:var(--color-cream-dark); }
+.jm-review__body { margin:0; font-size:16px; line-height:1.6; color:var(--color-charcoal); flex:1; }
+.jm-review__by { font-size:14px; color:var(--color-charcoal); display:flex; flex-wrap:wrap; gap:4px 10px; align-items:baseline; }
+.jm-review__name { font-weight:700; }
+.jm-review__verified { color:var(--color-maroon); font-size:13px; }
+.jm-review__product { flex-basis:100%; color:var(--color-maroon); text-decoration:underline; text-underline-offset:3px; }
+</style>
 
 {% schema %}
 {

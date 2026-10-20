@@ -32,7 +32,7 @@
     </button>
 
     {%- comment -%} Logo {%- endcomment -%}
-    <a href="{{ routes.root_url }}" class="header__logo" aria-label="{{ shop.name }} — Home">
+    <a href="{{ routes.root_url }}" class="header__logo" aria-label="{{ shop.name }} home">
       {% if settings.logo != blank %}
         {%- comment -%} Height via custom property (not inline height) so the
           mobile media query in theme.css can still shrink the logo. {%- endcomment -%}
@@ -73,6 +73,18 @@
         </svg>
         <span class="header__track-label" aria-hidden="true">{{ section.settings.track_label | escape }}</span>
       </a>
+      {%- endif -%}
+
+      {%- comment -%} Wholesale & concert booking phone: a tap-to-call link beside Track My Order. {%- endcomment -%}
+      {%- if section.settings.booking_phone != blank -%}
+        {%- assign booking_digits = section.settings.booking_phone | remove: ' ' | remove: '-' -%}
+        {%- if booking_digits.size == 10 -%}{%- assign booking_digits = '+91' | append: booking_digits -%}{%- endif -%}
+        <a href="tel:{{ booking_digits }}" class="header__track header__booking" aria-label="{{ section.settings.booking_label | escape }}: {{ section.settings.booking_phone | escape }}">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/>
+          </svg>
+          <span class="header__track-label" aria-hidden="true">{{ section.settings.booking_label | escape }} <strong>{{ section.settings.booking_phone | escape }}</strong></span>
+        </a>
       {%- endif -%}
 
       {%- comment -%} Wholesale / Concert WhatsApp links — same dormant pattern as the footer and
@@ -935,17 +947,20 @@
 {
   "name": "Header",
   "settings": [
-    { "type": "header", "content": "Row 1 — tagline" },
+    { "type": "header", "content": "Row 1, tagline" },
     { "type": "checkbox", "id": "show_tagline", "label": "Show centre tagline (desktop only)", "default": true },
-    { "type": "text", "id": "tagline_brand", "label": "Tagline — brand line", "default": "Viha Online" },
-    { "type": "text", "id": "tagline_sub", "label": "Tagline — sub line", "default": "Spiritual Essentials Curated by Mrs Anitha Kuppusamy" },
+    { "type": "text", "id": "tagline_brand", "label": "Tagline, brand line", "default": "Viha Online" },
+    { "type": "text", "id": "tagline_sub", "label": "Tagline, sub line", "default": "Spiritual Essentials Curated by Mrs Anitha Kuppusamy" },
 
-    { "type": "header", "content": "Row 1 — track my order" },
+    { "type": "header", "content": "Row 1, track my order" },
     { "type": "checkbox", "id": "show_track", "label": "Show Track My Order link", "default": true },
-    { "type": "text", "id": "track_label", "label": "Track my order — label", "default": "Track My Order" },
-    { "type": "url", "id": "track_link", "label": "Track my order — link", "info": "Defaults to /pages/track-order (set in settings_data.json — the url setting type does not accept a schema default)." },
+    { "type": "text", "id": "track_label", "label": "Track my order, label", "default": "Track My Order" },
+    { "type": "url", "id": "track_link", "label": "Track my order, link", "info": "Defaults to /pages/track-order (set in settings_data.json, the url setting type does not accept a schema default)." },
 
-    { "type": "header", "content": "Row 1 — icons" },
+    { "type": "header", "content": "Row 1: wholesale & concert booking phone" },
+    { "type": "text", "id": "booking_phone", "label": "Booking phone number", "info": "Shown beside Track My Order as a tap-to-call link. Leave blank to hide." },
+    { "type": "text", "id": "booking_label", "label": "Booking phone label", "default": "Wholesale & Concerts" },
+    { "type": "header", "content": "Row 1, icons" },
     { "type": "checkbox", "id": "show_search", "label": "Show search icon", "default": true },
     { "type": "checkbox", "id": "show_account", "label": "Show account icon", "default": true },
     { "type": "checkbox", "id": "show_wishlist", "label": "Show wishlist icon", "default": true },
@@ -953,8 +968,8 @@
     { "type": "checkbox", "id": "show_country", "label": "Show country / currency badge", "default": true },
 
     { "type": "header", "content": "Mobile menu grouping" },
-    { "type": "text", "id": "mobile_group1_label", "label": "Mobile menu — first group label", "info": "Groups the first 7 navigation items below.", "default": "Shop Collections" },
-    { "type": "text", "id": "mobile_group2_label", "label": "Mobile menu — second group label", "info": "Groups the remaining navigation items below.", "default": "More Categories" },
+    { "type": "text", "id": "mobile_group1_label", "label": "Mobile menu, first group label", "info": "Groups the first 7 navigation items below.", "default": "Shop Collections" },
+    { "type": "text", "id": "mobile_group2_label", "label": "Mobile menu, second group label", "info": "Groups the remaining navigation items below.", "default": "More Categories" },
 
     { "type": "header", "content": "Wholesale" },
     { "type": "text", "id": "wholesale_whatsapp_number",  "label": "Wholesale WhatsApp number", "info": "Include country code, e.g. 919876543210. Leave blank to hide this link." },

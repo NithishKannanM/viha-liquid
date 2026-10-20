@@ -17,9 +17,20 @@
     "color_charcoal": "#2D2D2D",
     "font_heading": "libre_caslon_text_n7",
     "font_body": "inter_n4",
+    "logo": "shopify://shop_images/viha-online-logo.png",
     "logo_height": 70,
     "logo_height_mobile": 55,
+    "favicon": "shopify://shop_images/VIHA_FINAL_LOGO-1_e45270df-1df7-4619-8bbc-0cfac8de510f.png",
+    "social_share_image": "shopify://shop_images/viha-online-share.png",
+    "business_phone": "+91 89398 99409",
+    "social_instagram_link": "https://www.instagram.com/viha.online",
+    "social_facebook_link": "https://www.facebook.com/vihachennai",
+    "social_youtube_link": "https://www.youtube.com/channel/UCVBYKN8gtRwPxGczoHdKPDA",
     "cart_type": "drawer",
+    "watermark_enabled": true,
+    "watermark_image": "shopify://shop_images/VIHA_FINAL_LOGO-1_e45270df-1df7-4619-8bbc-0cfac8de510f.png",
+    "watermark_size": 28,
+    "watermark_opacity": 100,
     "sections": {
       "announcement-bar": {
         "type": "announcement-bar",
@@ -31,13 +42,6 @@
       },
       "header": {
         "type": "header",
-        "settings": {
-          "track_link": "/pages/track-order",
-          "tagline_brand": "Viha Online",
-          "booking_phone": "87544 44915",
-          "booking_label": "Wholesale & Concerts",
-          "tagline_sub": "Chosen by Mrs Anitha Kuppusamy"
-        },
         "blocks": {
           "nav_all_essentials": {
             "type": "nav_item",
@@ -45,10 +49,16 @@
               "label": "All Essentials",
               "link": "/collections/all",
               "badge": "",
-              "badge_color": "#0F5A43",
+              "badge_color": "#0f5a43",
               "highlight": false,
               "mega_panel": "",
-              "mega_menu": ""
+              "mega_menu": "",
+              "col1_desc": "",
+              "col2_desc": "",
+              "col3_desc": "",
+              "col4_desc": "",
+              "col5_desc": "",
+              "col6_desc": ""
             }
           },
           "nav_spiritual_pooja": {
@@ -57,10 +67,16 @@
               "label": "Spiritual & Pooja",
               "link": "/collections/spiritual-pooja",
               "badge": "",
-              "badge_color": "#0F5A43",
+              "badge_color": "#0f5a43",
               "highlight": false,
               "mega_panel": "spiritual-pooja",
-              "mega_menu": ""
+              "mega_menu": "",
+              "col1_desc": "",
+              "col2_desc": "",
+              "col3_desc": "",
+              "col4_desc": "",
+              "col5_desc": "",
+              "col6_desc": ""
             }
           },
           "nav_ayurveda_herbal": {
@@ -69,10 +85,16 @@
               "label": "Ayurveda & Herbal",
               "link": "/collections/ayurveda-herbal",
               "badge": "",
-              "badge_color": "#0F5A43",
+              "badge_color": "#0f5a43",
               "highlight": false,
               "mega_panel": "ayurveda-herbal",
-              "mega_menu": ""
+              "mega_menu": "",
+              "col1_desc": "",
+              "col2_desc": "",
+              "col3_desc": "",
+              "col4_desc": "",
+              "col5_desc": "",
+              "col6_desc": ""
             }
           },
           "nav_beauty": {
@@ -81,10 +103,16 @@
               "label": "Beauty & Wellness",
               "link": "/pages/beauty",
               "badge": "",
-              "badge_color": "#0F5A43",
+              "badge_color": "#0f5a43",
               "highlight": false,
               "mega_panel": "beauty",
-              "mega_menu": ""
+              "mega_menu": "",
+              "col1_desc": "",
+              "col2_desc": "",
+              "col3_desc": "",
+              "col4_desc": "",
+              "col5_desc": "",
+              "col6_desc": ""
             }
           },
           "nav_jewellery_fashion": {
@@ -93,10 +121,16 @@
               "label": "Jewellery & Fashion",
               "link": "/collections/jewelleries",
               "badge": "",
-              "badge_color": "#0F5A43",
+              "badge_color": "#0f5a43",
               "highlight": false,
               "mega_panel": "jewellery-fashion",
-              "mega_menu": ""
+              "mega_menu": "",
+              "col1_desc": "",
+              "col2_desc": "",
+              "col3_desc": "",
+              "col4_desc": "",
+              "col5_desc": "",
+              "col6_desc": ""
             }
           },
           "nav_viha_boutique": {
@@ -105,10 +139,16 @@
               "label": "Viha Boutique",
               "link": "/pages/viha-boutique",
               "badge": "",
-              "badge_color": "#0F5A43",
+              "badge_color": "#0f5a43",
               "highlight": false,
               "mega_panel": "",
-              "mega_menu": ""
+              "mega_menu": "",
+              "col1_desc": "",
+              "col2_desc": "",
+              "col3_desc": "",
+              "col4_desc": "",
+              "col5_desc": "",
+              "col6_desc": ""
             }
           },
           "nav_home_living": {
@@ -117,10 +157,16 @@
               "label": "Home & Living",
               "link": "/collections/home-living",
               "badge": "",
-              "badge_color": "#0F5A43",
+              "badge_color": "#0f5a43",
               "highlight": false,
               "mega_panel": "home-living",
-              "mega_menu": ""
+              "mega_menu": "",
+              "col1_desc": "",
+              "col2_desc": "",
+              "col3_desc": "",
+              "col4_desc": "",
+              "col5_desc": "",
+              "col6_desc": ""
             }
           },
           "nav_food_organic": {
@@ -129,10 +175,16 @@
               "label": "Food & Organic",
               "link": "/collections/food-organic",
               "badge": "",
-              "badge_color": "#0F5A43",
+              "badge_color": "#0f5a43",
               "highlight": false,
               "mega_panel": "food-organic",
-              "mega_menu": ""
+              "mega_menu": "",
+              "col1_desc": "",
+              "col2_desc": "",
+              "col3_desc": "",
+              "col4_desc": "",
+              "col5_desc": "",
+              "col6_desc": ""
             }
           },
           "nav_kids_baby": {
@@ -141,10 +193,16 @@
               "label": "Kids & Baby",
               "link": "/collections/kids-baby",
               "badge": "",
-              "badge_color": "#0F5A43",
+              "badge_color": "#0f5a43",
               "highlight": false,
               "mega_panel": "kids-baby",
-              "mega_menu": ""
+              "mega_menu": "",
+              "col1_desc": "",
+              "col2_desc": "",
+              "col3_desc": "",
+              "col4_desc": "",
+              "col5_desc": "",
+              "col6_desc": ""
             }
           },
           "nav_books_gifts": {
@@ -153,10 +211,16 @@
               "label": "Books & Gifts",
               "link": "/collections/books-gifts",
               "badge": "",
-              "badge_color": "#0F5A43",
+              "badge_color": "#0f5a43",
               "highlight": false,
               "mega_panel": "books-gifts",
-              "mega_menu": ""
+              "mega_menu": "",
+              "col1_desc": "",
+              "col2_desc": "",
+              "col3_desc": "",
+              "col4_desc": "",
+              "col5_desc": "",
+              "col6_desc": ""
             }
           },
           "nav_bags_pouches": {
@@ -165,10 +229,16 @@
               "label": "Bags & Pouches",
               "link": "/collections/bags-pouches",
               "badge": "",
-              "badge_color": "#0F5A43",
+              "badge_color": "#0f5a43",
               "highlight": false,
               "mega_panel": "bags-pouches",
-              "mega_menu": ""
+              "mega_menu": "",
+              "col1_desc": "",
+              "col2_desc": "",
+              "col3_desc": "",
+              "col4_desc": "",
+              "col5_desc": "",
+              "col6_desc": ""
             }
           },
           "nav_fashion_grooming": {
@@ -177,10 +247,16 @@
               "label": "Fashion & Grooming",
               "link": "/collections/fashion-grooming",
               "badge": "",
-              "badge_color": "#0F5A43",
+              "badge_color": "#0f5a43",
               "highlight": false,
               "mega_panel": "fashion-grooming",
-              "mega_menu": ""
+              "mega_menu": "",
+              "col1_desc": "",
+              "col2_desc": "",
+              "col3_desc": "",
+              "col4_desc": "",
+              "col5_desc": "",
+              "col6_desc": ""
             }
           },
           "nav_new_arrivals": {
@@ -189,10 +265,16 @@
               "label": "New Arrivals",
               "link": "/collections/new-arrivals",
               "badge": "",
-              "badge_color": "#0F5A43",
+              "badge_color": "#0f5a43",
               "highlight": true,
               "mega_panel": "new-arrivals",
-              "mega_menu": ""
+              "mega_menu": "",
+              "col1_desc": "",
+              "col2_desc": "",
+              "col3_desc": "",
+              "col4_desc": "",
+              "col5_desc": "",
+              "col6_desc": ""
             }
           }
         },
@@ -210,7 +292,30 @@
           "nav_bags_pouches",
           "nav_fashion_grooming",
           "nav_new_arrivals"
-        ]
+        ],
+        "settings": {
+          "show_tagline": true,
+          "tagline_brand": "Viha Online",
+          "tagline_sub": "Chosen by Mrs Anitha Kuppusamy",
+          "show_track": true,
+          "track_label": "Track My Order",
+          "track_link": "/pages/track-order",
+          "booking_phone": "87544 44915",
+          "booking_label": "Wholesale & Concerts",
+          "show_search": true,
+          "show_account": true,
+          "show_wishlist": true,
+          "show_cart": true,
+          "show_country": true,
+          "mobile_group1_label": "Shop Collections",
+          "mobile_group2_label": "More Categories",
+          "wholesale_whatsapp_number": "",
+          "wholesale_whatsapp_label": "Wholesale Enquiries",
+          "wholesale_whatsapp_message": "Hi, I would like to know more about wholesale orders.",
+          "concert_whatsapp_number": "",
+          "concert_whatsapp_label": "Book Concert Tickets",
+          "concert_whatsapp_message": "Hi, I would like to book concert tickets."
+        }
       },
       "footer": {
         "type": "footer",
@@ -219,10 +324,26 @@
           "contact_email": "",
           "contact_phone": "+91 89398 99409",
           "contact_address": "",
+          "map_url": "",
+          "map_button_label": "Get Directions",
           "trust_badge_heading": "100% Pure & Natural",
           "trust_badge_text": "No parabens · No sulphates · No artificial fragrances · Cruelty-free",
           "wholesale_whatsapp_number": "918754444915",
-          "concert_whatsapp_number": "918754444915"
+          "wholesale_whatsapp_label": "Wholesale Enquiries",
+          "wholesale_whatsapp_message": "Hi, I would like to know more about wholesale orders.",
+          "concert_whatsapp_number": "918754444915",
+          "concert_whatsapp_label": "Book Concert Tickets",
+          "concert_whatsapp_message": "Hi, I would like to book concert tickets."
+        }
+      },
+      "delivery-notice": {
+        "type": "delivery-notice",
+        "settings": {
+          "enabled": true,
+          "eyebrow": "A note from Viha",
+          "heading": "Delivery Time: 8-10 Working Days",
+          "body": "<p>You can track your parcels on the India Post website with your tracking number.</p><p>Kindly allow us to deliver our products to you in their best form. We require at least 7-8 working days for delivery.</p><p><strong>NOTE:</strong> Day of booking, Sundays, public holidays and Tamil Nadu festival days are NOT considered working days. Minimum 14 working days required for delivery.</p>",
+          "button_label": "Got it, continue shopping"
         }
       }
     },
@@ -240,13 +361,6 @@
           "widget_type": "review-widget"
         }
       }
-    },
-    "business_phone": "+91 89398 99409",
-    "social_instagram_link": "https://www.instagram.com/viha.online",
-    "social_facebook_link": "https://www.facebook.com/vihachennai",
-    "social_youtube_link": "https://www.youtube.com/channel/UCVBYKN8gtRwPxGczoHdKPDA",
-    "logo": "shopify://shop_images/viha-online-logo.png",
-    "favicon": "shopify://shop_images/viha-online-favicon-leaf.png",
-    "social_share_image": "shopify://shop_images/viha-online-share.png"
+    }
   }
 }

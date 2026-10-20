@@ -1,5 +1,5 @@
 {%- comment -%} Beauty page "Ingredient Spotlight" — each card is a block; image comes from its linked collection {%- endcomment -%}
-<section style="padding:4rem 3rem;background:var(--color-paper);border-top:1px solid var(--color-cream-dark);">
+<section style="padding:4rem 3rem;background:var(--color-paper);">
   <div style="max-width:var(--max-w);margin:0 auto;">
     <div style="text-align:center;margin-bottom:2.5rem;">
       {%- if section.settings.eyebrow != blank -%}
@@ -19,7 +19,7 @@
     <div class="count-grid" style="--cols:{{ grid_cols }};gap:1.25rem;">
       {%- for block in section.blocks -%}
         {%- assign ing_col = collections[block.settings.collection] -%}
-        <div style="border:1px solid var(--color-cream-dark);border-radius:2px;overflow:hidden;background:var(--color-cream);transition:box-shadow 0.2s,border-color 0.2s;" onmouseover="this.style.boxShadow='0 4px 16px rgba(0,0,0,0.09)';this.style.borderColor='rgba(15,90,67,0.3)'" onmouseout="this.style.boxShadow='';this.style.borderColor='var(--color-cream-dark)'" {{ block.shopify_attributes }}>
+        <div style="border-radius:2px;overflow:hidden;background:var(--color-cream);transition:box-shadow 0.2s,border-color 0.2s;" onmouseover="this.style.boxShadow='0 4px 16px rgba(0,0,0,0.09)';this.style.borderColor='rgba(15,90,67,0.3)'" onmouseout="this.style.boxShadow='';this.style.borderColor='var(--color-cream-dark)'" {{ block.shopify_attributes }}>
           <div style="aspect-ratio:4/3;overflow:hidden;background:var(--color-paper);">
             {%- if ing_col.image -%}
               <img src="{{ ing_col.image | img_url: '600x' }}" alt="{{ block.settings.title }}" loading="lazy" style="width:100%;height:100%;object-fit:cover;filter:brightness(0.9);transition:transform 0.5s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform=''">

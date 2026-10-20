@@ -35,7 +35,7 @@
   </div>
 
   {%- comment -%} Trust strip {%- endcomment -%}
-  <div style="position:absolute;bottom:0;left:0;right:0;z-index:1;border-top:1px solid rgba(255,255,255,0.10);background:rgba(0,0,0,0.40);padding:12px 0;overflow:hidden;">
+  <div style="position:absolute;bottom:0;left:0;right:0;z-index:1;background:rgba(0,0,0,0.40);padding:12px 0;overflow:hidden;">
     <div style="max-width:var(--max-w);margin:0 auto;padding:0 3rem;display:flex;align-items:center;justify-content:center;gap:2.5rem;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.18em;color:rgba(255,255,255,0.50);flex-wrap:wrap;">
       {%- for block in section.blocks -%}
         {%- if block.type == 'trust_item' -%}

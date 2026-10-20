@@ -67,7 +67,7 @@
 <meta property="product:price:currency" content="{{ cart.currency.iso_code }}">
 <meta property="og:availability" content="{% if og_variant.available %}instock{% else %}oos{% endif %}">
 
-<nav aria-label="Breadcrumb" class="product-breadcrumb" style="border-bottom:1px solid var(--color-cream-dark);background:var(--color-paper);">
+<nav aria-label="Breadcrumb" class="product-breadcrumb" style="background:var(--color-paper);">
   <ol style="display:flex;align-items:center;gap:8px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.14em;color:rgba(45,45,45,0.5);list-style:none;overflow:hidden;">
     <li style="flex-shrink:0;"><a href="/" style="color:inherit;transition:color 0.15s;" onmouseover="this.style.color='var(--color-gold)'" onmouseout="this.style.color='inherit'">Home</a></li>
     <li aria-hidden="true" style="opacity:0.4;flex-shrink:0;">/</li>
@@ -137,7 +137,7 @@
     </div>
 
     {%- if yt_id != blank -%}
-    <div style="margin-top:12px;border:1px solid var(--color-cream-dark);border-radius:2px;overflow:hidden;">
+    <div style="margin-top:12px;border-radius:2px;overflow:hidden;">
       <div id="yt-gallery-player" role="button" tabindex="0"
         aria-label="Play video: {{ yt_meta.name | default: current_product.title | escape }}"
         onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click();}"
@@ -262,15 +262,15 @@
     {%- assign dims = current_product.metafields.custom.size_or_dimensions -%}
     {%- assign wt = current_product.metafields.custom.weight -%}
     {%- if mat != blank or dims != blank or wt != blank -%}
-    <div style="margin:1.25rem 0;padding:1rem;border:1px solid var(--color-cream-dark);border-radius:2px;background:var(--color-paper);font-size:12px;">
+    <div style="margin:1.25rem 0;padding:1rem;border-radius:2px;background:var(--color-paper);font-size:12px;">
       {%- if mat != blank -%}
-      <div style="display:grid;grid-template-columns:120px 1fr;gap:6px;padding-bottom:6px;border-bottom:1px solid var(--color-cream-dark);margin-bottom:6px;">
+      <div style="display:grid;grid-template-columns:120px 1fr;gap:6px;padding-bottom:6px;margin-bottom:6px;">
         <span style="font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--color-charcoal);">Materials</span>
         <span style="color:rgba(45,45,45,0.75);">{{ mat }}</span>
       </div>
       {%- endif -%}
       {%- if dims != blank -%}
-      <div style="display:grid;grid-template-columns:120px 1fr;gap:6px;padding-bottom:6px;border-bottom:1px solid var(--color-cream-dark);margin-bottom:6px;">
+      <div style="display:grid;grid-template-columns:120px 1fr;gap:6px;padding-bottom:6px;margin-bottom:6px;">
         <span style="font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--color-charcoal);">Dimensions</span>
         <span style="color:rgba(45,45,45,0.75);">{{ dims }}</span>
       </div>
@@ -379,7 +379,7 @@
 {%- if rich_desc != blank -%}
   {%- assign rich_sections = rich_desc -%}
   {%- if rich_sections.size > 0 -%}
-  <div style="max-width:var(--max-w);margin:0 auto;padding:4rem 3rem;border-top:1px solid var(--color-cream-dark);">
+  <div style="max-width:var(--max-w);margin:0 auto;padding:4rem 3rem;">
     <h3 style="font-family:var(--font-heading);font-size:clamp(1.25rem,2.5vw,1.75rem);font-weight:900;color:var(--color-maroon);text-align:center;margin-bottom:2.5rem;">Discover the Mystical Power</h3>
     <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:2.5rem;">
       {%- for section in rich_sections -%}
@@ -402,7 +402,7 @@
   "Write a Review" form). The star badge near the title uses Judge.me's preview
   badge. No hardcoded/placeholder review data lives in the theme.
 {%- endcomment -%}
-<section style="max-width:var(--max-w);margin:0 auto;padding:4rem 3rem 5rem;border-top:1px solid var(--color-cream-dark);">
+<section style="max-width:var(--max-w);margin:0 auto;padding:4rem 3rem 5rem;">
   <div style="text-align:center;margin-bottom:3rem;">
     <span style="display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.2em;color:var(--color-gold);margin-bottom:0.75rem;">Real Results</span>
     <h2 style="font-family:var(--font-heading);font-size:clamp(1.25rem,3vw,2rem);font-weight:900;color:var(--color-maroon);">Customer Reviews</h2>
@@ -463,7 +463,7 @@
 .pdp-variant-group__label span { color: var(--color-maroon); }
 .pdp-variant-group__values { display: flex; flex-wrap: wrap; gap: 8px; }
 .pdp-variant {
-  padding: 8px 15px; min-height: 40px; border: 1px solid var(--color-cream-dark);
+  padding: 8px 15px; min-height: 40px;
   background: var(--color-paper); font-size: 12px; font-family: inherit; color: var(--color-charcoal);
   border-radius: 2px; cursor: pointer; transition: border-color 0.15s, background 0.15s, color 0.15s;
 }
@@ -495,7 +495,7 @@
 .pdp-buy-now .shopify-payment-button__button { min-height: 54px; border-radius: 2px; }
 
 /* ── Trust row ── */
-.pdp-trust { list-style: none; margin: 1.5rem 0 0; padding: 1rem 0 0; border-top: 1px solid var(--color-cream-dark); display: flex; flex-direction: column; gap: 10px; }
+.pdp-trust { list-style: none; margin: 1.5rem 0 0; padding: 1rem 0 0; display: flex; flex-direction: column; gap: 10px; }
 .pdp-trust__item { display: flex; align-items: center; gap: 10px; font-size: 12px; color: rgba(45,45,45,0.75); }
 .pdp-trust__item svg { width: 18px; height: 18px; flex-shrink: 0; color: var(--color-gold); }
 
@@ -503,14 +503,14 @@
 .pdp-sticky-atc {
   position: fixed; left: 0; right: 0; bottom: calc(54px + env(safe-area-inset-bottom));
   z-index: 39; display: flex; align-items: center; gap: 12px;
-  padding: 8px 12px; background: var(--color-paper); border-top: 1px solid var(--color-cream-dark);
+  padding: 8px 12px; background: var(--color-paper);
   box-shadow: 0 -4px 16px rgba(0,0,0,0.08);
   transform: translateY(120%); transition: transform 0.25s ease; pointer-events: none;
 }
 .pdp-sticky-atc.is-visible { transform: translateY(0); pointer-events: auto; }
 @media (min-width: 768px) { .pdp-sticky-atc { display: none; } }
 .pdp-sticky-atc__info { display: flex; align-items: center; gap: 10px; min-width: 0; flex: 1; }
-.pdp-sticky-atc__img { width: 40px; height: 40px; object-fit: contain; mix-blend-mode: multiply; flex-shrink: 0; border: 1px solid var(--color-cream-dark); border-radius: 2px; }
+.pdp-sticky-atc__img { width: 40px; height: 40px; object-fit: contain; mix-blend-mode: multiply; flex-shrink: 0; border-radius: 2px; }
 .pdp-sticky-atc__text { display: flex; flex-direction: column; min-width: 0; }
 .pdp-sticky-atc__name { font-size: 11px; color: var(--color-charcoal); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .pdp-sticky-atc__price { font-size: 14px; font-weight: 700; color: var(--color-maroon); }

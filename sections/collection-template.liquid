@@ -9,7 +9,7 @@
 
 {%- comment -%} ── Collection hero ─── {%- endcomment -%}
 <section style="position:relative;background:var(--color-maroon-dark);padding:4rem 3rem 3.5rem;overflow:hidden;">
-  <div style="position:absolute;inset:0;opacity:0.05;background-image:radial-gradient(circle,#B8893D 1px,transparent 1px);background-size:18px 18px;pointer-events:none;"></div>
+  <div style="position:absolute;inset:0;opacity:0.05;background-size:18px 18px;pointer-events:none;"></div>
   {%- if col.image -%}
     <div style="position:absolute;inset:0;background-image:url('{{ col.image | img_url: '1920x' }}');background-size:cover;background-position:center;filter:brightness(0.25);mix-blend-mode:luminosity;"></div>
   {%- endif -%}
@@ -41,7 +41,7 @@
 </script>
 
 {%- comment -%} ── Mobile pills (scrollable, hidden on desktop) ─── {%- endcomment -%}
-<div style="background:var(--color-paper);border-bottom:1px solid var(--color-cream-dark);padding:12px 1.5rem;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;" class="catalog-pills-mobile">
+<div style="background:var(--color-paper);padding:12px 1.5rem;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;" class="catalog-pills-mobile">
   <div style="display:flex;gap:8px;width:max-content;">
     <a href="/collections/all"               style="display:inline-flex;align-items:center;padding:6px 14px;border-radius:100px;border:1px solid var(--color-cream-dark);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;white-space:nowrap;transition:all 0.15s;{% if active_handle == 'all' %}background:var(--color-maroon);color:#fff;border-color:var(--color-maroon);{% else %}background:var(--color-paper);color:rgba(45,45,45,0.65);{% endif %}">All</a>
     <a href="/collections/spiritual-pooja"   style="display:inline-flex;align-items:center;padding:6px 14px;border-radius:100px;border:1px solid var(--color-cream-dark);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;white-space:nowrap;transition:all 0.15s;{% if active_handle == 'spiritual-pooja' %}background:var(--color-maroon);color:#fff;border-color:var(--color-maroon);{% else %}background:var(--color-paper);color:rgba(45,45,45,0.65);{% endif %}">Spiritual &amp; Pooja</a>
@@ -115,7 +115,7 @@
       <aside id="catalog-sidebar" class="catalog-sidebar" aria-label="Category filters">
 
         <div style="margin-bottom:1.75rem;">
-          <h2 style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.2em;color:var(--color-maroon);padding-bottom:0.75rem;border-bottom:1px solid var(--color-cream-dark);margin-bottom:1rem;">Categories</h2>
+          <h2 style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.2em;color:var(--color-maroon);padding-bottom:0.75rem;margin-bottom:1rem;">Categories</h2>
           <nav style="display:flex;flex-direction:column;gap:2px;">
             {%- assign sidebar_cats = "all|All Essentials|/collections/all~spiritual-pooja|Spiritual & Pooja|/collections/spiritual-pooja~pooja-products|‣ Pooja Essentials|/collections/pooja-products~statues-idols|‣ God Idols & Statues|/collections/statues-idols~gemstones-crystals|‣ Crystal & Healing|/collections/gemstones-crystals~karungali|‣ Karungali Products|/collections/karungali~jewelleries|Jewellery|/collections/jewelleries~aimpon-panchaloha|‣ Impon Jewellery|/collections/aimpon-panchaloha~gemstones-crystals|‣ Crystal & Gemstone|/collections/gemstones-crystals~ayurveda-herbal|Ayurveda & Herbal|/collections/ayurveda-herbal~fashion-grooming|Fashion & Sarees|/collections/fashion-grooming~home-living|Home & Living|/collections/home-living~food-organic|Food & Organic|/collections/food-organic~kids-baby|Kids & Baby|/collections/kids-baby~bags-pouches|Bags & Pouches|/collections/bags-pouches~books-gifts|Books & Gifts|/collections/books-gifts~new-arrivals|New Arrivals|/collections/new-arrivals" | split: "~" -%}
             {%- for cat in sidebar_cats -%}
@@ -158,7 +158,7 @@
 
         {%- if col.all_tags.size > 0 -%}
           <div style="margin-top:1.75rem;">
-            <h2 style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.2em;color:var(--color-maroon);padding-bottom:0.75rem;border-bottom:1px solid var(--color-cream-dark);margin-bottom:0.5rem;">Refine</h2>
+            <h2 style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.2em;color:var(--color-maroon);padding-bottom:0.75rem;margin-bottom:0.5rem;">Refine</h2>
 
             {%- if current_tags.size > 0 -%}
               <a href="{{ col.url }}" style="display:inline-block;margin:0 0 0.75rem;font-size:11px;color:var(--color-gold);text-decoration:underline;">Clear refinement</a>
@@ -222,7 +222,7 @@
 
         {%- comment -%} Price filter (cosmetic; actual filter via URL) {%- endcomment -%}
         <div style="margin-top:1.75rem;">
-          <h3 style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.2em;color:var(--color-maroon);padding-bottom:0.75rem;border-bottom:1px solid var(--color-cream-dark);margin-bottom:1rem;">Availability</h3>
+          <h3 style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.2em;color:var(--color-maroon);padding-bottom:0.75rem;margin-bottom:1rem;">Availability</h3>
           <label style="display:flex;align-items:center;gap:8px;font-size:12px;color:rgba(45,45,45,0.75);cursor:pointer;padding:4px 0;">
             <input type="checkbox" id="in-stock-filter" style="width:14px;height:14px;accent-color:var(--color-maroon);cursor:pointer;">
             In Stock Only
@@ -274,7 +274,7 @@
             {% endif %}
 
           {% else %}
-            <div style="text-align:center;padding:5rem 2rem;background:var(--color-paper);border:1px solid var(--color-cream-dark);border-radius:2px;">
+            <div style="text-align:center;padding:5rem 2rem;background:var(--color-paper);border-radius:2px;">
               <p style="font-family:var(--font-heading);font-size:1.25rem;color:var(--color-maroon);margin-bottom:0.75rem;font-weight:700;">No products found</p>
               <p style="font-size:13px;color:var(--color-muted);margin-bottom:1.5rem;">Try a different category or browse all essentials.</p>
               <a href="/collections/all" class="btn btn--primary" style="display:inline-flex;align-items:center;gap:8px;padding:12px 24px;font-size:11px;">Browse All</a>
@@ -312,7 +312,6 @@
 .catalog-sidebar {
   display: none;
   background: var(--color-paper);
-  border: 1px solid var(--color-cream-dark);
   border-radius: 2px;
   padding: 1.5rem;
   height: fit-content;
@@ -342,7 +341,6 @@
 .collection-seo-desc {
   margin-top: 3rem;
   padding-top: 2rem;
-  border-top: 1px solid var(--color-cream-dark);
 }
 .collection-seo-desc__title {
   font-family: var(--font-heading);

@@ -1,6 +1,6 @@
 {%- comment -%} Beauty page "Beauty Journal" — blog picker instead of hardcoded 'beauty' blog handle {%- endcomment -%}
 {%- assign beauty_blog = section.settings.blog | default: blogs['beauty'] -%}
-<section id="beauty-journal" style="padding:4rem 3rem;background:var(--color-cream);border-top:1px solid var(--color-cream-dark);">
+<section id="beauty-journal" style="padding:4rem 3rem;background:var(--color-cream);">
   <div style="max-width:var(--max-w);margin:0 auto;">
     <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:2.5rem;flex-wrap:wrap;gap:1rem;">
       <div>
@@ -20,7 +20,7 @@
     {%- if beauty_blog != blank and beauty_blog.articles_count > 0 -%}
       <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.5rem;">
         {%- for article in beauty_blog.articles limit: section.settings.posts_to_show -%}
-          <article style="border:1px solid var(--color-cream-dark);border-top:2px solid transparent;border-radius:2px;overflow:hidden;background:var(--color-paper);transition:box-shadow 0.2s,border-top-color 0.2s;" onmouseover="this.style.boxShadow='0 6px 20px rgba(0,0,0,0.09)';this.style.borderTopColor='var(--color-gold)'" onmouseout="this.style.boxShadow='';this.style.borderTopColor='transparent'">
+          <article style="border-top:2px solid transparent;border-radius:2px;overflow:hidden;background:var(--color-paper);transition:box-shadow 0.2s,border-top-color 0.2s;" onmouseover="this.style.boxShadow='0 6px 20px rgba(0,0,0,0.09)';this.style.borderTopColor='var(--color-gold)'" onmouseout="this.style.boxShadow='';this.style.borderTopColor='transparent'">
             {%- if article.image -%}
               <a href="{{ article.url }}" style="display:block;aspect-ratio:3/2;overflow:hidden;" aria-hidden="true">
                 <img src="{{ article.image | img_url: '600x' }}" alt="{{ article.image.alt | default: article.title | escape }}" loading="lazy" style="width:100%;height:100%;object-fit:cover;transition:transform 0.5s;" onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform=''">
@@ -29,7 +29,7 @@
             <div style="padding:1.5rem;">
               <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.75rem;">
                 {%- for tag in article.tags limit: 1 -%}
-                  <span style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.15em;color:var(--color-gold);background:rgba(184,137,61,0.10);border:1px solid rgba(184,137,61,0.20);padding:2px 7px;border-radius:2px;">{{ tag }}</span>
+                  <span style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.15em;color:var(--color-gold);background:rgba(184,137,61,0.10);padding:2px 7px;border-radius:2px;">{{ tag }}</span>
                 {%- endfor -%}
               </div>
               <h3 style="font-family:var(--font-heading);font-size:1rem;font-weight:700;color:var(--color-maroon);margin-bottom:0.5rem;line-height:1.3;"><a href="{{ article.url }}" style="color:inherit;">{{ article.title }}</a></h3>

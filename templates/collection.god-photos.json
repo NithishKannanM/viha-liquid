@@ -1,0 +1,19 @@
+{
+  "sections": {
+    "category-tiles": {
+      "type": "collection-category-tiles",
+      "settings": {
+        "menu": "god-photos-categories",
+        "heading": "Shop photos by deity",
+        "only_group": ""
+      }
+    },
+    "main": {
+      "type": "collection-template",
+      "settings": {
+        "products_per_page": 24
+      }
+    }
+  },
+  "order": ["category-tiles", "main"]
+}

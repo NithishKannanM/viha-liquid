@@ -2216,3 +2216,9 @@ ul { list-style: none; }
 @media (min-width: 1400px) {
   [data-mega-panel="clothing"] .mega-menu__subcats { grid-template-columns: repeat(8, minmax(0, 1fr)); }
 }
+/* Spiritual & Pooja: seven menu columns beside the journal teaser; a third menu level is indented */
+@media (min-width: 1200px) {
+  [data-mega-panel="spiritual-pooja"] .mega-menu__inner { grid-template-columns: 1fr auto 240px; }
+  [data-mega-panel="spiritual-pooja"] .mega-menu__subcats { grid-template-columns: repeat(4, minmax(0, 1fr)); row-gap: 2rem; }
+}
+.mega-menu__cat-link--sub { padding-left: 12px; font-size: 10.5px; color: rgba(45,45,45,0.65); }

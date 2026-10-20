@@ -15,6 +15,7 @@
   {%- endif -%}
 
   {%- for group in menu.links -%}
+    {%- if section.settings.only_group != blank and group.title != section.settings.only_group -%}{%- continue -%}{%- endif -%}
     {%- capture group_tiles -%}
       {%- for link in group.links -%}
         {%- if link.url == group.url -%}{%- continue -%}{%- endif -%}
@@ -73,7 +74,8 @@
   "name": "Category tiles",
   "settings": [
     { "type": "link_list", "id": "menu", "label": "Menu", "info": "Top-level items become groups, their child links become tiles." },
-    { "type": "text", "id": "heading", "label": "Heading" }
+    { "type": "text", "id": "heading", "label": "Heading" },
+    { "type": "text", "id": "only_group", "label": "Show only this group", "info": "Optional. Exact title of one top-level menu item, e.g. Amman / Goddess Statues. Leave blank to show every group." }
   ],
   "presets": [{ "name": "Category tiles" }]
 }

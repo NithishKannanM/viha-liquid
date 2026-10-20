@@ -70,13 +70,14 @@
               "badge_color": "#0f5a43",
               "highlight": false,
               "mega_panel": "spiritual-pooja",
-              "mega_menu": "",
-              "col1_desc": "",
-              "col2_desc": "",
-              "col3_desc": "",
-              "col4_desc": "",
-              "col5_desc": "",
-              "col6_desc": ""
+              "mega_menu": "pooja-mega-menu",
+              "col1_desc": "Daily worship items",
+              "col2_desc": "Deities, goddesses and figurines",
+              "col3_desc": "Photos and idol clothing",
+              "col4_desc": "Energy and metaphysical",
+              "col5_desc": "Sacred ebony wood",
+              "col6_desc": "Brass and copper items",
+              "col7_desc": "Vastu and cosmic items"
             }
           },
           "nav_ayurveda_herbal": {

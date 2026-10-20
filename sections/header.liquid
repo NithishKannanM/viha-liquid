@@ -210,7 +210,8 @@
       {%- comment -%} SPIRITUAL & POOJA {%- endcomment -%}
       <div data-mega-panel="spiritual-pooja" hidden>
         <div class="mega-menu__inner">
-          {%- assign mm_block_spiritual_pooja = section.blocks | where: "settings.mega_panel", "spiritual-pooja" | first -%}
+          {%- assign mm_block_spiritual_pooja = nil -%}
+          {%- for nav_b in section.blocks -%}{%- if nav_b.settings.mega_panel == 'spiritual-pooja' -%}{%- assign mm_block_spiritual_pooja = nav_b -%}{%- endif -%}{%- endfor -%}
           {%- if mm_block_spiritual_pooja.settings.mega_menu != blank -%}
           {%- render "mega-menu-dynamic-columns", block: mm_block_spiritual_pooja -%}
           {%- else -%}

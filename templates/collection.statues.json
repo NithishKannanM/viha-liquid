@@ -1,0 +1,19 @@
+{
+  "sections": {
+    "category-tiles": {
+      "type": "collection-category-tiles",
+      "settings": {
+        "menu": "statues-idols-categories",
+        "heading": "Shop statues by category",
+        "only_group": ""
+      }
+    },
+    "main": {
+      "type": "collection-template",
+      "settings": {
+        "products_per_page": 24
+      }
+    }
+  },
+  "order": ["category-tiles", "main"]
+}

@@ -157,10 +157,10 @@
         {%- endif -%}
         {%- if refine_count > 0 or ns_count > 0 -%}
           <div>
-            <h2 style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.2em;color:var(--color-maroon);padding-bottom:0.75rem;margin-bottom:0.5rem;">Refine</h2>
+            <h2 style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.2em;color:var(--color-maroon);padding-bottom:0.75rem;margin-bottom:0.5rem;">Filter by Type</h2>
 
             {%- if current_tags.size > 0 -%}
-              <a href="{{ col.url }}" style="display:inline-block;margin:0 0 0.75rem;font-size:11px;color:var(--color-gold);text-decoration:underline;">Clear refinement</a>
+              <a href="{{ col.url }}" style="display:inline-block;margin:0 0 0.75rem;font-size:13px;color:var(--color-gold);text-decoration:underline;">&larr; Show all {{ col.title | escape }}</a>
             {%- endif -%}
 
             {%- comment -%} Namespaced axes first, one heading each. {%- endcomment -%}
@@ -196,8 +196,11 @@
                   {%- assign rlabel = rparts[1] | default: rtag -%}
                   {%- assign on = false -%}
                   {%- if current_tags contains rtag %}{% assign on = true %}{% endif -%}
-                  {%- if col.tags contains rtag or on -%}
-                    <a href="{% if on %}{{ col.url }}{% else %}{{ col.url }}/{{ rtag | handleize }}{% endif %}" {% if on %}aria-current="true"{% endif %} style="padding:5px 8px;border-radius:2px;font-size:13px;text-decoration:none;color:{% if on %}#fff{% else %}rgba(45,45,45,0.85){% endif %};background:{% if on %}var(--color-maroon){% else %}transparent{% endif %};">{% if on %}&times; {% endif %}{{ rlabel | escape }}</a>
+                  {%- comment -%} On a tag page col.tags holds only the filtered products' tags, so the list
+                    would shrink to whatever happens to share products with the chosen type. Keep the
+                    whole curated list visible instead; each link is one type, never stacked. {%- endcomment -%}
+                  {%- if col.tags contains rtag or current_tags.size > 0 -%}
+                    <a href="{% if on %}{{ col.url }}{% else %}{{ col.url }}/{{ rtag | handleize }}{% endif %}" {% if on %}aria-current="true"{% endif %} style="padding:6px 8px;border-radius:2px;font-size:14px;text-decoration:none;color:{% if on %}#fff{% else %}rgba(45,45,45,0.85){% endif %};background:{% if on %}var(--color-maroon){% else %}transparent{% endif %};">{% if on %}&times; {% endif %}{{ rlabel | escape }}</a>
                   {%- endif -%}
                 {%- endfor -%}
               </nav>

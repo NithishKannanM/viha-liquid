@@ -89,7 +89,7 @@
           "type": "tile",
           "settings": {
             "label": "Herbal Powders",
-            "collection": "herbal-powders-1",
+            "collection": "herbal-powders",
             "custom_link": "",
             "image": "shopify://shop_images/viha-qa-herbal-powders.jpg"
           }

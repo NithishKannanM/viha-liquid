@@ -421,15 +421,15 @@
               "highlight": false,
               "mega_panel": "clothing",
               "mega_menu": "clothing-mega-menu",
-              "col1_desc": "By fabric and weave",
-              "col2_desc": "Kurtis, shirts, hoodies, gowns",
-              "col3_desc": "Pants, palazzo, patiala",
-              "col4_desc": "Readymade and blouse bits",
-              "col5_desc": "Shawls and dupattas",
-              "col6_desc": "Half saree and pavadai sets",
-              "col7_desc": "Cotton, fancy and feeding",
-              "col8_desc": "Boys dress and kids wear",
-              "col9_desc": "Dhoti, shirt and saree sets"
+              "col1_desc": "",
+              "col2_desc": "",
+              "col3_desc": "",
+              "col4_desc": "",
+              "col5_desc": "",
+              "col6_desc": "",
+              "col7_desc": "",
+              "col8_desc": "",
+              "col9_desc": ""
             }
           }
         },

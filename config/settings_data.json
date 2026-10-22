@@ -175,25 +175,6 @@
               "col7_desc": ""
             }
           },
-          "nav_malas_karungali": {
-            "type": "nav_item",
-            "settings": {
-              "label": "Karungali Products",
-              "link": "/collections/karungali",
-              "badge": "",
-              "badge_color": "#0f5a43",
-              "highlight": false,
-              "mega_panel": "malas-karungali",
-              "mega_menu": "nav-malas-karungali",
-              "col1_desc": "",
-              "col2_desc": "",
-              "col3_desc": "",
-              "col4_desc": "",
-              "col5_desc": "",
-              "col6_desc": "",
-              "col7_desc": ""
-            }
-          },
           "nav_crystals_astrology": {
             "type": "nav_item",
             "settings": {
@@ -460,7 +441,6 @@
           "nav_statues_idols",
           "nav_conch_shells",
           "nav_god_photos",
-          "nav_malas_karungali",
           "nav_wooden_products",
           "nav_crystals_astrology",
           "nav_ayurveda_herbal",
@@ -498,7 +478,7 @@
           "concert_whatsapp_number": "",
           "concert_whatsapp_label": "Book Concert Tickets",
           "concert_whatsapp_message": "Hi, I would like to book concert tickets.",
-          "mobile_group1_count": 10
+          "mobile_group1_count": 9
         }
       },
       "footer": {

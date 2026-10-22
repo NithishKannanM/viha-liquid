@@ -8,7 +8,7 @@
   untouched when this isn't used.
 
   Menu structure expected: each top-level link in the picked menu becomes a
-  column heading; that link's own sub-links become the column's links, and a
+  column heading (clickable when it has a real URL, not '#'); that link's own sub-links become the column's links, and a
   third level (e.g. Amman / Goddess Statues > Varahi Amman) renders indented.
   Column description text comes from the block's col1_desc…col9_desc
   settings (Shopify menus have no description field of their own), matched
@@ -21,7 +21,11 @@
 <div class="mega-menu__subcats">
   {%- for heading_link in mm_menu.links limit: 9 -%}
     <div>
+      {%- if heading_link.url != blank and heading_link.url != '#' -%}
+      <a href="{{ heading_link.url }}" class="mega-menu__cat-heading mega-menu__cat-heading--link">{{ heading_link.title | escape }}</a>
+      {%- else -%}
       <p class="mega-menu__cat-heading">{{ heading_link.title | escape }}</p>
+      {%- endif -%}
       {%- assign mm_desc = '' -%}
       {%- case forloop.index -%}
         {%- when 1 -%}{%- assign mm_desc = block.settings.col1_desc -%}

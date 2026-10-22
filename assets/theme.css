@@ -2239,3 +2239,12 @@ ul { list-style: none; }
 .mega-menu .mega-menu__divider,
 .mega-menu .mega-menu__featured { display: none; }
 .mega-menu .mega-menu__inner { grid-template-columns: 1fr; }
+
+/* Clickable column headings + Wooden Products panel (22 Oct) */
+a.mega-menu__cat-heading--link { display: block; }
+a.mega-menu__cat-heading--link:hover { color: var(--color-maroon); }
+@media (min-width: 1024px) {
+  [data-mega-panel="wooden-products"] .mega-menu__subcats { grid-template-columns: repeat(4, minmax(0, 1fr)); grid-auto-flow: dense; row-gap: 1.25rem; align-items: start; }
+  [data-mega-panel="wooden-products"] .mega-menu__subcats > div:nth-child(2) { grid-column: span 2; grid-row: span 2; columns: 2; column-gap: 1.5rem; }
+  [data-mega-panel="wooden-products"] .mega-menu__subcats > div:nth-child(2) > .mega-menu__cat-heading { column-span: all; }
+}

@@ -955,6 +955,21 @@
         </div>
       </div>
 
+      {%- comment -%} SIMPLE LIST PANELS: any nav_item with a mega_menu whose panel key is not one of the
+          hardcoded panels above gets one plain list of links (no columns, no journal teaser). {%- endcomment -%}
+      {%- assign mm_hardcoded_keys = 'spiritual-pooja,ayurveda-herbal,beauty,jewellery-fashion,clothing,home-living,food-organic,kids-baby,books-gifts,bags-pouches,fashion-grooming,new-arrivals' | split: ',' -%}
+      {%- for nav_b in section.blocks -%}
+        {%- if nav_b.type == 'nav_item' and nav_b.settings.mega_menu != blank and nav_b.settings.mega_panel != blank -%}
+          {%- unless mm_hardcoded_keys contains nav_b.settings.mega_panel -%}
+      <div data-mega-panel="{{ nav_b.settings.mega_panel | escape }}" hidden>
+        <div class="mega-menu__inner mega-menu__inner--simple">
+          {%- render "mega-menu-simple-list", block: nav_b -%}
+        </div>
+      </div>
+          {%- endunless -%}
+        {%- endif -%}
+      {%- endfor -%}
+
     </div>{%- comment -%} /.mega-menu {%- endcomment -%}
   </nav>{%- comment -%} /.header__row-2 {%- endcomment -%}
 

@@ -61,23 +61,156 @@
               "col6_desc": ""
             }
           },
-          "nav_spiritual_pooja": {
+          "nav_pooja_samagri": {
             "type": "nav_item",
             "settings": {
-              "label": "Spiritual & Pooja",
-              "link": "/collections/spiritual-pooja",
+              "label": "Pooja Samagri",
+              "link": "/collections/pooja-samagri",
               "badge": "",
               "badge_color": "#0f5a43",
               "highlight": false,
-              "mega_panel": "spiritual-pooja",
-              "mega_menu": "pooja-mega-menu",
-              "col1_desc": "Daily worship items",
-              "col2_desc": "Deities, goddesses and figurines",
-              "col3_desc": "Photos, god dress and ornaments",
-              "col4_desc": "Energy and metaphysical",
-              "col5_desc": "Sacred ebony wood",
-              "col6_desc": "Brass and copper items",
-              "col7_desc": "Vastu and cosmic items"
+              "mega_panel": "pooja-samagri",
+              "mega_menu": "nav-pooja-samagri",
+              "col1_desc": "",
+              "col2_desc": "",
+              "col3_desc": "",
+              "col4_desc": "",
+              "col5_desc": "",
+              "col6_desc": "",
+              "col7_desc": ""
+            }
+          },
+          "nav_pooja_utensils": {
+            "type": "nav_item",
+            "settings": {
+              "label": "Pooja Utensils",
+              "link": "/collections/pooja-utensils",
+              "badge": "",
+              "badge_color": "#0f5a43",
+              "highlight": false,
+              "mega_panel": "pooja-utensils",
+              "mega_menu": "nav-pooja-utensils",
+              "col1_desc": "",
+              "col2_desc": "",
+              "col3_desc": "",
+              "col4_desc": "",
+              "col5_desc": "",
+              "col6_desc": "",
+              "col7_desc": ""
+            }
+          },
+          "nav_vilakku_lamps": {
+            "type": "nav_item",
+            "settings": {
+              "label": "Vilakku & Oil Lamps",
+              "link": "/collections/lamp-diya",
+              "badge": "",
+              "badge_color": "#0f5a43",
+              "highlight": false,
+              "mega_panel": "",
+              "mega_menu": "",
+              "col1_desc": "",
+              "col2_desc": "",
+              "col3_desc": "",
+              "col4_desc": "",
+              "col5_desc": "",
+              "col6_desc": "",
+              "col7_desc": ""
+            }
+          },
+          "nav_statues_idols": {
+            "type": "nav_item",
+            "settings": {
+              "label": "Statues & Idols",
+              "link": "/collections/statues-idols",
+              "badge": "",
+              "badge_color": "#0f5a43",
+              "highlight": false,
+              "mega_panel": "statues-idols",
+              "mega_menu": "nav-statues-idols",
+              "col1_desc": "",
+              "col2_desc": "",
+              "col3_desc": "",
+              "col4_desc": "",
+              "col5_desc": "",
+              "col6_desc": "",
+              "col7_desc": ""
+            }
+          },
+          "nav_conch_shells": {
+            "type": "nav_item",
+            "settings": {
+              "label": "Conch & Shells (Sangu)",
+              "link": "/collections/conch-shells-yantra-sangu",
+              "badge": "",
+              "badge_color": "#0f5a43",
+              "highlight": false,
+              "mega_panel": "",
+              "mega_menu": "",
+              "col1_desc": "",
+              "col2_desc": "",
+              "col3_desc": "",
+              "col4_desc": "",
+              "col5_desc": "",
+              "col6_desc": "",
+              "col7_desc": ""
+            }
+          },
+          "nav_god_photos": {
+            "type": "nav_item",
+            "settings": {
+              "label": "God Photos & Dress",
+              "link": "/collections/god-photos",
+              "badge": "",
+              "badge_color": "#0f5a43",
+              "highlight": false,
+              "mega_panel": "god-photos",
+              "mega_menu": "nav-god-photos",
+              "col1_desc": "",
+              "col2_desc": "",
+              "col3_desc": "",
+              "col4_desc": "",
+              "col5_desc": "",
+              "col6_desc": "",
+              "col7_desc": ""
+            }
+          },
+          "nav_malas_karungali": {
+            "type": "nav_item",
+            "settings": {
+              "label": "Malas & Karungali",
+              "link": "/collections/karungali",
+              "badge": "",
+              "badge_color": "#0f5a43",
+              "highlight": false,
+              "mega_panel": "malas-karungali",
+              "mega_menu": "nav-malas-karungali",
+              "col1_desc": "",
+              "col2_desc": "",
+              "col3_desc": "",
+              "col4_desc": "",
+              "col5_desc": "",
+              "col6_desc": "",
+              "col7_desc": ""
+            }
+          },
+          "nav_crystals_astrology": {
+            "type": "nav_item",
+            "settings": {
+              "label": "Crystals & Astrology",
+              "link": "/collections/gemstones-crystals",
+              "badge": "",
+              "badge_color": "#0f5a43",
+              "highlight": false,
+              "mega_panel": "crystals-astrology",
+              "mega_menu": "nav-crystals-astrology",
+              "col1_desc": "",
+              "col2_desc": "",
+              "col3_desc": "",
+              "col4_desc": "",
+              "col5_desc": "",
+              "col6_desc": "",
+              "col7_desc": ""
             }
           },
           "nav_ayurveda_herbal": {
@@ -301,7 +434,14 @@
         },
         "block_order": [
           "nav_all_essentials",
-          "nav_spiritual_pooja",
+          "nav_pooja_samagri",
+          "nav_pooja_utensils",
+          "nav_vilakku_lamps",
+          "nav_statues_idols",
+          "nav_conch_shells",
+          "nav_god_photos",
+          "nav_malas_karungali",
+          "nav_crystals_astrology",
           "nav_ayurveda_herbal",
           "nav_beauty",
           "nav_jewellery_fashion",

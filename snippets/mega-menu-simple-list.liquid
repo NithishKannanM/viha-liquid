@@ -1,0 +1,20 @@
+{%- comment -%}
+  Mega Menu — simple list
+  -----------------------
+  Renders a dropdown panel as one plain list of links from the navigation
+  menu picked in the block's `mega_menu` setting. No column headings, no
+  descriptions, no third level: only the menu's top-level links are used,
+  so the client can add, rename or reorder links in Online Store >
+  Navigation. The first link is shown in bold as the "All ..." link.
+
+  Accepts: block (a nav_item block whose settings.mega_menu is set)
+{%- endcomment -%}
+
+{%- assign mm_simple_menu = linklists[block.settings.mega_menu] -%}
+<ul class="mega-menu__simple-list" aria-label="{{ block.settings.label | escape }}">
+  {%- for simple_link in mm_simple_menu.links -%}
+    <li>
+      <a href="{{ simple_link.url }}" class="mega-menu__simple-link{% if forloop.first %} mega-menu__simple-link--all{% endif %}">{{ simple_link.title | escape }}</a>
+    </li>
+  {%- endfor -%}
+</ul>

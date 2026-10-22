@@ -2222,3 +2222,24 @@ ul { list-style: none; }
   [data-mega-panel="spiritual-pooja"] .mega-menu__subcats { grid-template-columns: repeat(4, minmax(0, 1fr)); row-gap: 2rem; }
 }
 .mega-menu__cat-link--sub { padding-left: 12px; font-size: 10.5px; color: rgba(45,45,45,0.65); }
+
+/* Simple-list mega menu panels (Pooja tabs): one plain list of links in CSS columns, larger text than the column menus */
+.mega-menu__inner--simple { display: block; padding: 1.5rem 3rem 2rem; }
+.mega-menu__simple-list { list-style: none; margin: 0; padding: 0; column-count: 2; column-gap: 2rem; }
+.mega-menu__simple-list li { break-inside: avoid; }
+.mega-menu__simple-link {
+  display: block;
+  min-height: 40px;
+  padding: 9px 0;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+  text-transform: none;
+  letter-spacing: 0;
+  color: #2d2d2d; /* 12:1 on paper */
+  transition: color 0.15s;
+}
+.mega-menu__simple-link:hover, .mega-menu__simple-link:focus-visible { color: var(--color-maroon); }
+.mega-menu__simple-link--all { font-weight: 800; }
+@media (min-width: 1024px) { .mega-menu__simple-list { column-count: 3; } }
+@media (min-width: 1200px) { .mega-menu__simple-list { column-count: 4; } }

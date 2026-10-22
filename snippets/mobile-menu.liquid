@@ -30,14 +30,15 @@
 
     <div class="mobile-menu__divider"></div>
 
-    {%- comment -%} Departments come from the header section's nav_item blocks (same 12
-        blocks that drive the desktop nav strip + mega menu). First 7 = "Shop Collections",
-        remaining 5 = "More Categories" — matches the grouping the header has always used. {%- endcomment -%}
+    {%- comment -%} Departments come from the header section's nav_item blocks (same
+        blocks that drive the desktop nav strip + mega menu). The first `mobile_group1_count` items =
+        "Shop Collections", the rest = "More Categories". The count is a header section setting. {%- endcomment -%}
     {%- assign mobile_nav_blocks = nav_blocks | default: section.blocks -%}
+    {%- assign mobile_group1_count_plus_one = mobile_group1_count | default: 9 | plus: 1 -%}
     <p class="mobile-menu__section-label">{{ mobile_group1_label | default: "Shop Collections" | escape }}</p>
     {%- for block in mobile_nav_blocks -%}
       {%- if block.type == 'nav_item' -%}
-        {%- if forloop.index == 8 -%}
+        {%- if forloop.index == mobile_group1_count_plus_one -%}
     <div class="mobile-menu__divider"></div>
 
     <p class="mobile-menu__section-label">{{ mobile_group2_label | default: "More Categories" | escape }}</p>

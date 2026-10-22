@@ -102,7 +102,7 @@
           "nav_vilakku_lamps": {
             "type": "nav_item",
             "settings": {
-              "label": "Vilakku & Oil Lamps",
+              "label": "Vilakku & Traditional Oil Lamps",
               "link": "/collections/lamp-diya",
               "badge": "",
               "badge_color": "#0f5a43",
@@ -121,7 +121,7 @@
           "nav_statues_idols": {
             "type": "nav_item",
             "settings": {
-              "label": "Statues & Idols",
+              "label": "Statues / Idols",
               "link": "/collections/statues-idols",
               "badge": "",
               "badge_color": "#0f5a43",
@@ -140,7 +140,7 @@
           "nav_conch_shells": {
             "type": "nav_item",
             "settings": {
-              "label": "Conch & Shells (Sangu)",
+              "label": "Conch & Shells",
               "link": "/collections/conch-shells-yantra-sangu",
               "badge": "",
               "badge_color": "#0f5a43",
@@ -159,7 +159,7 @@
           "nav_god_photos": {
             "type": "nav_item",
             "settings": {
-              "label": "God Photos & Dress",
+              "label": "God & Goddess Photos",
               "link": "/collections/god-photos",
               "badge": "",
               "badge_color": "#0f5a43",
@@ -178,7 +178,7 @@
           "nav_malas_karungali": {
             "type": "nav_item",
             "settings": {
-              "label": "Malas & Karungali",
+              "label": "Karungali Products",
               "link": "/collections/karungali",
               "badge": "",
               "badge_color": "#0f5a43",
@@ -197,7 +197,7 @@
           "nav_crystals_astrology": {
             "type": "nav_item",
             "settings": {
-              "label": "Crystals & Astrology",
+              "label": "Gemstones & Crystals",
               "link": "/collections/gemstones-crystals",
               "badge": "",
               "badge_color": "#0f5a43",

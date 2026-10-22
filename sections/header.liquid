@@ -978,7 +978,7 @@
 
 {%- comment -%} ── Mobile Menu Overlay — driven by the same section.blocks as the
     desktop nav strip above, so the two can never list different departments. ── {%- endcomment -%}
-{%- render 'mobile-menu', nav_blocks: section.blocks, mobile_group1_label: section.settings.mobile_group1_label, mobile_group2_label: section.settings.mobile_group2_label -%}
+{%- render 'mobile-menu', nav_blocks: section.blocks, mobile_group1_label: section.settings.mobile_group1_label, mobile_group2_label: section.settings.mobile_group2_label, mobile_group1_count: section.settings.mobile_group1_count -%}
 
 {% schema %}
 {
@@ -1005,7 +1005,8 @@
     { "type": "checkbox", "id": "show_country", "label": "Show country / currency badge", "default": true },
 
     { "type": "header", "content": "Mobile menu grouping" },
-    { "type": "text", "id": "mobile_group1_label", "label": "Mobile menu, first group label", "info": "Groups the first 7 navigation items below.", "default": "Shop Collections" },
+    { "type": "text", "id": "mobile_group1_label", "label": "Mobile menu, first group label", "info": "Heads the first group of navigation items below (see the item count setting).", "default": "Shop Collections" },
+    { "type": "range", "id": "mobile_group1_count", "label": "Mobile menu, items in first group", "info": "How many navigation items sit under the first group label. The rest go under the second label.", "min": 1, "max": 20, "step": 1, "default": 9 },
     { "type": "text", "id": "mobile_group2_label", "label": "Mobile menu, second group label", "info": "Groups the remaining navigation items below.", "default": "More Categories" },
 
     { "type": "header", "content": "Wholesale" },

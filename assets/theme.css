@@ -2233,3 +2233,9 @@ ul { list-style: none; }
 .mega-menu__simple-list { list-style: none; margin: 0; padding: 0; column-count: 3; column-gap: 1.5rem; }
 .mega-menu__simple-list li { break-inside: avoid; }
 @media (min-width: 1200px) { .mega-menu__simple-list { column-count: 4; } }
+
+/* 22 Oct: client asked for no descriptions and no "From the Journal" card in the mega menus */
+.mega-menu .mega-menu__cat-desc,
+.mega-menu .mega-menu__divider,
+.mega-menu .mega-menu__featured { display: none; }
+.mega-menu .mega-menu__inner { grid-template-columns: 1fr; }

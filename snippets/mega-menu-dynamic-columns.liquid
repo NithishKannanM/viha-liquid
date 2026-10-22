@@ -10,16 +10,16 @@
   Menu structure expected: each top-level link in the picked menu becomes a
   column heading; that link's own sub-links become the column's links, and a
   third level (e.g. Amman / Goddess Statues > Varahi Amman) renders indented.
-  Column description text comes from the block's col1_desc…col6_desc
+  Column description text comes from the block's col1_desc…col9_desc
   settings (Shopify menus have no description field of their own), matched
-  to the column by position, capped at 8 columns.
+  to the column by position, capped at 9 columns.
 
   Accepts: block (a nav_item block whose settings.mega_menu is set)
 {%- endcomment -%}
 
 {%- assign mm_menu = linklists[block.settings.mega_menu] -%}
 <div class="mega-menu__subcats">
-  {%- for heading_link in mm_menu.links limit: 8 -%}
+  {%- for heading_link in mm_menu.links limit: 9 -%}
     <div>
       <p class="mega-menu__cat-heading">{{ heading_link.title | escape }}</p>
       {%- assign mm_desc = '' -%}
@@ -32,6 +32,7 @@
         {%- when 6 -%}{%- assign mm_desc = block.settings.col6_desc -%}
         {%- when 7 -%}{%- assign mm_desc = block.settings.col7_desc -%}
         {%- when 8 -%}{%- assign mm_desc = block.settings.col8_desc -%}
+        {%- when 9 -%}{%- assign mm_desc = block.settings.col9_desc -%}
       {%- endcase -%}
       {%- if mm_desc != blank -%}<p class="mega-menu__cat-desc">{{ mm_desc | escape }}</p>{%- endif -%}
       {%- for gl in heading_link.links -%}

@@ -416,7 +416,7 @@
           "nav_wooden_products": {
             "type": "nav_item",
             "settings": {
-              "label": "Wooden Products",
+              "label": "All Wooden Products",
               "link": "/collections/wooden-products",
               "badge": "",
               "badge_color": "#0f5a43",

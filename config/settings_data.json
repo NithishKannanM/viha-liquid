@@ -46,7 +46,7 @@
           "nav_pooja_samagri": {
             "type": "nav_item",
             "settings": {
-              "label": "Pooja Samagri",
+              "label": "Pooja Products & Samagri",
               "link": "/collections/pooja-samagri",
               "badge": "",
               "badge_color": "#0f5a43",

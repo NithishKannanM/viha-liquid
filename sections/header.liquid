@@ -172,7 +172,7 @@
         {%- if block.type == 'nav_item' -%}
         <a
           href="{{ block.settings.link | escape }}"
-          class="header__nav-btn{% if forloop.index == 1 %} header__nav-btn--all{% endif %}"
+          class="header__nav-btn{% if block.settings.link == '/collections/all' %} header__nav-btn--all{% endif %}"
           {%- if block.settings.mega_panel != blank %}
           data-mega-trigger="{{ block.settings.mega_panel | escape }}" aria-haspopup="true" aria-expanded="false"
           {%- endif %}

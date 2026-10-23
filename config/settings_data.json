@@ -43,24 +43,6 @@
       "header": {
         "type": "header",
         "blocks": {
-          "nav_all_essentials": {
-            "type": "nav_item",
-            "settings": {
-              "label": "All Essentials",
-              "link": "/collections/all",
-              "badge": "",
-              "badge_color": "#0f5a43",
-              "highlight": false,
-              "mega_panel": "",
-              "mega_menu": "",
-              "col1_desc": "",
-              "col2_desc": "",
-              "col3_desc": "",
-              "col4_desc": "",
-              "col5_desc": "",
-              "col6_desc": ""
-            }
-          },
           "nav_pooja_samagri": {
             "type": "nav_item",
             "settings": {
@@ -434,7 +416,6 @@
           }
         },
         "block_order": [
-          "nav_all_essentials",
           "nav_pooja_samagri",
           "nav_pooja_utensils",
           "nav_vilakku_lamps",
@@ -478,7 +459,7 @@
           "concert_whatsapp_number": "",
           "concert_whatsapp_label": "Book Concert Tickets",
           "concert_whatsapp_message": "Hi, I would like to book concert tickets.",
-          "mobile_group1_count": 9
+          "mobile_group1_count": 8
         }
       },
       "footer": {

@@ -71,7 +71,7 @@
       {%- endfor -%}
     {%- else -%}
       {%- if feat_collection != blank and feat_collection.products.size > 0 -%}
-        <div class="collection-grid">
+        <div class="collection-grid collection-grid--five">
           {%- for product in feat_collection.products limit: section.settings.products_to_show -%}
             {% render 'product-card', product: product, lazy: true %}
           {%- endfor -%}
@@ -111,6 +111,9 @@
     scroll-snap-align: start;
   }
   @media (min-width: 640px) { .collection-scroll .product-card { width: 220px; } }
+
+  /* Homepage rows: five smaller cards per row on desktop */
+  @media (min-width: 1024px) { .collection-grid--five { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 1rem; } }
 
   .pill-row {
     display: flex;

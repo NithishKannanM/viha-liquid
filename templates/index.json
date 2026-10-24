@@ -236,7 +236,7 @@
         "heading": "Deepavali Essentials",
         "subtext": "Brass lamps, deepam oil (lamp oil), thiri (cotton wicks), Lakshmi Kubera pooja items and kolam supplies for Sunday, 8 November.",
         "collection": "deepavali",
-        "products_to_show": 8,
+        "products_to_show": 10,
         "show_view_all": true
       }
     },
@@ -552,7 +552,7 @@
         "heading": "Pooja Products & Samagri",
         "subtext": "Incense and dhoop, abishega items, kumkum and sindoor, thiri (cotton wicks), malas and rudraksha for daily pooja.",
         "collection": "pooja-samagri",
-        "products_to_show": 8,
+        "products_to_show": 10,
         "show_view_all": true
       }
     },
@@ -563,7 +563,7 @@
         "heading": "Statues / Idols",
         "subtext": "Amman, Ganesha, Lakshmi, Perumal, Murugan and Sivan statues in brass and other materials.",
         "collection": "statues-idols",
-        "products_to_show": 8,
+        "products_to_show": 10,
         "show_view_all": true
       }
     },
@@ -574,7 +574,7 @@
         "heading": "Pooja Utensils",
         "subtext": "Pooja bells, urlis, kalasam and chombu (lotta), plates, kumkum boxes and stands.",
         "collection": "pooja-utensils",
-        "products_to_show": 8,
+        "products_to_show": 10,
         "show_view_all": true
       }
     }

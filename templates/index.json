@@ -544,6 +544,39 @@
         "concert_whatsapp_subtext": "",
         "concert_whatsapp_message": "Hi, I would like to book concert tickets."
       }
+    },
+    "home-pooja-samagri": {
+      "type": "featured-collection",
+      "settings": {
+        "eyebrow": "",
+        "heading": "Pooja Products & Samagri",
+        "subtext": "Incense and dhoop, abishega items, kumkum and sindoor, thiri (cotton wicks), malas and rudraksha for daily pooja.",
+        "collection": "pooja-samagri",
+        "products_to_show": 8,
+        "show_view_all": true
+      }
+    },
+    "home-statues-idols": {
+      "type": "featured-collection",
+      "settings": {
+        "eyebrow": "",
+        "heading": "Statues / Idols",
+        "subtext": "Amman, Ganesha, Lakshmi, Perumal, Murugan and Sivan statues in brass and other materials.",
+        "collection": "statues-idols",
+        "products_to_show": 8,
+        "show_view_all": true
+      }
+    },
+    "home-pooja-utensils": {
+      "type": "featured-collection",
+      "settings": {
+        "eyebrow": "",
+        "heading": "Pooja Utensils",
+        "subtext": "Pooja bells, urlis, kalasam and chombu (lotta), plates, kumkum boxes and stands.",
+        "collection": "pooja-utensils",
+        "products_to_show": 8,
+        "show_view_all": true
+      }
     }
   },
   "order": [
@@ -551,6 +584,9 @@
     "quick-access",
     "trust-bar",
     "navaratri-collection",
+    "home-pooja-samagri",
+    "home-statues-idols",
+    "home-pooja-utensils",
     "shop-by-purpose",
     "beauty-promo",
     "bestsellers",

@@ -76,128 +76,208 @@
     "quick-access": {
       "type": "quick-access",
       "blocks": {
-        "tile-1": {
+        "tab-1": {
           "type": "tile",
           "settings": {
-            "label": "Pooja Essentials",
-            "collection": "spiritual-pooja",
+            "label": "Pooja Products & Samagri",
+            "collection": "pooja-samagri",
             "custom_link": "",
-            "image": "shopify://shop_images/viha-qa-pooja-essentials.jpg"
+            "menu": "nav-pooja-samagri"
           }
         },
-        "tile-2": {
+        "tab-2": {
           "type": "tile",
           "settings": {
-            "label": "Herbal Powders",
-            "collection": "herbal-powders",
+            "label": "Pooja Utensils",
+            "collection": "pooja-utensils",
             "custom_link": "",
-            "image": "shopify://shop_images/viha-qa-herbal-powders.jpg"
+            "menu": "nav-pooja-utensils"
           }
         },
-        "tile-3": {
+        "tab-3": {
           "type": "tile",
           "settings": {
-            "label": "Hair Care",
-            "collection": "hair-care",
+            "label": "Vilakku & Traditional Oil Lamps",
+            "collection": "lamp-diya",
             "custom_link": "",
-            "image": "shopify://shop_images/viha-qa-hair-care.jpg"
+            "menu": "nav-vilakku"
           }
         },
-        "tile-4": {
+        "tab-4": {
           "type": "tile",
           "settings": {
-            "label": "Skin & Face Care",
-            "collection": "skin-care",
+            "label": "Statues / Idols",
+            "collection": "statues-idols",
             "custom_link": "",
-            "image": "shopify://shop_images/viha-qa-skin-face-care.jpg"
+            "menu": "nav-statues-idols"
           }
         },
-        "tile-5": {
+        "tab-5": {
+          "type": "tile",
+          "settings": {
+            "label": "Conch & Shells",
+            "collection": "conch-shells-yantra-sangu",
+            "custom_link": "",
+            "menu": ""
+          }
+        },
+        "tab-6": {
+          "type": "tile",
+          "settings": {
+            "label": "God & Goddess Photos",
+            "collection": "god-photos",
+            "custom_link": "",
+            "menu": "nav-god-photos"
+          }
+        },
+        "tab-7": {
+          "type": "tile",
+          "settings": {
+            "label": "All Wooden Products",
+            "collection": "wooden-products",
+            "custom_link": "",
+            "menu": "nav-wooden-products"
+          }
+        },
+        "tab-8": {
+          "type": "tile",
+          "settings": {
+            "label": "Gemstones & Crystals",
+            "collection": "gemstones-crystals",
+            "custom_link": "",
+            "menu": "nav-crystals-astrology"
+          }
+        },
+        "tab-9": {
           "type": "tile",
           "settings": {
             "label": "Ayurveda & Herbal",
-            "collection": "ayurveda-herbal-1",
+            "collection": "ayurveda-herbal",
             "custom_link": "",
-            "image": "shopify://shop_images/viha-qa-ayurveda-herbal.jpg"
+            "menu": "nav-ayurveda-herbal"
           }
         },
-        "tile-6": {
+        "tab-10": {
           "type": "tile",
           "settings": {
-            "label": "Sambrani (dhoop)",
-            "collection": "incense-dhoop-1",
-            "custom_link": "",
-            "image": "shopify://shop_images/viha-qa-sambrani-dhoop.jpg"
+            "label": "Viha Handmade Soaps & Cosmetics",
+            "collection": "",
+            "custom_link": "/pages/beauty",
+            "menu": "nav-beauty"
           }
         },
-        "tile-7": {
+        "tab-11": {
           "type": "tile",
           "settings": {
-            "label": "Kumkum & Sindoor",
-            "collection": "bindhi-sindhoor",
+            "label": "Jewellery",
+            "collection": "jewellery",
             "custom_link": "",
-            "image": "shopify://shop_images/viha-qa-kumkum-sindoor.jpg"
+            "menu": "nav-jewellery"
           }
         },
-        "tile-8": {
+        "tab-12": {
           "type": "tile",
           "settings": {
-            "label": "Impon Jewellery",
-            "collection": "aimpon-panchaloha",
+            "label": "Clothing",
+            "collection": "clothing",
             "custom_link": "",
-            "image": "shopify://shop_images/viha-qa-impon-jewellery.jpg"
+            "menu": "clothing-mega-menu"
           }
         },
-        "tile-9": {
+        "tab-13": {
           "type": "tile",
           "settings": {
-            "label": "Statues & Idols",
-            "collection": "statues-idols",
-            "custom_link": "",
-            "image": "shopify://shop_images/viha-qa-brass-figurines.jpg"
+            "label": "Viha Boutique",
+            "collection": "",
+            "custom_link": "/pages/viha-boutique",
+            "menu": ""
           }
         },
-        "tile-10": {
+        "tab-14": {
           "type": "tile",
           "settings": {
-            "label": "Karungali (ebony)",
-            "collection": "karungali",
+            "label": "Home & Living",
+            "collection": "home-living",
             "custom_link": "",
-            "image": "shopify://shop_images/viha-qa-karungali-mala.jpg"
+            "menu": "nav-home-living"
           }
         },
-        "tile-11": {
+        "tab-15": {
           "type": "tile",
           "settings": {
-            "label": "Sarees",
-            "collection": "sarees",
-            "custom_link": "",
-            "image": "shopify://shop_images/viha-qa-silk-sarees.jpg"
-          }
-        },
-        "tile-12": {
-          "type": "tile",
-          "settings": {
-            "label": "Groceries & Organic",
+            "label": "Food & Organic",
             "collection": "food-organic",
             "custom_link": "",
-            "image": "shopify://shop_images/viha-qa-rice-millets.jpg"
+            "menu": "nav-food-organic"
+          }
+        },
+        "tab-16": {
+          "type": "tile",
+          "settings": {
+            "label": "Kids & Baby",
+            "collection": "kids-baby",
+            "custom_link": "",
+            "menu": "nav-kids-baby"
+          }
+        },
+        "tab-17": {
+          "type": "tile",
+          "settings": {
+            "label": "Stationery & Gifts",
+            "collection": "books-gifts",
+            "custom_link": "",
+            "menu": "nav-books-gifts"
+          }
+        },
+        "tab-18": {
+          "type": "tile",
+          "settings": {
+            "label": "Bags & Pouches",
+            "collection": "bags-pouches",
+            "custom_link": "",
+            "menu": "nav-bags-pouches"
+          }
+        },
+        "tab-19": {
+          "type": "tile",
+          "settings": {
+            "label": "Fashion & Grooming",
+            "collection": "fashion-grooming",
+            "custom_link": "",
+            "menu": "nav-fashion-grooming"
+          }
+        },
+        "tab-20": {
+          "type": "tile",
+          "settings": {
+            "label": "New Arrivals",
+            "collection": "new-arrivals",
+            "custom_link": "",
+            "menu": ""
           }
         }
       },
       "block_order": [
-        "tile-1",
-        "tile-2",
-        "tile-3",
-        "tile-4",
-        "tile-5",
-        "tile-6",
-        "tile-7",
-        "tile-8",
-        "tile-9",
-        "tile-10",
-        "tile-11",
-        "tile-12"
+        "tab-1",
+        "tab-2",
+        "tab-3",
+        "tab-4",
+        "tab-5",
+        "tab-6",
+        "tab-7",
+        "tab-8",
+        "tab-9",
+        "tab-10",
+        "tab-11",
+        "tab-12",
+        "tab-13",
+        "tab-14",
+        "tab-15",
+        "tab-16",
+        "tab-17",
+        "tab-18",
+        "tab-19",
+        "tab-20"
       ],
       "settings": {
         "eyebrow": "",
@@ -318,14 +398,14 @@
         "pill-1": {
           "type": "category_pill",
           "settings": {
-            "label": "Spiritual & Pooja",
+            "label": "Pooja Products & Samagri",
             "collection": "top-sellers-spiritual-pooja"
           }
         },
         "pill-2": {
           "type": "category_pill",
           "settings": {
-            "label": "Fashion & Grooming",
+            "label": "Viha Handmade Soaps & Cosmetics",
             "collection": "top-sellers-fashion-grooming"
           }
         },
@@ -346,7 +426,7 @@
         "pill-5": {
           "type": "category_pill",
           "settings": {
-            "label": "Jewellery & Fashion",
+            "label": "Jewellery",
             "collection": "top-sellers-jewellery-fashion"
           }
         },
@@ -374,12 +454,12 @@
       },
       "block_order": [
         "pill-1",
-        "pill-2",
         "pill-3",
-        "pill-4",
+        "pill-2",
         "pill-5",
-        "pill-6",
         "pill-7",
+        "pill-4",
+        "pill-6",
         "pill-8"
       ],
       "settings": {

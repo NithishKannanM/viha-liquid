@@ -35,11 +35,11 @@
         "trust-4"
       ],
       "settings": {
-        "eyebrow": "Viha Beauty & Wellness",
-        "heading": "Ayurvedic Beauty and Wellness",
-        "subtext": "Handmade soaps, herbal powders, oils, and skin and hair care from the Viha Ayurvedic and herbal range.",
-        "cta_primary_label": "Shop Ayurveda & Herbal",
-        "cta_primary_url": "/collections/ayurveda-herbal",
+        "eyebrow": "Ayurvedic Beauty", "breadcrumb_label": "Viha Handmade Soaps & Cosmetics",
+        "heading": "Viha Handmade Soaps & Cosmetics",
+        "subtext": "Handmade soaps, shampoos, gels, face packs, talcum powders and perfumes, with skin and hair care from the Viha range.",
+        "cta_primary_label": "Shop Handmade Soaps",
+        "cta_primary_url": "/collections/handmade-soaps",
         "cta_secondary_label": "Beauty Journal",
         "bg_image": "shopify://shop_images/viha-beauty-ayurvedic-ingredients-brass-copper.jpg"
       }

@@ -20,7 +20,7 @@
             "subtext": "Pooja essentials, Ayurvedic wellness, handcrafted jewellery and organic foods, from our Chennai store to your home.",
             "cta_primary_label": "Shop All Essentials",
             "cta_primary_url": "/collections/all",
-            "cta_secondary_label": "Explore Beauty & Wellness",
+            "cta_secondary_label": "Explore Soaps & Cosmetics",
             "cta_secondary_url": "/pages/beauty",
             "bg_image": "shopify://shop_images/viha-hero-pooja-room-brass-kuthu-vilakku.jpg"
           }
@@ -28,10 +28,10 @@
         "slide-2": {
           "type": "slide",
           "settings": {
-            "eyebrow": "Beauty & Wellness",
+            "eyebrow": "Viha Handmade Soaps & Cosmetics",
             "heading": "Ayurvedic Beauty, Made Simple",
             "subtext": "Handmade soaps, herbal oils, natural attars and herbal skincare, chosen by Mrs Anitha Kuppusamy.",
-            "cta_primary_label": "Explore Beauty & Wellness",
+            "cta_primary_label": "Explore Soaps & Cosmetics",
             "cta_primary_url": "/pages/beauty",
             "cta_secondary_label": "Shop All Essentials",
             "cta_secondary_url": "/collections/all",
@@ -63,7 +63,7 @@
         "subtext": "Pooja essentials, Ayurvedic wellness, handcrafted jewellery and organic foods, from our Chennai store to your home.",
         "cta_primary_label": "Shop All Essentials",
         "cta_primary_url": "/collections/all",
-        "cta_secondary_label": "Explore Beauty & Wellness",
+        "cta_secondary_label": "Explore Soaps & Cosmetics",
         "cta_secondary_url": "/pages/beauty",
         "autoplay": true,
         "autoplay_seconds": 6,
@@ -304,10 +304,10 @@
       "type": "beauty-promo",
       "settings": {
         "eyebrow": "",
-        "heading": "Beauty & Wellness, Rooted in Ayurveda",
+        "heading": "Viha Handmade Soaps & Cosmetics",
         "body": "Handmade soaps, herbal oils, natural attars and skincare made with Ayurvedic ingredients, chosen by Mrs Anitha Kuppusamy.",
         "image_alt": "Ayurvedic Beauty",
-        "cta_text": "Explore Beauty",
+        "cta_text": "Explore Soaps & Cosmetics",
         "cta_url": "/pages/beauty",
         "image": "shopify://shop_images/viha-beauty-ayurvedic-still-life.jpg"
       }

@@ -1,0 +1,34 @@
+{%- comment -%}
+  One picture tile in the mobile menu. Collection links use the collection image
+  (Shopify falls back to its first product image). Tag-filter and custom links have
+  no collection object, so they show the first letter of the label instead.
+  Accepts: link (a menu link)
+{%- endcomment -%}
+{%- assign tile_img = blank -%}
+{%- if link.type == 'collection_link' and link.object -%}
+  {%- assign tile_img = link.object.featured_image -%}
+{%- elsif link.url contains '/collections/' -%}
+  {%- comment -%} Tag filter link (/collections/<handle>/<tag>): picture of the first
+      product in that collection carrying the tag, checked over its first 50 products. {%- endcomment -%}
+  {%- assign tile_parts = link.url | split: '?' | first | split: '/' -%}
+  {%- if tile_parts.size == 4 -%}
+    {%- assign tile_coll = collections[tile_parts[2]] -%}
+    {%- for p in tile_coll.products limit: 50 -%}
+      {%- for t in p.tags -%}
+        {%- assign t_handle = t | handleize -%}
+        {%- if t_handle == tile_parts[3] -%}{%- assign tile_img = p.featured_image -%}{%- break -%}{%- endif -%}
+      {%- endfor -%}
+      {%- if tile_img != blank -%}{%- break -%}{%- endif -%}
+    {%- endfor -%}
+  {%- endif -%}
+{%- endif -%}
+<a href="{{ link.url }}" class="mobile-menu__tile">
+  <span class="mobile-menu__tile-img">
+    {%- if tile_img != blank -%}
+    <img src="{{ tile_img | image_url: width: 240, height: 240, crop: 'center' }}" alt="" loading="lazy" width="120" height="120">
+    {%- else -%}
+    <span class="mobile-menu__tile-letter" aria-hidden="true">{{ link.title | slice: 0 | upcase }}</span>
+    {%- endif -%}
+  </span>
+  <span class="mobile-menu__tile-label">{{ link.title | escape }}</span>
+</a>

@@ -4,16 +4,15 @@
   Deliberately has NO preset blocks: tiles are chosen in the Theme Editor, not invented here.
   Until tiles are added the section renders nothing at all.
 
-  A tile with a menu opens that menu's links in a panel under its row (the tile itself is a
-  link to the tab page, so it still works without JavaScript). A tile without a menu is a plain
-  link. Tiles show their image only when one is picked; otherwise the first letter of the label.
+  Each tile links to its tab page, where the Department sub-menu section shows that tab's
+  menu. Tiles show their image only when one is picked; otherwise the first letter of the label.
   Tiles whose link is missing render nothing.
 {%- endcomment -%}
 
 {%- assign tile_blocks = section.blocks | where: 'type', 'tile' -%}
 {%- if tile_blocks.size > 0 -%}
 
-<section class="section quick-access" aria-labelledby="quick-access-heading" data-quick-access>
+<section class="section quick-access" aria-labelledby="quick-access-heading">
   <div class="container">
 
     <div class="section__header-row">
@@ -32,16 +31,10 @@
         {%- assign tile_collection = collections[block.settings.collection] -%}
         {%- assign tile_url = block.settings.custom_link | default: tile_collection.url -%}
         {%- assign tile_img = block.settings.image -%}
-        {%- assign tile_links = blank -%}
-        {%- if block.settings.menu != blank -%}
-          {%- assign tile_links = linklists[block.settings.menu].links -%}
-        {%- endif -%}
-        {%- assign panel_id = 'qa-panel-' | append: block.id -%}
 
         {%- if tile_url != blank and block.settings.label != blank -%}
           <li class="quick-access__item" {{ block.shopify_attributes }}>
-            <a href="{{ tile_url | escape }}" class="quick-access__tile"
-              {%- if tile_links != blank and tile_links.size > 0 %} data-qa-toggle aria-controls="{{ panel_id }}" aria-expanded="false"{% endif %}>
+            <a href="{{ tile_url | escape }}" class="quick-access__tile">
               <span class="quick-access__media">
                 {%- if tile_img != blank -%}
                   <img
@@ -61,93 +54,12 @@
               <span class="quick-access__label">{{ block.settings.label | escape }}</span>
             </a>
           </li>
-          {%- if tile_links != blank and tile_links.size > 0 -%}
-          <li class="quick-access__panel" id="{{ panel_id }}" hidden>
-            <a href="{{ tile_url | escape }}" class="quick-access__panel-title">
-              {{ block.settings.label | escape }}
-              <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
-            </a>
-            <ul class="quick-access__sublinks">
-              {%- for link in tile_links -%}
-                {%- if link.links.size > 0 -%}
-                  <li class="quick-access__subgroup">
-                    {%- if link.url == '#' or link.url == blank -%}
-                      <p class="quick-access__subheading">{{ link.title | escape }}</p>
-                    {%- else -%}
-                      <a href="{{ link.url }}" class="quick-access__subheading">{{ link.title | escape }}</a>
-                    {%- endif -%}
-                    <ul class="quick-access__sublinks">
-                      {%- for child in link.links -%}
-                        <li><a href="{{ child.url }}" class="quick-access__sublink">{{ child.title | escape }}</a></li>
-                      {%- endfor -%}
-                    </ul>
-                  </li>
-                {%- else -%}
-                  <li><a href="{{ link.url }}" class="quick-access__sublink">{{ link.title | escape }}</a></li>
-                {%- endif -%}
-              {%- endfor -%}
-            </ul>
-          </li>
-          {%- endif -%}
         {%- endif -%}
       {%- endfor -%}
     </ul>
 
   </div>
 </section>
-
-<script>
-(function() {
-  var root = document.querySelector('[data-quick-access]');
-  if (!root) return;
-  var grid = root.querySelector('.quick-access__grid');
-  var toggles = root.querySelectorAll('[data-qa-toggle]');
-
-  function closeAll(except) {
-    toggles.forEach(function(t) {
-      if (t === except) return;
-      t.setAttribute('aria-expanded', 'false');
-      var p = document.getElementById(t.getAttribute('aria-controls'));
-      if (p) p.hidden = true;
-    });
-  }
-
-  // Put the panel after the last tile in the clicked tile's row, so it opens right under that row.
-  function placePanel(item, panel) {
-    var items = grid.querySelectorAll('.quick-access__item');
-    var top = item.offsetTop;
-    var last = item;
-    items.forEach(function(it) { if (it.offsetTop === top) last = it; });
-    last.after(panel);
-  }
-
-  toggles.forEach(function(t) {
-    t.addEventListener('click', function(e) {
-      e.preventDefault();
-      var panel = document.getElementById(t.getAttribute('aria-controls'));
-      if (!panel) return;
-      var open = t.getAttribute('aria-expanded') === 'true';
-      closeAll(t);
-      if (open) {
-        t.setAttribute('aria-expanded', 'false');
-        panel.hidden = true;
-        return;
-      }
-      placePanel(t.closest('.quick-access__item'), panel);
-      t.setAttribute('aria-expanded', 'true');
-      panel.hidden = false;
-    });
-  });
-
-  window.addEventListener('resize', function() {
-    toggles.forEach(function(t) {
-      if (t.getAttribute('aria-expanded') !== 'true') return;
-      var panel = document.getElementById(t.getAttribute('aria-controls'));
-      if (panel) placePanel(t.closest('.quick-access__item'), panel);
-    });
-  });
-})();
-</script>
 
 {%- endif -%}
 
@@ -167,7 +79,6 @@
         { "type": "text",         "id": "label",       "label": "Label", "info": "Use the menu tab's name. Gloss Tamil terms in English parens, e.g. \"Sambrani (dhoop)\"." },
         { "type": "collection",   "id": "collection",  "label": "Collection", "info": "The tile links here. A tile with no collection and no custom link is skipped." },
         { "type": "url",          "id": "custom_link", "label": "Custom link (overrides the collection link)" },
-        { "type": "link_list",    "id": "menu",        "label": "Sub menu", "info": "Tapping the tile opens this menu's links under it. Use the same menu as the header tab. Leave empty for a plain link." },
         { "type": "image_picker", "id": "image",       "label": "Tile image", "info": "Optional. Square, subject centred, cropped to a circle. Without one the tile shows the first letter of the label." }
       ]
     }

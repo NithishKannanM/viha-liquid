@@ -11,9 +11,25 @@
     "main": {
       "type": "collection-template",
       "settings": {
-        "products_per_page": 24
-      }
+        "products_per_page": 24,
+        "submenu_heading": "Shop by category"
+      },
+      "blocks": {
+        "dept-clothing": {
+          "type": "department",
+          "settings": {
+            "collection": "clothing",
+            "menu": "clothing-mega-menu"
+          }
+        }
+      },
+      "block_order": [
+        "dept-clothing"
+      ]
     }
   },
-  "order": ["category-tiles", "main"]
+  "order": [
+    "category-tiles",
+    "main"
+  ]
 }

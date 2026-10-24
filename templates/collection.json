@@ -3,9 +3,128 @@
     "main": {
       "type": "collection-template",
       "settings": {
-        "products_per_page": 24
-      }
+        "products_per_page": 24,
+        "submenu_heading": "Shop by category"
+      },
+      "blocks": {
+        "dept-pooja-samagri": {
+          "type": "department",
+          "settings": {
+            "collection": "pooja-samagri",
+            "menu": "nav-pooja-samagri"
+          }
+        },
+        "dept-pooja-utensils": {
+          "type": "department",
+          "settings": {
+            "collection": "pooja-utensils",
+            "menu": "nav-pooja-utensils"
+          }
+        },
+        "dept-lamp-diya": {
+          "type": "department",
+          "settings": {
+            "collection": "lamp-diya",
+            "menu": "nav-vilakku"
+          }
+        },
+        "dept-god-photos": {
+          "type": "department",
+          "settings": {
+            "collection": "god-photos",
+            "menu": "nav-god-photos"
+          }
+        },
+        "dept-wooden-products": {
+          "type": "department",
+          "settings": {
+            "collection": "wooden-products",
+            "menu": "nav-wooden-products"
+          }
+        },
+        "dept-gemstones-crystals": {
+          "type": "department",
+          "settings": {
+            "collection": "gemstones-crystals",
+            "menu": "nav-crystals-astrology"
+          }
+        },
+        "dept-ayurveda-herbal": {
+          "type": "department",
+          "settings": {
+            "collection": "ayurveda-herbal",
+            "menu": "nav-ayurveda-herbal"
+          }
+        },
+        "dept-jewellery": {
+          "type": "department",
+          "settings": {
+            "collection": "jewellery",
+            "menu": "nav-jewellery"
+          }
+        },
+        "dept-home-living": {
+          "type": "department",
+          "settings": {
+            "collection": "home-living",
+            "menu": "nav-home-living"
+          }
+        },
+        "dept-food-organic": {
+          "type": "department",
+          "settings": {
+            "collection": "food-organic",
+            "menu": "nav-food-organic"
+          }
+        },
+        "dept-kids-baby": {
+          "type": "department",
+          "settings": {
+            "collection": "kids-baby",
+            "menu": "nav-kids-baby"
+          }
+        },
+        "dept-books-gifts": {
+          "type": "department",
+          "settings": {
+            "collection": "books-gifts",
+            "menu": "nav-books-gifts"
+          }
+        },
+        "dept-bags-pouches": {
+          "type": "department",
+          "settings": {
+            "collection": "bags-pouches",
+            "menu": "nav-bags-pouches"
+          }
+        },
+        "dept-fashion-grooming": {
+          "type": "department",
+          "settings": {
+            "collection": "fashion-grooming",
+            "menu": "nav-fashion-grooming"
+          }
+        }
+      },
+      "block_order": [
+        "dept-pooja-samagri",
+        "dept-pooja-utensils",
+        "dept-lamp-diya",
+        "dept-god-photos",
+        "dept-wooden-products",
+        "dept-gemstones-crystals",
+        "dept-ayurveda-herbal",
+        "dept-jewellery",
+        "dept-home-living",
+        "dept-food-organic",
+        "dept-kids-baby",
+        "dept-books-gifts",
+        "dept-bags-pouches",
+        "dept-fashion-grooming"
+      ]
     }
   },
-  "order": ["main"]
+  "order": [
+    "main"
+  ]
 }

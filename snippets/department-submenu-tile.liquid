@@ -1,0 +1,29 @@
+{%- comment -%}
+  One tile in the department sub-menu. Accepts: link (a menu link).
+  Collection links show the collection image, else its first product's image, plus the item
+  count; empty collections render nothing. Other links show the first letter of the title.
+{%- endcomment -%}
+{%- if link.type == 'collection_link' -%}
+  {%- assign c = link.object -%}
+  {%- if c.products_count > 0 -%}
+    {%- assign tile_img = c.image | default: c.products.first.featured_image -%}
+    <a class="dept-sub__tile" href="{{ link.url }}">
+      <span class="dept-sub__media">
+        {%- if tile_img -%}
+          {{ tile_img | image_url: width: 400 | image_tag: loading: 'lazy', widths: '200,300,400', sizes: '(min-width: 1024px) 180px, 30vw', alt: link.title }}
+        {%- else -%}
+          <span class="dept-sub__letter" aria-hidden="true">{{ link.title | slice: 0 | upcase }}</span>
+        {%- endif -%}
+      </span>
+      <span class="dept-sub__name">{{ link.title | escape }}</span>
+      <span class="dept-sub__count">{{ c.products_count }} {% if c.products_count == 1 %}item{% else %}items{% endif %}</span>
+    </a>
+  {%- endif -%}
+{%- else -%}
+  <a class="dept-sub__tile" href="{{ link.url }}">
+    <span class="dept-sub__media">
+      <span class="dept-sub__letter" aria-hidden="true">{{ link.title | slice: 0 | upcase }}</span>
+    </span>
+    <span class="dept-sub__name">{{ link.title | escape }}</span>
+  </a>
+{%- endif -%}

@@ -1,0 +1,62 @@
+{%- comment -%}
+  Department sub-menu — the header tab's menu shown as tiles on that tab's collection page,
+  so a homepage "Find What You Need" circle lands on a page that shows the sub-menu.
+
+  Rendered by the collection section, under the title banner. Accepts: blocks (that section's
+  "department" blocks, each pairing a collection with a menu), heading. The block whose
+  collection is the page being viewed is rendered; on any other collection this renders
+  nothing. Menus are edited in Online Store > Navigation, the same menus the header uses.
+
+  Top-level links with no children are tiles. A top-level link with children is a group: its
+  title is a heading (a link with "View all" unless it points at "#") and its children are tiles.
+  Collection tiles use the collection image, else its first product's image; empty collections
+  are skipped. Other links (tag pages such as /collections/god-photos/amman-photos) show the
+  first letter of the title.
+{%- endcomment -%}
+
+{%- assign sub_menu = blank -%}
+{%- for block in blocks -%}
+  {%- if block.type != 'department' -%}{%- continue -%}{%- endif -%}
+  {%- if block.settings.collection != blank and block.settings.collection.id == collection.id and block.settings.menu != blank -%}
+    {%- assign sub_menu = linklists[block.settings.menu] -%}
+    {%- break -%}
+  {%- endif -%}
+{%- endfor -%}
+
+{%- if sub_menu != blank and sub_menu.links.size > 0 -%}
+<section class="dept-sub container" aria-label="{{ collection.title | escape }}">
+  {%- if heading != blank -%}
+    <h2 class="dept-sub__heading">{{ heading | escape }}</h2>
+  {%- endif -%}
+
+  {%- capture loose_tiles -%}
+    {%- for link in sub_menu.links -%}
+      {%- if link.links.size == 0 -%}{%- render 'department-submenu-tile', link: link -%}{%- endif -%}
+    {%- endfor -%}
+  {%- endcapture -%}
+  {%- if loose_tiles != blank -%}
+    <div class="dept-sub__grid">{{ loose_tiles }}</div>
+  {%- endif -%}
+
+  {%- for group in sub_menu.links -%}
+    {%- if group.links.size == 0 -%}{%- continue -%}{%- endif -%}
+    {%- capture group_tiles -%}
+      {%- for link in group.links -%}
+        {%- if link.url == group.url -%}{%- continue -%}{%- endif -%}
+        {%- render 'department-submenu-tile', link: link -%}
+      {%- endfor -%}
+    {%- endcapture -%}
+    {%- if group_tiles != blank -%}
+    <div class="dept-sub__group">
+      <div class="dept-sub__group-head">
+        <h3 class="dept-sub__group-title">{{ group.title | escape }}</h3>
+        {%- if group.url != '#' and group.url != blank -%}
+          <a class="dept-sub__all" href="{{ group.url }}">View all<span class="sr-only"> {{ group.title | escape }}</span></a>
+        {%- endif -%}
+      </div>
+      <div class="dept-sub__grid">{{ group_tiles }}</div>
+    </div>
+    {%- endif -%}
+  {%- endfor -%}
+</section>
+{%- endif -%}

@@ -57,6 +57,8 @@
   </div>
 </div>
 
+{%- render 'department-submenu', blocks: section.blocks, heading: section.settings.submenu_heading -%}
+
 {%- comment -%} ── Body: sidebar + product grid ─── {%- endcomment -%}
 <div style="background:var(--color-cream);padding:2.5rem 3rem;min-height:60vh;">
   <div style="max-width:var(--max-w);margin:0 auto;">
@@ -426,7 +428,18 @@
     { "type": "text",    "id": "custom_heading",      "label": "Custom heading",   "info": "Overrides the collection title" },
     { "type": "textarea","id": "custom_subtext",       "label": "Custom subtitle",  "info": "Overrides the collection description" },
     { "type": "range",   "id": "products_per_page",   "label": "Products per page","min": 12, "max": 48, "step": 4, "default": 24 },
-    { "type": "text",    "id": "hidden_tags",         "label": "Tags to hide from Refine (no longer used)", "info": "Refine options now come from each collection's Refine options field (Products > Collections > collection > Metafields).", "default": "low_stock_alerted,bestseller,top-rated,new-arrival,sale" }
+    { "type": "text",    "id": "hidden_tags",         "label": "Tags to hide from Refine (no longer used)", "info": "Refine options now come from each collection's Refine options field (Products > Collections > collection > Metafields).", "default": "low_stock_alerted,bestseller,top-rated,new-arrival,sale" },
+    { "type": "text",    "id": "submenu_heading",     "label": "Sub-menu heading", "info": "Shown above the sub-menu tiles on a department page." }
+  ],
+  "blocks": [
+    {
+      "type": "department",
+      "name": "Department sub-menu",
+      "settings": [
+        { "type": "collection", "id": "collection", "label": "Collection page", "info": "The sub-menu shows under the title on this collection's page." },
+        { "type": "link_list",  "id": "menu",       "label": "Sub menu", "info": "Use the same menu as the header tab." }
+      ]
+    }
   ]
 }
 {% endschema %}

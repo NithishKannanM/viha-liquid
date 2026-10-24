@@ -81,8 +81,7 @@
           "settings": {
             "label": "Pooja Products & Samagri",
             "collection": "pooja-samagri",
-            "custom_link": "",
-            "menu": "nav-pooja-samagri"
+            "custom_link": ""
           }
         },
         "tab-2": {
@@ -90,8 +89,7 @@
           "settings": {
             "label": "Pooja Utensils",
             "collection": "pooja-utensils",
-            "custom_link": "",
-            "menu": "nav-pooja-utensils"
+            "custom_link": ""
           }
         },
         "tab-3": {
@@ -99,8 +97,7 @@
           "settings": {
             "label": "Vilakku & Traditional Oil Lamps",
             "collection": "lamp-diya",
-            "custom_link": "",
-            "menu": "nav-vilakku"
+            "custom_link": ""
           }
         },
         "tab-4": {
@@ -108,8 +105,7 @@
           "settings": {
             "label": "Statues / Idols",
             "collection": "statues-idols",
-            "custom_link": "",
-            "menu": "nav-statues-idols"
+            "custom_link": ""
           }
         },
         "tab-5": {
@@ -117,8 +113,7 @@
           "settings": {
             "label": "Conch & Shells",
             "collection": "conch-shells-yantra-sangu",
-            "custom_link": "",
-            "menu": ""
+            "custom_link": ""
           }
         },
         "tab-6": {
@@ -126,8 +121,7 @@
           "settings": {
             "label": "God & Goddess Photos",
             "collection": "god-photos",
-            "custom_link": "",
-            "menu": "nav-god-photos"
+            "custom_link": ""
           }
         },
         "tab-7": {
@@ -135,8 +129,7 @@
           "settings": {
             "label": "All Wooden Products",
             "collection": "wooden-products",
-            "custom_link": "",
-            "menu": "nav-wooden-products"
+            "custom_link": ""
           }
         },
         "tab-8": {
@@ -144,8 +137,7 @@
           "settings": {
             "label": "Gemstones & Crystals",
             "collection": "gemstones-crystals",
-            "custom_link": "",
-            "menu": "nav-crystals-astrology"
+            "custom_link": ""
           }
         },
         "tab-9": {
@@ -153,8 +145,7 @@
           "settings": {
             "label": "Ayurveda & Herbal",
             "collection": "ayurveda-herbal",
-            "custom_link": "",
-            "menu": "nav-ayurveda-herbal"
+            "custom_link": ""
           }
         },
         "tab-10": {
@@ -162,8 +153,7 @@
           "settings": {
             "label": "Viha Handmade Soaps & Cosmetics",
             "collection": "",
-            "custom_link": "/pages/beauty",
-            "menu": "nav-beauty"
+            "custom_link": "/pages/beauty"
           }
         },
         "tab-11": {
@@ -171,8 +161,7 @@
           "settings": {
             "label": "Jewellery",
             "collection": "jewellery",
-            "custom_link": "",
-            "menu": "nav-jewellery"
+            "custom_link": ""
           }
         },
         "tab-12": {
@@ -180,8 +169,7 @@
           "settings": {
             "label": "Clothing",
             "collection": "clothing",
-            "custom_link": "",
-            "menu": "clothing-mega-menu"
+            "custom_link": ""
           }
         },
         "tab-13": {
@@ -189,8 +177,7 @@
           "settings": {
             "label": "Viha Boutique",
             "collection": "",
-            "custom_link": "/pages/viha-boutique",
-            "menu": ""
+            "custom_link": "/pages/viha-boutique"
           }
         },
         "tab-14": {
@@ -198,8 +185,7 @@
           "settings": {
             "label": "Home & Living",
             "collection": "home-living",
-            "custom_link": "",
-            "menu": "nav-home-living"
+            "custom_link": ""
           }
         },
         "tab-15": {
@@ -207,8 +193,7 @@
           "settings": {
             "label": "Food & Organic",
             "collection": "food-organic",
-            "custom_link": "",
-            "menu": "nav-food-organic"
+            "custom_link": ""
           }
         },
         "tab-16": {
@@ -216,8 +201,7 @@
           "settings": {
             "label": "Kids & Baby",
             "collection": "kids-baby",
-            "custom_link": "",
-            "menu": "nav-kids-baby"
+            "custom_link": ""
           }
         },
         "tab-17": {
@@ -225,8 +209,7 @@
           "settings": {
             "label": "Stationery & Gifts",
             "collection": "books-gifts",
-            "custom_link": "",
-            "menu": "nav-books-gifts"
+            "custom_link": ""
           }
         },
         "tab-18": {
@@ -234,8 +217,7 @@
           "settings": {
             "label": "Bags & Pouches",
             "collection": "bags-pouches",
-            "custom_link": "",
-            "menu": "nav-bags-pouches"
+            "custom_link": ""
           }
         },
         "tab-19": {
@@ -243,8 +225,7 @@
           "settings": {
             "label": "Fashion & Grooming",
             "collection": "fashion-grooming",
-            "custom_link": "",
-            "menu": "nav-fashion-grooming"
+            "custom_link": ""
           }
         },
         "tab-20": {
@@ -252,8 +233,7 @@
           "settings": {
             "label": "New Arrivals",
             "collection": "new-arrivals",
-            "custom_link": "",
-            "menu": ""
+            "custom_link": ""
           }
         }
       },

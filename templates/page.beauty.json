@@ -12,7 +12,7 @@
         "trust-2": {
           "type": "trust_item",
           "settings": {
-            "text": "Handmade Soaps & Herbal Oils"
+            "text": "Handmade Soaps & Cosmetics"
           }
         },
         "trust-3": {
@@ -35,7 +35,8 @@
         "trust-4"
       ],
       "settings": {
-        "eyebrow": "Ayurvedic Beauty", "breadcrumb_label": "Viha Handmade Soaps & Cosmetics",
+        "eyebrow": "Ayurvedic Beauty",
+        "breadcrumb_label": "Viha Handmade Soaps & Cosmetics",
         "heading": "Viha Handmade Soaps & Cosmetics",
         "subtext": "Handmade soaps, shampoos, gels, face packs, talcum powders and perfumes, with skin and hair care from the Viha range.",
         "cta_primary_label": "Shop Handmade Soaps",
@@ -82,9 +83,9 @@
         "concern-5": {
           "type": "concern",
           "settings": {
-            "title": "Herbal Oils",
+            "title": "Cosmetics",
             "icon": "moon",
-            "collection": "herbal-oils"
+            "collection": "cosmetics"
           }
         },
         "concern-6": {
@@ -106,9 +107,9 @@
         "concern-8": {
           "type": "concern",
           "settings": {
-            "title": "Beauty Tools",
+            "title": "Talcum Powder",
             "icon": "clock",
-            "collection": "beauty-tools"
+            "collection": "talcum-powder"
           }
         }
       },
@@ -141,10 +142,9 @@
         "col-2": {
           "type": "collection_card",
           "settings": {
-            "collection": "herbal-oils",
-            "title": "Herbal Oils",
-            "description": "Traditional herbal oils (thailam) such as neem, punnai and vallarai (brahmi) oils. Each listing gives the size and how the oil is traditionally used.",
-            "image": "shopify://shop_images/viha-collection-herbal-oils.jpg"
+            "collection": "shampoos",
+            "title": "Shampoos",
+            "description": "Viha shampoos, including rosemary, hibiscus, onion, shikakai (soap pod) and arappu (Albizia leaf powder) shampoos, plus a shampoo bar for dry hair."
           }
         },
         "col-3": {
@@ -179,8 +179,8 @@
       "type": "beauty-bestsellers",
       "settings": {
         "eyebrow": "",
-        "heading": "Beauty Best Sellers",
-        "collection": "beauty-products",
+        "heading": "Best Sellers",
+        "collection": "handmade-soaps",
         "products_to_show": 8
       }
     },
@@ -238,7 +238,7 @@
           "settings": {
             "title": "Kumkumadi",
             "tagline": "Liquid Gold",
-            "description": "Brightens complexion and reduces pigmentation with saffron and sesame base.",
+            "description": "A traditional oil (thailam) with a saffron and sesame base. Shop the Viha Kungumadhi Thailam for dry or oily skin.",
             "collection": "ingredient-kumkumadi"
           },
           "disabled": true

@@ -387,7 +387,7 @@
         "heading": "Bestsellers",
         "subtext": "The products our customers reorder most.",
         "collection": "bestsellers",
-        "products_to_show": 8,
+        "products_to_show": 10,
         "show_view_all": true
       }
     },

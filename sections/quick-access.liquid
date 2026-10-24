@@ -48,7 +48,7 @@
                     src="{{ tile_img | image_url: width: 320 }}"
                     srcset="{{ tile_img | image_url: width: 160 }} 160w,
                             {{ tile_img | image_url: width: 320 }} 320w"
-                    sizes="(min-width: 768px) 104px, 22vw"
+                    sizes="(min-width: 1024px) 160px, (min-width: 768px) 132px, 22vw"
                     alt="{{ tile_img.alt | default: block.settings.label | escape }}"
                     width="160" height="160"
                     {% if forloop.index <= 3 %}loading="eager"{% else %}loading="lazy"{% endif %}

@@ -1868,7 +1868,8 @@ ul { list-style: none; }
   margin-top: 2rem;
 }
 @media (min-width: 768px) {
-  .quick-access__grid { grid-template-columns: repeat(6, 1fr); gap: 2rem 1rem; }
+  /* 5 across: the 20 menu tabs fill 4 even rows. */
+  .quick-access__grid { grid-template-columns: repeat(5, 1fr); gap: 2.5rem 1.5rem; }
 }
 
 .quick-access__tile {
@@ -1893,6 +1894,8 @@ ul { list-style: none; }
   background: var(--color-cream-dark);
   transition: transform 0.2s, box-shadow 0.2s;
 }
+@media (min-width: 768px)  { .quick-access__media { width: 132px; } }
+@media (min-width: 1024px) { .quick-access__media { width: 160px; } }
 .quick-access__img { width: 100%; height: 100%; object-fit: cover; }
 
 .quick-access__label {
@@ -1901,7 +1904,7 @@ ul { list-style: none; }
   line-height: 1.35;
   color: var(--color-charcoal);
 }
-@media (min-width: 768px) { .quick-access__label { font-size: 15px; } }
+@media (min-width: 768px) { .quick-access__label { font-size: 16px; } }
 
 .quick-access__tile:hover .quick-access__media,
 .quick-access__tile:focus-visible .quick-access__media {
@@ -1924,6 +1927,7 @@ ul { list-style: none; }
   font-weight: 700;
   color: var(--color-maroon);
 }
+@media (min-width: 1024px) { .quick-access__letter { font-size: 3.25rem; } }
 .quick-access__tile[aria-expanded="true"] .quick-access__media {
   box-shadow: 0 0 0 3px var(--color-gold);
 }

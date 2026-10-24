@@ -305,7 +305,7 @@
           "nav_books_gifts": {
             "type": "nav_item",
             "settings": {
-              "label": "Books & Gifts",
+              "label": "Stationery & Gifts",
               "link": "/collections/books-gifts",
               "badge": "",
               "badge_color": "#0f5a43",

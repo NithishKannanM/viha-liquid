@@ -15,40 +15,40 @@
         "slide-1": {
           "type": "slide",
           "settings": {
+            "bg_image": "shopify://shop_images/viha-hero-pooja-room-brass-kuthu-vilakku.jpg",
             "eyebrow": "Chosen by Mrs Anitha Kuppusamy",
             "heading": "Ancient Traditions, Delivered Worldwide",
             "subtext": "Pooja essentials, Ayurvedic wellness, handcrafted jewellery and organic foods, from our Chennai store to your home.",
             "cta_primary_label": "Shop All Essentials",
             "cta_primary_url": "/collections/all",
             "cta_secondary_label": "Explore Soaps & Cosmetics",
-            "cta_secondary_url": "/pages/beauty",
-            "bg_image": "shopify://shop_images/viha-hero-pooja-room-brass-kuthu-vilakku.jpg"
+            "cta_secondary_url": "/pages/beauty"
           }
         },
         "slide-2": {
           "type": "slide",
           "settings": {
+            "bg_image": "shopify://shop_images/viha-hero-ayurvedic-herbal-beauty.jpg",
             "eyebrow": "Viha Handmade Soaps & Cosmetics",
             "heading": "Ayurvedic Beauty, Made Simple",
             "subtext": "Handmade soaps, herbal oils, natural attars and herbal skincare, chosen by Mrs Anitha Kuppusamy.",
             "cta_primary_label": "Explore Soaps & Cosmetics",
             "cta_primary_url": "/pages/beauty",
             "cta_secondary_label": "Shop All Essentials",
-            "cta_secondary_url": "/collections/all",
-            "bg_image": "shopify://shop_images/viha-hero-ayurvedic-herbal-beauty.jpg"
+            "cta_secondary_url": "/collections/all"
           }
         },
         "slide-3": {
           "type": "slide",
           "settings": {
+            "bg_image": "shopify://shop_images/viha-hero-silk-sarees-zari-border.jpg",
             "eyebrow": "Viha Boutique",
             "heading": "Sarees, By Fabric and Weave",
             "subtext": "Cotton, cotton silk, soft silk, Kalyani cotton, Banarasi, Katan silk, designer and more, organised by saree type on our new Viha Boutique page.",
             "cta_primary_label": "Explore Viha Boutique",
             "cta_primary_url": "/pages/viha-boutique",
             "cta_secondary_label": "Shop All Essentials",
-            "cta_secondary_url": "/collections/all",
-            "bg_image": "shopify://shop_images/viha-hero-silk-sarees-zari-border.jpg"
+            "cta_secondary_url": "/collections/all"
           }
         }
       },
@@ -58,6 +58,7 @@
         "slide-3"
       ],
       "settings": {
+        "bg_image": "shopify://shop_images/viha-hero-pooja-room-brass-kuthu-vilakku.jpg",
         "eyebrow": "Chosen by Mrs Anitha Kuppusamy",
         "heading": "Ancient Traditions, Delivered Worldwide",
         "subtext": "Pooja essentials, Ayurvedic wellness, handcrafted jewellery and organic foods, from our Chennai store to your home.",
@@ -69,8 +70,7 @@
         "autoplay_seconds": 6,
         "show_arrows": true,
         "show_dots": true,
-        "transition": "fade",
-        "bg_image": "shopify://shop_images/viha-hero-pooja-room-brass-kuthu-vilakku.jpg"
+        "transition": "fade"
       }
     },
     "quick-access": {
@@ -306,44 +306,44 @@
         "sbp-large": {
           "type": "large",
           "settings": {
+            "image": "shopify://shop_images/viha-sbp-daily-pooja.jpg",
             "badge": "Daily Rituals",
             "title": "Daily Pooja",
             "subtext": "Oil lamps, wicks, kumkum and hand-milled powders for everyday pooja.",
             "collection": "spiritual-pooja",
-            "custom_link": "",
-            "image": "shopify://shop_images/viha-sbp-daily-pooja.jpg"
+            "custom_link": ""
           }
         },
         "sbp-small-1": {
           "type": "small",
           "settings": {
+            "image": "shopify://shop_images/viha-sbp-deepavali-lamps.jpg",
             "eyebrow": "Deepavali",
             "title": "Festival Essentials",
             "collection": "deepavali",
-            "custom_link": "",
-            "image": "shopify://shop_images/viha-sbp-deepavali-lamps.jpg"
+            "custom_link": ""
           }
         },
         "sbp-small-2": {
           "type": "small",
           "settings": {
+            "image": "shopify://shop_images/viha-sbp-ayurvedic-beauty.jpg",
             "eyebrow": "Beauty",
             "title": "Ayurvedic Beauty",
             "collection": "ayurveda-herbal",
-            "custom_link": "/pages/beauty",
-            "image": "shopify://shop_images/viha-sbp-ayurvedic-beauty.jpg"
+            "custom_link": "/pages/beauty"
           }
         },
         "sbp-split": {
           "type": "split",
           "settings": {
+            "image": "shopify://shop_images/viha-sbp-housewarming-gifts.jpg",
             "eyebrow": "New Beginnings",
             "title": "Housewarming Gifts",
             "subtext": "Traditional gifts for a new home, including brass Ganesha idols.",
             "cta_label": "Explore",
             "collection": "home-living",
-            "custom_link": "",
-            "image": "shopify://shop_images/viha-sbp-housewarming-gifts.jpg"
+            "custom_link": ""
           }
         }
       },
@@ -366,10 +366,10 @@
         "eyebrow": "",
         "heading": "Viha Handmade Soaps & Cosmetics",
         "body": "Handmade soaps, herbal oils, natural attars and skincare made with Ayurvedic ingredients, chosen by Mrs Anitha Kuppusamy.",
+        "image": "shopify://shop_images/viha-beauty-ayurvedic-still-life.jpg",
         "image_alt": "Ayurvedic Beauty",
         "cta_text": "Explore Soaps & Cosmetics",
-        "cta_url": "/pages/beauty",
-        "image": "shopify://shop_images/viha-beauty-ayurvedic-still-life.jpg"
+        "cta_url": "/pages/beauty"
       }
     },
     "bestsellers": {
@@ -518,11 +518,11 @@
         "heading": "Preserving Tradition, Promoting Wellness.",
         "body": "Viha Online grew from Mrs Anitha Kuppusamy's love for Indian pooja traditions and Ayurvedic care. She personally selects every product we sell, from brass idols to handmade Ayurvedic soaps.",
         "body2": "We are based in Chennai and ship pooja, wellness and festive essentials across India and abroad.",
+        "image": "shopify://shop_images/viha-founder-anitha-kuppusamy-v2.jpg",
         "founder_name": "Anitha Kuppusamy",
         "founder_title": "FOUNDER · VIHA ONLINE",
         "cta_text": "Read Our Story",
         "cta_url": "/pages/our-story",
-        "image": "shopify://shop_images/viha-founder-anitha-kuppusamy-v2.jpg",
         "founder_instagram_url": "https://www.instagram.com/anitha_kuppusamy",
         "founder_instagram_label": "@anitha_kuppusamy",
         "est_label": "EST.",
@@ -533,13 +533,13 @@
     "store-banner": {
       "type": "store-banner",
       "settings": {
+        "image": "shopify://shop_images/viha-store-front-chennai.jpg",
+        "image_focus_y": 90,
         "eyebrow": "Visit Us in Chennai",
         "heading": "Our Store",
         "address": "<p>VIHA, No 10, Bhagirathy Street, Raja Annamalaipuram, Chennai 600028</p><p>(Near Kamakshi Amman Temple)</p>",
         "map_url": "",
-        "button_label": "Get Directions",
-        "image": "shopify://shop_images/viha-store-front-chennai.jpg",
-        "image_focus_y": 90
+        "button_label": "Get Directions"
       }
     },
     "shipping-worldwide": {

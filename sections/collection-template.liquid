@@ -32,6 +32,42 @@
     {%- if hero_sub != blank -%}
       <p style="font-size:13px;color:rgba(255,255,255,0.60);max-width:480px;line-height:1.75;">{{ hero_sub | strip_html | truncate: 160 }}</p>
     {%- endif -%}
+    {%- if banner -%}
+      {%- comment -%} Banner actions: a button down to the products, the live product count, and up to four
+        sub-category links taken from the same menu as the "department" block's tiles below. {%- endcomment -%}
+      {%- assign hero_menu = blank -%}
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'department' and block.settings.collection.id == col.id and block.settings.menu != blank -%}
+          {%- assign hero_menu = linklists[block.settings.menu] -%}{%- break -%}
+        {%- endif -%}
+      {%- endfor -%}
+      <div class="collection-hero__actions">
+        {%- if section.settings.hero_button_label != blank -%}
+          <a class="collection-hero__btn" href="#collection-products">{{ section.settings.hero_button_label | escape }}</a>
+        {%- endif -%}
+        {%- if col.products_count > 0 and section.settings.hero_count_label != blank -%}
+          <span class="collection-hero__count">{{ col.products_count }} {{ section.settings.hero_count_label | escape }}</span>
+        {%- endif -%}
+      </div>
+      {%- if hero_menu != blank and hero_menu.links.size > 0 -%}
+        {%- assign chip_count = 0 -%}
+        <ul class="collection-hero__chips" role="list">
+          {%- for link in hero_menu.links -%}
+            {%- if chip_count >= 4 -%}{%- break -%}{%- endif -%}
+            {%- if link.url != '#' and link.url != blank and link.url != col.url -%}
+              <li><a href="{{ link.url }}">{{ link.title | escape }}</a></li>{%- assign chip_count = chip_count | plus: 1 -%}
+            {%- else -%}
+              {%- for child in link.links -%}
+                {%- if chip_count >= 4 -%}{%- break -%}{%- endif -%}
+                {%- if child.url != '#' and child.url != blank and child.url != col.url -%}
+                  <li><a href="{{ child.url }}">{{ child.title | escape }}</a></li>{%- assign chip_count = chip_count | plus: 1 -%}
+                {%- endif -%}
+              {%- endfor -%}
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+    {%- endif -%}
   </div>
 </section>
 
@@ -49,7 +85,7 @@
 {%- render 'department-submenu', blocks: section.blocks, heading: section.settings.submenu_heading -%}
 
 {%- comment -%} ── Body: sidebar + product grid ─── {%- endcomment -%}
-<div style="background:var(--color-cream);padding:2.5rem 3rem;min-height:60vh;">
+<div id="collection-products" style="background:var(--color-cream);padding:2.5rem 3rem;min-height:60vh;scroll-margin-top:120px;">
   <div style="max-width:var(--max-w);margin:0 auto;">
 
     {%- comment -%} Toolbar: search + sort + count + mobile filter toggle {%- endcomment -%}
@@ -291,6 +327,16 @@
 .collection-hero--banner { display:flex; align-items:center; }
 .collection-hero--banner > div:last-child { width:100%; }
 .collection-hero__fade { position:absolute; inset:0; pointer-events:none; }
+.collection-hero__actions { display:flex; align-items:center; flex-wrap:wrap; gap:14px 18px; margin-top:1.4rem; }
+.collection-hero__btn { display:inline-block; padding:12px 30px; border:1.5px solid var(--color-gold); border-radius:999px;
+  background:linear-gradient(180deg, #d9b26a 0%, #b8893d 100%); color:#0b4533; font-size:12px; font-weight:800;
+  letter-spacing:0.14em; text-transform:uppercase; box-shadow:0 6px 18px rgba(0,0,0,0.25); transition:transform .15s, box-shadow .15s; }
+.collection-hero__btn:hover { transform:translateY(-1px); box-shadow:0 10px 24px rgba(0,0,0,0.3); }
+.collection-hero__count { font-size:11px; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:var(--color-gold); }
+.collection-hero__chips { display:flex; flex-wrap:wrap; gap:8px; margin:1.1rem 0 0; padding:0; list-style:none; }
+.collection-hero__chips a { display:inline-block; padding:7px 14px; border:1px solid rgba(217,178,106,0.6); border-radius:999px;
+  background:rgba(11,69,51,0.45); color:#f3e6c8; font-size:12px; font-weight:600; transition:background .15s, border-color .15s; }
+.collection-hero__chips a:hover { background:rgba(184,137,61,0.35); border-color:var(--color-gold); }
 @media (min-width: 750px) {
   .collection-hero--banner { aspect-ratio:var(--banner-ar); min-height:300px; padding-left:clamp(3rem, 7vw, 8rem) !important; }
   .collection-hero__img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center; }
@@ -301,6 +347,7 @@
   .collection-hero--banner { display:block; padding:calc(100vw / var(--banner-ar) + 1.75rem) 16px 2rem !important; }
   .collection-hero__img { position:absolute; top:0; left:0; width:100%; height:auto; display:block; }
   .collection-hero__fade { display:none; }
+  .collection-hero__chips { display:none; }
 }
 .catalog-sidebar {
   display: none;
@@ -431,7 +478,9 @@
     { "type": "textarea","id": "custom_subtext",       "label": "Custom subtitle",  "info": "Overrides the collection description" },
     { "type": "range",   "id": "products_per_page",   "label": "Products per page","min": 12, "max": 48, "step": 4, "default": 24 },
     { "type": "text",    "id": "hidden_tags",         "label": "Tags to hide from Refine (no longer used)", "info": "Refine options now come from each collection's Refine options field (Products > Collections > collection > Metafields).", "default": "low_stock_alerted,bestseller,top-rated,new-arrival,sale" },
-    { "type": "text",    "id": "submenu_heading",     "label": "Sub-menu heading", "info": "Shown above the sub-menu tiles on a department page." }
+    { "type": "text",    "id": "submenu_heading",     "label": "Sub-menu heading", "info": "Shown above the sub-menu tiles on a department page." },
+    { "type": "text",    "id": "hero_button_label",   "label": "Banner button label", "default": "Shop Now", "info": "Shown on collections with a banner image. Leave empty to hide the button." },
+    { "type": "text",    "id": "hero_count_label",    "label": "Banner product count label", "default": "products", "info": "Shown after the live product count, e.g. 120 products. Leave empty to hide." }
   ],
   "blocks": [
     {

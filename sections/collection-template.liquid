@@ -8,9 +8,15 @@
 {%- if col.products_count > per_page -%}{%- assign is_paginated = true -%}{%- endif -%}
 
 {%- comment -%} ── Collection hero ─── {%- endcomment -%}
-<section style="position:relative;background:var(--color-maroon-dark);padding:4rem 3rem 3.5rem;overflow:hidden;">
+{%- assign banner = col.metafields.custom.banner_image.value -%}
+<section class="collection-hero{% if banner %} collection-hero--banner{% endif %}" style="position:relative;background:var(--color-maroon-dark);padding:4rem 3rem 3.5rem;overflow:hidden;">
   <div style="position:absolute;inset:0;opacity:0.05;background-size:18px 18px;pointer-events:none;"></div>
-  {%- if col.image -%}
+  {%- comment -%} custom.banner_image = the full-colour banner (viha-easy only; the live Debut theme keeps
+    using col.image). Without one, the old darkened col.image look stays. {%- endcomment -%}
+  {%- if banner -%}
+    {{ banner | image_url: width: 2400 | image_tag: class: 'collection-hero__img', alt: '', widths: '800, 1200, 1600, 2400', sizes: '100vw', fetchpriority: 'high', loading: 'eager' }}
+    <div class="collection-hero__fade"></div>
+  {%- elsif col.image -%}
     <div style="position:absolute;inset:0;background-image:url('{{ col.image | img_url: '1920x' }}');background-size:cover;background-position:center;filter:brightness(0.25);mix-blend-mode:luminosity;"></div>
   {%- endif -%}
   <div style="max-width:var(--max-w);margin:0 auto;position:relative;z-index:1;">
@@ -279,6 +285,16 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: 2rem;
+}
+/* Full-colour banner: photo on the right, Viha green fade behind the title on the left */
+.collection-hero--banner { display:flex; align-items:center; min-height:clamp(240px, 30vw, 440px); }
+.collection-hero__img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:right center; }
+.collection-hero__fade { position:absolute; inset:0; pointer-events:none;
+  background:linear-gradient(90deg, rgba(11,69,51,0.94) 0%, rgba(11,69,51,0.80) 32%, rgba(11,69,51,0.25) 58%, rgba(11,69,51,0) 75%); }
+.collection-hero--banner > div:last-child { width:100%; }
+@media (max-width: 749px) {
+  .collection-hero--banner { min-height:300px; align-items:flex-end; }
+  .collection-hero__fade { background:linear-gradient(0deg, rgba(11,69,51,0.95) 0%, rgba(11,69,51,0.75) 45%, rgba(11,69,51,0.10) 80%); }
 }
 .catalog-sidebar {
   display: none;

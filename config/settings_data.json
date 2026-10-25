@@ -37,7 +37,12 @@
         "settings": {
           "enabled": true,
           "text": "Ships across India and worldwide. Rates calculated at checkout.",
-          "link": ""
+          "link": "",
+          "app_label": "Get the Viha app:",
+          "play_store_url": "https://play.google.com/store/apps/details?id=online.viha",
+          "app_store_url": "https://apps.apple.com/in/app/viha/id1577494565",
+          "qr_image": "shopify://shop_images/viha-app-qr-android.png",
+          "qr_caption": "Scan to install (Android)"
         }
       },
       "header": {

@@ -493,7 +493,7 @@
       "delivery-notice": {
         "type": "delivery-notice",
         "settings": {
-          "enabled": true,
+          "enabled": false,
           "eyebrow": "A note from Viha",
           "heading": "Delivery Time: 8-10 Working Days",
           "body": "<p>You can track your parcels on the India Post website with your tracking number.</p><p>Kindly allow us to deliver our products to you in their best form. We require at least 7-8 working days for delivery.</p><p><strong>NOTE:</strong> Day of booking, Sundays, public holidays and Tamil Nadu festival days are NOT considered working days. Minimum 14 working days required for delivery.</p>",

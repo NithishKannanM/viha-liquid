@@ -44,10 +44,10 @@
           "type": "slide",
           "settings": {
             "bg_image": "shopify://shop_images/viha-hero-silk-sarees-zari-border.jpg",
-            "eyebrow": "Viha Boutique",
+            "eyebrow": "Viha Clothing",
             "heading": "Sarees, By Fabric and Weave",
-            "subtext": "Cotton, cotton silk, soft silk, Kalyani cotton, Banarasi, Katan silk, designer and more, organised by saree type on our new Viha Boutique page.",
-            "cta_primary_label": "Explore Viha Boutique",
+            "subtext": "Cotton, cotton silk, soft silk, Kalyani cotton, Banarasi, Katan silk, designer and more, organised by saree type on our new Viha Clothing page.",
+            "cta_primary_label": "Explore Viha Clothing",
             "cta_primary_url": "/pages/viha-boutique",
             "cta_secondary_label": "Shop All Essentials",
             "cta_secondary_url": "/collections/all"
@@ -717,11 +717,28 @@
         "promo-1",
         "promo-2"
       ]
+    },
+    "viha-info": {
+      "type": "viha-info",
+      "settings": {
+        "eyebrow": "A note from Viha",
+        "heading": "Delivery Time: 8-10 Working Days",
+        "body": "<p>You can track your parcels on the India Post website with your tracking number.</p><p>Kindly allow us to deliver our products to you in their best form. We require at least 7-8 working days for delivery.</p><p><strong>NOTE:</strong> Day of booking, Sundays, public holidays and Tamil Nadu festival days are NOT considered working days. Minimum 14 working days required for delivery.</p>",
+        "call_heading": "Call us",
+        "call_text": "For wholesale orders and concert bookings.",
+        "call_phone": "87544 44915",
+        "call_button_label": "Call",
+        "app_heading": "Get the Viha App",
+        "app_steps": "<p>1. Tap Android or iPhone below.</p><p>2. Tap Install on the store page that opens.</p><p>3. Open the Viha app and start shopping.</p>",
+        "play_store_url": "https://play.google.com/store/apps/details?id=online.viha",
+        "app_store_url": "https://apps.apple.com/in/app/viha/id1577494565"
+      }
     }
   },
   "order": [
     "hero-banner",
     "quick-access",
+    "viha-info",
     "store-banner",
     "promo-slider",
     "trust-bar",

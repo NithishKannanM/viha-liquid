@@ -84,7 +84,7 @@
             "label": "Pooja Products & Samagri",
             "collection": "pooja-samagri",
             "custom_link": "",
-            "image": "shopify://shop_images/viha-circle-pooja-products-samagri.webp"
+            "image": "shopify://shop_images/viha-circle-v2-pooja-products-samagri.webp"
           }
         },
         "tab-2": {
@@ -93,7 +93,7 @@
             "label": "Pooja Utensils",
             "collection": "pooja-utensils",
             "custom_link": "",
-            "image": "shopify://shop_images/viha-circle-pooja-utensils.webp"
+            "image": "shopify://shop_images/viha-circle-v2-pooja-utensils.webp"
           }
         },
         "tab-3": {
@@ -102,7 +102,7 @@
             "label": "Vilakku & Traditional Oil Lamps",
             "collection": "lamp-diya",
             "custom_link": "",
-            "image": "shopify://shop_images/viha-circle-vilakku-oil-lamps.webp"
+            "image": "shopify://shop_images/viha-circle-v2-vilakku-oil-lamps.webp"
           }
         },
         "tab-4": {
@@ -111,7 +111,7 @@
             "label": "Statues / Idols",
             "collection": "statues-idols",
             "custom_link": "",
-            "image": "shopify://shop_images/viha-circle-statues-idols.webp"
+            "image": "shopify://shop_images/viha-circle-v2-statues-idols.webp"
           }
         },
         "tab-5": {
@@ -120,7 +120,7 @@
             "label": "Conch & Shells",
             "collection": "conch-shells-yantra-sangu",
             "custom_link": "",
-            "image": "shopify://shop_images/viha-circle-conch-shells.webp"
+            "image": "shopify://shop_images/viha-circle-v2-conch-shells.webp"
           }
         },
         "tab-6": {
@@ -138,7 +138,7 @@
             "label": "All Wooden Products",
             "collection": "wooden-products",
             "custom_link": "",
-            "image": "shopify://shop_images/viha-circle-wooden-products.webp"
+            "image": "shopify://shop_images/viha-circle-v2-wooden-products.webp"
           }
         },
         "tab-8": {
@@ -147,7 +147,7 @@
             "label": "Gemstones & Crystals",
             "collection": "gemstones-crystals",
             "custom_link": "",
-            "image": "shopify://shop_images/viha-circle-gemstones-crystals.webp"
+            "image": "shopify://shop_images/viha-circle-v2-gemstones-crystals.webp"
           }
         },
         "tab-9": {
@@ -155,7 +155,8 @@
           "settings": {
             "label": "Ayurveda & Herbal",
             "collection": "ayurveda-herbal",
-            "custom_link": ""
+            "custom_link": "",
+            "image": "shopify://shop_images/viha-circle-v2-ayurveda-herbal.webp"
           }
         },
         "tab-10": {
@@ -163,7 +164,8 @@
           "settings": {
             "label": "Viha Handmade Soaps & Cosmetics",
             "collection": "",
-            "custom_link": "/pages/beauty"
+            "custom_link": "/pages/beauty",
+            "image": "shopify://shop_images/viha-circle-v2-soaps-cosmetics.webp"
           }
         },
         "tab-11": {
@@ -171,7 +173,8 @@
           "settings": {
             "label": "Jewellery",
             "collection": "jewellery",
-            "custom_link": ""
+            "custom_link": "",
+            "image": "shopify://shop_images/viha-circle-v2-jewellery.webp"
           }
         },
         "tab-12": {
@@ -179,7 +182,8 @@
           "settings": {
             "label": "Clothing",
             "collection": "clothing",
-            "custom_link": ""
+            "custom_link": "",
+            "image": "shopify://shop_images/viha-circle-v2-clothing.webp"
           }
         },
         "tab-13": {
@@ -187,7 +191,8 @@
           "settings": {
             "label": "Viha Boutique",
             "collection": "",
-            "custom_link": "/pages/viha-boutique"
+            "custom_link": "/pages/viha-boutique",
+            "image": "shopify://shop_images/viha-circle-v2-viha-boutique.webp"
           }
         },
         "tab-14": {
@@ -195,7 +200,8 @@
           "settings": {
             "label": "Home & Living",
             "collection": "home-living",
-            "custom_link": ""
+            "custom_link": "",
+            "image": "shopify://shop_images/viha-circle-v2-home-living.webp"
           }
         },
         "tab-15": {
@@ -203,7 +209,8 @@
           "settings": {
             "label": "Food & Organic",
             "collection": "food-organic",
-            "custom_link": ""
+            "custom_link": "",
+            "image": "shopify://shop_images/viha-circle-v2-food-organic.webp"
           }
         },
         "tab-16": {
@@ -211,7 +218,8 @@
           "settings": {
             "label": "Kids & Baby",
             "collection": "kids-baby",
-            "custom_link": ""
+            "custom_link": "",
+            "image": "shopify://shop_images/viha-circle-v2-kids-baby.webp"
           }
         },
         "tab-17": {
@@ -219,7 +227,8 @@
           "settings": {
             "label": "Stationery & Gifts",
             "collection": "books-gifts",
-            "custom_link": ""
+            "custom_link": "",
+            "image": "shopify://shop_images/viha-circle-v2-stationery-gifts.webp"
           }
         },
         "tab-18": {
@@ -227,7 +236,8 @@
           "settings": {
             "label": "Bags & Pouches",
             "collection": "bags-pouches",
-            "custom_link": ""
+            "custom_link": "",
+            "image": "shopify://shop_images/viha-circle-v2-bags-pouches.webp"
           }
         },
         "tab-19": {
@@ -235,7 +245,8 @@
           "settings": {
             "label": "Fashion & Grooming",
             "collection": "fashion-grooming",
-            "custom_link": ""
+            "custom_link": "",
+            "image": "shopify://shop_images/viha-circle-v2-fashion-grooming.webp"
           }
         },
         "tab-20": {
@@ -243,7 +254,8 @@
           "settings": {
             "label": "New Arrivals",
             "collection": "new-arrivals",
-            "custom_link": ""
+            "custom_link": "",
+            "image": "shopify://shop_images/viha-circle-v2-new-arrivals.webp"
           }
         }
       },

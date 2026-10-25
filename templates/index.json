@@ -645,6 +645,17 @@
         "products_to_show": 10,
         "show_view_all": true
       }
+    },
+    "home-god-photos": {
+      "type": "featured-collection",
+      "settings": {
+        "eyebrow": "",
+        "heading": "God & Goddess Photos",
+        "subtext": "Amman, Ganesha, Murugan, Perumal, Sivan and Kubera photos, plus magnetic god photos.",
+        "collection": "god-photos",
+        "products_to_show": 10,
+        "show_view_all": true
+      }
     }
   },
   "order": [
@@ -655,6 +666,7 @@
     "home-pooja-samagri",
     "home-statues-idols",
     "home-pooja-utensils",
+    "home-god-photos",
     "shop-by-purpose",
     "beauty-promo",
     "bestsellers",

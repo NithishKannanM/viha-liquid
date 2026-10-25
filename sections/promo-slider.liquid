@@ -1,0 +1,127 @@
+{%- comment -%}
+  Promo slider: a smaller, auto-advancing banner strip for offers and collections (Meha, 25 Oct: "a small
+  separate banner which runs sort of ads"). Each slide is one wide image (1584 x 672 works, the gold-frame
+  collection banners fit as they are) that links somewhere, with an optional heading and button over its
+  left side. Slides show at their own shape, so nothing in the picture is cropped.
+{%- endcomment -%}
+{%- assign slides = section.blocks | where: "type", "slide" -%}
+{%- if slides.size > 0 -%}
+<section class="promo-slider" id="promo-slider-{{ section.id }}" data-seconds="{{ section.settings.autoplay_seconds }}" aria-roledescription="carousel" aria-label="{{ section.settings.heading | default: 'Offers' | escape }}">
+  {%- if section.settings.heading != blank -%}
+    <h2 class="promo-slider__heading">{{ section.settings.heading | escape }}</h2>
+  {%- endif -%}
+  <div class="promo-slider__frame">
+    <div class="promo-slider__track">
+      {%- for block in slides -%}
+        <div class="promo-slider__slide{% if forloop.first %} is-active{% endif %}" role="group" aria-roledescription="slide" aria-label="{{ forloop.index }} of {{ slides.size }}" {% unless forloop.first %}aria-hidden="true"{% endunless %} {{ block.shopify_attributes }}>
+          {%- if block.settings.image != blank -%}
+            {{ block.settings.image | image_url: width: 2000 | image_tag: widths: '600, 900, 1200, 1600, 2000', sizes: '(min-width: 1400px) 1320px, 94vw', alt: block.settings.image.alt, loading: 'lazy', class: 'promo-slider__img' }}
+          {%- endif -%}
+          {%- if block.settings.heading != blank or block.settings.button_label != blank -%}
+          <div class="promo-slider__text">
+            {%- if block.settings.heading != blank -%}<p class="promo-slider__title">{{ block.settings.heading | escape }}</p>{%- endif -%}
+            {%- if block.settings.button_label != blank and block.settings.link != blank -%}
+              <span class="promo-slider__btn">{{ block.settings.button_label | escape }}</span>
+            {%- endif -%}
+          </div>
+          {%- endif -%}
+          {%- if block.settings.link != blank -%}
+            <a class="promo-slider__link" href="{{ block.settings.link }}" {% unless forloop.first %}tabindex="-1"{% endunless %}><span class="sr-only">{{ block.settings.heading | default: block.settings.image.alt | escape }}</span></a>
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+    </div>
+    {%- if slides.size > 1 -%}
+      <button type="button" class="promo-slider__arrow promo-slider__arrow--prev" aria-label="Previous slide"><svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg></button>
+      <button type="button" class="promo-slider__arrow promo-slider__arrow--next" aria-label="Next slide"><svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></button>
+      <div class="promo-slider__dots">
+        {%- for block in slides -%}
+          <button type="button" class="promo-slider__dot{% if forloop.first %} is-active{% endif %}" aria-label="Go to slide {{ forloop.index }}"></button>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+<style>
+.promo-slider { max-width: 1400px; margin: 0 auto; padding: 2.5rem clamp(16px, 3vw, 40px); }
+.promo-slider__heading { font-family: var(--font-heading); font-size: clamp(22px, 3vw, 30px); color: var(--color-maroon); text-align: center; margin: 0 0 1.25rem; }
+.promo-slider__frame { position: relative; border-radius: 10px; overflow: hidden; box-shadow: 0 12px 30px rgba(11,69,51,0.18); background: var(--color-maroon-dark); }
+.promo-slider__track { position: relative; aspect-ratio: 1584 / 672; }
+.promo-slider__slide { position: absolute; inset: 0; opacity: 0; visibility: hidden; transition: opacity .6s ease, visibility 0s linear .6s; }
+.promo-slider__slide.is-active { opacity: 1; visibility: visible; transition: opacity .6s ease, visibility 0s; z-index: 1; }
+.promo-slider__img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.promo-slider__text { position: absolute; left: 8%; top: 50%; transform: translateY(-50%); max-width: 40%; display: flex; flex-direction: column; align-items: flex-start; gap: 14px; }
+.promo-slider__title { font-family: var(--font-heading); font-size: clamp(16px, 3vw, 40px); font-weight: 900; line-height: 1.1; color: #fff; margin: 0; text-shadow: 0 2px 12px rgba(0,0,0,0.35); }
+.promo-slider__btn { display: inline-block; padding: 10px 24px; border-radius: 999px; background: linear-gradient(180deg, #d9b26a 0%, #b8893d 100%); color: #0b4533; font-size: 12px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; box-shadow: 0 6px 18px rgba(0,0,0,0.25); }
+.promo-slider__link { position: absolute; inset: 0; z-index: 2; }
+.promo-slider__arrow { position: absolute; top: 50%; transform: translateY(-50%); z-index: 3; width: 38px; height: 38px; border-radius: 50%; border: 1px solid rgba(217,178,106,0.7); background: rgba(11,69,51,0.7); color: #f3e6c8; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+.promo-slider__arrow--prev { left: 12px; } .promo-slider__arrow--next { right: 12px; }
+.promo-slider__dots { position: absolute; left: 0; right: 0; bottom: 10px; z-index: 3; display: flex; justify-content: center; gap: 8px; }
+.promo-slider__dot { width: 9px; height: 9px; border-radius: 50%; border: 1px solid #d9b26a; background: transparent; padding: 0; cursor: pointer; }
+.promo-slider__dot.is-active { background: #d9b26a; }
+@media (max-width: 749px) {
+  .promo-slider { padding: 1.75rem 16px; }
+  .promo-slider__arrow { display: none; }
+  .promo-slider__text { gap: 8px; max-width: 46%; }
+  .promo-slider__btn { padding: 6px 14px; font-size: 10px; }
+}
+@media (prefers-reduced-motion: reduce) { .promo-slider__slide { transition: none; } }
+</style>
+
+{%- if slides.size > 1 -%}
+<script>
+(function () {
+  function init(root) {
+    if (!root || root.dataset.ready) return; root.dataset.ready = '1';
+    var slides = root.querySelectorAll('.promo-slider__slide'), dots = root.querySelectorAll('.promo-slider__dot');
+    var i = 0, timer = null, secs = parseFloat(root.dataset.seconds || '5');
+    var still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function show(n) {
+      i = (n + slides.length) % slides.length;
+      slides.forEach(function (s, k) {
+        var on = k === i; s.classList.toggle('is-active', on); s.setAttribute('aria-hidden', on ? 'false' : 'true');
+        var a = s.querySelector('.promo-slider__link'); if (a) { if (on) a.removeAttribute('tabindex'); else a.setAttribute('tabindex', '-1'); }
+      });
+      dots.forEach(function (d, k) { d.classList.toggle('is-active', k === i); });
+    }
+    function start() { if (still) return; stop(); timer = setInterval(function () { show(i + 1); }, secs * 1000); }
+    function stop() { if (timer) { clearInterval(timer); timer = null; } }
+    var prev = root.querySelector('.promo-slider__arrow--prev'), next = root.querySelector('.promo-slider__arrow--next');
+    if (prev) prev.addEventListener('click', function () { show(i - 1); start(); });
+    if (next) next.addEventListener('click', function () { show(i + 1); start(); });
+    dots.forEach(function (d, k) { d.addEventListener('click', function () { show(k); start(); }); });
+    root.addEventListener('focusin', stop); root.addEventListener('focusout', start);
+    document.addEventListener('visibilitychange', function () { if (document.hidden) stop(); else start(); });
+    start();
+  }
+  function all(scope) { (scope || document).querySelectorAll('.promo-slider').forEach(init); }
+  if (document.readyState !== 'loading') all(); else document.addEventListener('DOMContentLoaded', function () { all(); });
+  document.addEventListener('shopify:section:load', function (e) { all(e.target); });
+})();
+</script>
+{%- endif -%}
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Promo slider",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "info": "Optional, shown above the slider." },
+    { "type": "range", "id": "autoplay_seconds", "label": "Seconds per slide", "min": 3, "max": 12, "step": 1, "default": 5 }
+  ],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image", "info": "Wide image, 1584 x 672 (21:9). Set its alt text in Files." },
+        { "type": "url", "id": "link", "label": "Link" },
+        { "type": "text", "id": "heading", "label": "Heading over the image", "info": "Optional. Sits on the left, so keep the left side of the image calm." },
+        { "type": "text", "id": "button_label", "label": "Button label", "info": "Optional. Needs a link." }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Promo slider", "category": "Promotional" }]
+}
+{% endschema %}

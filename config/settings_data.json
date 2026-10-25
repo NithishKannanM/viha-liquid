@@ -459,7 +459,11 @@
           "concert_whatsapp_number": "",
           "concert_whatsapp_label": "Book Concert Tickets",
           "concert_whatsapp_message": "Hi, I would like to book concert tickets.",
-          "mobile_group1_count": 8
+          "mobile_group1_count": 8,
+          "founder_photo": "shopify://shop_images/viha-founder-anitha-kuppusamy-avatar.jpg",
+          "founder_name": "Mrs Anitha Kuppusamy",
+          "founder_role": "Founder, Viha",
+          "founder_link": "/pages/our-story"
         }
       },
       "footer": {

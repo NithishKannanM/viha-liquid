@@ -22,7 +22,9 @@
             "cta_primary_label": "Shop All Essentials",
             "cta_primary_url": "/collections/all",
             "cta_secondary_label": "Explore Soaps & Cosmetics",
-            "cta_secondary_url": "/pages/beauty"
+            "cta_secondary_url": "/pages/beauty",
+            "portrait": "shopify://shop_images/viha-founder-anitha-kuppusamy-portrait.jpg",
+            "portrait_caption": "Mrs Anitha Kuppusamy"
           }
         },
         "slide-2": {
@@ -300,9 +302,9 @@
     "navaratri-collection": {
       "type": "featured-collection",
       "settings": {
-        "eyebrow": "DEEPAVALI SPECIAL",
-        "heading": "Deepavali Essentials",
-        "subtext": "Brass lamps, deepam oil (lamp oil), thiri (cotton wicks), Lakshmi Kubera pooja items and kolam supplies for Sunday, 8 November.",
+        "eyebrow": "FESTIVAL SPECIAL",
+        "heading": "Dhanteras & Diwali",
+        "subtext": "Agal vilakku (oil lamps) and diyas, ghee deepam, Lakshmi Kuberar statues and yantras, Mahalakshmi photos, valampuri sangu and homa kits.",
         "collection": "deepavali",
         "products_to_show": 10,
         "show_view_all": true
@@ -547,7 +549,12 @@
         "heading": "Our Store",
         "address": "<p>VIHA, No 10, Bhagirathy Street, Raja Annamalaipuram, Chennai 600028</p><p>(Near Kamakshi Amman Temple)</p>",
         "map_url": "",
-        "button_label": "Get Directions"
+        "button_label": "Get Directions",
+        "hours_label": "Timings",
+        "hours": "Open all days, 9 AM to 7 PM",
+        "phone_label": "Phone",
+        "phone": "+91 88258 61822",
+        "map_query": "Viha, No 10, Bhagirathy Street, Raja Annamalaipuram, Chennai 600028"
       }
     },
     "shipping-worldwide": {
@@ -656,13 +663,58 @@
         "products_to_show": 10,
         "show_view_all": true
       }
+    },
+    "kandha-sashti": {
+      "type": "featured-collection",
+      "settings": {
+        "eyebrow": "KANDHA SASHTI",
+        "heading": "Kandha Sashti Vratham Products",
+        "subtext": "Murugan vel (spear), statues and photos, vel and Arumuga vilakku (lamps), and ghee deepam.",
+        "collection": "kandha-sashti-vratham",
+        "products_to_show": 10,
+        "show_view_all": true
+      }
+    },
+    "promo-slider": {
+      "type": "promo-slider",
+      "settings": {
+        "heading": "",
+        "autoplay_seconds": 5
+      },
+      "blocks": {
+        "promo-1": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/viha-banner-vilakku-oil-lamps.webp",
+            "link": "/collections/lamp-diya",
+            "heading": "Vilakku & Traditional Oil Lamps",
+            "button_label": "Shop Now"
+          }
+        },
+        "promo-2": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/viha-banner-pooja-products-samagri.webp",
+            "link": "/collections/pooja-samagri",
+            "heading": "Pooja Products & Samagri",
+            "button_label": "Shop Now"
+          }
+        }
+      },
+      "block_order": [
+        "promo-1",
+        "promo-2"
+      ]
     }
   },
   "order": [
     "hero-banner",
     "quick-access",
+    "store-banner",
+    "promo-slider",
     "trust-bar",
     "navaratri-collection",
+    "kandha-sashti",
     "home-pooja-samagri",
     "home-statues-idols",
     "home-pooja-utensils",
@@ -674,7 +726,6 @@
     "latest-journal",
     "newsletter",
     "founder",
-    "store-banner",
     "shipping-worldwide",
     "order-tracker",
     "whatsapp-contact-banner"

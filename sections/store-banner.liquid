@@ -31,6 +31,16 @@
     <h2 class="store-banner__title">{{ section.settings.heading }}</h2>
     <span class="store-banner__rule" aria-hidden="true"></span>
     <div class="store-banner__address rte">{{ section.settings.address }}</div>
+    {%- if section.settings.hours != blank or section.settings.phone != blank -%}
+    <dl class="store-banner__facts">
+      {%- if section.settings.hours != blank -%}
+        <div><dt>{{ section.settings.hours_label | escape }}</dt><dd>{{ section.settings.hours | escape }}</dd></div>
+      {%- endif -%}
+      {%- if section.settings.phone != blank -%}
+        <div><dt>{{ section.settings.phone_label | escape }}</dt><dd><a href="tel:{{ section.settings.phone | remove: ' ' | escape }}">{{ section.settings.phone | escape }}</a></dd></div>
+      {%- endif -%}
+    </dl>
+    {%- endif -%}
     <a class="btn btn--primary store-banner__btn" href="{{ map_link }}" target="_blank" rel="noopener">
       <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" aria-hidden="true" style="margin-right:7px;flex-shrink:0;">
         <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/>
@@ -39,6 +49,11 @@
       {{ section.settings.button_label }}
     </a>
   </div>
+  {%- if section.settings.map_query != blank -%}
+  <div class="store-banner__map">
+    <iframe title="{{ section.settings.heading | escape }}: map" src="https://www.google.com/maps?q={{ section.settings.map_query | url_encode }}&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+  </div>
+  {%- endif -%}
 </section>
 
 <style>
@@ -52,8 +67,15 @@
 .store-banner__rule { display: inline-block; width: 48px; height: 2px; background: var(--color-gold); margin-bottom: 1rem; }
 .store-banner__address { font-size: 14px; line-height: 1.85; color: var(--color-charcoal); margin-bottom: 1.5rem; }
 .store-banner__address p { margin: 0 0 0.5rem; }
+.store-banner__facts { margin: 0 0 1.5rem; display: grid; gap: 8px; font-size: 14px; }
+.store-banner__facts div { display: flex; gap: 10px; }
+.store-banner__facts dt { min-width: 64px; font-weight: 700; color: var(--color-maroon); }
+.store-banner__facts dd { margin: 0; color: var(--color-charcoal); }
+.store-banner__facts a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+.store-banner__map { position: relative; margin-left: auto; width: min(520px, 45%); aspect-ratio: 4 / 3; border-radius: 3px; overflow: hidden; border-top: 3px solid var(--color-gold); box-shadow: 0 10px 30px rgba(0,0,0,0.25); background: #fff; }
+.store-banner__map iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 .store-banner__btn { width: auto; min-height: 46px; padding: 0 1.5rem; display: inline-flex; align-items: center; justify-content: center; }
-@media (max-width: 767px) { .store-banner { min-height: 420px; padding: 3rem 1.25rem; } .store-banner__card { padding: 2rem 1.5rem; } }
+@media (max-width: 767px) { .store-banner { min-height: 420px; padding: 3rem 1.25rem; flex-direction: column; gap: 1.25rem; } .store-banner__card { padding: 2rem 1.5rem; } .store-banner__map { width: 100%; margin-left: 0; } }
 </style>
 
 {% schema %}
@@ -71,6 +93,11 @@
       "default": "<p>VIHA, No 10, Bhagirathy Street, Raja Annamalaipuram, Chennai 600028</p><p>(Near Kamakshi Amman Temple)</p>"
     },
     { "type": "url", "id": "map_url", "label": "Google Maps link", "info": "Leave empty to use the default Viha showroom map link" },
+    { "type": "text", "id": "hours_label", "label": "Hours label", "default": "Timings" },
+    { "type": "text", "id": "hours", "label": "Working days and hours", "info": "Leave empty to hide." },
+    { "type": "text", "id": "phone_label", "label": "Phone label", "default": "Phone" },
+    { "type": "text", "id": "phone", "label": "Phone number", "info": "Shown as a tap-to-call link. Leave empty to hide." },
+    { "type": "text", "id": "map_query", "label": "Map address", "info": "Address or place name for the embedded Google map. Leave empty to hide the map." },
     { "type": "text", "id": "button_label", "label": "Button label", "default": "Get Directions" }
   ],
   "presets": [{ "name": "Store banner" }]

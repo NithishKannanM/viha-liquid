@@ -20,7 +20,7 @@
           {%- if search.results_count == 0 -%}
             No results for &ldquo;{{ search.terms | escape }}&rdquo;
           {%- else -%}
-            {{ search.results_count }} result{%- if search.results_count != 1 -%}s{%- endif -%} for &ldquo;{{ search.terms | escape }}&rdquo;
+            {{ search.results_count }} result{%- if search.results_count != 1 -%}s{%- endif %} for &ldquo;{{ search.terms | escape }}&rdquo;
           {%- endif -%}
         {%- else -%}
           What are you looking for?

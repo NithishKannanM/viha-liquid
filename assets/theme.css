@@ -1907,7 +1907,7 @@ ul { list-style: none; }
 }
 @media (min-width: 768px) {
   /* 5 across: the 20 menu tabs fill 4 even rows. */
-  .quick-access__grid { grid-template-columns: repeat(5, 1fr); gap: 2.5rem 1.5rem; }
+  .quick-access__grid { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 2.5rem 1.5rem; }
 }
 
 .quick-access__tile {
@@ -1932,7 +1932,8 @@ ul { list-style: none; }
   background: var(--color-cream-dark);
   transition: transform 0.2s, box-shadow 0.2s;
 }
-@media (min-width: 768px)  { .quick-access__media { width: 132px; } }
+/* tablets: five circles + gaps must fit the row, so the circle follows the column width */
+@media (min-width: 768px)  { .quick-access__media { width: min(132px, 100%); } }
 @media (min-width: 1024px) { .quick-access__media { width: 160px; } }
 .quick-access__img { width: 100%; height: 100%; object-fit: cover; }
 

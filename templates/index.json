@@ -610,16 +610,16 @@
       "type": "whatsapp-contact-banner",
       "settings": {
         "eyebrow": "",
-        "heading": "Wholesale Orders & Concert Tickets",
-        "subtext": "Message us directly on WhatsApp for bulk wholesale orders or to book concert tickets.",
+        "heading": "Wholesale Orders & Concert Booking",
+        "subtext": "Message us directly on WhatsApp for bulk wholesale orders or concert bookings.",
         "wholesale_whatsapp_number": "918754444915",
         "wholesale_whatsapp_label": "Wholesale Enquiries",
         "wholesale_whatsapp_subtext": "",
         "wholesale_whatsapp_message": "Hi, I would like to know more about wholesale orders.",
         "concert_whatsapp_number": "918754444915",
-        "concert_whatsapp_label": "Book Concert Tickets",
+        "concert_whatsapp_label": "Concert Booking",
         "concert_whatsapp_subtext": "",
-        "concert_whatsapp_message": "Hi, I would like to book concert tickets."
+        "concert_whatsapp_message": "Hi, I would like to enquire about a concert booking."
       }
     },
     "home-pooja-samagri": {

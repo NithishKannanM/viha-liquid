@@ -138,12 +138,12 @@
       {%- endif -%}
       {%- if section.settings.concert_whatsapp_number != blank -%}
         {%- assign header_concert_digits = section.settings.concert_whatsapp_number | remove: ' ' | remove: '+' | remove: '-' -%}
-        <a href="https://wa.me/{{ header_concert_digits }}?text={{ section.settings.concert_whatsapp_message | default: 'Hi, I would like to book concert tickets.' | url_encode }}"
-           class="header__track" target="_blank" rel="noopener" aria-label="{{ section.settings.concert_whatsapp_label | default: 'Book Concert Tickets' }}">
+        <a href="https://wa.me/{{ header_concert_digits }}?text={{ section.settings.concert_whatsapp_message | default: 'Hi, I would like to enquire about a concert booking.' | url_encode }}"
+           class="header__track" target="_blank" rel="noopener" aria-label="{{ section.settings.concert_whatsapp_label | default: 'Concert Booking' }}">
           <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.338c0 5.487 4.575 9.975 10.222 9.975 1.584 0 3.085-.37 4.42-1.03l3.358.838-.838-3.358A9.826 9.826 0 0021.75 8.25c0-5.487-4.576-9.975-10.222-9.975-5.647 0-9.278 4.488-9.278 9.975v.088z"/>
           </svg>
-          <span class="header__track-label" aria-hidden="true">{{ section.settings.concert_whatsapp_label | default: 'Book Concert Tickets' }}</span>
+          <span class="header__track-label" aria-hidden="true">{{ section.settings.concert_whatsapp_label | default: 'Concert Booking' }}</span>
         </a>
       {%- endif -%}
 
@@ -454,10 +454,10 @@
     { "type": "text", "id": "wholesale_whatsapp_label",   "label": "Wholesale link label", "default": "Wholesale Enquiries" },
     { "type": "text", "id": "wholesale_whatsapp_message", "label": "Wholesale pre-filled message", "default": "Hi, I would like to know more about wholesale orders." },
 
-    { "type": "header", "content": "Concert tickets" },
-    { "type": "text", "id": "concert_whatsapp_number",    "label": "Concert tickets WhatsApp number", "info": "Include country code, e.g. 919876543210. Leave blank to hide this link." },
-    { "type": "text", "id": "concert_whatsapp_label",     "label": "Concert tickets link label", "default": "Book Concert Tickets" },
-    { "type": "text", "id": "concert_whatsapp_message",   "label": "Concert tickets pre-filled message", "default": "Hi, I would like to book concert tickets." }
+    { "type": "header", "content": "Concert booking" },
+    { "type": "text", "id": "concert_whatsapp_number",    "label": "Concert booking WhatsApp number", "info": "Include country code, e.g. 919876543210. Leave blank to hide this link." },
+    { "type": "text", "id": "concert_whatsapp_label",     "label": "Concert booking link label", "default": "Concert Booking" },
+    { "type": "text", "id": "concert_whatsapp_message",   "label": "Concert booking pre-filled message", "default": "Hi, I would like to enquire about a concert booking." }
   ],
   "blocks": [
     {

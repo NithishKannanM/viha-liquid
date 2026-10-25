@@ -13,7 +13,7 @@
     {%- if section.settings.eyebrow != blank -%}
     <span class="section__eyebrow">{{ section.settings.eyebrow }}</span>
     {%- endif -%}
-    <h2 class="section__heading" id="whatsapp-contact-heading">{{ section.settings.heading | default: 'Wholesale Orders & Concert Tickets' }}</h2>
+    <h2 class="section__heading" id="whatsapp-contact-heading">{{ section.settings.heading | default: 'Wholesale Orders & Concert Booking' }}</h2>
     <div class="section__ornament" aria-hidden="true">
       <div class="section__ornament-line section__ornament-line--left"></div>
       <div class="section__ornament-diamond"></div>
@@ -40,12 +40,12 @@
 
       {%- if wcb_has_concert -%}
         {%- assign wcb_concert_digits = section.settings.concert_whatsapp_number | remove: ' ' | remove: '+' | remove: '-' -%}
-        <a href="https://wa.me/{{ wcb_concert_digits }}?text={{ section.settings.concert_whatsapp_message | default: 'Hi, I would like to book concert tickets.' | url_encode }}"
+        <a href="https://wa.me/{{ wcb_concert_digits }}?text={{ section.settings.concert_whatsapp_message | default: 'Hi, I would like to enquire about a concert booking.' | url_encode }}"
            class="whatsapp-contact-banner__card" target="_blank" rel="noopener">
           <span class="whatsapp-contact-banner__icon" aria-hidden="true">
             <svg width="22" height="22" fill="currentColor" viewBox="0 0 24 24"><path d="M2.25 6.338c0 5.487 4.575 9.975 10.222 9.975 1.584 0 3.085-.37 4.42-1.03l3.358.838-.838-3.358A9.826 9.826 0 0021.75 8.25c0-5.487-4.576-9.975-10.222-9.975-5.647 0-9.278 4.488-9.278 9.975v.088z"/></svg>
           </span>
-          <span class="whatsapp-contact-banner__label">{{ section.settings.concert_whatsapp_label | default: 'Book Concert Tickets' }}</span>
+          <span class="whatsapp-contact-banner__label">{{ section.settings.concert_whatsapp_label | default: 'Concert Booking' }}</span>
           {% if section.settings.concert_whatsapp_subtext != blank %}
             <span class="whatsapp-contact-banner__desc">{{ section.settings.concert_whatsapp_subtext }}</span>
           {% endif %}
@@ -108,7 +108,7 @@
   "name": "WhatsApp Contact Banner",
   "settings": [
     { "type": "text",     "id": "eyebrow",  "label": "Eyebrow", "default": "Get in Touch" },
-    { "type": "text",     "id": "heading",  "label": "Heading", "default": "Wholesale Orders & Concert Tickets" },
+    { "type": "text",     "id": "heading",  "label": "Heading", "default": "Wholesale Orders & Concert Booking" },
     { "type": "textarea", "id": "subtext",  "label": "Subtext" },
 
     { "type": "header",   "content": "Wholesale" },
@@ -117,11 +117,11 @@
     { "type": "text",     "id": "wholesale_whatsapp_subtext", "label": "Wholesale card short description" },
     { "type": "text",     "id": "wholesale_whatsapp_message", "label": "Wholesale pre-filled message", "default": "Hi, I would like to know more about wholesale orders." },
 
-    { "type": "header",   "content": "Concert tickets" },
-    { "type": "text",     "id": "concert_whatsapp_number",    "label": "Concert tickets WhatsApp number", "info": "Include country code, e.g. 919876543210. Leave blank to hide this card." },
-    { "type": "text",     "id": "concert_whatsapp_label",     "label": "Concert tickets card label", "default": "Book Concert Tickets" },
-    { "type": "text",     "id": "concert_whatsapp_subtext",   "label": "Concert tickets card short description" },
-    { "type": "text",     "id": "concert_whatsapp_message",   "label": "Concert tickets pre-filled message", "default": "Hi, I would like to book concert tickets." }
+    { "type": "header",   "content": "Concert booking" },
+    { "type": "text",     "id": "concert_whatsapp_number",    "label": "Concert booking WhatsApp number", "info": "Include country code, e.g. 919876543210. Leave blank to hide this card." },
+    { "type": "text",     "id": "concert_whatsapp_label",     "label": "Concert booking card label", "default": "Concert Booking" },
+    { "type": "text",     "id": "concert_whatsapp_subtext",   "label": "Concert booking card short description" },
+    { "type": "text",     "id": "concert_whatsapp_message",   "label": "Concert booking pre-filled message", "default": "Hi, I would like to enquire about a concert booking." }
   ],
   "presets": [
     { "name": "WhatsApp Contact Banner", "category": "Promotional" }

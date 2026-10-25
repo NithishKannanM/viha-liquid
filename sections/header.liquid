@@ -44,7 +44,7 @@
       logo is centred between the menu and icon buttons. {%- endcomment -%}
     {%- if section.settings.founder_photo != blank -%}
     <a href="{{ section.settings.founder_link | default: '/pages/our-story' | escape }}" class="header__founder">
-      {{ section.settings.founder_photo | image_url: width: 160 | image_tag: width: 56, height: 56, widths: '80, 160', sizes: '56px', alt: section.settings.founder_photo.alt, loading: 'eager', class: 'header__founder-img' }}
+      {{ section.settings.founder_photo | image_url: width: 200 | image_tag: width: 72, height: 72, widths: '100, 200', sizes: '72px', alt: section.settings.founder_photo.alt, loading: 'eager', class: 'header__founder-img' }}
       {%- if section.settings.founder_name != blank -%}
       <span class="header__founder-text">
         <span class="header__founder-name">{{ section.settings.founder_name | escape }}</span>
@@ -347,7 +347,7 @@
 <style>
 .header__brand { display: flex; align-items: center; gap: 16px; }
 .header__founder { display: none; align-items: center; gap: 10px; text-decoration: none; padding-left: 16px; border-left: 1px solid rgba(184,137,61,0.35); }
-.header__founder-img { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; object-position: 50% 20%; border: 2px solid var(--color-gold); box-shadow: 0 0 0 3px rgba(184,137,61,0.18); }
+.header__founder-img { width: 72px; height: 72px; border-radius: 50%; object-fit: cover; object-position: 50% 30%; border: 2px solid var(--color-gold); box-shadow: 0 0 0 3px rgba(184,137,61,0.18); }
 .header__founder-text { display: flex; flex-direction: column; line-height: 1.25; }
 .header__founder-name { font-family: var(--font-heading); font-size: 14px; font-weight: 700; color: var(--color-maroon); white-space: nowrap; }
 .header__founder-role { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #8A6420; white-space: nowrap; }

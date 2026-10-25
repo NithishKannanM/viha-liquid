@@ -699,9 +699,19 @@
             "heading": "Pooja Products & Samagri",
             "button_label": "Shop Now"
           }
+        },
+        "promo-0": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/viha-banner-dhanteras-diwali.webp",
+            "link": "/collections/deepavali",
+            "heading": "Dhanteras & Diwali",
+            "button_label": "Shop Now"
+          }
         }
       },
       "block_order": [
+        "promo-0",
         "promo-1",
         "promo-2"
       ]

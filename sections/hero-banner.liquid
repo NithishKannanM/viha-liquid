@@ -248,12 +248,18 @@
 .hero__portrait-cap { margin: 10px 0 18px; padding: 6px 16px; border-radius: 999px; background: rgba(11,69,51,0.85); border: 1px solid rgba(217,178,106,0.6); color: #f3e6c8; font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; white-space: nowrap; }
 @media (max-width: 989px) {
   .hero-slider__slide:has(.hero__portrait) { flex-direction: column; justify-content: center; }
-  .hero__portrait { position: relative; right: auto; top: auto; bottom: auto; width: auto; flex-direction: row; justify-content: flex-start; gap: 10px; padding: 0 1.25rem; margin-top: 1.5rem; }
-  .hero__portrait-img { width: 64px; height: 64px; aspect-ratio: 1; border-radius: 50%; border-width: 2px; box-shadow: 0 0 0 4px rgba(184,137,61,0.25); }
-  .hero__portrait-cap { margin: 0; font-size: 10px; }
+  /* Phones and tablets: the same gold arch portrait as on laptops, centred above the text */
+  .hero__portrait { position: relative; right: auto; top: auto; bottom: auto; width: clamp(150px, 30vw, 220px); flex-direction: column; justify-content: center; align-items: center; padding: 0; margin: 1.75rem auto 0; }
+  .hero__portrait-img { width: 100%; aspect-ratio: 4 / 5; border-width: 2px; box-shadow: 0 0 0 5px rgba(184,137,61,0.2), 0 12px 28px rgba(0,0,0,0.35); }
+  .hero__portrait-cap { margin: 8px 0 0; font-size: 10px; padding: 5px 12px; }
   .hero-slider__slide:has(.hero__portrait) .hero__content { margin: 0.75rem auto 0; }
+  /* the banner box has a fixed height; give it room for the arch + text when a portrait slide exists */
+  .hero:has(.hero__portrait) { height: 820px; }
 }
-@media (max-width: 767px) { .hero__portrait { justify-content: center; } }
+@media (max-width: 767px) {
+  .hero__portrait { width: 124px; margin-top: 1.25rem; }
+  .hero:has(.hero__portrait) { height: 720px; }
+}
 </style>
 
 {% schema %}

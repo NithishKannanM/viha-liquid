@@ -405,9 +405,21 @@
 .header__founder-text { display: flex; flex-direction: column; line-height: 1.25; }
 .header__founder-name { font-family: var(--font-heading); font-size: 14px; font-weight: 700; color: var(--color-maroon); white-space: nowrap; }
 .header__founder-role { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #8A6420; white-space: nowrap; }
-@media (min-width: 768px) { .header__founder { display: flex; } }
+.header__founder { display: flex; }
 @media (max-width: 1199px) { .header__founder-text { display: none; } }
-@media (max-width: 767px) { .header__brand { flex: 1; justify-content: center; } }
+@media (max-width: 767px) {
+  .header__brand { flex: 1; justify-content: center; gap: 8px; }
+  .header__founder { padding-left: 6px; flex-shrink: 0; }
+  .header__founder-img { width: 38px; height: 38px; border-width: 2px; box-shadow: 0 0 0 2px rgba(184,137,61,0.18); }
+  /* keep the Viha logo readable: it must not be squeezed by the icons */
+  .header__logo { flex-shrink: 0; padding: 0; }
+  .header__logo img { width: auto; min-width: 72px; }
+  .header__row-1 { padding-left: 0.5rem; padding-right: 0.5rem; }
+  .header__icons { gap: 0; }
+  .header__icons .header__track, .header__icons .header__icon-btn, .header__app-mobile { min-width: 34px; }
+  /* the bottom bar already has Saved, so the header heart gives way to her photo */
+  .header__icons a[href="/pages/wishlist"] { display: none; }
+}
 </style>
 
 {% schema %}

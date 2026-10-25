@@ -114,24 +114,7 @@ ul { list-style: none; }
 }
 .announcement-bar a:hover,
 .announcement-bar button:hover { color: var(--color-gold); }
-.announcement-bar__social { display: flex; align-items: center; gap: 0.75rem; list-style: none; margin: 0; padding: 0; }
-.announcement-bar__social a { display: inline-flex; text-decoration: none; }
-.announcement-bar__app { display: flex; align-items: center; gap: 0.6rem; }
-.announcement-bar__app-label { opacity: 0.85; }
-.announcement-bar__qr { position: relative; display: none; cursor: pointer; }
-.announcement-bar__qr-thumb { display: block; background: #fff; border-radius: 2px; padding: 1px; }
-.announcement-bar__qr-pop { display: none; position: absolute; top: calc(100% + 8px); right: 0; z-index: 60; background: #fff; color: var(--color-maroon-dark); padding: 0.6rem; border-radius: 6px; box-shadow: 0 8px 24px rgba(0,0,0,0.18); text-align: center; letter-spacing: 0.04em; font-size: 11px; white-space: nowrap; }
-.announcement-bar__qr-pop img { display: block; margin: 0 auto 0.35rem; }
-.announcement-bar__qr:hover .announcement-bar__qr-pop,
-.announcement-bar__qr:focus .announcement-bar__qr-pop,
-.announcement-bar__qr:focus-within .announcement-bar__qr-pop { display: block; }
-@media (min-width: 990px) {
-  .announcement-bar { justify-content: space-between; padding: 0.5rem 2rem; }
-  .announcement-bar__qr { display: inline-block; }
-}
-@media (max-width: 989px) {
-  .announcement-bar__text { order: -1; flex-basis: 100%; }
-}
+
 
 /* ═══════════════════════════════════════════════════════════════════════════
    HEADER
@@ -247,6 +230,43 @@ ul { list-style: none; }
   transition: background 0.2s;
 }
 .header__track:hover { background: var(--color-cream-dark); }
+
+/* Viha app (after Wholesale & Concerts): QR + Android / iPhone links; one "App" button on phones */
+.header__app { display: inline-flex; align-items: center; gap: 8px; padding: 4px 10px 4px 6px; border: 1px solid var(--color-gold); border-radius: 6px; background: #fff; color: var(--color-maroon); }
+.header__app-qr { position: relative; display: inline-flex; cursor: pointer; }
+.header__app-qr-thumb { display: block; border-radius: 3px; }
+.header__app-qr-pop { display: none; position: absolute; top: calc(100% + 10px); left: 50%; transform: translateX(-50%); z-index: 70; background: #fff; padding: 0.7rem; border-radius: 8px; box-shadow: 0 10px 28px rgba(0,0,0,0.18); text-align: center; font-size: 12px; white-space: nowrap; color: var(--color-maroon); }
+.header__app-qr-pop img { display: block; margin: 0 auto 0.4rem; }
+.header__app-qr:hover .header__app-qr-pop, .header__app-qr:focus .header__app-qr-pop, .header__app-qr:focus-within .header__app-qr-pop { display: block; }
+.header__app-text { display: flex; flex-direction: column; line-height: 1.25; }
+.header__app-label { font-size: 13px; font-weight: 700; color: var(--color-maroon); white-space: nowrap; }
+.header__app-links { display: inline-flex; gap: 6px; font-size: 12px; font-weight: 600; }
+.header__app-links a { color: var(--color-charcoal); text-decoration: underline; text-underline-offset: 2px; }
+.header__app-links a:hover { color: var(--color-gold); }
+.header__app-mobile { display: none; align-items: center; gap: 4px; font-size: 12px; font-weight: 700; color: var(--color-maroon); }
+.header__app-mobile svg { width: 18px; height: 18px; stroke-width: 1.6; }
+@media (max-width: 1179px) {
+  .header__app { border: 0; background: none; padding: 0; }
+  .header__app-qr, .header__app-text { display: none; }
+  .header__app-mobile { display: inline-flex; min-height: 44px; padding: 0 4px; }
+}
+@media (max-width: 767px) {
+  .header__app-mobile { min-width: 40px; justify-content: center; padding: 0; }
+  .header__app-mobile span { display: none; }
+  .header__app-mobile svg { width: 22px; height: 22px; }
+}
+/* Phones: the country also shows in the top bar ("Ships to: India (INR)"), so its flag gives way to the app button */
+@media (max-width: 479px) {
+  .header__icons .country-badge { display: none; }
+  .header__brand { flex-shrink: 0; }
+}
+
+/* Social icons in the space under the logo (desktop nav row) */
+.header__social { position: absolute; left: 3rem; top: 50%; transform: translateY(-50%); display: none; gap: 14px; list-style: none; margin: 0; padding: 0; }
+.header__social a { display: inline-flex; width: 34px; height: 34px; align-items: center; justify-content: center; border-radius: 50%; border: 1px solid var(--color-gold); color: var(--color-maroon); transition: background 0.2s, color 0.2s; }
+.header__social a:hover { background: var(--color-maroon); color: #fff; }
+.header__social svg { width: 18px; height: 18px; }
+@media (min-width: 1400px) { .header__social { display: flex; } }
 .header__track svg { width: 18px; height: 18px; stroke-width: 1.5; flex-shrink: 0; }
 .header__track-label {
   font-size: 13px;

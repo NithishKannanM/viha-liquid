@@ -90,6 +90,40 @@
         </a>
       {%- endif -%}
 
+      {%- comment -%} Viha app: Android + iPhone links with a QR on hover (desktop); on phones one "App" button
+          that opens the store for that phone (iPhone -> App Store, otherwise Google Play). {%- endcomment -%}
+      {%- if section.settings.play_store_url != blank or section.settings.app_store_url != blank -%}
+      <div class="header__app">
+        {%- if section.settings.qr_image != blank -%}
+        <span class="header__app-qr" tabindex="0" aria-label="QR code to install the Viha app">
+          {{ section.settings.qr_image | image_url: width: 96 | image_tag: width: 34, height: 34, alt: '', class: 'header__app-qr-thumb' }}
+          <span class="header__app-qr-pop" role="tooltip">
+            {{ section.settings.qr_image | image_url: width: 360 | image_tag: width: 160, height: 160, alt: section.settings.qr_image.alt }}
+            {%- if section.settings.qr_caption != blank -%}<span>{{ section.settings.qr_caption }}</span>{%- endif -%}
+          </span>
+        </span>
+        {%- endif -%}
+        <span class="header__app-text">
+          {%- if section.settings.app_label != blank -%}<span class="header__app-label">{{ section.settings.app_label }}</span>{%- endif -%}
+          <span class="header__app-links">
+            {%- if section.settings.play_store_url != blank -%}<a href="{{ section.settings.play_store_url }}" target="_blank" rel="noopener noreferrer" aria-label="Get the Viha app on Google Play (opens in a new tab)">Android</a>{%- endif -%}
+            {%- if section.settings.play_store_url != blank and section.settings.app_store_url != blank -%}<span aria-hidden="true">·</span>{%- endif -%}
+            {%- if section.settings.app_store_url != blank -%}<a href="{{ section.settings.app_store_url }}" target="_blank" rel="noopener noreferrer" aria-label="Get the Viha app on the App Store (opens in a new tab)">iPhone</a>{%- endif -%}
+          </span>
+        </span>
+        <a class="header__app-mobile" href="{{ section.settings.play_store_url | default: section.settings.app_store_url }}" data-ios-href="{{ section.settings.app_store_url }}" target="_blank" rel="noopener noreferrer" aria-label="Get the Viha app">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3"/></svg>
+          <span>App</span>
+        </a>
+        <script>
+          (function () {
+            var a = document.currentScript.previousElementSibling;
+            if (a && a.dataset.iosHref && /iPhone|iPad|iPod/.test(navigator.userAgent)) a.href = a.dataset.iosHref;
+          })();
+        </script>
+      </div>
+      {%- endif -%}
+
       {%- comment -%} Wholesale / Concert WhatsApp links — same dormant pattern as the footer and
           homepage banner: each link only renders once its number is filled in below. {%- endcomment -%}
       {%- if section.settings.wholesale_whatsapp_number != blank -%}
@@ -181,6 +215,26 @@
     can never escape above Row 1 (z-[2]) where the country dropdown lives.
   {%- endcomment -%}
   <nav class="header__row-2" aria-label="Main navigation" id="main-nav">
+    {%- comment -%} Viha on social media, in the space under the logo. Links come from Theme settings > Social media. {%- endcomment -%}
+    {%- if settings.social_facebook_link != blank or settings.social_instagram_link != blank or settings.social_youtube_link != blank -%}
+    <ul class="header__social" aria-label="Viha on social media">
+      {%- if settings.social_facebook_link != blank -%}
+      <li><a href="{{ settings.social_facebook_link }}" target="_blank" rel="noopener noreferrer" aria-label="Viha on Facebook (opens in a new tab)">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-7.5h2.5l.4-3h-2.9V8.6c0-.9.3-1.5 1.5-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.8 1.4-3.8 3.9v2.3H8v3h2.5V21h3z"/></svg>
+      </a></li>
+      {%- endif -%}
+      {%- if settings.social_instagram_link != blank -%}
+      <li><a href="{{ settings.social_instagram_link }}" target="_blank" rel="noopener noreferrer" aria-label="Viha on Instagram (opens in a new tab)">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+      </a></li>
+      {%- endif -%}
+      {%- if settings.social_youtube_link != blank -%}
+      <li><a href="{{ settings.social_youtube_link }}" target="_blank" rel="noopener noreferrer" aria-label="Viha on YouTube (opens in a new tab)">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.6 7.2a2.5 2.5 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4A2.5 2.5 0 0 0 2.4 7.2 26 26 0 0 0 2 12a26 26 0 0 0 .4 4.8 2.5 2.5 0 0 0 1.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4a2.5 2.5 0 0 0 1.8-1.8A26 26 0 0 0 22 12a26 26 0 0 0-.4-4.8zM10 15V9l5.2 3L10 15z"/></svg>
+      </a></li>
+      {%- endif -%}
+    </ul>
+    {%- endif -%}
     <div class="header__nav">
 
       {%- for block in section.blocks -%}
@@ -377,6 +431,12 @@
     { "type": "header", "content": "Row 1: wholesale & concert booking phone" },
     { "type": "text", "id": "booking_phone", "label": "Booking phone number", "info": "Shown beside Track My Order as a tap-to-call link. Leave blank to hide." },
     { "type": "text", "id": "booking_label", "label": "Booking phone label", "default": "Wholesale & Concerts" },
+    { "type": "header", "content": "Viha app" },
+    { "type": "text", "id": "app_label", "label": "App label", "default": "Get the Viha App" },
+    { "type": "url", "id": "play_store_url", "label": "Google Play link", "info": "Leave empty to hide the Android link" },
+    { "type": "url", "id": "app_store_url", "label": "App Store link", "info": "Leave empty to hide the iPhone link" },
+    { "type": "image_picker", "id": "qr_image", "label": "App QR code", "info": "Shown beside the links; hover to enlarge (computers only)" },
+    { "type": "text", "id": "qr_caption", "label": "QR caption", "default": "Scan to install (Android)" },
     { "type": "header", "content": "Row 1, icons" },
     { "type": "checkbox", "id": "show_search", "label": "Show search icon", "default": true },
     { "type": "checkbox", "id": "show_account", "label": "Show account icon", "default": true },

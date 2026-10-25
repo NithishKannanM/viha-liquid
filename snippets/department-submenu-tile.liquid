@@ -5,7 +5,13 @@
 {%- endcomment -%}
 {%- if link.type == 'collection_link' -%}
   {%- assign c = link.object -%}
-  {%- if c.products_count > 0 -%}
+  {%- comment -%} A link with a tag (/collections/x/tag) is a filtered view of collection x: its true count is
+      not available here, so it shows no count. A link back to the page being viewed is skipped. {%- endcomment -%}
+  {%- assign link_is_tag_view = false -%}
+  {%- if link.url != c.url -%}{%- assign link_is_tag_view = true -%}{%- endif -%}
+  {%- assign link_is_self = false -%}
+  {%- if collection and c.id == collection.id and link_is_tag_view == false -%}{%- assign link_is_self = true -%}{%- endif -%}
+  {%- if c.products_count > 0 and link_is_self == false -%}
     {%- assign tile_img = c.image | default: c.products.first.featured_image -%}
     <a class="dept-sub__tile" href="{{ link.url }}">
       <span class="dept-sub__media">
@@ -16,7 +22,7 @@
         {%- endif -%}
       </span>
       <span class="dept-sub__name">{{ link.title | escape }}</span>
-      <span class="dept-sub__count">{{ c.products_count }} {% if c.products_count == 1 %}item{% else %}items{% endif %}</span>
+      {%- unless link_is_tag_view -%}<span class="dept-sub__count">{{ c.products_count }} {% if c.products_count == 1 %}item{% else %}items{% endif %}</span>{%- endunless -%}
     </a>
   {%- endif -%}
 {%- else -%}

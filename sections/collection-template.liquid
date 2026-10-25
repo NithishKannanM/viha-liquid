@@ -19,14 +19,41 @@
   {%- elsif col.image -%}
     <div style="position:absolute;inset:0;background-image:url('{{ col.image | img_url: '1920x' }}');background-size:cover;background-position:center;filter:brightness(0.25);mix-blend-mode:luminosity;"></div>
   {%- endif -%}
+  {%- comment -%} A tag view (/collections/x/tag), e.g. a sub-menu tile like "Gemstone & Crystal Silver": show that
+      tile's title as the page heading, link the breadcrumb back to the full collection, and hide the tiles below,
+      so it reads as its own page. {%- endcomment -%}
+  {%- assign tag_view_title = blank -%}
+  {%- if current_tags.size > 0 -%}
+    {%- assign here = request.path | downcase -%}
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'department' and block.settings.collection.id == col.id and block.settings.menu != blank -%}
+        {%- for link in linklists[block.settings.menu].links -%}
+          {%- assign lu = link.url | downcase -%}
+          {%- if lu == here -%}{%- assign tag_view_title = link.title -%}{%- break -%}{%- endif -%}
+          {%- for child in link.links -%}
+            {%- assign cu = child.url | downcase -%}
+            {%- if cu == here -%}{%- assign tag_view_title = child.title -%}{%- break -%}{%- endif -%}
+          {%- endfor -%}
+        {%- endfor -%}
+        {%- break -%}
+      {%- endif -%}
+    {%- endfor -%}
+    {%- if tag_view_title == blank -%}{%- assign tag_view_title = current_tags | join: ', ' -%}{%- endif -%}
+  {%- endif -%}
   <div style="max-width:var(--max-w);margin:0 auto;position:relative;z-index:1;">
     <nav aria-label="Breadcrumb" style="display:flex;align-items:center;gap:6px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.18em;color:rgba(255,255,255,0.40);margin-bottom:1.25rem;">
       <a href="/" style="color:inherit;transition:color 0.15s;" onmouseover="this.style.color='var(--color-gold)'" onmouseout="this.style.color='rgba(255,255,255,0.40)'">Home</a>
       <span>/</span>
+      {%- if tag_view_title != blank -%}
+      <a href="{{ col.url }}" style="color:inherit;">{{ section.settings.custom_heading | default: col.title }}</a>
+      <span>/</span>
+      <span style="color:var(--color-gold);">{{ tag_view_title | escape }}</span>
+      {%- else -%}
       <span style="color:var(--color-gold);">{{ section.settings.custom_heading | default: col.title }}</span>
+      {%- endif -%}
     </nav>
     <h1 style="font-family:var(--font-heading);font-size:clamp(1.75rem,4.5vw,3rem);font-weight:900;color:#fff;line-height:1.08;margin-bottom:0.75rem;">
-      {{ section.settings.custom_heading | default: col.title }}
+      {%- if tag_view_title != blank -%}{{ tag_view_title | escape }}{%- else -%}{{ section.settings.custom_heading | default: col.title }}{%- endif -%}
     </h1>
     {%- assign hero_sub = section.settings.custom_subtext | default: col.description -%}
     {%- if hero_sub != blank -%}
@@ -82,7 +109,9 @@
 }
 </script>
 
+{%- if tag_view_title == blank -%}
 {%- render 'department-submenu', blocks: section.blocks, heading: section.settings.submenu_heading -%}
+{%- endif -%}
 
 {%- comment -%} ── Body: sidebar + product grid ─── {%- endcomment -%}
 <div id="collection-products" style="background:var(--color-cream);padding:2.5rem 3rem;min-height:60vh;scroll-margin-top:120px;">

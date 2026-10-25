@@ -2327,7 +2327,8 @@ ul { list-style: none; }
 
 /* Booking phone stays reachable on phones (icon only) */
 @media (max-width: 767px) { .header__booking { display: inline-flex; padding: 0; min-width: 40px; justify-content: center; } }
-.header__booking strong { font-weight: 700; margin-left: 4px; }
+.header__booking .header__track-label { font-size: 14px; font-weight: 700; color: var(--color-maroon); }
+.header__booking strong { font-weight: 800; margin-left: 4px; font-size: 15px; }
 /* Decorative ornaments (gold lines, diamonds, dot fields) retired sitewide */
 .ornament-line-gold, .ornament-diamond-gold, .beauty-promo__ornament,
 .beauty-promo__ornament-line, .beauty-promo__ornament-diamond, .tracker-section::before { display: none !important; }

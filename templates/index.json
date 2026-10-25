@@ -81,7 +81,8 @@
           "settings": {
             "label": "Pooja Products & Samagri",
             "collection": "pooja-samagri",
-            "custom_link": ""
+            "custom_link": "",
+            "image": "shopify://shop_images/viha-circle-pooja-products-samagri.webp"
           }
         },
         "tab-2": {
@@ -89,7 +90,8 @@
           "settings": {
             "label": "Pooja Utensils",
             "collection": "pooja-utensils",
-            "custom_link": ""
+            "custom_link": "",
+            "image": "shopify://shop_images/viha-circle-pooja-utensils.webp"
           }
         },
         "tab-3": {
@@ -97,7 +99,8 @@
           "settings": {
             "label": "Vilakku & Traditional Oil Lamps",
             "collection": "lamp-diya",
-            "custom_link": ""
+            "custom_link": "",
+            "image": "shopify://shop_images/viha-circle-vilakku-oil-lamps.webp"
           }
         },
         "tab-4": {
@@ -105,7 +108,8 @@
           "settings": {
             "label": "Statues / Idols",
             "collection": "statues-idols",
-            "custom_link": ""
+            "custom_link": "",
+            "image": "shopify://shop_images/viha-circle-statues-idols.webp"
           }
         },
         "tab-5": {
@@ -113,7 +117,8 @@
           "settings": {
             "label": "Conch & Shells",
             "collection": "conch-shells-yantra-sangu",
-            "custom_link": ""
+            "custom_link": "",
+            "image": "shopify://shop_images/viha-circle-conch-shells.webp"
           }
         },
         "tab-6": {
@@ -121,7 +126,8 @@
           "settings": {
             "label": "God & Goddess Photos",
             "collection": "god-photos",
-            "custom_link": ""
+            "custom_link": "",
+            "image": "shopify://shop_images/viha-circle-god-goddess-photos.webp"
           }
         },
         "tab-7": {
@@ -129,7 +135,8 @@
           "settings": {
             "label": "All Wooden Products",
             "collection": "wooden-products",
-            "custom_link": ""
+            "custom_link": "",
+            "image": "shopify://shop_images/viha-circle-wooden-products.webp"
           }
         },
         "tab-8": {
@@ -137,7 +144,8 @@
           "settings": {
             "label": "Gemstones & Crystals",
             "collection": "gemstones-crystals",
-            "custom_link": ""
+            "custom_link": "",
+            "image": "shopify://shop_images/viha-circle-gemstones-crystals.webp"
           }
         },
         "tab-9": {

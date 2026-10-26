@@ -2375,3 +2375,7 @@ a.mega-menu__cat-heading--link:hover { color: var(--color-maroon); }
   [data-mega-panel="wooden-products"] .mega-menu__subcats > div:nth-child(4) { grid-column: 3 / span 2; columns: 2; column-gap: 1.5rem; }
   [data-mega-panel="wooden-products"] .mega-menu__subcats > div:nth-child(4) > .mega-menu__cat-heading { column-span: all; }
 }
+
+/* Leftover cookie banner: the Pandectes app was uninstalled but its script tag still loads
+   (Shopify script tag, not removable from the admin). Hide its banner, revoke tab and top spacer. */
+.cc-window, .cc-revoke, .cc-grower { display: none !important; }

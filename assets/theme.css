@@ -2379,3 +2379,7 @@ a.mega-menu__cat-heading--link:hover { color: var(--color-maroon); }
 /* Leftover cookie banner: the Pandectes app was uninstalled but its script tag still loads
    (Shopify script tag, not removable from the admin). Hide its banner, revoke tab and top spacer. */
 .cc-window, .cc-revoke, .cc-grower { display: none !important; }
+
+/* Leftover "Show Recent Orders" popup: the app was uninstalled but its script tag still loads
+   (not removable from the admin). It shows a customer's name and town, so hide it. */
+#sro-popup, #sro-width-check { display: none !important; }

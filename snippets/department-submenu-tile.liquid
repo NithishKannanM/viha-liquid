@@ -1,8 +1,8 @@
 {%- comment -%}
   One tile in the department sub-menu. Accepts: link (a menu link).
   Collection links show the collection image, else its first product's image, plus the item
-  count; empty collections render nothing. Other links show the first letter of the title.
-  A tile picture uploaded to Content > Files as viha-tile-<link path>.webp wins over both, where
+  count; empty collections render nothing. Other links show the first letter of the title,
+  unless a tile picture exists. A tile picture, uploaded to Content > Files as viha-tile-<link path>.webp, wins over both, where
   <link path> is the link URL after /collections/, handleized: /collections/jewellery/Rings ->
   viha-tile-jewellery-rings.webp. A new or replaced upload shows after the next theme push (pages are cached).
 {%- endcomment -%}

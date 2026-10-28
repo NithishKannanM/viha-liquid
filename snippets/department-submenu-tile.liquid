@@ -2,7 +2,12 @@
   One tile in the department sub-menu. Accepts: link (a menu link).
   Collection links show the collection image, else its first product's image, plus the item
   count; empty collections render nothing. Other links show the first letter of the title.
+  A tile picture uploaded to Content > Files as viha-tile-<link path>.webp wins over both, where
+  <link path> is the link URL after /collections/, handleized: /collections/jewellery/Rings ->
+  viha-tile-jewellery-rings.webp.
 {%- endcomment -%}
+{%- assign tile_file = link.url | split: '?' | first | remove_first: '/collections/' | handleize | prepend: 'viha-tile-' | append: '.webp' -%}
+{%- assign tile_override = images[tile_file] -%}
 {%- if link.type == 'collection_link' -%}
   {%- assign c = link.object -%}
   {%- comment -%} A link with a tag (/collections/x/tag) is a filtered view of collection x: its true count is
@@ -12,7 +17,7 @@
   {%- assign link_is_self = false -%}
   {%- if collection and c.id == collection.id and link_is_tag_view == false -%}{%- assign link_is_self = true -%}{%- endif -%}
   {%- if c.products_count > 0 and link_is_self == false -%}
-    {%- assign tile_img = c.image | default: c.products.first.featured_image -%}
+    {%- assign tile_img = tile_override | default: c.image | default: c.products.first.featured_image -%}
     <a class="dept-sub__tile" href="{{ link.url }}">
       <span class="dept-sub__media">
         {%- if tile_img -%}
@@ -28,7 +33,11 @@
 {%- else -%}
   <a class="dept-sub__tile" href="{{ link.url }}">
     <span class="dept-sub__media">
-      <span class="dept-sub__letter" aria-hidden="true">{{ link.title | slice: 0 | upcase }}</span>
+      {%- if tile_override -%}
+        {{ tile_override | image_url: width: 400 | image_tag: loading: 'lazy', widths: '200,300,400', sizes: '(min-width: 1024px) 180px, 30vw', alt: '' }}
+      {%- else -%}
+        <span class="dept-sub__letter" aria-hidden="true">{{ link.title | slice: 0 | upcase }}</span>
+      {%- endif -%}
     </span>
     <span class="dept-sub__name">{{ link.title | escape }}</span>
   </a>

@@ -38,6 +38,20 @@
         {%- break -%}
       {%- endif -%}
     {%- endfor -%}
+    {%- comment -%} A stacked filter page (scope tag + type, see refine_tags below) reads "Scope: Label". {%- endcomment -%}
+    {%- if tag_view_title == blank and current_tags.size > 1 -%}
+      {%- for entry in col.metafields.custom.refine_tags.value -%}
+        {%- assign rtag = entry | split: '::' | first -%}
+        {%- if rtag contains '>>' -%}
+          {%- assign sparts = rtag | split: '>>' -%}
+          {%- if current_tags contains sparts[0] and current_tags contains sparts[1] -%}
+            {%- assign rlabel = entry | split: '::' | last -%}
+            {%- assign tag_view_title = sparts[0] | append: ': ' | append: rlabel -%}
+            {%- break -%}
+          {%- endif -%}
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endif -%}
     {%- if tag_view_title == blank -%}{%- assign tag_view_title = current_tags | join: ', ' -%}{%- endif -%}
   {%- endif -%}
   <div style="max-width:var(--max-w);margin:0 auto;position:relative;z-index:1;">
@@ -197,12 +211,20 @@
           Showing every tag in col.tags put other departments' tags on the page (Books &
           Stationery on Sarees, Nightwear on Kurtis) plus duplicates and internal tags like
           indiaonly. A collection with no list shows no plain-tag options. List source:
-          03-build/automation/data/refine_tags_20261020.json. {%- endcomment -%}
+          03-build/automation/data/refine_tags_20261020.json.
+          An entry "scope tag>>tag::label" shows only on the scope tag's page and stacks both tags
+          (/collections/jewellery/crystals-gemstones+rings), so Jewellery > Crystals & Gemstones can
+          filter by type without leaving the crystal items. {%- endcomment -%}
         {%- assign refine_list = col.metafields.custom.refine_tags.value -%}
         {%- assign refine_count = 0 -%}
         {%- for entry in refine_list -%}
           {%- assign rtag = entry | split: '::' | first -%}
-          {%- if col.tags contains rtag or current_tags contains rtag %}{% assign refine_count = refine_count | plus: 1 %}{% endif -%}
+          {%- if rtag contains '>>' -%}
+            {%- assign rscope = rtag | split: '>>' | first -%}
+            {%- if current_tags contains rscope %}{% assign refine_count = refine_count | plus: 1 %}{% endif -%}
+          {%- elsif col.tags contains rtag or current_tags contains rtag -%}
+            {%- assign refine_count = refine_count | plus: 1 -%}
+          {%- endif -%}
         {%- endfor -%}
         {%- assign ns_count = 0 -%}
         {%- comment -%} Namespaced groups (type:, material:) only where there is no curated list:
@@ -249,9 +271,23 @@
                 {%- for entry in refine_list -%}
                   {%- assign rparts = entry | split: '::' -%}
                   {%- assign rtag = rparts[0] -%}
+                  {%- assign rscope = blank -%}
+                  {%- if rtag contains '>>' -%}
+                    {%- assign sparts = rtag | split: '>>' -%}
+                    {%- assign rscope = sparts[0] -%}
+                    {%- assign rtag = sparts[1] -%}
+                  {%- endif -%}
                   {%- assign rlabel = rparts[1] | default: rtag -%}
                   {%- assign on = false -%}
                   {%- if current_tags contains rtag %}{% assign on = true %}{% endif -%}
+                  {%- if rscope != blank -%}
+                    {%- if current_tags contains rscope -%}
+                      {%- assign rscope_h = rscope | handleize -%}
+                      {%- assign scope_url = col.url | append: '/' | append: rscope_h -%}
+                      <a href="{% if on %}{{ scope_url }}{% else %}{{ scope_url }}+{{ rtag | handleize }}{% endif %}" {% if on %}aria-current="true"{% endif %} style="padding:6px 8px;border-radius:2px;font-size:14px;text-decoration:none;color:{% if on %}#fff{% else %}rgba(45,45,45,0.85){% endif %};background:{% if on %}var(--color-maroon){% else %}transparent{% endif %};">{% if on %}&times; {% endif %}{{ rlabel | escape }}</a>
+                    {%- endif -%}
+                    {%- continue -%}
+                  {%- endif -%}
                   {%- comment -%} On a tag page col.tags holds only the filtered products' tags, so the list
                     would shrink to whatever happens to share products with the chosen type. Keep the
                     whole curated list visible instead; each link is one type, never stacked. {%- endcomment -%}

@@ -4,7 +4,7 @@
   count; empty collections render nothing. Other links show the first letter of the title,
   unless a tile picture exists. A tile picture, uploaded to Content > Files as viha-tile-<link path>.webp, wins over both, where
   <link path> is the link URL after /collections/, handleized: /collections/jewellery/Rings ->
-  viha-tile-jewellery-rings.webp. A new or replaced upload shows after the next theme push (pages are cached).
+  viha-tile-jewellery-rings.webp. A new or replaced upload shows only after the next theme push, because pages are cached.
 {%- endcomment -%}
 {%- assign tile_file = link.url | split: '?' | first | remove_first: '/collections/' | handleize | prepend: 'viha-tile-' | append: '.webp' -%}
 {%- assign tile_override = images[tile_file] -%}

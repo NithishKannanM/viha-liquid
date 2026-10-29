@@ -10,6 +10,7 @@ const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
 /* Escape untrusted strings before interpolating into innerHTML template literals.
    Product titles/URLs/images come from the catalog (some bulk-imported from mixed
    sources), so treat them as untrusted to prevent stored-XSS via a crafted title. */
+// Shopify JSON urls are already percent-encoded (Tamil handles); escape them for HTML, never encodeURI again.
 function escapeHtml(str) {
   return String(str == null ? '' : str)
     .replace(/&/g, '&amp;')
@@ -246,10 +247,10 @@ const CartDrawer = (function () {
 
     body.innerHTML = cart.items.map(item => `
       <div class="cart-item" data-key="${escapeHtml(item.key)}">
-        <img class="cart-item__img" src="${encodeURI(item.image || '')}" alt="${escapeHtml(item.product_title)}" loading="lazy">
+        <img class="cart-item__img" src="${escapeHtml(item.image || '')}" alt="${escapeHtml(item.product_title)}" loading="lazy">
         <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:6px;">
           <div>
-            <a href="${encodeURI(item.url || '')}" class="cart-item__name">${escapeHtml(item.product_title)}</a>
+            <a href="${escapeHtml(item.url || '')}" class="cart-item__name">${escapeHtml(item.product_title)}</a>
             ${item.variant_title && item.variant_title !== 'Default Title' ? `<p class="cart-item__cat">${escapeHtml(item.variant_title)}</p>` : ''}
           </div>
           <div style="display:flex;align-items:center;justify-content:space-between;">
@@ -429,8 +430,8 @@ const CartDrawer = (function () {
         results.innerHTML = `
           <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;margin-top:1.5rem;">
             ${products.map(p => `
-              <a href="${encodeURI(p.url || '')}" class="search-result-card">
-                ${p.image ? `<img class="search-result-card__img" src="${encodeURI(p.image)}" alt="${escapeHtml(p.title)}" loading="lazy">` : ''}
+              <a href="${escapeHtml(p.url || '')}" class="search-result-card">
+                ${p.image ? `<img class="search-result-card__img" src="${escapeHtml(p.image)}" alt="${escapeHtml(p.title)}" loading="lazy">` : ''}
                 <div>
                   <p style="font-family:var(--font-heading);font-size:13px;font-weight:600;color:var(--color-maroon);line-height:1.3;">${escapeHtml(p.title)}</p>
                   ${p.price ? `<p style="font-size:12px;font-weight:600;color:var(--color-maroon);margin-top:4px;">${formatMoney(Math.round(parseFloat(p.price) * 100))}</p>` : ''}

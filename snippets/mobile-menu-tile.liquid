@@ -2,10 +2,13 @@
   One picture tile in the mobile menu. Collection links use the collection image
   (Shopify falls back to its first product image). Tag-filter and custom links have
   no collection object, so they show the first letter of the label instead.
+  A tile picture in Content > Files (viha-tile-<link path>.webp, see department-submenu-tile) wins over both.
   Accepts: link (a menu link)
 {%- endcomment -%}
-{%- assign tile_img = blank -%}
-{%- if link.type == 'collection_link' and link.object -%}
+{%- assign tile_file = link.url | split: '?' | first | remove_first: '/collections/' | handleize | prepend: 'viha-tile-' | append: '.webp' -%}
+{%- assign tile_img = images[tile_file] | default: blank -%}
+{%- if tile_img != blank -%}
+{%- elsif link.type == 'collection_link' and link.object -%}
   {%- assign tile_img = link.object.featured_image -%}
 {%- elsif link.url contains '/collections/' -%}
   {%- comment -%} Tag filter link (/collections/<handle>/<tag>): picture of the first

@@ -9,7 +9,8 @@
     </button>
   </div>
   <div class="search-overlay__body">
-    <div class="search-overlay__input-wrap">
+    {%- comment -%} Enter / phone "Go" opens the full results page, which also matches misspellings. {%- endcomment -%}
+    <form action="{{ routes.search_url }}" method="get" role="search" class="search-overlay__input-wrap">
       <span class="search-overlay__input-icon" aria-hidden="true">
         <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
           <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 15.803 7.5 7.5 0 0015.803 15.803z"/>
@@ -24,8 +25,12 @@
         spellcheck="false"
         data-search-input
         aria-label="Search products"
+        name="q"
+        enterkeyhint="search"
       >
-    </div>
+      <input type="hidden" name="type" value="product">
+      <input type="hidden" name="options[prefix]" value="last">
+    </form>
     <div data-search-results></div>
 
     {%- comment -%} Popular searches {%- endcomment -%}

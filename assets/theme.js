@@ -420,8 +420,10 @@ const CartDrawer = (function () {
       .then(r => r.json())
       .then(data => {
         const products = (data.resources && data.resources.results && data.resources.results.products) || [];
+        const allUrl = `/search?q=${encodeURIComponent(q)}&type=product&options[prefix]=last`;
+        const allLink = `<a href="${allUrl}" class="search-overlay__all" style="display:inline-block;margin-top:1.25rem;font-size:12px;font-weight:700;color:var(--color-maroon);text-decoration:underline;">See all results for &ldquo;${escapeHtml(q)}&rdquo;</a>`;
         if (!products.length) {
-          results.innerHTML = '<p style="color:rgba(45,45,45,0.5);font-size:13px;padding:1rem 0;">No results found.</p>';
+          results.innerHTML = '<p style="color:rgba(45,45,45,0.5);font-size:13px;padding:1rem 0 0;">No quick matches.</p>' + allLink;
           return;
         }
         results.innerHTML = `
@@ -434,7 +436,7 @@ const CartDrawer = (function () {
                   ${p.price ? `<p style="font-size:12px;font-weight:600;color:var(--color-maroon);margin-top:4px;">${formatMoney(Math.round(parseFloat(p.price) * 100))}</p>` : ''}
                 </div>
               </a>`).join('')}
-          </div>`;
+          </div>${allLink}`;
       })
       .catch(() => {
         results.innerHTML = '<p style="color:rgba(45,45,45,0.5);font-size:13px;padding:1rem 0;">Search unavailable. Please try again.</p>';

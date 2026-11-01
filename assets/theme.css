@@ -2270,6 +2270,7 @@ ul { list-style: none; }
 .tracker__btn {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
   padding: 0.875rem 1.5rem;
   background: var(--color-gold);
@@ -2286,6 +2287,11 @@ ul { list-style: none; }
   border-radius: 2px;
 }
 .tracker__btn:hover { background: #9a7030; }
+/* .btn is full width on phones, which squeezes a side-by-side email box: stack them. */
+@media (max-width: 639px) {
+  .newsletter-form__row { flex-direction: column; }
+  .newsletter-form__row input[type="email"] { flex: none !important; width: 100%; }
+}
 .tracker__result { margin-top: 1rem; font-size: 13px; }
 .tracker__hint {
   font-size: 10.5px;

@@ -11,7 +11,7 @@
     <h2 style="font-family:var(--font-heading);font-size:clamp(1.25rem,3vw,1.875rem);font-weight:900;color:#fff;margin-bottom:1rem;">{{ section.settings.heading | default: 'The Beauty Digest' }}</h2>
     <p style="font-size:13px;color:rgba(255,255,255,0.55);margin-bottom:2rem;line-height:1.75;">{{ section.settings.subtext | default: 'Seasonal rituals and Ayurvedic wisdom from Mrs Anitha Kuppusamy, plus early access to new formulations.' }}</p>
     {% form 'customer', id: 'beauty-newsletter' %}
-      <div style="display:flex;gap:8px;max-width:400px;margin:0 auto;">
+      <div class="newsletter-form__row" style="display:flex;gap:8px;max-width:400px;margin:0 auto;">
         <input type="hidden" name="contact[tags]" value="newsletter,beauty">
         <label for="beauty-email" class="sr-only">Email address</label>
         <input type="email" name="contact[email]" id="beauty-email" required placeholder="your@email.com" aria-label="Email address"

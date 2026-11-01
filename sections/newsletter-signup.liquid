@@ -18,7 +18,7 @@
         {% if form.errors %}
           <p role="alert" style="font-size:12px;color:#f3c0b5;margin-bottom:10px;line-height:1.6;">{{ form.errors.translated_fields.email | capitalize }} {{ form.errors.messages.email }}</p>
         {% endif %}
-        <div style="display:flex;gap:8px;">
+        <div class="newsletter-form__row" style="display:flex;gap:8px;">
           <input type="hidden" name="contact[tags]" value="newsletter">
           <label for="newsletter-email" class="sr-only">Email address</label>
           <input type="email" name="contact[email]" id="newsletter-email" required autocomplete="email" placeholder="your@email.com" aria-label="Email address"

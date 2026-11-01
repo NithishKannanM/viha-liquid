@@ -114,6 +114,25 @@ ul { list-style: none; }
 }
 .announcement-bar a:hover,
 .announcement-bar button:hover { color: var(--color-gold); }
+.announcement-bar__close {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
+  text-decoration: none;
+}
+@media (max-width: 639px) {
+  /* Keep the close button beside the text, not wrapped onto its own line. */
+  .announcement-bar { flex-wrap: nowrap; gap: 0.5rem; padding: 0.375rem 0.5rem 0.375rem 1rem; }
+  .announcement-bar__text { flex: 1 1 auto; min-width: 0; }
+  .announcement-bar__close { width: 32px; height: 32px; }
+}
 
 
 /* ═══════════════════════════════════════════════════════════════════════════
@@ -1484,6 +1503,16 @@ ul { list-style: none; }
   padding-bottom: env(safe-area-inset-bottom);
 }
 @media (min-width: 1024px) { .mobile-bottom-nav { display: none; } }
+/* Carthike's WhatsApp button pins itself over the bottom nav; lift it and its greeting above. */
+@media (max-width: 1023px) {
+  #carthike-chat-button-container { bottom: calc(68px + env(safe-area-inset-bottom)) !important; }
+  #carthike-welcome-message-container { bottom: calc(116px + env(safe-area-inset-bottom)) !important; }
+}
+@media (max-width: 767px) {
+  /* Product pages: also clear the sticky Add to Cart bar once it slides in. */
+  body:has(.pdp-sticky-atc.is-visible) #carthike-chat-button-container { bottom: calc(132px + env(safe-area-inset-bottom)) !important; }
+  body:has(.pdp-sticky-atc.is-visible) #carthike-welcome-message-container { bottom: calc(180px + env(safe-area-inset-bottom)) !important; }
+}
 .mobile-bottom-nav__item {
   flex: 1;
   display: flex;
